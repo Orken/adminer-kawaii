@@ -1,0 +1,74 @@
+/* ===== Thème Halloween =====
+   Actif quand <html data-theme="halloween">. Identité : nuit violette très sombre, orange citrouille, vert acide,
+   titres serif gothiques, bandeau à rayures qui défile. Thème sombre : color-scheme dark. */
+
+:root[data-theme="halloween"] {
+  --bg: #170f22; --surface: #231733; --surface-2: #31204a; --text: #f4e9dc; --muted: #c4b0d9; --border: #4d3573;
+  --accent: #ff7a1a; --on-accent: #1a0d02;
+  --accent-text: #ff9a47;              /* liens et titres : orange clair sur fond sombre */
+  --purple: #9b5de5;
+  --ok: #8fd14f; --err: #ff4d6d; --on-err: #2a0410;
+  --jush-str: #9fe870; --jush-num: #ff9a47; --jush-id: #d9a6ff;
+  --shadow: 0 4px 14px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+
+  /* formes */
+  --radius: 10px; --radius-sm: 6px;
+  --font: "Segoe UI", system-ui, sans-serif;
+  --font-heading: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --h2-border: 3px double var(--accent);
+
+  /* décor */
+  --e-title: "🎃 "; --e-after: " 🦇"; --e-table: "🕸️"; --e-logo: "👻 "; --e-ok: "🍬 "; --e-err: "💀 ";
+  --banner: "TRICK OR TREAT 🎃";
+  /* fond : petites croix et étoiles violettes éparses */
+  --bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M10 6v8M6 10h8' stroke='%239b5de5' stroke-opacity='.22' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='38' r='2' fill='%23ff7a1a' fill-opacity='.2'/%3E%3C/svg%3E");
+  --bg-size: 60px 60px; --bg-pos: 0 0;
+
+  --th-bg: var(--surface-2); --th-text: var(--accent-text);
+  --zebra: #1c1230;
+  --row-hover: #3d2810;
+}
+/* boutons-icônes : carré d'Adminer inversé, pictogramme de la couleur du texte (fond donné inversé, voir dbhub.css) */
+:root[data-theme="halloween"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="halloween"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Menu : filet orange, bandeau à rayures qui défilent ---------- */
+:root[data-theme="halloween"] #menu {
+  border-right: 3px solid var(--accent); padding-top: 20px;
+  background-image: repeating-linear-gradient(45deg, var(--accent) 0 8px, #1a0d02 8px 16px);
+  background-repeat: repeat-x; background-size: 100% 6px;
+}
+:root[data-theme="halloween"] #menu h1::after {
+  color: var(--accent-text); background-color: #1a0d02; border: 2px solid var(--accent); border-radius: var(--radius-sm);
+  font-family: var(--font-heading); letter-spacing: .08em; text-shadow: 0 0 8px rgba(255, 122, 26, .6);
+  background-image: repeating-linear-gradient(45deg, rgba(255, 122, 26, .16) 0 8px, transparent 8px 16px);
+  background-size: 22.63px 22.63px;
+  animation: hw-banner-scroll 2.4s linear infinite;
+}
+/* décalage d'une période exacte (16 px / sin 45° ≈ 22,63 px) : boucle invisible. Coupé si prefers-reduced-motion (base.css). */
+@keyframes hw-banner-scroll { from { background-position: 0 0; } to { background-position: 22.63px 0; } }
+:root[data-theme="halloween"] #tables li:has(a.active) { box-shadow: inset 4px 0 0 var(--accent); }
+:root[data-theme="halloween"] #breadcrumb { border-bottom: 2px solid var(--accent); }
+
+/* ---------- Tableaux et cartes ---------- */
+:root[data-theme="halloween"] table { border-color: var(--border); }
+:root[data-theme="halloween"] thead :is(th, td, td.hover) { border-bottom: 2px solid var(--accent); letter-spacing: .03em; }
+:root[data-theme="halloween"] fieldset { border-color: var(--purple); }
+
+/* ---------- Boutons : orange citrouille, halo au survol ---------- */
+:root[data-theme="halloween"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  border: 2px solid #b34d00; box-shadow: 0 3px 0 #b34d00; font-weight: 700;
+}
+:root[data-theme="halloween"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { box-shadow: 0 3px 0 #b34d00, 0 0 12px rgba(255, 122, 26, .55); }
+:root[data-theme="halloween"] input[name*=delete],
+:root[data-theme="halloween"] input[name=drop],
+:root[data-theme="halloween"] input[name=truncate] { border-color: #8a1230; box-shadow: 0 3px 0 #8a1230; }
+
+/* pastilles repliées : cadre violet ; ouvertes : titre orange */
+:root[data-theme="halloween"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border-color: var(--purple); box-shadow: 0 2px 0 var(--purple); }
+:root[data-theme="halloween"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: var(--accent); }
+:root[data-theme="halloween"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--on-accent); }
+
+/* sélecteur de thème */
+:root[data-theme="halloween"] #kawaii-switcher { border-color: var(--accent); }

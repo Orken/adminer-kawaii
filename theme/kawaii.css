@@ -1,0 +1,76 @@
+/* ===== Thème Kawaii (4 variantes + accent personnalisable) =====
+   Actif quand <html data-theme="kawaii">. Variante : data-variant = lavande (défaut) | bonbon | menthe | nuit. */
+
+/* ---------- Variables : lavande (variante par défaut) ---------- */
+:root[data-theme="kawaii"] {
+  --bg: #f6f1ff; --surface: #ffffff; --surface-2: #efe7ff; --text: #3f3363; --muted: #6e6394; --border: #e0d4fb;
+  --accent: #a78bfa; --on-accent: #2b1f5c;
+  --accent-text: color-mix(in srgb, var(--accent) 45%, #1a1030);   /* liens et titres sur fond clair */
+  --accent-light: color-mix(in srgb, var(--accent) 60%, #fff);
+  --grad: linear-gradient(135deg, var(--accent-light), var(--accent));
+  --ok: #5fcfa5; --err: #ff7a9c; --on-err: #4a1024;
+  --jush-str: #17704f; --jush-num: #a82b59; --jush-id: #a82b59;
+  --shadow: 0 6px 18px rgba(167, 139, 250, .18);
+
+  /* formes : très rondes */
+  --radius: 18px; --radius-sm: 12px;
+  --font: "Quicksand", "Nunito", "Varela Round", "Segoe UI Rounded", system-ui, sans-serif;
+
+  /* décor */
+  --e-title: "🌸 "; --e-after: " ♡"; --e-table: "🍓"; --e-logo: "🍡 "; --e-ok: "✨ "; --e-err: "💔 ";
+  --msg-border: dashed;
+  --bg-pattern: radial-gradient(circle, color-mix(in srgb, var(--accent) 24%, transparent) 2px, transparent 2.6px),
+                radial-gradient(circle, color-mix(in srgb, var(--accent-light) 30%, transparent) 1.5px, transparent 2px);
+  --bg-size: 28px 28px; --bg-pos: 0 0, 14px 14px;
+  --th-bg: var(--surface-2);
+  --row-hover: color-mix(in srgb, var(--accent-light) 25%, var(--surface));
+  --bounce: cubic-bezier(.34, 1.56, .64, 1);
+}
+:root[data-theme="kawaii"][data-variant="bonbon"] {
+  --bg: #fff1f5; --surface: #ffffff; --surface-2: #ffe0ea; --text: #5e2f42; --muted: #8a5a70; --border: #ffd0de;
+  --accent: #ff8fb1; --on-accent: #55122c; --ok: #7fd8b0; --err: #ff6b8f; --on-err: #4a0a1e;
+  --shadow: 0 6px 18px rgba(255, 143, 177, .22);
+}
+:root[data-theme="kawaii"][data-variant="menthe"] {
+  --bg: #effcf6; --surface: #ffffff; --surface-2: #d9f7ea; --text: #24493d; --muted: #3f7360; --border: #c8efe0;
+  --accent: #5fcfa5; --on-accent: #0d3a2b; --ok: #4fc096; --err: #ff7a9c;
+  --shadow: 0 6px 18px rgba(95, 207, 165, .2);
+}
+:root[data-theme="kawaii"][data-variant="nuit"] {
+  --bg: #1f1a33; --surface: #2a2445; --surface-2: #352d58; --text: #ece6ff; --muted: #b3a9dc; --border: #4a407a;
+  --accent: #b69cff; --on-accent: #1f1a33; --accent-text: color-mix(in srgb, var(--accent) 45%, #fff);
+  --ok: #6fe0b5; --err: #ff86a6; --on-err: #2e0716;
+  --jush-str: #7fe0c4; --jush-num: #ff9fbd; --jush-id: #ffb07f;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+/* boutons-icônes : carré d'Adminer inversé, pictogramme de la couleur du texte (fond donné inversé, voir dbhub.css) */
+:root[data-theme="kawaii"][data-variant="nuit"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="kawaii"][data-variant="nuit"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Décor kawaii : dégradés, rebonds, ruban ---------- */
+/* menu : ruban pastel en haut et logo qui se trémousse */
+:root[data-theme="kawaii"] #menu { background-image: var(--grad); background-size: 100% 6px; }
+:root[data-theme="kawaii"] #h1::before { display: inline-block; transform-origin: 50% 80%; }
+:root[data-theme="kawaii"] #h1:hover::before { animation: kawaii-wiggle .6s ease-in-out; }
+@keyframes kawaii-wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg) scale(1.15); } 75% { transform: rotate(14deg) scale(1.15); } }
+
+/* boutons et tuiles : dégradé pastel + rebond au survol */
+:root[data-theme="kawaii"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button),
+:root[data-theme="kawaii"] :is(#menu p.links a:hover, #menu p.links a.active, .links a:hover, #tables a.select),
+:root[data-theme="kawaii"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend,
+:root[data-theme="kawaii"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background-image: var(--grad); }
+:root[data-theme="kawaii"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) { transition: transform .2s var(--bounce), filter .15s, box-shadow .15s; }
+:root[data-theme="kawaii"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { transform: translateY(-2px) scale(1.05); }
+:root[data-theme="kawaii"] :is(#menu p.links a, .links a, fieldset legend) { transition: transform .2s var(--bounce), background-color .15s; }
+:root[data-theme="kawaii"] :is(#menu p.links a, .links a):hover { transform: translateY(-1px) scale(1.04); }
+:root[data-theme="kawaii"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { transform: translateY(-1px) scale(1.05); }
+
+/* tableaux : en-tête dégradé */
+:root[data-theme="kawaii"] thead :is(th, td) { background-image: linear-gradient(var(--surface-2), color-mix(in srgb, var(--accent) 14%, var(--surface-2))); }
+:root[data-theme="kawaii"] fieldset, :root[data-theme="kawaii"] table { box-shadow: var(--shadow), 0 2px 0 color-mix(in srgb, var(--accent) 12%, transparent); }
+
+/* sélecteur de thème : ruban doux et rebond des pastilles */
+:root[data-theme="kawaii"] #kawaii-switcher { background-image: linear-gradient(var(--surface), color-mix(in srgb, var(--accent) 10%, var(--surface))); border-radius: 999px; }
+:root[data-theme="kawaii"] #kawaii-switcher button.sw { transition: transform .2s var(--bounce); }
+:root[data-theme="kawaii"] #kawaii-switcher button.sw:hover { transform: scale(1.2); }

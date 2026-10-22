@@ -1,0 +1,311 @@
+/* ===== Thème Netscape =====
+   Actif quand <html data-theme="netscape">. Le Web de 1999-2003 vu dans Netscape Navigator / Communicator 4 :
+   - autour, la fenêtre Windows 98 : barre de titre bleu marine, barre d'adresse où le fil d'Ariane devient le champ
+     « Location: », barre d'état « Document: Done », gris #c0c0c0 en relief (boutons, champs en creux, cases à cocher,
+     messages en boîtes de dialogue, bulles d'aide jaunes) ;
+   - dedans, une page de portail Netscape : colonne de rubriques sous un en-tête sarcelle, zone kaki, titres rouges,
+     liens bleus soulignés (violets une fois visités) séparés par des « | », tableaux à bordure 3D, bande de recherche sarcelle.
+   Les « N » (logo, animation de chargement) sont de simples lettres dessinées en CSS : aucun logo reproduit. */
+
+:root[data-theme="netscape"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #e8e8e8; --text: #000000; --muted: #555555; --border: #a0a0a0;
+  --accent: #000080; --on-accent: #ffffff;   /* bleu marine de la sélection Windows */
+  --accent-text: #0000ee;                    /* lien non visité : couleur par défaut de Navigator */
+  --ok: #008000; --err: #cc0000; --on-err: #ffffff;
+  --jush-str: #008000; --jush-num: #006666; --jush-id: #800080;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 0; --radius-sm: 0; --pill: 0;
+  --font: Arial, Helvetica, sans-serif;
+  --font-heading: var(--font);
+  --font-ui: Tahoma, "MS Sans Serif", Geneva, Verdana, sans-serif;   /* police des fenêtres Windows */
+  --h2-border: 2px groove #e8e8e8;          /* filet gravé, comme un <hr> */
+
+  --e-title: ""; --e-after: ""; --e-table: "•"; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: "Best viewed with Netscape Navigator";
+
+  /* palette */
+  --chrome: #c0c0c0;                        /* gris Windows */
+  --navy: #000080; --navy-2: #1084d0;       /* barre de titre */
+  --teal: #39696f; --teal-light: #99cccc;   /* bandeaux du portail, bande de recherche de Netcenter */
+  --tan: #d0caa8; --tan-line: #b4ae94;      /* zone kaki */
+  --side: #f2f2ea;                          /* colonne de rubriques */
+  --red: #cc0000; --visited: #551a8b;
+  /* reliefs Windows 98, en ombres internes (bord extérieur puis intérieur) */
+  --raised: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  --pressed: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+  --sunken: inset -1px -1px #ffffff, inset 1px 1px #808080, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;
+  --window: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+  --title-bar: linear-gradient(90deg, var(--navy), var(--navy-2));
+
+  /* barre de titre + barre d'adresse : Adminer place ses blocs en absolu depuis le haut, ils descendent tous de --top */
+  --title-h: 20px; --bar-h: 34px; --top: calc(var(--title-h) + var(--bar-h));
+
+  /* fond : la fenêtre (boutons, barre de titre, barre d'adresse), puis la colonne de rubriques sous le menu (19em) ;
+     il défile avec la page, comme les barres qu'il dessine */
+  --side-col: linear-gradient(90deg, var(--side) calc(100% - 1px), #c8c8c0 0);
+  --bg-pattern:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='14'%3E%3Cdefs%3E%3Cg id='b'%3E%3Crect width='16' height='14' fill='%230a0a0a'/%3E%3Crect width='15' height='13' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='12' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='11' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='10' fill='%23c0c0c0'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23b'/%3E%3Cuse href='%23b' x='16'/%3E%3Cuse href='%23b' x='34'/%3E%3Cpath d='M4 9h6v2H4z'/%3E%3Cpath d='M19 2h9v8h-9zM20 4v5h7V4z' fill-rule='evenodd'/%3E%3Cpath d='M38.5 3.5l7 6M45.5 3.5l-7 6' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"),
+    var(--title-bar),
+    linear-gradient(#ffffff 0 1px, var(--chrome) 1px calc(100% - 2px), #808080 calc(100% - 2px) calc(100% - 1px), #0a0a0a calc(100% - 1px)),
+    var(--side-col);
+  --bg-size: 50px 14px, 100% var(--title-h), 100% var(--bar-h), calc(19 * var(--fs)) 100%;
+  --bg-pos: right 3px top 3px, 0 0, 0 var(--title-h), 0 0;
+  background-attachment: scroll; background-repeat: no-repeat, no-repeat, no-repeat, repeat-y;
+
+  --th-bg: var(--tan); --th-text: #000000;
+  --zebra: #f4f4f4;
+  --row-hover: #ffffcc;                     /* jaune pâle des bulles d'aide */
+  --lit: #f4f4f4;
+}
+:root[data-theme="netscape"] * { scrollbar-color: var(--chrome) #e8e8e8; scrollbar-width: auto; }
+/* focus clavier : rectangle pointillé de Windows, plutôt que l'anneau épais de la base */
+:root[data-theme="netscape"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
+
+/* ---------- Fenêtre : barre de titre et barre d'état ---------- */
+:root[data-theme="netscape"] body::before {
+  content: "Adminer - Netscape"; position: absolute; top: 0; left: 0; z-index: 3; height: var(--title-h); padding: 0 6px 0 24px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%230a2a6e'/%3E%3Crect x='.5' y='.5' width='15' height='15' fill='none' stroke='%236f8fd8'/%3E%3Cpath d='M3.5 12.5v-9h2l5 6.2V3.5h2v9h-2l-5-6.2v6.2z' fill='%23fff'/%3E%3C/svg%3E") 3px 2px / 16px 16px no-repeat; color: #fff; font: bold 11px/20px var(--font-ui);
+  white-space: nowrap; pointer-events: none;
+}
+/* barre d'état : cadenas, puis le message dans un champ en creux */
+:root[data-theme="netscape"] body::after {
+  content: "Document: Done"; position: fixed; z-index: 3; left: 0; right: 0; bottom: 0; height: 20px; padding: 0 8px 0 30px;
+  color: #000; font: 11px/20px var(--font-ui); white-space: nowrap; pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M5 7.5V5a3 3 0 0 1 6 0v2.5' fill='none' stroke='%23404040' stroke-width='1.6'/%3E%3Crect x='3.5' y='7.5' width='9' height='6' fill='%23e8c33a' stroke='%236b5400'/%3E%3Crect x='7' y='9' width='2' height='3' fill='%236b5400'/%3E%3C/svg%3E") 4px 2px / 16px 16px no-repeat,
+    linear-gradient(#808080, #808080) 24px 2px / calc(100% - 28px) 1px no-repeat,
+    linear-gradient(#808080, #808080) 24px 2px / 1px 16px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 24px 17px / calc(100% - 28px) 1px no-repeat,
+    linear-gradient(#ffffff, #ffffff) right 4px top 2px / 1px 16px no-repeat,
+    var(--chrome);
+  box-shadow: inset 0 1px #ffffff, 0 -1px #808080;
+}
+:root[data-theme="netscape"] .footer { bottom: 20px; }   /* barre d'actions collante : au-dessus de la barre d'état */
+@media print { :root[data-theme="netscape"] body::before, :root[data-theme="netscape"] body::after { display: none; } }
+
+/* ---------- Barre d'adresse : langue (à la place des signets), fil d'Ariane en champ « Location: », déconnexion ---------- */
+:root[data-theme="netscape"] #content { margin-top: var(--top); }
+:root[data-theme="netscape"] #breadcrumb {
+  top: calc(var(--title-h) + 6px); height: 22px; margin: 0; padding: 0 26px 0 6px; box-sizing: border-box;
+  background: #fff; border-radius: 0; box-shadow: var(--sunken); color: #000; font: 11px/22px var(--font-ui);
+}
+:root[data-theme="netscape"] #breadcrumb a { color: var(--accent); text-decoration: none; }
+:root[data-theme="netscape"] #breadcrumb a:hover { color: var(--red); text-decoration: underline; }
+:root[data-theme="netscape"] #breadcrumb::after {   /* bouton de l'historique, comme dans Navigator */
+  content: ""; position: absolute; top: 2px; right: 2px; bottom: 2px; width: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4'%3E%3Cpath d='M0 0h7L3.5 4z'/%3E%3C/svg%3E") center / 7px 4px no-repeat, var(--chrome); box-shadow: var(--raised);
+}
+:root[data-theme="netscape"] .logout { font: 11px var(--font-ui); }
+/* animation de chargement de Navigator : un « N » dans un ciel étoilé, au bout de la barre */
+:root[data-theme="netscape"] .logout::after {
+  content: "N"; flex: none; display: grid; place-items: center; width: 30px; height: 28px;
+  color: #fff; font: bold 21px/1 "Times New Roman", Times, serif; text-shadow: 1px 1px 0 #000;
+  background:
+    radial-gradient(circle at 6px 7px, #fff 0 .7px, transparent 1.3px),
+    radial-gradient(circle at 24px 8px, #fff 0 .5px, transparent 1px),
+    radial-gradient(circle at 22px 22px, #ccf 0 .5px, transparent 1px),
+    linear-gradient(#000022, #15156b 65%, #3b3ba6);
+  box-shadow: var(--sunken);
+}
+@media not all and (max-width: 800px) {
+  :root[data-theme="netscape"] #breadcrumb { left: calc(21 * var(--fs) + 58px); }
+  :root[data-theme="netscape"] #breadcrumb::before { content: "Location:"; position: absolute; right: calc(100% + 6px); }
+  :root[data-theme="netscape"] #menu { top: var(--top); }
+  /* #lang est positionné par rapport au menu : on le remonte dans la barre d'adresse */
+  :root[data-theme="netscape"] #lang {
+    top: calc(-1 * var(--bar-h)); height: var(--bar-h); box-sizing: border-box; padding: 0 8px;
+    display: flex; align-items: center; font: 11px var(--font-ui); white-space: nowrap;
+  }
+  :root[data-theme="netscape"] .logout {
+    top: var(--title-h); height: var(--bar-h); box-sizing: border-box; margin: 0; padding: 0 3px 0 8px;
+    display: flex; align-items: center; gap: 6px; background: none; box-shadow: none;
+  }
+}
+
+/* sélecteur de thème : simple liste déroulante dans la barre */
+:root[data-theme="netscape"] #kawaii-switcher { background: none; border: 0; border-radius: 0; box-shadow: none; padding: 0; font: 11px var(--font-ui); }
+:root[data-theme="netscape"] #kawaii-switcher:not(.in-bar) { top: calc(var(--title-h) + 5px); right: 8px; }
+
+/* ---------- Menu : colonne de rubriques du portail, sous un en-tête sarcelle ---------- */
+:root[data-theme="netscape"] #menu { margin: 0; padding: 0 0 28px; background-color: var(--side); border: 0; border-radius: 0; box-shadow: none; }
+:root[data-theme="netscape"] #menu :is(p, #dbs, #logins, #tables) { border-bottom: 0; }
+/* en-tête : dégradé sarcelle vers le noir, « N » cerclé, nom en blanc, version en italique (comme « network ») */
+:root[data-theme="netscape"] #menu h1 {
+  margin: 0; padding: 9px 10px 10px; border: 0; font-size: 1em; white-space: nowrap;
+  background: linear-gradient(#1a8e98, #146f78 40%, #04252a);
+}
+:root[data-theme="netscape"] #h1 { color: #fff; font: bold 23px/1 var(--font); letter-spacing: -.02em; text-decoration: none; vertical-align: middle; }
+:root[data-theme="netscape"] #menu #h1:hover { background: none; color: #fff; }
+:root[data-theme="netscape"] #h1 img { display: none; }
+:root[data-theme="netscape"] #h1::before {
+  content: "N"; display: inline-grid; place-items: center; width: 28px; height: 28px; margin-right: 6px; vertical-align: middle;
+  border: 2px solid #d8e4e4; border-radius: 50%; box-shadow: 0 0 0 1px #000;
+  background: radial-gradient(circle at 35% 30%, #5c9ea2, #0b3438 72%);
+  color: #fff; font: bold 19px/1 "Times New Roman", Times, serif; letter-spacing: 0;
+}
+:root[data-theme="netscape"] #menu .version { color: #bfe0e3; font: italic bold 11px var(--font); }
+/* bandeau : petit badge « Best viewed with… » des sites de l'époque */
+:root[data-theme="netscape"] #menu h1::after {
+  display: table; margin: 8px 0 0; padding: 2px 6px; letter-spacing: 0; text-align: left;
+  background: #000; color: #fff; border: 1px solid #8fbfc2; font: bold 9px/1.3 var(--font-ui);
+}
+
+/* zone kaki (comme « Mail / Radio / My Netscape ») : base de données et actions */
+:root[data-theme="netscape"] #menu :is(#dbs, p.links) { margin: 0; background: var(--tan); }
+:root[data-theme="netscape"] #menu #dbs { padding: 7px 8px 4px; font: bold 12px var(--font); }
+:root[data-theme="netscape"] #menu p.links { gap: 0 10px; padding: 2px 8px 6px; border-bottom: 1px solid var(--tan-line); }
+:root[data-theme="netscape"] #menu p.links a {
+  padding: 3px 2px; border: 0; border-bottom: 1px solid var(--tan-line); box-shadow: 0 1px #e6e1ca; border-radius: 0;
+  background: none; color: #000; text-align: left; font: bold 12px var(--font); text-decoration: none;
+}
+:root[data-theme="netscape"] #menu p.links a:hover { background: none; border-color: var(--tan-line); color: var(--accent-text); text-decoration: underline; }
+:root[data-theme="netscape"] #menu p.links a.active { padding-left: 5px; background: var(--teal); border-color: var(--teal); color: #fff; }
+
+/* liste des tables : rubriques séparées par un filet gravé, table courante sur bandeau sarcelle */
+:root[data-theme="netscape"] #tables { margin: 0; padding: 8px 0 0; }
+:root[data-theme="netscape"] #tables::before { margin: 0 8px 4px; color: #000; font: bold 14px var(--font); letter-spacing: 0; text-transform: none; }
+:root[data-theme="netscape"] #tables li { margin: 0; border-radius: 0; border-top: 1px solid #fff; border-bottom: 1px solid #d8d8cc; }
+:root[data-theme="netscape"] #tables li:hover { background: #e6e6dc; }
+:root[data-theme="netscape"] #tables :is(a.structure, a.view) { padding: 2px 8px; color: #555; font: bold 12px var(--font); text-decoration: none; }
+:root[data-theme="netscape"] #tables :is(a.structure, a.view):hover { background: none; color: var(--accent-text); text-decoration: underline; }
+:root[data-theme="netscape"] #tables a.structure::before { color: var(--teal); }
+:root[data-theme="netscape"] #tables li:has(a.active) { background: var(--teal); box-shadow: none; }
+:root[data-theme="netscape"] #tables li:has(a.active) :is(a.structure, a.view),
+:root[data-theme="netscape"] #tables li:has(a.active) a.structure::before { color: #fff; }
+/* bouton « données » : petit bouton Windows */
+:root[data-theme="netscape"] #tables a.select { width: 18px; height: 16px; line-height: 16px; border-radius: 0; background-color: var(--chrome); box-shadow: var(--raised); text-decoration: none; }
+:root[data-theme="netscape"] #tables a.select::before { color: #000; font-size: 10px; }
+
+/* ---------- Page : titres rouges, liens bleus soulignés, violets une fois visités ---------- */
+:root[data-theme="netscape"] h2 { margin: 0 0 8px; padding: 4px 0 6px; color: var(--red); font: bold 20px/1.2 var(--font-heading); }
+:root[data-theme="netscape"] h3 { font: bold 14px var(--font-heading); }
+:root[data-theme="netscape"] :is(a:link, a:visited) { font-weight: normal; text-decoration: underline; }
+:root[data-theme="netscape"] a:visited { color: var(--visited); }
+:root[data-theme="netscape"] :is(a:link:hover, a:visited:hover) { color: var(--red); }
+:root[data-theme="netscape"] :is(thead, .jush, [class^="jush-"]) :is(a:link, a:visited) { text-decoration: none; }
+
+/* liens d'action : liens texte séparés par des barres, comme les « Top Picks » de Netcenter ; page courante en rouge */
+:root[data-theme="netscape"] #content .links a { display: inline; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
+:root[data-theme="netscape"] #content .links a:hover { background: none; }
+/* en flex, les espaces du HTML entre les liens disparaissent : les barres sont espacées pareil partout */
+:root[data-theme="netscape"] #content p.links { display: flex; flex-wrap: wrap; align-items: baseline; }
+:root[data-theme="netscape"] #content p.links a:not(:last-child)::after { content: "|"; display: inline-block; margin: 0 .5em; color: #000; }
+:root[data-theme="netscape"] #content .links a.active { color: var(--red); font-weight: bold; text-decoration: none; }
+
+/* ---------- Tableaux : bordure 3D d'un <table border=1>, en-tête kaki, survol jaune ---------- */
+:root[data-theme="netscape"] table {
+  border: 1px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; border-spacing: 2px; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="netscape"] :is(th, td, td.hover) { border: 1px solid; border-color: #808080 #dfdfdf #dfdfdf #808080; }
+:root[data-theme="netscape"] tbody tr:last-child td.hover { border-bottom-width: 1px; }
+/* menu de colonne (tri, recherche) au survol d'un en-tête : petite barre d'outils grise en relief */
+:root[data-theme="netscape"] thead th .column { padding: 2px; border: 0; background: var(--chrome); box-shadow: var(--raised); }
+/* lignes cochées : sarcelle pâle, pour les distinguer du survol */
+:root[data-theme="netscape"].js .checkable .checked :is(td, th, td.hover) { background: #d6eaea; }
+
+/* ---------- Cartes : encadré sarcelle à titre en bandeau (« Shopping @ Netscape ») ---------- */
+:root[data-theme="netscape"] fieldset { padding: 4px 8px 6px; border: 1px solid var(--teal); border-radius: 0; background: #fff; box-shadow: none; }
+:root[data-theme="netscape"] legend { padding: 1px 8px; border-radius: 0; background: var(--teal); color: #fff; font: bold 12px var(--font); }
+:root[data-theme="netscape"] legend :is(a:link, a:visited) { color: #fff; text-decoration: none; }
+/* replié : bouton Windows */
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  padding: 0; border: 0; background: var(--chrome); box-shadow: var(--raised); transition: none;
+}
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 3px 10px; color: #000; font: 11px var(--font-ui); }
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "+"; color: #000; font-weight: bold; }
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--chrome); transform: none; }
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: #000; }
+:root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:active { box-shadow: var(--pressed); }
+/* ouvert : bandeau sarcelle */
+:root[data-theme="netscape"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 1px 8px; background: var(--teal); }
+
+/* panneau de recherche / tri de la page « Sélectionner » (seul #form envoyé en GET) : bande sarcelle de Netcenter */
+:root[data-theme="netscape"] form#form:not([method]) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 2px 10px 8px; background: var(--teal-light); border: 1px solid #6a9c9c;
+}
+
+/* éditeur SQL (zone éditable d'Adminer) : champ blanc en creux, comme les autres */
+:root[data-theme="netscape"] [contenteditable].jush { padding: 4px 6px; border: 0; background: #fff; box-shadow: var(--sunken); }
+
+/* ---------- Formulaires : champs en creux, listes à bouton fléché, cases et boutons radio Windows ---------- */
+:root[data-theme="netscape"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="netscape"] select {
+  padding: 3px 5px; min-height: 22px; border: 0; border-radius: 0; background-color: #fff; color: #000; box-shadow: var(--sunken);
+}
+:root[data-theme="netscape"] :is(input, select) { font-family: var(--font-ui); font-size: 12px; }
+:root[data-theme="netscape"] :is(input, select, textarea):focus { box-shadow: var(--sunken); }
+:root[data-theme="netscape"] :is(input, select, textarea):disabled { background-color: var(--chrome); color: #808080; }
+:root[data-theme="netscape"] select:not([multiple]) {
+  appearance: none; padding-right: 22px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='17' viewBox='0 0 16 17' preserveAspectRatio='none'%3E%3Crect width='16' height='17' fill='%230a0a0a'/%3E%3Crect width='15' height='16' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='15' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='14' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='13' fill='%23c0c0c0'/%3E%3Cpath d='M4.5 7h7L8 10.5z'/%3E%3C/svg%3E") right 2px top 2px / 16px calc(100% - 4px) no-repeat, #fff;
+}
+:root[data-theme="netscape"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 13px; height: 13px; margin: 0 4px 0 3px; vertical-align: -2px;
+  background: #fff; box-shadow: var(--sunken); cursor: pointer;
+}
+:root[data-theme="netscape"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="netscape"] input[type=checkbox]:checked { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Cpath d='M1 4.5l2.5 2.5L8 2' fill='none' stroke='%23000' stroke-width='1.8'/%3E%3C/svg%3E") center / 9px 9px no-repeat, #fff; }
+:root[data-theme="netscape"] input[type=checkbox]:indeterminate { background: linear-gradient(#000, #000) center / 7px 2px no-repeat, #fff; }
+:root[data-theme="netscape"] input[type=radio]:checked { background: radial-gradient(circle, #000 0 2px, #fff 2.5px); }
+:root[data-theme="netscape"] input:is([type=checkbox], [type=radio]):disabled { background-color: var(--chrome); }
+
+/* boutons : gris en relief, enfoncés au clic ; le bouton par défaut a un cadre noir */
+:root[data-theme="netscape"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  padding: 3px 12px; border: 0; border-radius: 0; background: var(--chrome); color: #000; box-shadow: var(--raised);
+  font: 11px/1.3 var(--font-ui); text-shadow: none;
+}
+:root[data-theme="netscape"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { transform: none; filter: none; }
+:root[data-theme="netscape"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active {
+  padding: 4px 11px 2px 13px; box-shadow: var(--pressed); transform: none;
+}
+:root[data-theme="netscape"] input.default { box-shadow: 0 0 0 1px #000, var(--raised); }
+:root[data-theme="netscape"] :is(input[type=submit], input[type=button]):disabled { color: #808080; text-shadow: 1px 1px #fff; }
+:root[data-theme="netscape"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { color: #a00000; }
+/* boutons-icônes : le carré clair de l'image d'Adminer fait la face, le relief est dessiné par-dessus */
+:root[data-theme="netscape"] button.icon { box-shadow: var(--raised); }
+
+/* ---------- Messages : boîtes de dialogue (barre de titre, icône information ou erreur) ---------- */
+:root[data-theme="netscape"] :is(.message, .error) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 3px 14px 10px 50px; border: 0; border-radius: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='13.5' fill='%23fff' stroke='%23000'/%3E%3Ccircle cx='16' cy='9.5' r='2.2' fill='%230000c0'/%3E%3Cpath d='M13 13.5h4.5V22H19v2h-6v-2h1.5v-6.5H13z' fill='%230000c0'/%3E%3C/svg%3E") 12px 30px / 26px 26px no-repeat, var(--chrome); color: #000; box-shadow: var(--window);
+  font: 11px/1.45 var(--font-ui);
+}
+:root[data-theme="netscape"] .error { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='13.5' fill='%23e00000' stroke='%23800000'/%3E%3Cpath d='M10.5 10.5l11 11M21.5 10.5l-11 11' stroke='%23fff' stroke-width='3.2'/%3E%3C/svg%3E"); }
+:root[data-theme="netscape"] :is(.message, .error)::before {
+  content: "Netscape"; display: block; margin: 0 -11px 10px -47px; padding: 2px 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='14'%3E%3Crect width='16' height='14' fill='%230a0a0a'/%3E%3Crect width='15' height='13' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='12' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='11' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='10' fill='%23c0c0c0'/%3E%3Cpath d='M4.5 3.5l7 6M11.5 3.5l-7 6' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") right 2px center / 16px 14px no-repeat, var(--title-bar); color: #fff; font: bold 11px/16px var(--font-ui);
+}
+
+/* bulle d'aide (fonctions SQL) : jaune pâle à cadre noir */
+:root[data-theme="netscape"] #help { border: 1px solid #000; background: #ffffe1; color: #000; }
+
+/* ---------- Page de connexion : boîte de dialogue « Login » ---------- */
+/* Repérée par le champ mot de passe. Le formulaire devient une fenêtre grise ; le titre, sa barre de titre. */
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) #content {
+  width: fit-content; box-sizing: border-box; margin-top: calc(var(--top) + 24px); padding: 3px 16px 14px;
+  background: var(--chrome); box-shadow: var(--window);
+}
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) #content > h2 {
+  margin: 0 -13px 12px; padding: 2px 4px 2px 22px; border: 0; color: #fff; font: bold 11px/16px var(--font-ui);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%230a2a6e'/%3E%3Crect x='.5' y='.5' width='15' height='15' fill='none' stroke='%236f8fd8'/%3E%3Cpath d='M3.5 12.5v-9h2l5 6.2V3.5h2v9h-2l-5-6.2v6.2z' fill='%23fff'/%3E%3C/svg%3E") 3px center / 14px 14px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='14'%3E%3Crect width='16' height='14' fill='%230a0a0a'/%3E%3Crect width='15' height='13' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='12' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='11' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='10' fill='%23c0c0c0'/%3E%3Cpath d='M4.5 3.5l7 6M11.5 3.5l-7 6' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") right 2px center / 16px 14px no-repeat, var(--title-bar);
+}
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) table.layout { border: 0; border-spacing: 0 3px; background: none; }
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 0 8px 0 0; border: 0; background: none; }
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) table.layout th { font: 11px var(--font-ui); }
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) #content form > p { margin: 12px 0 0; font: 11px var(--font-ui); }
+:root[data-theme="netscape"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { min-width: 75px; margin-right: 10px; }
+
+/* ---------- Mobile : le menu devient un volet ; la colonne de rubriques disparaît ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="netscape"] { --side-col: none; }
+  :root[data-theme="netscape"] #menuopen { top: calc(var(--title-h) + 8px); }
+  :root[data-theme="netscape"] #foot { top: var(--top); }
+  :root[data-theme="netscape"] #menu { border: 1px solid #808080; box-shadow: 2px 2px 0 rgba(0, 0, 0, .35); }
+  :root[data-theme="netscape"] #menu #lang { padding: 7px 8px 0; background: var(--tan); font: bold 12px var(--font); }
+  :root[data-theme="netscape"] #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 6px; background: var(--chrome); box-shadow: var(--raised);
+  }
+}

@@ -1,0 +1,24 @@
+services:
+  adminer:
+    # Construit depuis le Dockerfile ; pull: true évite de rester sur une vieille image en cache
+    build:
+      context: .
+      pull: true
+    image: adminer-kawaii:dev
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    volumes:
+      - ./theme:/var/www/html/theme:ro
+      - ./plugins-enabled:/var/www/html/plugins-enabled:ro
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: kawaii
+      MARIADB_DATABASE: boutique_kawaii
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d:ro

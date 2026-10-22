@@ -1,0 +1,70 @@
+/* ===== Thème Oktoberfest =====
+   Actif quand <html data-theme="oktoberfest">.
+   Identité : bleu et blanc bavarois (Rautenmuster), ambre de la bière, brun du bois, coins carrés, titres slab serif. */
+
+:root[data-theme="oktoberfest"] {
+  --bg: #fdfbf4; --surface: #ffffff; --surface-2: #e4f1f9; --text: #2b1a0c; --muted: #6b4a2b; --border: #b5d6ea;
+  --accent: #f2a516; --on-accent: #2b1a0c;
+  --accent-text: #0a5a9c;              /* liens et titres en bleu bavarois */
+  --blue: #0b6fb3;
+  --ok: #5aa66a; --err: #c8402a; --on-err: #ffffff;
+  --jush-str: #1f6a2a; --jush-num: #a02b1d; --jush-id: #a02b1d;
+  --shadow: 0 3px 10px rgba(11, 111, 179, .18);
+
+  /* formes : coins presque carrés, titres en slab serif */
+  --radius: 6px; --radius-sm: 4px; --pill: 6px;
+  --font: "Segoe UI", system-ui, sans-serif;
+  --font-heading: "Rockwell", "Roboto Slab", "Zilla Slab", Georgia, "Times New Roman", serif;
+  --h2-border: 4px double var(--blue);
+
+  /* décor */
+  --e-title: "🍺 "; --e-after: " 🥨"; --e-table: "🥨"; --e-logo: "🍺 "; --e-ok: "🍻 "; --e-err: "💥 ";
+  --banner: "O'ZAPFT IS ! 🍻";
+  /* fond : losanges bleus et blancs (Rautenmuster) */
+  --bg-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cpath d='M22 0L44 22L22 44L0 22Z' fill='%230b6fb3' fill-opacity='.12'/%3E%3C/svg%3E");
+  --bg-size: 44px 44px; --bg-pos: 0 0;
+
+  /* tableaux façon nappe : en-tête bleu, lignes blanc et bleu clair, survol ambre */
+  --th-bg: var(--blue); --th-text: #ffffff;
+  --zebra: #eaf5fb;
+  --row-hover: #fde9b4;
+}
+
+/* ---------- Menu : bande de losanges, bandeau, filet bleu ---------- */
+:root[data-theme="oktoberfest"] #menu {
+  border-right: 4px solid var(--blue); padding-top: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Crect width='14' height='14' fill='%230b6fb3'/%3E%3Cpath d='M7 0L14 7L7 14L0 7Z' fill='white'/%3E%3C/svg%3E");
+  background-repeat: repeat-x; background-size: 14px 14px;
+}
+:root[data-theme="oktoberfest"] #menu h1::after {
+  color: #ffffff; background-color: var(--blue); border: 2px solid var(--accent); border-radius: var(--radius-sm);
+  font-family: var(--font-heading); text-transform: uppercase;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M8 0L16 8L8 16L0 8Z' fill='%23ffffff' fill-opacity='.14'/%3E%3C/svg%3E");
+  background-size: 16px 16px;
+  animation: okt-banner-scroll 2.4s linear infinite;   /* défilement diagonal des losanges */
+}
+/* un décalage d'exactement une tuile (16 px) : la boucle est invisible. Coupé si prefers-reduced-motion (base.css). */
+@keyframes okt-banner-scroll { from { background-position: 0 0; } to { background-position: 16px 16px; } }
+:root[data-theme="oktoberfest"] #tables li:has(a.active) { box-shadow: inset 4px 0 0 var(--blue); }
+:root[data-theme="oktoberfest"] #breadcrumb { border-bottom: 3px solid var(--blue); }
+
+/* ---------- Tableaux et cartes : filets bleus ---------- */
+:root[data-theme="oktoberfest"] table { border-color: var(--blue); }
+:root[data-theme="oktoberfest"] thead th { text-transform: uppercase; letter-spacing: .04em; font-size: .92em; }
+:root[data-theme="oktoberfest"] fieldset { border-color: var(--blue); }
+
+/* ---------- Boutons : ambre « chope », bord marqué, pas de rebond ---------- */
+:root[data-theme="oktoberfest"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  border: 2px solid #a86b00; box-shadow: 0 3px 0 #a86b00; letter-spacing: .02em;
+}
+:root[data-theme="oktoberfest"] input[name*=delete],
+:root[data-theme="oktoberfest"] input[name=drop],
+:root[data-theme="oktoberfest"] input[name=truncate] { border-color: #7d2a1a; box-shadow: 0 3px 0 #7d2a1a; }
+
+/* pastilles repliées (Select / Search / Sort) : cadre bleu ; ouvertes : titre bleu et blanc */
+:root[data-theme="oktoberfest"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border-color: var(--blue); box-shadow: 0 2px 0 var(--blue); }
+:root[data-theme="oktoberfest"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: var(--blue); }
+:root[data-theme="oktoberfest"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: #ffffff; }
+
+/* sélecteur de thème : cadre bleu */
+:root[data-theme="oktoberfest"] #kawaii-switcher { border-color: var(--blue); }

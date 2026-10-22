@@ -1,0 +1,281 @@
+/* ===== Base commune des thèmes (Adminer 6.1+) =====
+   Structure, mise en page compacte et accessibilité. Aucune couleur en dur : tout passe par
+   les variables, fournies par le fichier de chaque thème (kawaii.css, oktoberfest.css, halloween.css…), chargé après celui-ci.
+   Chargé via le hook css() du plugin, donc après default.css et sans dark.css. */
+
+/* ---------- Variables communes (valeurs par défaut, redéfinies par chaque thème) ---------- */
+:root {
+  /* formes et densité (augmenter pour aérer) */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --pill: 999px;
+  --fs: 13px;
+  --pad-y: 2px;
+  --pad-x: 8px;
+  --gap: 8px;
+  --font: system-ui, "Segoe UI", sans-serif;
+  --font-heading: var(--font);
+  --font-mono: ui-monospace, "Fira Code", Consolas, monospace;
+
+  /* décor : emojis, bandeau et fond, définis par thème */
+  --e-title: ""; --e-after: ""; --e-table: "▦"; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+  --bg-pattern: none; --bg-size: auto; --bg-pos: 0 0;
+
+  /* tableaux */
+  --th-bg: var(--surface-2);
+  --th-text: var(--text);
+  --zebra: color-mix(in srgb, var(--surface-2) 35%, var(--surface));
+  --row-hover: color-mix(in srgb, var(--accent) 16%, var(--surface));
+
+  /* variables natives d'Adminer */
+  --fg: var(--text);
+  --dim: var(--surface-2);
+  --lit: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  color-scheme: light;
+}
+
+/* ---------- Base ---------- */
+html {
+  background-color: var(--bg); min-height: 100%;
+  /* motif sur html : couvre toute la fenêtre même si le contenu est court */
+  background-image: var(--bg-pattern); background-size: var(--bg-size); background-position: var(--bg-pos);
+  background-attachment: fixed;
+}
+body { background: transparent; color: var(--text); font: var(--fs)/1.35 var(--font); }
+a:link, a:visited { color: var(--accent-text); text-decoration: none; font-weight: 600; }
+a:link:hover, a:visited:hover, a:focus { color: var(--text); text-decoration: none; }
+h1, h2, h3 { color: var(--text); background: none; font-weight: 800; font-family: var(--font-heading); }
+h2 { font-size: 1.25em; margin: 0 0 var(--gap); border: 0; border-bottom: var(--h2-border, 3px dotted var(--border)); padding-bottom: 6px; }
+h2::before { content: var(--e-title); }
+h2::after { content: var(--e-after); color: var(--accent); font-weight: 400; }
+h3 { font-size: 1.1em; }
+code, pre, .jush, textarea[name="query"], .sqlarea { font-family: var(--font-mono); }
+code { background: var(--surface-2); color: var(--text); }
+hr { border: 0; border-top: 2px dashed var(--border); }
+i, .null, .time { color: var(--muted); }   /* .time : durée des requêtes, en #666 chez Adminer */
+mark { background: color-mix(in srgb, var(--accent) 40%, var(--surface)); color: var(--text); }   /* résultats de recherche, en #ff9 chez Adminer */
+p { margin: 6px 0; }
+::selection { background: var(--accent); color: var(--on-accent); }
+input, textarea { caret-color: var(--accent-text); }
+::placeholder { color: var(--muted); opacity: .8; }
+* { scrollbar-color: var(--accent) var(--surface-2); scrollbar-width: thin; }
+
+/* Focus clavier visible partout (anneau contrasté ; sur les champs il s'ajoute à la bordure et à la lueur d'accent) */
+:where(a, button, summary, input, select, textarea):focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+/* ---------- Barre du haut ---------- */
+#lang { padding: 8px 12px; }
+#breadcrumb { background: var(--surface-2); border-radius: 0 0 var(--radius) 0; color: var(--muted); padding: 3px 10px; }
+#breadcrumb a { color: var(--accent-text); }
+/* bloc « utilisateur / déconnexion » : Adminer le colle au bord droit de la fenêtre */
+.logout { padding-inline-end: 12px; }
+
+/* ---------- Menu latéral ---------- */
+#menu {
+  background-color: var(--surface); border-right: 2px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow);
+  margin-top: 6px; padding: 6px 6px 16px;
+  background-repeat: no-repeat;   /* ruban décoratif en haut, fourni par le thème */
+}
+#menu h1 { font-size: 1.15em; margin: 2px 6px 6px; border-color: var(--border); }
+#h1 { color: var(--accent-text); }
+#h1::before { content: var(--e-logo); }
+#menu h1::after {   /* bandeau texte du thème (--banner), absent si « none » */
+  content: var(--banner); display: block; margin: 6px 0 2px; padding: 3px 8px; text-align: center;
+  font-size: .62rem; font-weight: 800; letter-spacing: .14em;
+}
+#menu .version, #version { color: var(--muted); }
+#menu p, #menu #dbs, #logins { padding: 2px 6px; margin: 4px 0; border-color: var(--border); }
+#menu a:hover { background: var(--surface-2); }
+
+/* actions du haut : grille de tuiles */
+#menu p.links { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 2px 6px; margin: 6px 0; }
+#menu p.links a {
+  display: block; text-align: center; padding: 3px 4px; border: 2px solid var(--border); border-radius: var(--radius-sm);
+  background-color: var(--surface); color: var(--text); font-weight: 700; font-size: .92em;
+}
+#menu p.links a:hover, #menu p.links a.active { background-color: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* liste des tables : une ligne par table, bouton « données » au survol */
+#tables { margin: 8px 0 0; padding: 0 6px; border-color: var(--border); }
+#tables::before {
+  content: "Tables"; display: block; margin: 0 4px 4px; color: var(--muted);
+  font-size: .8em; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+}
+#tables li { display: flex; align-items: center; margin: 1px 0; list-style: none; border-radius: var(--radius-sm); }
+#tables li:hover { background: var(--surface-2); }
+#tables li:has(a.active) { background: color-mix(in srgb, var(--accent) 18%, var(--surface)); box-shadow: inset 3px 0 0 var(--accent); }
+#tables a.structure, #tables a.view {
+  flex: 1; order: 1; padding: 2px 4px 2px 8px; background: none; color: var(--text);
+  border-radius: var(--radius-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600;
+}
+#tables a.structure::before { content: var(--e-table); color: var(--accent-text); margin-right: 6px; font-size: .85em; }
+#tables li:has(a.active) a.structure { font-weight: 800; }
+#tables a.select {
+  order: 2; flex: none; width: 20px; height: 20px; margin-right: 4px; padding: 0; border-radius: 50%;
+  font-size: 0; line-height: 20px; text-align: center; background-color: var(--accent); opacity: 0; transition: opacity .12s;
+}
+#tables a.select::before { content: "☰"; font-size: 11px; color: var(--on-accent); }
+#tables li:hover a.select, #tables li:focus-within a.select, #tables li:has(a.active) a.select { opacity: 1; }
+
+/* ---------- Contenu ---------- */
+#content { padding-top: 8px; }
+.links, p.links { color: var(--muted); }
+.links a { background-color: var(--surface); border: 2px solid var(--border); border-radius: var(--pill); padding: 0 var(--pad-x); margin-right: 3px; display: inline-block; }
+.links a:hover { background-color: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+/* pied collant (actions, pagination) : garder un fond opaque */
+.footer, .footer > div { background: var(--bg); }
+
+/* messages */
+.message, .error {
+  border-radius: var(--radius); padding: 5px 12px; margin: var(--gap) 0; border: 2px var(--msg-border, solid); box-shadow: var(--shadow); color: var(--text);
+}
+.message { background: color-mix(in srgb, var(--ok) 18%, var(--surface)); border-color: var(--ok); }
+.message::before { content: var(--e-ok); }
+.error { background: color-mix(in srgb, var(--err) 16%, var(--surface)); border-color: var(--err); }
+.error::before { content: var(--e-err); }
+
+/* ---------- Tableaux ---------- */
+table {
+  border-collapse: separate; border-spacing: 0; background: var(--surface); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow: clip; /* clip, pas hidden : garde thead sticky fonctionnel */
+  border: 2px solid var(--border);
+}
+th, td { border: 0; border-bottom: 1px solid var(--border); padding: var(--pad-y) var(--pad-x); }
+th, :root thead :is(th, td, td.hover) { background-color: var(--th-bg); color: var(--th-text); text-align: left; font-weight: 800; }
+th a, thead td { color: var(--th-text); }
+:root thead :is(th, td) :is(a, a:link:hover, a:visited:hover, a:focus, .doc) { color: var(--th-text); }
+:is(tbody, tfoot) tr:last-child :is(td, th) { border-bottom: 0; }
+/* la cellule de sélection (td.hover) perd son filet bas dans le CSS d'Adminer : on le remet */
+:root :is(thead, tbody) td.hover { border-bottom-width: 1px; }
+:root tbody tr:last-child td.hover { border-bottom-width: 0; }
+/* corps et pied : td et th (nom de table, etc.) partagent le même style de ligne sur toutes les colonnes.
+   td.hover (case de sélection) dans les :is() : passe devant le fond de page qu'Adminer lui impose */
+:root :is(tbody, tfoot) :is(td, th, td.hover) { background: var(--surface); color: var(--text); text-shadow: none; box-shadow: none; }
+:root tbody tr:nth-child(even) :is(td, th, td.hover) { background: var(--zebra); }
+:root tbody tr:hover :is(td, th, td.hover), :root.js .checkable .checked :is(td, th, td.hover) { background: var(--row-hover); color: var(--text); }
+:is(tbody, tfoot) th a { color: var(--accent-text); }
+/* menu de colonne (tri « ↓ », recherche « = ») au survol d'un en-tête de la liste : petite barre flottante aux couleurs du
+   thème, à la place du demi-cadre gris d'Adminer. Pas de display ici : Adminer le masque hors survol avec display: none. */
+:root thead th .column {
+  margin: -2px 0 0; margin-inline-start: 6px; padding: 1px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--surface); box-shadow: var(--shadow); white-space: nowrap; z-index: 1;
+}
+/* liens : couleur du texte (pas celle de l'en-tête, faite pour son fond), sans soulignement (spécificité renforcée face aux thèmes) */
+:root thead th .column a.text:is(:link, :visited) {
+  display: inline-block; padding: 0 5px; border-radius: max(0px, calc(var(--radius-sm) - 2px));
+  color: var(--text); font-weight: 700; text-decoration: none; text-shadow: none;
+}
+:root thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: var(--accent); color: var(--on-accent); }
+.js .checkable .checked a { color: var(--accent-text); }
+/* édition directe (Ctrl+clic sur une cellule de la liste) : Adminer remplace la cellule par un champ à la largeur de la
+   cellule (20px au minimum), illisible une fois les marges du thème déduites (et rond si le thème arrondit fort).
+   min-width l'emporte sur cette largeur en ligne ; l'id donne la priorité sur les marges des thèmes. */
+:root #table tbody td > :is(input, textarea):only-child { min-width: 7em; padding-inline: 6px; text-align: inherit; }   /* inherit : nombres à droite comme dans la cellule */
+.nowrap td, td.nowrap { white-space: nowrap; }
+
+/* ---------- Formulaires ---------- */
+input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea {
+  background: var(--surface); color: var(--text); border: 2px solid var(--border); border-radius: var(--radius-sm);
+  padding: 1px 8px; font-size: inherit; font-family: inherit; line-height: 1.3; min-height: 22px; box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s;
+}
+textarea { font-family: var(--font-mono); }
+input[type=number], input.size { min-width: 5.5em; }
+input:not([type=submit]):not([type=button]):focus, select:focus, textarea:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+input[type=checkbox], input[type=radio] { accent-color: var(--accent); width: 1.1em; height: 1.1em; vertical-align: middle; }
+
+/* boutons pleins (les boutons-icônes et boutons-liens d'Adminer sont exclus) */
+input[type=submit], input[type=button], button:not(.icon):not(.link), .button {
+  background-color: var(--accent); color: var(--on-accent); border: 0; border-radius: var(--pill);
+  padding: 2px 12px; font: 700 var(--fs) var(--font); cursor: pointer;
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--accent) 60%, #000); transition: transform .1s, box-shadow .1s;
+}
+input[type=submit]:hover, input[type=button]:hover, button:not(.icon):not(.link):hover { transform: translateY(-1px); filter: brightness(1.06); }
+input[type=submit]:active, input[type=button]:active, button:not(.icon):not(.link):active { transform: translateY(2px); box-shadow: none; }
+input[name*=delete], input[name=drop], input[name=truncate] {
+  background-color: var(--err); color: var(--on-err); box-shadow: 0 2px 0 color-mix(in srgb, var(--err) 60%, #000);
+}
+/* boutons-icônes d'Adminer (ajouter / déplacer / supprimer) : leur image est un carré clair (#eee) percé du pictogramme,
+   que la couleur de fond remplit. Le fond donne donc la couleur du pictogramme (les thèmes sombres l'inversent, voir dbhub.css) */
+button.icon { background-color: var(--text); border-radius: var(--radius-sm); cursor: pointer; }
+button.icon:hover { background-color: var(--accent-text); }
+
+/* ---------- Fieldsets : cartes (ouvertes) et pastilles « ＋ » (repliées) ---------- */
+fieldset { border: 2px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); padding: 2px 8px 6px; margin: 4px 0; }
+legend { background: var(--surface); border-radius: var(--pill); color: var(--accent-text); font-weight: 800; }
+legend a { color: inherit; }
+fieldset > legend:not(:has(a)) { padding: 0 8px; }
+
+/* replié : seul le titre est visible, rendu comme un bouton-pastille */
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) { border: 0; padding: 0; margin: 4px 4px 4px 0; background: none; box-shadow: none; }
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  margin: 0; padding: 0; border: 2px solid var(--border); box-shadow: 0 2px 0 var(--border); transition: transform .1s, background .12s;
+}
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { display: block; padding: 2px 14px 2px 10px; color: var(--text); }
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "＋"; color: var(--accent-text); margin-right: 4px; font-weight: 800; }
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background-color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
+fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: var(--on-accent); }
+/* ouvert : titre cliquable en pastille d'accent */
+fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: var(--accent); padding: 0 12px; }
+fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--on-accent); }
+fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "－"; margin-right: 4px; }
+
+/* ---------- Coloration SQL (variables natives .jush d'Adminer) ---------- */
+.jush {
+  --text-color: var(--text); --bg-color: var(--lit); --border-color: var(--border);
+  --keyword-color: var(--accent-text); --string-color: var(--jush-str); --string-plain-color: var(--jush-str);
+  --value-color: var(--jush-num); --number-color: var(--jush-num); --identifier-color: var(--jush-id);
+  --attribute-color: var(--accent-text);
+}
+pre.jush { background: var(--lit); }
+
+/* ---------- Sélecteur de thème (injecté par switcher.js) ---------- */
+/* Par défaut (page de connexion, sans bloc utilisateur) : en haut à droite. Une fois connecté, switcher.js l'insère
+   dans le bloc « utilisateur / déconnexion » (p.logout) et il prend la classe .in-bar. */
+#kawaii-switcher {
+  position: fixed; right: 16px; top: 8px; z-index: 99; display: flex; align-items: center;
+  background-color: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 2px 6px; box-shadow: var(--shadow); font-size: 12px; color: var(--text);
+}
+#kawaii-switcher.in-bar { position: relative; right: auto; top: auto; display: inline-flex; vertical-align: middle; margin-right: 8px; }
+/* options du thème (variantes, accent) : volet sous le sélecteur, pour ne pas allonger la barre du haut */
+#kawaii-switcher .opts {
+  position: absolute; top: calc(100% + 6px); right: 0; display: flex; gap: 8px; align-items: center; white-space: nowrap;
+  background-color: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 6px 10px; box-shadow: var(--shadow);
+}
+#kawaii-switcher :is(.opts, select)[hidden] { display: none; }
+/* un seul thème installé : pas de liste, ses options prennent sa place dans le cadre au lieu d'un volet */
+#kawaii-switcher.single .opts { position: static; padding: 0; border: 0; background: none; box-shadow: none; }
+/* les boutons du sélecteur ne reprennent pas le style des boutons pleins du thème */
+#kawaii-switcher button { background-image: none; transform: none; filter: none; box-shadow: none; }
+#kawaii-switcher select.theme { font-weight: 700; cursor: pointer; }
+#kawaii-switcher button.sw {
+  width: 18px; height: 18px; padding: 0; border-radius: 50%; background-color: var(--sw);
+  border: 2px solid var(--surface); box-shadow: 0 0 0 2px var(--border);
+}
+#kawaii-switcher button.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--text); }
+#kawaii-switcher input[type=color] { width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; }
+#kawaii-switcher input[type=color]::-webkit-color-swatch-wrapper { padding: 0; }
+#kawaii-switcher input[type=color]::-webkit-color-swatch { border: 2px solid var(--border); border-radius: 50%; }
+#kawaii-switcher button.rz { background-color: transparent; color: var(--muted); padding: 0 4px; border: 0; cursor: pointer; }
+
+/* Mobile : Adminer n'affiche la barre « utilisateur / déconnexion » qu'avec le menu ouvert, posée en absolu sur son en-tête.
+   Élargie par le sélecteur, elle masquerait le logo : on la remet dans le flux, au-dessus du menu (.foot = menu fermé). */
+@media (max-width: 800px) {
+  .js #foot:not(.foot) { display: flex; flex-direction: column-reverse; }
+  .js #foot .logout { position: static; margin: 0; padding: 4px 8px; text-align: right; }
+}
+@media (max-width: 600px) {
+  #kawaii-switcher { right: 8px; }
+  #kawaii-switcher input[type=color], #kawaii-switcher button.rz { display: none; }
+}
+@media print { #kawaii-switcher { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  input[type=submit]:hover, input[type=button]:hover, button:hover { transform: none !important; }
+}

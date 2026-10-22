@@ -1,0 +1,44 @@
+# Construit l'image sur la dernière version d'Adminer et vérifie que le plugin charge et sert chaque fichier de theme/
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Syntaxe JavaScript
+        run: for f in theme/*.js; do node --check "$f"; done
+
+      # le Dockerfile vérifie aussi la syntaxe du plugin et refuse une version d'Adminer trop ancienne
+      - name: Construction
+        run: docker build --pull -t adminer-kawaii .
+
+      - name: Test de fumée
+        run: |
+          docker run -d --name adminer -p 8080:8080 adminer-kawaii
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8080/ -o page.html && break; sleep 1; done
+          if grep -Eq "Warning|Fatal error|Deprecated" page.html; then echo "::error::erreur PHP sur la page de connexion"; exit 1; fi
+          for f in theme/*.css theme/*.js; do
+            grep -q "$f" page.html || { echo "::error::$f n'est pas chargé par le plugin"; exit 1; }
+            curl -fsS -o /dev/null "http://127.0.0.1:8080/$f" || { echo "::error::$f n'est pas servi"; exit 1; }
+          done
+
+      # --build-arg THEMES : seuls les thèmes demandés sont installés, et le plugin ne propose qu'eux
+      - name: Sélection de thèmes
+        run: |
+          docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii-subset .
+          docker run -d --name subset -p 8081:8080 adminer-kawaii-subset
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8081/ -o subset.html && break; sleep 1; done
+          grep -q "name='kawaii-themes' content='kawaii netscape'" subset.html || { echo "::error::sélection de thèmes ignorée"; exit 1; }
+          if grep -q "theme/dbhub.css" subset.html; then echo "::error::thème non demandé encore chargé"; exit 1; fi

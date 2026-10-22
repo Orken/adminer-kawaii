@@ -1,0 +1,136 @@
+/* ===== Thème Skeuomorphic =====
+   Actif quand <html data-theme="skeuomorphic">. Inspiré des interfaces « objets réels » (iOS 6) :
+   fond de lin, menu en cuir avec coutures, papier crème, inox brossé, boutons de verre bombés,
+   champs en creux, textes gravés. Relief obtenu uniquement avec des dégradés, des ombres internes et du bruit SVG. */
+
+:root[data-theme="skeuomorphic"] {
+  --bg: #d3ccbb; --surface: #f8f4e9; --surface-2: #e7dfcc; --text: #2d2417; --muted: #5a503e; --border: #a89f88;
+  --accent: #2a72c4; --on-accent: #ffffff;
+  --accent-text: #134f9b;
+  --ok: #4f9a3a; --err: #c23b2e; --on-err: #ffffff;
+  --jush-str: #2d6a1c; --jush-num: #a02b1d; --jush-id: #6b3f8f;
+  --shadow: 0 2px 5px rgba(60, 45, 20, .35);
+  color-scheme: light;
+
+  --radius: 8px; --radius-sm: 6px; --pill: 999px;
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --h2-border: 2px groove #c9bfa6;
+
+  --e-title: ""; --e-after: ""; --e-table: "▸"; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  /* fond : toile de lin (bruit SVG + fines trames croisées) */
+  --bg-pattern:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .10) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 70, 40, .07) 0 1px, transparent 1px 3px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .15 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  --bg-size: auto, auto, 120px 120px; --bg-pos: 0 0, 0 0, 0 0;
+
+  --th-bg: #d9d9d9; --th-text: #2d2417;
+  --zebra: #efe8d6;
+  --row-hover: #dbe9f9;
+
+  --leather: #5a3b25;
+  --glass: linear-gradient(#3f8be0, #2a72c4 50%, #1a5cae 51%, #2a6fc0);
+}
+
+/* ---------- Barre du haut : inox brossé ---------- */
+:root[data-theme="skeuomorphic"] #breadcrumb {
+  background-image: linear-gradient(#f4f4f4, #cfcfcf 50%, #bdbdbd 51%, #d4d4d4); color: #2d2417; border: 1px solid #8a8a8a; border-top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .35), inset 0 1px 0 #fff; text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+}
+:root[data-theme="skeuomorphic"] #breadcrumb a { color: #0f4688; }
+
+/* ---------- Menu : cuir surpiqué ---------- */
+:root[data-theme="skeuomorphic"] #menu {
+  color: #f6e8cf; border: 1px solid #2c1a0c; border-left: 0;
+  background-color: var(--leather);
+  background-image:
+    radial-gradient(ellipse at 30% 0%, rgba(255, 235, 200, .18), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='turbulence' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23g)' opacity='.55'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 90px 90px; background-repeat: no-repeat, repeat;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, .55), 3px 0 8px rgba(40, 25, 10, .45);
+  outline: 2px dashed rgba(255, 228, 170, .55); outline-offset: -4px;   /* couture */
+  padding: 12px 6px 18px;   /* même largeur que base.css : sinon le menu déborde sur le contenu */
+}
+:root[data-theme="skeuomorphic"] #menu a { color: #ffe2a3; }
+:root[data-theme="skeuomorphic"] #menu a:hover { background: rgba(0, 0, 0, .28); color: #fff; }
+:root[data-theme="skeuomorphic"] #menu .version, :root[data-theme="skeuomorphic"] #menu #logins, :root[data-theme="skeuomorphic"] #menu label { color: #e9d3ae; }
+:root[data-theme="skeuomorphic"] #menu h1, :root[data-theme="skeuomorphic"] #menu p, :root[data-theme="skeuomorphic"] #menu #dbs { border-color: rgba(255, 228, 170, .3); }
+:root[data-theme="skeuomorphic"] #h1 { text-shadow: 0 -1px 0 rgba(0, 0, 0, .7), 0 1px 0 rgba(255, 255, 255, .15); }   /* titre embossé dans le cuir */
+:root[data-theme="skeuomorphic"] #tables li:has(a.active) { background: rgba(0, 0, 0, .3); box-shadow: inset 0 2px 5px rgba(0, 0, 0, .6); }
+:root[data-theme="skeuomorphic"] #tables li:hover { background: rgba(0, 0, 0, .22); }
+:root[data-theme="skeuomorphic"] #tables a.structure::before { color: #ffd27a; }
+:root[data-theme="skeuomorphic"] #tables a.select { background-image: var(--glass); }
+
+/* #lang est dans le menu mais, sur grand écran, posé sur le lin au-dessus ; sur mobile il reste dans le cuir */
+@media not all and (max-width: 800px) {
+  :root[data-theme="skeuomorphic"] #menu #lang, :root[data-theme="skeuomorphic"] #menu #lang label { color: var(--text); text-shadow: 0 1px 0 rgba(255, 255, 255, .7); }
+}
+:root[data-theme="skeuomorphic"] #menu #tables::before, :root[data-theme="skeuomorphic"] #menu h3, :root[data-theme="skeuomorphic"] #menu .tables { color: #e9d3ae; }
+
+/* ---------- Titres gravés ---------- */
+:root[data-theme="skeuomorphic"] h2 { text-shadow: 0 1px 0 rgba(255, 255, 255, .75), 0 -1px 0 rgba(0, 0, 0, .12); color: #2d2417; }
+
+/* ---------- Boutons : verre bombé ---------- */
+:root[data-theme="skeuomorphic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  background-image: var(--glass); color: #fff; border: 1px solid #0d3a74; border-radius: var(--radius);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .45); font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 1px 2px rgba(0, 0, 0, .45);
+}
+:root[data-theme="skeuomorphic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { filter: brightness(1.1); }
+:root[data-theme="skeuomorphic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active {
+  filter: brightness(.9); box-shadow: inset 0 2px 5px rgba(0, 0, 0, .5);
+}
+:root[data-theme="skeuomorphic"] input[type=submit][name*=delete],
+:root[data-theme="skeuomorphic"] input[type=submit][name=drop],
+:root[data-theme="skeuomorphic"] input[type=submit][name=truncate] { background-image: linear-gradient(#e0574a, #c23b2e 50%, #a62a1f 51%, #b9352a); border-color: #6c1810; }
+:root[data-theme="skeuomorphic"] #menu p.links a, :root[data-theme="skeuomorphic"] .links a {
+  background-image: linear-gradient(#fdfaf0, #e4dcc7); color: #134f9b; border: 1px solid #a89f88; text-shadow: 0 1px 0 #fff;
+  box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .3);
+}
+:root[data-theme="skeuomorphic"] #menu p.links a:hover, :root[data-theme="skeuomorphic"] #menu p.links a.active, :root[data-theme="skeuomorphic"] .links a:hover {
+  background-image: var(--glass); color: #fff; border-color: #0d3a74; text-shadow: 0 -1px 0 rgba(0, 0, 0, .45);
+}
+/* boutons-icônes : on garde l'image d'Adminer (une image de fond la masquerait), simple touche bordée en relief */
+:root[data-theme="skeuomorphic"] button.icon { border: 1px solid #a89f88; box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .3); }
+
+/* ---------- Champs : en creux ---------- */
+:root[data-theme="skeuomorphic"] :is(input:not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]):not([type=color]), select, textarea) {
+  background: #fffdf6; border: 1px solid #8f8670; border-radius: var(--radius-sm); color: #2d2417;
+  box-shadow: inset 0 2px 4px rgba(60, 45, 20, .35), 0 1px 0 rgba(255, 255, 255, .8);
+}
+:root[data-theme="skeuomorphic"] :is(input, select, textarea):focus { border-color: #2a72c4; box-shadow: inset 0 2px 4px rgba(60, 45, 20, .35), 0 0 0 3px rgba(42, 114, 196, .35); }
+
+/* ---------- Tableaux : papier sur plateau, en-tête inox ---------- */
+:root[data-theme="skeuomorphic"] table { border: 1px solid #8f8670; box-shadow: 0 2px 6px rgba(60, 45, 20, .4); background: var(--surface); }
+:root[data-theme="skeuomorphic"] thead :is(th, td) {
+  background-image: linear-gradient(#f6f6f6, #d4d4d4 50%, #c3c3c3 51%, #d9d9d9); text-shadow: 0 1px 0 #fff;
+  border-bottom: 1px solid #8a8a8a; box-shadow: inset 0 1px 0 #fff;
+}
+:root[data-theme="skeuomorphic"] th a, :root[data-theme="skeuomorphic"] thead th a { color: #0f4688; }
+
+/* ---------- Cartes : feuillets de papier ---------- */
+:root[data-theme="skeuomorphic"] fieldset {
+  background-image: linear-gradient(#fffdf6, #f1ead8); border: 1px solid #a89f88;
+  box-shadow: 0 2px 5px rgba(60, 45, 20, .35), inset 0 1px 0 #fff;
+}
+:root[data-theme="skeuomorphic"] fieldset legend {
+  background-image: linear-gradient(#fdfaf0, #e4dcc7); border: 1px solid #a89f88; color: #2d2417;
+  text-shadow: 0 1px 0 #fff; box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0, 0, 0, .3);
+}
+:root[data-theme="skeuomorphic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-image: var(--glass); border-color: #0d3a74; }
+:root[data-theme="skeuomorphic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: #fff; text-shadow: 0 -1px 0 rgba(0, 0, 0, .45); }
+
+/* messages : étiquettes en papier */
+:root[data-theme="skeuomorphic"] :is(.message, .error) { background-image: linear-gradient(#fffdf6, #efe8d6); box-shadow: 0 2px 4px rgba(60, 45, 20, .35), inset 0 1px 0 #fff; }
+
+/* sélecteur de thème : plaque d'inox */
+:root[data-theme="skeuomorphic"] #kawaii-switcher {
+  background-image: linear-gradient(#f6f6f6, #cfcfcf 50%, #bdbdbd 51%, #d4d4d4); border: 1px solid #7e7e7e; color: #2d2417;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .4), inset 0 1px 0 #fff;
+}
+
+/* colonnes figées (édition / cases) : le fond des lignes est géré par base.css ; ici, seul l'en-tête reprend l'inox */
+:root[data-theme="skeuomorphic"] thead :is(th, td).sticky { background-image: linear-gradient(#f6f6f6, #d4d4d4 50%, #c3c3c3 51%, #d9d9d9); background-color: #d9d9d9; border-bottom: 1px solid #8a8a8a; }

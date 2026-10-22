@@ -1,0 +1,244 @@
+/* ===== Thème Adminiz =====
+   Actif quand <html data-theme="adminiz">. Back-office Material 3, rouge : fond blanc,
+   menu gris bleuté dont l'élément actif est une pastille anthracite, rouge pour l'action (boutons pleins,
+   boutons à contour « + », onglet courant coché « ✓ »), tableaux sans cadre à en-tête gris bleuté,
+   cartes et champs à fin contour, panneau de filtres rosé. Connexion : carte blanche sur fond corail hachuré.
+   Le titre Adminer devient un mot-symbole (bleu nuit, dernière lettre rose). */
+
+:root[data-theme="adminiz"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f7fafc; --text: #222628; --muted: #5c6063; --border: #c3c7c9;
+  --accent: #c01e1e; --on-accent: #ffffff;
+  --accent-text: #c01e1e;
+  --ok: #2e7d32; --err: #ba1a1a; --on-err: #ffffff;
+  --jush-str: #2e7d32; --jush-num: #0f5d7d; --jush-id: #8a4b00;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 8px; --radius-sm: 4px; --pill: 4px;
+  --pad-y: 5px; --pad-x: 12px;
+  --font: Roboto, "Segoe UI", system-ui, sans-serif;
+  --font-heading: var(--font);
+  --font-logo: Montserrat, Poppins, Nunito, var(--font);
+  --h2-border: 0;
+
+  --e-title: ""; --e-after: ""; --e-table: "▤"; --e-logo: ""; --e-ok: "✓ "; --e-err: "⚠ ";
+  --banner: "ENTREZ DANS LA DONNÉE\A NOUVELLE GÉNÉRATION";
+
+  /* fond : bande gris bleuté sous le menu (19em de large), sur toute la hauteur de la fenêtre */
+  --sidebar: #f7fafc;
+  --bg-pattern: linear-gradient(90deg, var(--sidebar) calc(19 * var(--fs)), transparent 0);
+  --bg-size: auto; --bg-pos: 0 0;
+
+  --th-bg: #f7fafc; --th-text: #222628;
+  --zebra: var(--surface);             /* pas de zébrage : les lignes sont séparées par un filet */
+  --row-hover: #fff8f7;                /* rosé, comme le panneau de filtres */
+  --lit: #f7fafc;
+
+  /* palette Adminiz */
+  --navy: #173640; --pink: #f298a1;    /* mot-symbole */
+  --nav-active: #434749; --nav-hover: #eef1f3;
+  --outline: #857371;                  /* contour des champs */
+  --tint: #fff8f7;                     /* panneau rosé */
+  --track: #f5ddda;                    /* rail d'interrupteur éteint */
+  --badge-bg: #daefff; --badge-text: #0f5d7d;
+}
+@media (max-width: 800px) {
+  :root[data-theme="adminiz"] { --bg-pattern: none; }   /* le menu devient un volet : pas de bande */
+}
+
+/* ---------- Titres : grands et légers, sans filet ---------- */
+:root[data-theme="adminiz"] h2 { font-size: 2.15em; font-weight: 400; letter-spacing: -.01em; padding: 12px 0 4px; }
+:root[data-theme="adminiz"] h3 { font-weight: 600; }
+
+/* ---------- Barre du haut : fil d'Ariane discret, déconnexion en bouton à contour ---------- */
+:root[data-theme="adminiz"] #breadcrumb { background: none; border-radius: 0; margin-inline-start: 0; padding: 3px 0; color: var(--muted); font-weight: 600; }
+
+/* ---------- Logo : « admine » bleu nuit + « r » rose, façon mot-symbole ; image Adminer masquée ---------- */
+:root[data-theme="adminiz"] #menu h1 { text-align: center; border: 0; padding: 14px 0 6px; margin: 0 0 6px; }
+:root[data-theme="adminiz"] #h1 { font-size: 0; font-style: normal; }
+:root[data-theme="adminiz"] #h1 img { display: none; }
+:root[data-theme="adminiz"] #h1::before, :root[data-theme="adminiz"] #h1::after { font: 800 30px/1 var(--font-logo); letter-spacing: -.035em; }
+:root[data-theme="adminiz"] #h1::before { content: "admine"; color: var(--navy); }
+:root[data-theme="adminiz"] #h1::after { content: "r"; color: var(--pink); }
+:root[data-theme="adminiz"] #menu .version {
+  display: inline-block; vertical-align: 10px; margin-left: 4px; padding: 1px 7px; border-radius: 999px;
+  background: var(--badge-bg); color: var(--badge-text); font-size: 10px; font-weight: 600;
+}
+/* signature sous le logo, avec le petit drapeau bleu / rouge à droite de la première ligne */
+:root[data-theme="adminiz"] #menu h1::after {
+  display: table; margin: 4px auto 0; padding: 0 24px 0 0; white-space: pre; color: var(--navy);
+  font: 800 9px/1.25 var(--font); letter-spacing: .02em;
+  background: linear-gradient(#313e8f, #313e8f) right 12px top 2px / 9px 6px no-repeat,
+              linear-gradient(#e1000f, #e1000f) right 0 top 2px / 9px 6px no-repeat;
+}
+
+/* ---------- Menu : colonne gris bleuté, sans cadre ; la langue passe en bas ---------- */
+:root[data-theme="adminiz"] #menu {
+  background-color: var(--sidebar); border: 0; border-radius: 0; box-shadow: none;
+  margin-top: 0; padding: 4px 10px 16px; box-sizing: border-box;
+}
+:root[data-theme="adminiz"] #menu :is(p, #dbs, #logins, #tables) { border-bottom: 0; }
+@media not all and (max-width: 800px) {
+  :root[data-theme="adminiz"] #menu { top: 0; }
+  :root[data-theme="adminiz"] #lang { top: 100%; left: 10px; padding: 0; white-space: nowrap; }
+}
+
+/* actions du haut : boutons blancs à contour rouge et ombre légère */
+:root[data-theme="adminiz"] #menu p.links { gap: 6px; padding: 4px 0 8px; }
+:root[data-theme="adminiz"] #menu p.links a {
+  border: 1px solid var(--accent); border-radius: var(--radius-sm); background-color: #fff; color: var(--text);
+  font-weight: 600; padding: 6px 4px; box-shadow: 0 1px 3px rgba(0, 0, 0, .22);
+}
+:root[data-theme="adminiz"] #menu p.links a:hover { background-color: var(--tint); border-color: var(--accent); color: var(--text); }
+:root[data-theme="adminiz"] #menu p.links a.active { background-color: var(--accent); color: var(--on-accent); }
+
+/* liste des tables : entrées de navigation, pastille anthracite pour la table courante */
+:root[data-theme="adminiz"] #tables { padding: 0; }
+:root[data-theme="adminiz"] #tables li { border-radius: 999px; margin: 2px 0; }
+:root[data-theme="adminiz"] #tables li:hover { background: var(--nav-hover); }
+:root[data-theme="adminiz"] #tables :is(a.structure, a.view) { padding: 6px 6px 6px 14px; color: #3a3d3f; font-weight: 500; }
+:root[data-theme="adminiz"] #tables :is(a.structure, a.view):hover { background: none; }
+:root[data-theme="adminiz"] #tables a.structure::before { color: var(--muted); margin-right: 10px; }
+:root[data-theme="adminiz"] #tables li:has(a.active) { background: var(--nav-active); box-shadow: none; }
+:root[data-theme="adminiz"] #tables li:has(a.active) :is(a.structure, a.view),
+:root[data-theme="adminiz"] #tables li:has(a.active) a.structure::before { color: #fff; font-weight: 600; }
+
+/* ---------- Liens d'action du contenu : barre d'onglets gris bleuté, onglet courant blanc coché en rouge ---------- */
+:root[data-theme="adminiz"] #content p.links {
+  display: flex; flex-wrap: wrap; gap: 2px; width: fit-content; max-width: 100%; box-sizing: border-box;
+  padding: 4px; background: var(--surface-2); border-radius: var(--radius-sm);
+}
+:root[data-theme="adminiz"] #content .links a { border: 0; background: none; color: var(--text); font-weight: 500; padding: 5px 12px; margin: 0; border-radius: var(--radius-sm); }
+:root[data-theme="adminiz"] #content .links a:is(:hover, .active) { background-color: #fff; color: var(--accent-text); }
+:root[data-theme="adminiz"] #content .links a.active::before { content: "✓"; margin-right: 6px; }
+
+/* ---------- Tableaux : sans cadre, en-tête gris bleuté arrondi, lignes séparées par un filet ---------- */
+:root[data-theme="adminiz"] table { border: 0; border-radius: var(--radius) var(--radius) 0 0; }
+:root[data-theme="adminiz"] thead :is(th, td, td.hover) { padding-top: 9px; padding-bottom: 9px; font-weight: 600; border-bottom: 0; }
+:root[data-theme="adminiz"] :is(tbody, tfoot) th a { color: var(--text); }
+:root[data-theme="adminiz"] :is(tbody, tfoot) th a:hover { color: var(--accent-text); }
+
+/* ---------- Formulaires : champs à fin contour brun-gris, contour rouge doublé au focus ---------- */
+:root[data-theme="adminiz"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea) {
+  border: 1px solid var(--outline); border-radius: var(--radius-sm); padding: 3px 10px; min-height: 28px;
+}
+:root[data-theme="adminiz"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), select, textarea):focus {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* boutons pleins : aplat rouge, coins à peine arrondis, sans ombre ni rebond */
+:root[data-theme="adminiz"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  border: 1px solid var(--accent); border-radius: var(--radius-sm); box-shadow: none; padding: 4px 16px; font-weight: 600;
+}
+:root[data-theme="adminiz"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { background-color: #a5191a; border-color: #a5191a; transform: none; filter: none; }
+:root[data-theme="adminiz"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background-color: #8c1516; transform: none; }
+/* boutons à contour : déconnexion et actions destructrices, moins mises en avant */
+:root[data-theme="adminiz"] #logout { background-color: #fff; color: var(--accent-text); }
+:root[data-theme="adminiz"] :is(input[name*=delete], input[name=drop], input[name=truncate]) {
+  background-color: #fff; color: var(--err); border-color: var(--err); box-shadow: none;
+}
+:root[data-theme="adminiz"] :is(#logout, input[name*=delete], input[name=drop], input[name=truncate]):hover { background-color: var(--tint); color: var(--err); }
+/* boutons-icônes : l'image d'Adminer est un carré gris dont le pictogramme est transparent ;
+   la couleur de fond donne donc celle du pictogramme (anthracite, rouge au survol) */
+:root[data-theme="adminiz"] button.icon { background-color: var(--nav-active); }
+:root[data-theme="adminiz"] button.icon:hover { background-color: var(--accent); }
+
+/* ---------- Cartes : fin contour gris, sans ombre ---------- */
+:root[data-theme="adminiz"] fieldset { border: 1px solid var(--border); padding: 4px 12px 8px; }
+:root[data-theme="adminiz"] legend { color: var(--text); font-weight: 600; }
+/* replié : bouton à contour rouge, « + » à droite */
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  background-color: #fff; border: 1px solid var(--accent); border-radius: var(--radius-sm); box-shadow: none;
+}
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 3px 12px 3px 14px; color: var(--accent-text); font-weight: 500; }
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: none; }
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::after { content: "+"; margin-left: 8px; font-size: 1.3em; font-weight: 400; line-height: 1; }
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background-color: var(--tint); border-color: var(--accent); transform: none; }
+:root[data-theme="adminiz"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--accent-text); }
+/* ouvert : titre rouge sur blanc, « − » à droite */
+:root[data-theme="adminiz"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: #fff; padding: 0 8px; }
+:root[data-theme="adminiz"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--accent-text); }
+:root[data-theme="adminiz"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
+:root[data-theme="adminiz"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::after { content: "−"; margin-left: 8px; }
+
+/* panneau de recherche / tri / limite de la page « Sélectionner » (seul #form envoyé en GET) : fond rosé */
+:root[data-theme="adminiz"] form#form:not([method]) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 6px 12px 10px;
+  background: var(--tint); border-radius: var(--radius);
+}
+
+/* messages */
+:root[data-theme="adminiz"] :is(.message, .error) { border-width: 1px; }
+
+/* sélecteur de thème */
+:root[data-theme="adminiz"] #kawaii-switcher { border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: none; }
+
+/* ---------- Page de connexion : carte blanche sur fond corail hachuré ---------- */
+/* Repérée par le champ mot de passe. Le corps passe en grille d'une colonne : le menu (#foot, logo) en ligne 1,
+   le formulaire (#content) en ligne 2, et body::before, étalé sur les deux lignes, dessine la carte (fond et ombre
+   d'un seul tenant, sans couture). La langue part en haut à gauche. */
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) {
+  --bg: #fd9d92;
+  --bg-pattern:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 6L6 0M3 13L13 3M9 19L19 9M15 24L24 15M0 24L5 19M20 4L24 0' stroke='%23fff' stroke-opacity='.16' stroke-width='1.2'/%3E%3Cpath d='M0 16L16 0M8 24L24 8' stroke='%23b8473d' stroke-opacity='.10'/%3E%3C/svg%3E"),
+    linear-gradient(#feb0a7, #fd8d81);
+  --bg-size: 24px 24px, auto; --bg-pos: 0 0, 0 0;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(440px, 100%); justify-content: center; align-content: center;
+  min-height: 100vh; box-sizing: border-box; padding: 56px 16px 40px;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) body::before {
+  content: ""; grid-area: 1 / 1 / 3 / 2; background: #fff; border-radius: 10px; box-shadow: 0 4px 14px rgba(120, 40, 30, .3);
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #foot { grid-area: 1 / 1; display: block; position: static; padding: 32px 30px 0; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content { grid-area: 2 / 1; margin: 0 !important; padding: 18px 30px 40px; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #menu {
+  position: static; width: auto; min-width: 0; margin: 0; padding: 0; background: none; border: 0; box-shadow: none;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #menu h1 { padding: 0; margin: 0; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #h1::before,
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #h1::after { font-size: 46px; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #menu h1::after { font-size: 11px; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #lang { position: fixed; top: 10px; left: 16px; padding: 0; }
+@media (max-width: 600px) {   /* en haut, elle chevaucherait le sélecteur de thème : sous le logo, dans la carte */
+  :root[data-theme="adminiz"]:has(input[name="auth[password]"]) #lang { position: static; margin-top: 14px; text-align: center; }
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+/* titre « Connexion » masqué visuellement (gardé pour les lecteurs d'écran) */
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content > h2 {
+  position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content > .error { margin: 0 0 18px; }
+
+/* champs empilés : libellé en petites capitales au-dessus. th et td passent en bloc dans la cellule anonyme de
+   chaque ligne ; les tr gardent leur affichage, pour que .hidden (lignes masquées selon le système) s'applique. */
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout {
+  width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; background: none; overflow: visible;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout :is(th, td) {
+  display: block; padding: 0; border: 0; background: none;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout th {
+  margin: 0 0 6px; color: #464a4c; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout td { margin: 0 0 18px; }
+/* même :is() que la règle générale des champs, pour passer devant elle */
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; min-height: 40px; padding: 6px 12px; border-radius: 6px;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content form > p {
+  display: flex; flex-direction: column; align-items: center; gap: 18px; margin: 6px 0 0;
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { padding: 9px 22px; border-radius: 6px; }
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) #content form > p label { display: inline-flex; align-items: center; gap: 10px; color: #464a4c; cursor: pointer; }
+/* « Connexion permanente » : interrupteur, façon Material 3 (rail rosé / rouge) */
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) input[name="auth[permanent]"] {
+  appearance: none; width: 44px; height: 24px; margin: 0; border: 2px solid var(--outline); border-radius: 999px; cursor: pointer;
+  background: radial-gradient(circle at 10px 50%, var(--outline) 0 6px, transparent 6.5px) var(--track);
+}
+:root[data-theme="adminiz"]:has(input[name="auth[password]"]) input[name="auth[permanent]"]:checked {
+  border-color: var(--accent);
+  background: radial-gradient(circle at calc(100% - 10px) 50%, #fff 0 8px, transparent 8.5px) var(--accent);
+}

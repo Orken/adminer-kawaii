@@ -1,0 +1,21 @@
+# IDE
+.idea/
+.vscode/
+
+# Fichiers Windows/WSL laissés par les copies depuis Windows
+*:Zone.Identifier
+Thumbs.db
+.DS_Store
+
+# Secrets et configuration locale
+.env
+.env.*
+*.local
+.claude/settings.local.json
+
+# Logs et temporaires
+*.log
+*.tmp
+*.swp
+
+adminer.php

@@ -1,0 +1,293 @@
+/* ===== Thème GitLab =====
+   Actif quand <html data-theme="gitlab">. Interface inspirée du design system Pajamas de GitLab :
+   - barre latérale grise à gauche (logo, base de données, actions et tables en éléments de navigation avec icônes,
+     élément courant marqué d'un trait violet), langue en pied de barre ;
+   - barre du haut blanche à filet gris : fil d'Ariane, sélecteur de thème, avatar et déconnexion ;
+   - contenu blanc et plat : titres gris anthracite, liens bleus, onglets soulignés de bleu, boutons blancs à filet gris
+     (bleu pour l'action principale, rouge pour les suppressions), listes repliées en menus déroulants, alertes colorées.
+   Le logo est un simple carré orange marqué « A » : aucun logo ni marque reproduits. */
+
+:root[data-theme="gitlab"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #ececef; --text: #333238; --muted: #626168; --border: #dcdcde;
+  --accent: #1f75cb; --on-accent: #ffffff;
+  --accent-text: #1068bf;                       /* liens (bleu un cran plus foncé que les boutons) */
+  --ok: #108548; --err: #dd2b0e; --on-err: #ffffff;
+  --jush-str: #c0123c; --jush-num: #006b6b; --jush-id: #6b4fbb;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 8px; --radius-sm: 4px; --pill: 4px;
+  --fs: 14px; --pad-y: 6px; --pad-x: 12px;
+  --font: "GitLab Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-heading: var(--font);
+  --font-mono: "GitLab Mono", "JetBrains Mono", Menlo, "DejaVu Sans Mono", "Liberation Mono", Consolas, "Ubuntu Mono", monospace;
+  --h2-border: 0;
+
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  /* palette Pajamas */
+  --gray-10: #fbfafd; --gray-50: #ececef; --gray-100: #dcdcde; --gray-200: #bfbfc3; --gray-400: #89888d;
+  --gray-500: #737278; --gray-600: #626168; --gray-700: #535158; --gray-900: #333238;
+  --blue-50: #e9f3fc; --blue-600: #1068bf; --blue-700: #0b5cad; --focus: #428fdc;
+  --green-50: #ecf4ee; --red-50: #fcf1ef; --red-600: #c91c00;
+  --sidebar: #f5f4f8;                            /* barre latérale */
+  --indicator: #7759c2;                          /* trait de l'élément courant */
+  --nav-hover: rgba(31, 30, 36, .06); --nav-active: rgba(31, 30, 36, .09);
+  --bar-h: 48px;                                 /* barre du haut */
+
+  /* fond : la barre latérale (19em, filet à droite) par-dessus le filet de la barre du haut ; défile avec la page */
+  --side-col: linear-gradient(90deg, var(--sidebar) calc(100% - 1px), var(--border) 0);
+  --bg-pattern: var(--side-col), linear-gradient(var(--border), var(--border));
+  --bg-size: calc(19 * var(--fs)) 100%, 100% 1px;
+  --bg-pos: 0 0, 0 var(--bar-h);
+  background-attachment: scroll; background-repeat: repeat-y, no-repeat;
+
+  --th-bg: var(--gray-10); --th-text: var(--gray-900);
+  --zebra: #ffffff;
+  --row-hover: #f6f6f8;
+  --lit: var(--gray-10);
+}
+:root[data-theme="gitlab"] * { scrollbar-color: var(--gray-200) transparent; }
+/* focus clavier : anneau bleu de GitLab */
+:root[data-theme="gitlab"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* ---------- Page : titres anthracite, liens bleus ---------- */
+:root[data-theme="gitlab"] h2 { margin: 0 0 16px; padding: 0; color: var(--gray-900); font: 600 24px/1.25 var(--font-heading); }
+:root[data-theme="gitlab"] h3 { font-size: 16px; font-weight: 600; }
+:root[data-theme="gitlab"] :is(a:link, a:visited) { font-weight: 400; }
+:root[data-theme="gitlab"] :is(a:link:hover, a:visited:hover) { color: var(--blue-700); text-decoration: underline; }
+:root[data-theme="gitlab"] code { padding: 1px 4px; border-radius: var(--radius-sm); }
+:root[data-theme="gitlab"] pre.jush { padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+/* éditeur SQL : champ comme les autres */
+:root[data-theme="gitlab"] [contenteditable].jush { border: 0; border-radius: var(--radius-sm); background: #fff; box-shadow: inset 0 0 0 1px var(--gray-400); }
+
+/* ---------- Barre du haut : fil d'Ariane, puis thème, avatar et déconnexion à droite ---------- */
+:root[data-theme="gitlab"] #content { margin-top: var(--bar-h); padding: 16px 16px 24px 0; }
+:root[data-theme="gitlab"] #breadcrumb {
+  top: 0; height: var(--bar-h); margin: 0; padding: 0; background: none; border-radius: 0;
+  color: var(--gray-900); font: 600 14px/var(--bar-h) var(--font); white-space: nowrap;
+}
+:root[data-theme="gitlab"] #breadcrumb a { color: var(--muted); }
+:root[data-theme="gitlab"] #breadcrumb a:hover { color: var(--gray-900); }
+:root[data-theme="gitlab"] .logout { gap: 12px; color: var(--gray-900); }
+/* avatar par défaut devant le nom d'utilisateur */
+:root[data-theme="gitlab"] .logout span[title=Username] { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+:root[data-theme="gitlab"] .logout span[title=Username]::before { content: ""; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3CclipPath id='c'%3E%3Ccircle cx='12' cy='12' r='12'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23c)'%3E%3Crect width='24' height='24' fill='%23e1d8f9'/%3E%3Ccircle cx='12' cy='9.5' r='4' fill='%23694cc0'/%3E%3Cellipse cx='12' cy='22' rx='8' ry='6' fill='%23694cc0'/%3E%3C/g%3E%3C/svg%3E") center / 24px no-repeat; }
+:root[data-theme="gitlab"] #kawaii-switcher { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+:root[data-theme="gitlab"] #kawaii-switcher select.theme { font-weight: 400; }
+@media not all and (max-width: 800px) {
+  :root[data-theme="gitlab"] #menu { top: 0; }
+  :root[data-theme="gitlab"] #breadcrumb { left: calc(21 * var(--fs)); }
+  :root[data-theme="gitlab"] .logout {
+    top: 0; height: var(--bar-h); box-sizing: border-box; margin: 0; padding: 0 16px 0 12px;
+    display: flex; align-items: center; background: var(--bg); box-shadow: none;   /* Adminer l'entoure d'une lueur blanche qui masquerait le filet */
+  }
+}
+
+/* ---------- Barre latérale ---------- */
+/* la langue passe en pied de barre (son formulaire est replacé en dernier) */
+:root[data-theme="gitlab"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 8px;
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="gitlab"] #menu > form:has(#lang) { order: 1; }
+:root[data-theme="gitlab"] #menu :is(p, #dbs, #logins, #tables) { border-bottom: 0; }
+:root[data-theme="gitlab"] #menu a:hover { background: var(--nav-hover); color: var(--gray-900); text-decoration: none; }
+
+/* logo : carré orange marqué « A », nom, version en badge */
+:root[data-theme="gitlab"] #menu h1 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; padding: 4px 8px; border: 0; font-size: 1em; }
+:root[data-theme="gitlab"] #h1 { display: inline-flex; align-items: center; gap: 8px; color: var(--gray-900); font: 600 16px/1 var(--font); }
+:root[data-theme="gitlab"] #menu #h1:hover { background: none; text-decoration: none; }
+:root[data-theme="gitlab"] #h1 img { display: none; }
+:root[data-theme="gitlab"] #h1::before {
+  content: "A"; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px;
+  background: linear-gradient(135deg, #fca326, #fc6d26 45%, #e24329); color: #fff; font: 700 14px/1 var(--font);
+}
+:root[data-theme="gitlab"] #menu .version { padding: 2px 8px; border-radius: 999px; background: var(--gray-50); color: var(--gray-700); font: 400 12px/1.2 var(--font); }
+
+/* base de données et langue : libellé discret, liste pleine largeur */
+:root[data-theme="gitlab"] #menu :is(#dbs, #lang) { margin: 0 0 8px; padding: 0 8px; }
+:root[data-theme="gitlab"] #menu :is(#dbs, #lang) label { display: flex; align-items: center; gap: 8px; color: var(--muted); font: 600 12px var(--font); }
+:root[data-theme="gitlab"] #menu :is(#dbs, #lang) select { flex: 1; min-width: 0; font: 400 14px var(--font); }
+:root[data-theme="gitlab"] #menu #lang { position: static; margin: 8px 0 0; padding: 12px 8px 0; border-top: 1px solid var(--border); }
+
+/* actions et tables : éléments de navigation avec icône ; élément courant grisé, trait violet à gauche */
+:root[data-theme="gitlab"] #menu p.links { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0 0 8px; }
+:root[data-theme="gitlab"] #menu p.links a {
+  display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 8px; border: 0; border-radius: var(--radius-sm);
+  background: none; color: var(--gray-900); text-align: left; font: 400 14px var(--font);
+}
+:root[data-theme="gitlab"] #menu p.links a::before {
+  content: ""; flex: none; width: 16px; height: 16px; background-color: var(--gray-500); mask: var(--icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.75' y='2.75' width='12.5' height='10.5' rx='2'/%3E%3Cpath d='M1.75 6.5h12.5M6.25 6.5v6.75'/%3E%3C/svg%3E")) center / 16px no-repeat;
+}
+:root[data-theme="gitlab"] #menu p.links a[href*="sql="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.75' y='2.75' width='12.5' height='10.5' rx='2'/%3E%3Cpath d='M4.75 6.25 6.75 8l-2 1.75M8.75 10h2.5'/%3E%3C/svg%3E"); }
+:root[data-theme="gitlab"] #menu p.links a[href*="import="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 10.5V2.75M4.75 6 8 2.75 11.25 6M2.75 13.25h10.5'/%3E%3C/svg%3E"); }
+:root[data-theme="gitlab"] #menu p.links a[href*="dump="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2.75v7.75M4.75 7.25 8 10.5l3.25-3.25M2.75 13.25h10.5'/%3E%3C/svg%3E"); }
+:root[data-theme="gitlab"] #menu p.links a[href*="create="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3v10M3 8h10'/%3E%3C/svg%3E"); }
+:root[data-theme="gitlab"] #menu p.links a:hover { background: var(--nav-hover); border: 0; color: var(--gray-900); }
+:root[data-theme="gitlab"] #menu p.links a.active,
+:root[data-theme="gitlab"] #tables li:has(a.active) {
+  background: linear-gradient(var(--indicator), var(--indicator)) 3px 50% / 3px 18px no-repeat, var(--nav-active);
+  color: var(--gray-900); box-shadow: none;
+}
+:root[data-theme="gitlab"] #menu p.links a.active { font-weight: 600; }
+
+:root[data-theme="gitlab"] #tables { margin: 0; padding: 8px 0 0; border-top: 1px solid var(--border); }
+:root[data-theme="gitlab"] #tables::before { margin: 0 8px 4px; color: var(--gray-900); font: 600 14px/32px var(--font); letter-spacing: 0; text-transform: none; }
+:root[data-theme="gitlab"] #tables li { min-height: 32px; margin: 0 0 2px; border-radius: var(--radius-sm); }
+:root[data-theme="gitlab"] #tables li:hover { background-color: var(--nav-hover); }
+:root[data-theme="gitlab"] #tables :is(a.structure, a.view) { padding: 6px 8px; color: var(--gray-900); font-weight: 400; }
+:root[data-theme="gitlab"] #menu #tables :is(a.structure, a.view):hover { background: none; }
+:root[data-theme="gitlab"] #tables a.structure::before {
+  content: ""; display: inline-block; width: 16px; height: 16px; margin-right: 8px; vertical-align: -3px;
+  background-color: var(--gray-500); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.75' y='2.75' width='12.5' height='10.5' rx='2'/%3E%3Cpath d='M1.75 6.5h12.5M6.25 6.5v6.75'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+:root[data-theme="gitlab"] #tables li:has(a.active) a.structure { font-weight: 600; }
+/* bouton « données » : bouton-icône discret */
+:root[data-theme="gitlab"] #tables a.select { width: 24px; height: 24px; line-height: 24px; border-radius: var(--radius-sm); background-color: transparent; }
+:root[data-theme="gitlab"] #tables a.select::before {
+  content: ""; display: inline-block; width: 16px; height: 16px; vertical-align: middle; background-color: var(--gray-600); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h7.5M6 8h7.5M6 12h7.5M2.75 4h.01M2.75 8h.01M2.75 12h.01' stroke-width='1.6'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+:root[data-theme="gitlab"] #menu #tables a.select:hover { background-color: var(--nav-active); }
+
+/* ---------- Liens d'action : onglets soulignés de bleu (avec une page courante), sinon boutons ---------- */
+:root[data-theme="gitlab"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; }
+:root[data-theme="gitlab"] #content .links a {
+  margin: 0; padding: 7px 12px; border: 0; border-radius: var(--radius-sm); background: #fff; color: var(--gray-900);
+  box-shadow: inset 0 0 0 1px var(--gray-200); line-height: 16px;
+}
+:root[data-theme="gitlab"] #content .links a:hover { background: var(--gray-50); color: var(--gray-900); box-shadow: inset 0 0 0 1px var(--gray-400); text-decoration: none; }
+:root[data-theme="gitlab"] #content .links:has(a.active) { gap: 0; margin: 0 0 16px; border-bottom: 1px solid var(--border); }
+:root[data-theme="gitlab"] #content .links:has(a.active) a { padding: 12px 16px; border-radius: 0; background: none; box-shadow: none; }
+:root[data-theme="gitlab"] #content .links:has(a.active) a:hover { background: none; box-shadow: inset 0 -2px 0 var(--gray-200); }
+:root[data-theme="gitlab"] #content .links a.active { font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+:root[data-theme="gitlab"] #content .links:has(a.active) a.active:hover { box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* ---------- Tableaux : à plat, filets gris, en-tête gris très clair ---------- */
+:root[data-theme="gitlab"] table { border-width: 1px; }
+:root[data-theme="gitlab"] th, :root[data-theme="gitlab"] thead :is(th, td, td.hover) { font-weight: 600; }
+:root[data-theme="gitlab"] thead :is(th, td) { white-space: nowrap; }
+/* menu de colonne (tri, recherche) au survol d'un en-tête : boutons tertiaires, survol gris */
+:root[data-theme="gitlab"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: var(--gray-50); color: var(--gray-900); }
+/* lignes cochées : bleu très pâle */
+:root[data-theme="gitlab"].js .checkable .checked :is(td, th, td.hover) { background: var(--blue-50); }
+
+/* ---------- Cartes : cadre gris arrondi, titre en gras ---------- */
+:root[data-theme="gitlab"] fieldset { padding: 4px 12px 10px; border-width: 1px; }
+:root[data-theme="gitlab"] legend { padding: 0 4px; background: none; border-radius: 0; color: var(--gray-900); font-weight: 600; }
+:root[data-theme="gitlab"] fieldset > legend a::after {
+  content: ""; display: inline-block; width: 16px; height: 16px; margin-left: 4px; vertical-align: -3px;
+  background-color: currentColor; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 10 4-4 4 4'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+/* replié : menu déroulant (bouton blanc, chevron vers le bas) */
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  border: 0; border-radius: var(--radius-sm); background: #fff; box-shadow: inset 0 0 0 1px var(--gray-200); transition: none;
+}
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 7px 8px 7px 12px; color: var(--gray-900); font-weight: 400; line-height: 16px; }
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: none; }
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::after { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); }
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover {
+  background: var(--gray-50); box-shadow: inset 0 0 0 1px var(--gray-400); transform: none;
+}
+:root[data-theme="gitlab"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--gray-900); }
+/* ouvert : titre en gras, chevron vers le haut */
+:root[data-theme="gitlab"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 4px; background: none; }
+:root[data-theme="gitlab"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--gray-900); }
+:root[data-theme="gitlab"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
+
+/* panneau de recherche / tri de la page « Sélectionner » (seul #form envoyé en GET) : barre de filtres grise */
+:root[data-theme="gitlab"] form#form:not([method]) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 4px 12px 8px;
+  background: var(--gray-10); border: 1px solid var(--border); border-radius: var(--radius);
+}
+
+/* ---------- Formulaires : champs à filet gris, listes à chevron, cases bleues ---------- */
+:root[data-theme="gitlab"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="gitlab"] select {   /* hors du :is(), sinon sa spécificité écraserait la marge du chevron ci-dessous */
+  min-height: 30px; padding: 5px 8px; border: 0; border-radius: var(--radius-sm); background-color: #fff; color: var(--gray-900);
+  box-shadow: inset 0 0 0 1px var(--gray-400); line-height: 18px;
+}
+:root[data-theme="gitlab"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus { box-shadow: inset 0 0 0 1px var(--gray-900); }
+:root[data-theme="gitlab"] :is(input, select, textarea):disabled { background-color: var(--gray-10); color: var(--gray-500); box-shadow: inset 0 0 0 1px var(--gray-100); }
+:root[data-theme="gitlab"] select:not([multiple]) {
+  appearance: none; padding-right: 28px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23333238' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E") right 8px center / 16px no-repeat, #fff;
+}
+:root[data-theme="gitlab"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 16px; height: 16px; margin: 0 6px 0 2px; vertical-align: -3px;
+  border: 0; border-radius: var(--radius-sm); background: #fff; box-shadow: inset 0 0 0 1px var(--gray-400); cursor: pointer;
+}
+:root[data-theme="gitlab"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="gitlab"] input:is([type=checkbox], [type=radio]):hover { box-shadow: inset 0 0 0 1px var(--gray-700); }
+:root[data-theme="gitlab"] input[type=checkbox]:checked { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3.5 8.25 3 3 6-6.5'/%3E%3C/svg%3E") center / 12px no-repeat, var(--accent); box-shadow: none; }
+:root[data-theme="gitlab"] input[type=checkbox]:indeterminate { background: linear-gradient(#fff, #fff) center / 8px 2px no-repeat, var(--accent); box-shadow: none; }
+:root[data-theme="gitlab"] input[type=radio]:checked { background: radial-gradient(circle, #fff 0 3px, var(--accent) 3.5px); box-shadow: none; }
+:root[data-theme="gitlab"] input:is([type=checkbox], [type=radio]):disabled { background-color: var(--gray-50); box-shadow: inset 0 0 0 1px var(--gray-100); }
+
+/* boutons : blancs à filet gris ; action principale en bleu, suppressions en rouge */
+:root[data-theme="gitlab"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 32px; padding: 7px 12px; border: 0; border-radius: var(--radius-sm); background: #fff; color: var(--gray-900);
+  box-shadow: inset 0 0 0 1px var(--gray-200); font: 400 14px/16px var(--font); transition: none;
+}
+:root[data-theme="gitlab"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
+  background: var(--gray-50); box-shadow: inset 0 0 0 1px var(--gray-400); transform: none; filter: none;
+}
+:root[data-theme="gitlab"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active {
+  background: var(--gray-100); box-shadow: inset 0 0 0 2px var(--gray-600); transform: none;
+}
+:root[data-theme="gitlab"] input.default[type=submit] { background: var(--accent); color: #fff; box-shadow: inset 0 0 0 1px var(--blue-600); }
+:root[data-theme="gitlab"] input.default[type=submit]:hover { background: var(--blue-600); box-shadow: inset 0 0 0 1px var(--blue-700); }
+:root[data-theme="gitlab"] input.default[type=submit]:active { background: var(--blue-700); box-shadow: inset 0 0 0 2px #033464; }
+/* (sélecteurs répétés : ils doivent l'emporter sur la règle générale des boutons, plus spécifique) */
+:root[data-theme="gitlab"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { background: var(--err); color: #fff; box-shadow: inset 0 0 0 1px var(--red-600); }
+:root[data-theme="gitlab"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]):hover { background: var(--red-600); box-shadow: inset 0 0 0 1px #a31700; }
+:root[data-theme="gitlab"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="gitlab"] :is(input[type=submit], input[type=button]):disabled:hover {
+  background: var(--gray-10); color: var(--gray-500); box-shadow: inset 0 0 0 1px var(--gray-100); cursor: not-allowed;
+}
+
+/* ---------- Messages : alertes à fond pâle et icône colorée ---------- */
+:root[data-theme="gitlab"] :is(.message, .error) {
+  padding: 12px 16px 12px 44px; border: 0; border-radius: var(--radius-sm); color: var(--gray-900);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23108548'/%3E%3Cpath d='m4.75 8.25 2.25 2.25 4.25-4.5' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 16px 14px / 16px no-repeat, var(--green-50);
+}
+:root[data-theme="gitlab"] .error { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23dd2b0e'/%3E%3Cpath d='m5.5 5.5 5 5m0-5-5 5' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); background-color: var(--red-50); }
+
+/* bulle d'aide (fonctions SQL) : popover blanc */
+:root[data-theme="gitlab"] #help {
+  padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; color: var(--gray-900);
+  box-shadow: 0 4px 12px rgba(31, 30, 36, .16);
+}
+
+/* ---------- Page de connexion : carte centrée, libellés au-dessus des champs, bouton bleu pleine largeur ---------- */
+/* Repérée par le champ mot de passe ; ni barre latérale ni barre du haut. */
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) { --bg-pattern: none; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content {
+  width: 400px; max-width: calc(100% - 20px); box-sizing: border-box; margin-top: 72px; padding: 0;
+  margin-inline-start: max(21em, calc(50% - 200px));
+}
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content > h2 { text-align: center; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #menu #lang { border-top: 0; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content > form {
+  padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff;
+}
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout { display: block; border: 0; border-radius: 0; background: none; overflow: visible; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout :is(tbody, tr) { display: block; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout :is(th, td) { display: block; padding: 0; border: 0; background: none; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout th { padding-bottom: 6px; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout td { padding-bottom: 16px; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 100%; box-sizing: border-box; }
+/* « Permanent login » au-dessus du bouton, comme « Remember me » */
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content form > p { display: flex; flex-direction: column-reverse; gap: 16px; margin: 0; }
+:root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { width: 100%; }
+
+/* ---------- Mobile : la barre latérale devient un volet par-dessus la page ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="gitlab"] { --side-col: none; --bg-size: 100% 1px; --bg-pos: 0 var(--bar-h); }
+  :root[data-theme="gitlab"] #menuopen { top: 15px; }   /* centré dans la barre du haut */
+  :root[data-theme="gitlab"] #foot { top: var(--bar-h); }
+  :root[data-theme="gitlab"] #menu { background: var(--sidebar); border-right: 1px solid var(--border); box-shadow: 0 4px 12px rgba(31, 30, 36, .16); }
+  :root[data-theme="gitlab"] #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 8px; background: var(--sidebar); border-bottom: 1px solid var(--border);
+  }
+}

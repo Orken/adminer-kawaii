@@ -1,0 +1,93 @@
+/* ===== Thème DBHub =====
+   Thème par défaut : actif quand <html data-theme="dbhub"> ou sans thème défini (donc aussi sans JavaScript).
+   Noir profond, orange vif, interface plate et dense, coins presque carrés, sans motif, dégradé ni ombre portée. */
+
+:root:is(:not([data-theme]), [data-theme="dbhub"]) {
+  --bg: #000000; --surface: #1b1b1b; --surface-2: #2b2b2b; --text: #ffffff; --muted: #a8a8a8; --border: #333333;
+  --accent: #ff9000; --on-accent: #000000;
+  --accent-text: #ff9000;              /* survol : #ffa31a */
+  --ok: #4cd37b; --err: #ff5252; --on-err: #000000;
+  --jush-str: #6fe39a; --jush-num: #ffb347; --jush-id: #8ec9ff;
+  --shadow: none;
+  color-scheme: dark;
+
+  --radius: 4px; --radius-sm: 3px; --pill: 4px;
+  --font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-heading: var(--font);
+  --h2-border: 0;
+
+  /* pas d'emojis : le seul décor est un triangle ▶ */
+  --e-title: ""; --e-after: ""; --e-table: "▶"; --e-logo: "▶ "; --e-ok: ""; --e-err: "";
+  --banner: none;
+  --bg-pattern: none; --bg-size: auto; --bg-pos: 0 0;
+
+  --th-bg: var(--surface-2); --th-text: #ffffff;
+  --zebra: #121212;                    /* zébrage à peine visible : l'essentiel passe par les filets */
+  --row-hover: #2b2b2b;
+}
+/* boutons-icônes : filter inverse le carré clair d'Adminer (#eee devient #111) ; le fond, qui colore le pictogramme,
+   est donc donné inversé pour qu'il ressorte dans la couleur du texte (survol : de l'accent) */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Liens : orange, survol plus clair et souligné ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) a:hover { color: #ffa31a; text-decoration: underline; }
+
+/* ---------- Barre du haut : bandeau noir, filet orange ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #breadcrumb { background: #000; border-bottom: 2px solid var(--accent); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #logins .logout, :root:is(:not([data-theme]), [data-theme="dbhub"]) #logins input { border-radius: var(--radius-sm); }
+
+/* ---------- Champs : fond gris foncé, sans cadre, orange au focus ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) :is(input:not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]):not([type=color]), select, textarea) {
+  background: #2f2f2f; border: 1px solid #3f3f3f; color: #fff;
+}
+:root:is(:not([data-theme]), [data-theme="dbhub"]) :is(input, select, textarea):focus { box-shadow: none; border-color: var(--accent); }
+
+/* ---------- Titres : barre orange verticale à gauche ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) h2 { border-left: 4px solid var(--accent); padding: 2px 0 2px 10px; font-weight: 700; font-size: 1.3em; }
+/* Logo : « Admi » en blanc puis « ner » noir sur fond orange. Le texte d'origine est masqué (font-size: 0) et remplacé
+   par deux pseudo-éléments ; l'image du logo Adminer est retirée. */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #h1 { font-size: 0; display: inline-flex; align-items: center; text-decoration: none; }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #h1 img { display: none; }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #h1::before, :root:is(:not([data-theme]), [data-theme="dbhub"]) #h1::after {
+  font: 700 22px/1 var(--font); font-style: normal; letter-spacing: -.02em;
+}
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #h1::before { content: "Admi"; color: #fff; }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #h1::after { content: "ner"; color: #000; background: var(--accent); padding: 2px 6px 3px; margin-left: 2px; border-radius: 4px; }
+
+/* ---------- Menu : colonne noire, filet fin, liste de tables façon playlist ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #menu { border-right: 1px solid var(--border); background-color: var(--bg); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #tables li { border-radius: 0; border-bottom: 1px solid #1b1b1b; margin: 0; }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #tables a.structure::before { font-size: .7em; color: var(--accent); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #tables li:has(a.active) { background: var(--surface-2); box-shadow: inset 3px 0 0 var(--accent); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #menu p.links a { border-radius: var(--radius-sm); background: var(--surface-2); border-color: var(--border); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #menu p.links a:is(:hover, .active) { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+/* ---------- Tableaux : à plat, en-tête sobre souligné d'orange, pas de cadre ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) table { box-shadow: none; border: 1px solid var(--border); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) thead :is(th, td, td.hover) { border-bottom: 2px solid var(--accent); font-weight: 700; }
+
+/* ---------- Cartes / légendes : cadre gris, titre à plat ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) fieldset { box-shadow: none; border-color: var(--border); background: var(--surface); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) fieldset legend { border-radius: var(--radius-sm); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: var(--accent); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--on-accent); }
+
+/* ---------- Boutons : aplat orange, aucune ombre, aucun rebond ---------- */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  border: 0; box-shadow: none; font-weight: 700; padding: 4px 12px;
+}
+:root:is(:not([data-theme]), [data-theme="dbhub"]) :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { background-color: #ffa31a; filter: none; }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) input[name*=delete],
+:root:is(:not([data-theme]), [data-theme="dbhub"]) input[name=drop],
+:root:is(:not([data-theme]), [data-theme="dbhub"]) input[name=truncate] { box-shadow: none; }
+
+/* sélecteur de thème */
+:root:is(:not([data-theme]), [data-theme="dbhub"]) #kawaii-switcher { border-radius: var(--radius); box-shadow: none; border-color: var(--accent); }
+
+/* ---------- Logo tout en haut à gauche, le sélecteur de langue passe dessous ---------- */
+/* grand écran seulement : sur mobile, le menu est un volet et le logo y couvrirait le bouton ☰ qui le referme */
+@media not all and (max-width: 800px) {
+  :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu h1 { position: fixed; top: 8px; left: 12px; margin: 0; padding: 0; border: 0; z-index: 3; }
+  :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu { top: 76px; }   /* #lang est positionné par rapport au menu : les deux descendent sous le logo */
+}
