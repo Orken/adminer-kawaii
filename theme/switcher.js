@@ -69,6 +69,18 @@
         '<rect width="32" height="32" rx="7" fill="url(#g)"/>' +
         '<path d="M13.6 6.5h4.8l7 19h-4.6l-1.4-4h-6.8l-1.4 4H6.6zM14.8 17.8h2.4L16 13.9z" fill="#fff" fill-rule="evenodd"/>'
     },
+    blueprint: {
+      label: '📐 Blueprint',
+      variants: { calque: '#edf1f3', cyanotype: '#17497f' },
+      defaultVariant: 'calque',
+      // équerre sur papier quadrillé, aux couleurs de la variante (trait clair sur bleu, ou encre sur calque)
+      icon: function (c) {
+        var ink = onAccent(c) === '#ffffff' ? '#f3f7fb' : '#14365f';
+        return '<rect width="32" height="32" rx="3" fill="' + c + '"/>' +
+          '<path d="M8 0v32M16 0v32M24 0v32M0 8h32M0 16h32M0 24h32" stroke="' + ink + '" stroke-opacity=".25"/>' +
+          '<path d="M5 4.5V27h22.5zM9 14.2V23h8.8z" fill="' + ink + '" fill-rule="evenodd"/>';
+      }
+    },
     kawaii: {
       label: '🎀 Kawaii',
       variants: { lavande: '#a78bfa', bonbon: '#ff8fb1', menthe: '#5fcfa5', nuit: '#b69cff' },

@@ -1,0 +1,263 @@
+/* ===== Thème Blueprint (2 variantes) =====
+   Actif quand <html data-theme="blueprint">. Variante : data-variant = calque (défaut) | cyanotype.
+   Un plan technique : papier millimétré, tracé au trait, sans ombre, dégradé ni arrondi. Deux épaisseurs comme sur un
+   plan : trait fort (2 px) pour les contours, trait fin (1 px) pour les divisions, tirets pour ce qui est caché.
+   Lettrage DIN ; les capitales sont réservées aux libellés de l'interface (les noms de tables et de colonnes gardent
+   leur casse). Le crayon ocre (jaune sur cyanotype) marque ce qui se clique, le rouge les erreurs.
+   Connexion : la feuille entière, encadrée, avec ses repères de zones et son cartouche en bas à droite. */
+
+/* ---------- Variables : calque (variante par défaut) ---------- */
+:root[data-theme="blueprint"] {
+  --paper: #edf1f3; --ink: #14365f;
+  --hair: rgb(20 54 95 / .38);         /* trait fin des divisions */
+  --grid: rgb(20 54 95 / .06); --grid-major: rgb(20 54 95 / .13);
+  --bg: var(--paper); --surface: var(--paper); --surface-2: #dce6ee;
+  --text: var(--ink); --muted: #4a6482; --border: var(--hair);
+  --accent: #a3410a; --on-accent: #ffffff; --accent-text: #a3410a;
+  --ok: #1d7a45; --err: #b42318; --on-err: #ffffff;
+  --jush-str: #1d7a45; --jush-num: #a3410a; --jush-id: #6941c6;
+  --shadow: none;
+  --icon-glyph: var(--ink); --icon-glyph-hover: var(--accent);
+  color-scheme: light;
+
+  --radius: 0; --radius-sm: 0; --pill: 0;
+  --font: Bahnschrift, "DIN Alternate", "DIN Next", D-DIN, Barlow, "Roboto Condensed", system-ui, sans-serif;
+  --font-heading: var(--font);
+  --h2-border: 0;
+
+  --e-title: ""; --e-after: ""; --e-table: "▭"; --e-logo: ""; --e-ok: "✓ "; --e-err: "✕ ";
+  --banner: "DO NOT SCALE DRAWING";
+  /* papier millimétré : un trait tous les 10 px, plus marqué tous les 50 px */
+  --bg-pattern: linear-gradient(var(--grid-major) 1px, transparent 0), linear-gradient(90deg, var(--grid-major) 1px, transparent 0),
+                linear-gradient(var(--grid) 1px, transparent 0), linear-gradient(90deg, var(--grid) 1px, transparent 0);
+  --bg-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+  --bg-pos: 0 0;
+
+  --th-bg: var(--surface-2); --th-text: var(--ink);
+  --zebra: var(--surface); --row-hover: var(--surface-2);
+  --lit: #e3eaef;
+
+  /* réticule de visée (focus clavier) : quatre coins au crayon */
+  --reticle: linear-gradient(var(--accent) 0 0), linear-gradient(var(--accent) 0 0), linear-gradient(var(--accent) 0 0),
+             linear-gradient(var(--accent) 0 0), linear-gradient(var(--accent) 0 0), linear-gradient(var(--accent) 0 0),
+             linear-gradient(var(--accent) 0 0), linear-gradient(var(--accent) 0 0);
+}
+/* tirage bleu : trait clair sur papier bleu, crayon jaune */
+:root[data-theme="blueprint"][data-variant="cyanotype"] {
+  --paper: #17497f; --ink: #f3f7fb;
+  --hair: rgb(243 247 251 / .42);
+  --grid: rgb(255 255 255 / .07); --grid-major: rgb(255 255 255 / .15);
+  --surface-2: #1f5590; --muted: #b4cbe4;
+  --accent: #ffd76a; --on-accent: #10325a; --accent-text: #ffd76a;
+  --ok: #9ee6b0; --err: #ffaaa0; --on-err: #10325a;
+  --jush-str: #9ee6b0; --jush-num: #ffd76a; --jush-id: #9fd8ff;
+  --icon-glyph: var(--paper); --icon-glyph-hover: #b5651d;
+  --lit: #123e6e;
+  color-scheme: dark;
+}
+
+/* ---------- Page ---------- */
+:root[data-theme="blueprint"] * { scrollbar-color: var(--hair) transparent; }
+:root[data-theme="blueprint"] hr { border-top: 1px solid var(--hair); }
+:root[data-theme="blueprint"] mark { background: var(--accent); color: var(--on-accent); }
+:root[data-theme="blueprint"] :is(h2, h3) { font-weight: 600; letter-spacing: .04em; }
+/* titre coté : ligne de cote à la largeur du titre, traits obliques aux extrémités (cotation d'architecte) */
+:root[data-theme="blueprint"] h2 {
+  --tick: linear-gradient(to bottom right, transparent calc(50% - .8px), var(--ink) 0 calc(50% + .8px), transparent 0);
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 4px 0 13px; font-size: 1.4em;
+  background: linear-gradient(var(--ink) 0 0) left 0 bottom 4px / 100% 1px no-repeat,
+              var(--tick) left 0 bottom 0 / 9px 9px no-repeat, var(--tick) right 0 bottom 0 / 9px 9px no-repeat;
+}
+
+/* focus clavier : le réticule remplace l'anneau (cases et sélecteur de thème gardent l'anneau de la base) */
+:root[data-theme="blueprint"] :is(a, button, input, select, textarea, summary):focus-visible:not(#kawaii-switcher *, [type=checkbox], [type=radio]) {
+  outline: 0;
+  background-image: var(--reticle); background-repeat: no-repeat;
+  background-size: 8px 2px, 2px 8px, 8px 2px, 2px 8px, 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+  background-position: left top, left top, right top, right top, left bottom, left bottom, right bottom, right bottom;
+}
+:root[data-theme="blueprint"] :is([type=checkbox], [type=radio]):focus-visible { outline: 2px solid var(--accent); }
+
+/* ---------- Barre du haut ---------- */
+:root[data-theme="blueprint"] #breadcrumb { background: var(--paper); border: solid var(--hair); border-width: 0 1px 1px 0; }
+
+/* ---------- Menu : colonne de nomenclature, logo en case de cartouche ---------- */
+:root[data-theme="blueprint"] #menu { border-right: 2px solid var(--ink); padding: 8px 8px 16px; }
+:root[data-theme="blueprint"] #menu h1 { margin: 4px 4px 10px; padding: 0; border: 2px solid var(--ink); text-align: center; }
+:root[data-theme="blueprint"] #h1 {
+  display: block; padding: 9px 6px 2px calc(6px + .26em); color: var(--ink); font-style: normal;
+  font-size: 1.45em; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
+}
+:root[data-theme="blueprint"] #logo { display: none; }
+:root[data-theme="blueprint"] #menu .version { display: block; padding-bottom: 6px; font-size: .75em; font-weight: 400; letter-spacing: .1em; }
+:root[data-theme="blueprint"] #menu h1::after {
+  margin: 0; padding: 4px 4px 4px calc(4px + .16em); border-top: 1px solid var(--ink); color: var(--muted);
+  font-size: .58rem; font-weight: 600; letter-spacing: .16em;
+}
+
+/* actions du haut : cases au trait fin, page courante au trait fort */
+:root[data-theme="blueprint"] #menu p.links a { border: 1px solid var(--hair); padding: 4px; background: none; color: var(--ink); font-weight: 600; }
+:root[data-theme="blueprint"] #menu p.links a:hover { border-color: var(--accent); background: none; color: var(--accent-text); }
+:root[data-theme="blueprint"] #menu p.links a.active { border: 2px solid var(--ink); padding: 3px; background: none; color: var(--ink); }
+
+/* liste des tables : table courante marquée au crayon */
+:root[data-theme="blueprint"] #tables li:hover { background: var(--surface-2); }
+:root[data-theme="blueprint"] #tables li:has(a.active) { background: var(--surface-2); box-shadow: inset 3px 0 0 var(--accent); }
+:root[data-theme="blueprint"] #tables a.structure::before { color: var(--muted); }
+:root[data-theme="blueprint"] #tables a.select { border-radius: 0; }
+
+/* ---------- Liens d'action du contenu : cases au trait fin, page courante au trait fort ---------- */
+:root[data-theme="blueprint"] #content .links a { border: 1px solid var(--hair); padding: 1px 8px; background: var(--paper); }
+:root[data-theme="blueprint"] #content .links a:hover { border-color: var(--accent); background: var(--paper); color: var(--accent-text); }
+:root[data-theme="blueprint"] #content .links a.active { border: 2px solid var(--ink); padding: 0 7px; color: var(--ink); }
+
+/* ---------- Tableaux : contour fort, quadrillage fin, en-tête séparé par un trait fort ---------- */
+:root[data-theme="blueprint"] table { border: 2px solid var(--ink); }
+:root[data-theme="blueprint"] :is(th, td) { border-bottom-color: var(--hair); border-right: 1px solid var(--hair); }
+:root[data-theme="blueprint"] :is(th, td):last-child { border-right: 0; }
+:root[data-theme="blueprint"] thead :is(th, td, td.hover) { border-bottom: 2px solid var(--ink); font-weight: 600; letter-spacing: .03em; }
+:root[data-theme="blueprint"] td { font-variant-numeric: tabular-nums; }
+/* lignes cochées : repère au crayon sur la première case */
+:root[data-theme="blueprint"].js .checkable .checked > :first-child { box-shadow: inset 3px 0 0 var(--accent); }
+
+/* ---------- Formulaires : champs au trait fin, jaune au focus ---------- */
+:root[data-theme="blueprint"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea) {
+  border: 1px solid var(--hair); background-color: var(--paper); padding: 1px 6px;
+}
+:root[data-theme="blueprint"] :is(input:not([type=submit]):not([type=button]), select, textarea):focus { border-color: var(--accent); box-shadow: none; }
+
+/* boutons : cadre à double trait, comme un tampon ; jaune au survol, rouge pour les suppressions */
+:root[data-theme="blueprint"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  border: 3px double var(--ink); padding: 1px 10px; background-color: var(--paper); color: var(--ink); box-shadow: none; font-weight: 600;
+}
+:root[data-theme="blueprint"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { border-color: var(--accent); color: var(--accent-text); transform: none; filter: none; }
+:root[data-theme="blueprint"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background-color: var(--surface-2); transform: none; }
+:root[data-theme="blueprint"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { border-color: var(--err); color: var(--err); box-shadow: none; }
+:root[data-theme="blueprint"] :is(input[name*=delete], input[name=drop], input[name=truncate]):hover { border-color: var(--err); background-color: var(--err); color: var(--on-err); }
+/* boutons-icônes : carré clair d'Adminer, pictogramme couleur papier (cyanotype) ou encre (calque) */
+:root[data-theme="blueprint"] button.icon { background-color: var(--icon-glyph); }
+:root[data-theme="blueprint"] button.icon:hover { background-color: var(--icon-glyph-hover); }
+
+/* ---------- Cartes : cadre au trait, légende posée sur le trait ---------- */
+:root[data-theme="blueprint"] fieldset { border: 1px solid var(--ink); }
+:root[data-theme="blueprint"] legend { padding: 0 6px; background: var(--paper); color: var(--ink); font-size: .85em; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+/* replié : contenu caché, donc trait interrompu (convention des arêtes cachées) */
+:root[data-theme="blueprint"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 1px dashed var(--ink); box-shadow: none; background: var(--paper); }
+:root[data-theme="blueprint"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 2px 10px 2px 8px; color: var(--ink); }
+:root[data-theme="blueprint"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "+"; color: var(--accent-text); }
+:root[data-theme="blueprint"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { border-style: solid; border-color: var(--accent); background: var(--paper); transform: none; }
+:root[data-theme="blueprint"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover :is(a, a::before) { color: var(--accent-text); }
+:root[data-theme="blueprint"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background: var(--paper); padding: 0 6px; }
+:root[data-theme="blueprint"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--accent-text); }
+:root[data-theme="blueprint"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "−"; }
+
+/* messages : encadrés au trait fin */
+:root[data-theme="blueprint"] :is(.message, .error) { border-width: 1px; background: var(--paper); }
+:root[data-theme="blueprint"] .message::before { color: var(--ok); }
+:root[data-theme="blueprint"] .error::before { color: var(--err); }
+
+/* sélecteur de thème */
+:root[data-theme="blueprint"] #kawaii-switcher { border: 1px solid var(--ink); background: var(--paper); }
+/* épaisseur et couleur seulement : le volet perd son cadre quand il est intégré au sélecteur (thème seul, mobile) */
+:root[data-theme="blueprint"] #kawaii-switcher .opts { border-width: 1px; border-color: var(--ink); }
+:root[data-theme="blueprint"] #kawaii-switcher button.sw { border-radius: 0; }
+
+/* ---------- Schéma de la base : le plan ---------- */
+/* Adminer place tables et liaisons en em, sur des lignes de 1,25 em : on garde cette hauteur de ligne, et le trait
+   sous le nom de la table est un fond (il ne décale rien) */
+:root[data-theme="blueprint"] #schema .table {
+  padding: 0 6px; border: 2px solid var(--ink); line-height: 1.25;
+  background: linear-gradient(var(--ink) 0 0) 0 1.25em / 100% 1px no-repeat, var(--paper);
+}
+:root[data-theme="blueprint"] #schema .table > a:first-child { color: var(--ink); }
+:root[data-theme="blueprint"] #schema .table > a:first-child:hover { color: var(--accent-text); }
+:root[data-theme="blueprint"] #schema .table b { font-weight: 600; letter-spacing: .04em; }
+/* clé primaire soulignée, comme en notation entité-association */
+:root[data-theme="blueprint"] #schema .table > i { font-style: normal; text-decoration: underline; text-underline-offset: 2px; }
+/* liaisons : Adminer les trace en gris (style en ligne) avec une pointe en image ; ici au trait, pointe dessinée */
+:root[data-theme="blueprint"] #schema .references div { border-color: var(--ink) !important; }
+:root[data-theme="blueprint"] #schema .arrow {
+  background: linear-gradient(to top right, var(--ink) 50%, transparent 0) right 0 top calc(50% - 3px) / 9px 6px no-repeat,
+              linear-gradient(to bottom right, var(--ink) 50%, transparent 0) right 0 top calc(50% + 3px) / 9px 6px no-repeat;
+}
+
+/* ---------- Page de connexion : la feuille entière ---------- */
+/* Repérée par le champ mot de passe. body::after trace le cadre (trait fort) et le bord de la feuille (outline, trait
+   fin) ; entre les deux, la marge porte les repères de zones, en haut (::before de la racine) et à gauche (::after).
+   Le cartouche, posé dans l'angle du cadre, réunit le logo (#foot) et le formulaire (#content) ; body::before, étalé
+   sur les deux lignes de la grille, le dessine d'un seul tenant. */
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(400px, 100%); justify-content: end; align-content: end;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 30px;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) body::after {
+  content: ""; position: fixed; inset: 30px; border: 2px solid var(--ink); outline: 1px solid var(--hair); outline-offset: 17px; pointer-events: none;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"])::before,
+:root[data-theme="blueprint"]:has(input[name="auth[password]"])::after {
+  position: fixed; box-sizing: border-box; color: var(--muted); font: 600 10px/18px var(--font); text-align-last: justify; pointer-events: none;
+}
+/* repères centrés dans leur zone : marge d'une demi-zone, puis répartition égale ; traits aux limites des zones */
+:root[data-theme="blueprint"]:has(input[name="auth[password]"])::before {
+  content: "1 2 3 4 5 6 7 8"; top: 12px; left: 30px; right: 30px; height: 18px;
+  padding-inline: calc((100vw - 60px) / 16 - .3em);
+  background: repeating-linear-gradient(90deg, var(--hair) 0 1px, transparent 0 calc(100% / 8));
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"])::after {
+  content: "A B C D E F"; top: 30px; bottom: 30px; left: 12px; width: 18px; writing-mode: vertical-lr; text-orientation: upright;
+  padding-inline: calc((100vh - 60px) / 12 - .3em);
+  background: repeating-linear-gradient(180deg, var(--hair) 0 1px, transparent 0 calc(100% / 6));
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) body::before {
+  content: ""; grid-area: 1 / 1 / 3 / 2; border: 2px solid var(--ink); background: var(--paper);
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #foot { grid-area: 1 / 1; display: block; position: static; padding: 2px 2px 0; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content { grid-area: 2 / 1; margin: 0 !important; padding: 0 2px 2px; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #menu {
+  position: static; width: auto; min-width: 0; margin: 0; padding: 0; border: 0; background: none;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #menu h1 { margin: 0; border: 0; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #h1 { padding-top: 16px; font-size: 30px; letter-spacing: .3em; padding-left: calc(6px + .3em); }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #lang { position: fixed; top: 42px; left: 46px; padding: 0; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #kawaii-switcher { top: 40px; right: 44px; }
+
+/* cases du cartouche : titre, puis une ligne par champ (libellé à gauche), actions, échelle */
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content > h2 {
+  width: auto; margin: 0; padding: 7px 12px; background: none; border-top: 1px solid var(--ink);
+  font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content > .error { margin: 0; border: 0; border-top: 1px solid var(--ink); }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; border: 0; background: none; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) table.layout :is(th, td) {
+  padding: 0; border: 0; border-top: 1px solid var(--ink); background: none; vertical-align: top;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) table.layout th {
+  width: 92px; padding: 9px 10px 0; border-right: 1px solid var(--ink); color: var(--muted);
+  font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) table.layout td:focus-within { background: var(--surface-2); }
+/* même :is() que la règle générale des champs, pour passer devant elle */
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; min-height: 34px; padding: 4px 10px; border: 0; background-color: transparent; font-size: 14px;
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content form > p {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0; padding: 10px 12px; border-top: 1px solid var(--ink);
+}
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { padding: 3px 18px; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content form > p label { color: var(--muted); cursor: pointer; }
+:root[data-theme="blueprint"]:has(input[name="auth[password]"]) #content form::after {
+  content: "SCALE\202f 1:1 SHEET\202f 1/1"; display: block; padding: 5px 12px; border-top: 1px solid var(--ink);
+  color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-align-last: justify;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  /* feuille étroite : cadre simple, sans marge à repères ; cartouche sur toute la largeur */
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"]) body { padding: 10px; grid-template-columns: 100%; }
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"]) body::after { inset: 10px; outline: 0; }
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"])::before,
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"])::after { content: none; }
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"]) #lang { top: 20px; left: 20px; }
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"]) #kawaii-switcher { top: 18px; right: 20px; }
+}

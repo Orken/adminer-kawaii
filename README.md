@@ -18,6 +18,7 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 | 🎓 Adminiz | `adminiz.css` | back-office Material 3 blanc, rouge et bleu nuit ; connexion sur fond corail |
 | 🌐 Netscape | `netscape.css` | fenêtre Windows 98 et portail web des années 1990 |
 | 🦊 GitLab | `gitlab.css` | inspiré du design system Pajamas |
+| 📐 Blueprint | `blueprint.css` | plan technique au trait sur papier millimétré ; 2 variantes (calque, cyanotype) ; connexion sur une feuille avec cartouche |
 
 - Le sélecteur s'affiche en haut à droite, à côté de la déconnexion. Le choix est mémorisé dans le navigateur (`localStorage`).
 - Chaque thème a sa propre icône d'onglet.
@@ -149,14 +150,14 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image construite depuis ce dépôt** : `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (noms des fichiers sans `.css` ; un nom inconnu fait échouer la construction).
 - **Image officielle** : montez à la place de `theme/` un dossier qui ne contient que ces fichiers.
-- **Un seul thème** : la liste disparaît. S'il a des options (variantes et accent de Kawaii), elles restent affichées ;
-  sinon, le sélecteur n'apparaît pas du tout.
+- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii et de Blueprint, accent de Kawaii),
+  elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
 - **Thème par défaut** : DBHub s'il est installé, sinon le premier de la liste.
 
 ### Utilisation
 
-- Choisissez le thème dans la liste en haut à droite. Pour Kawaii, les pastilles changent de variante et le
-  nuancier règle la couleur d'accent.
+- Choisissez le thème dans la liste en haut à droite. Pour Kawaii et Blueprint, les pastilles changent de variante ;
+  pour Kawaii, le nuancier règle aussi la couleur d'accent.
 - Le choix est propre à chaque navigateur. Le thème par défaut se règle avec `DEFAULT_THEME` dans `theme/switcher.js`.
 
 ### Ajouter son propre thème
@@ -216,6 +217,7 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 | 🎓 Adminiz | `adminiz.css` | white, red and navy Material 3 back office; login card on a coral background |
 | 🌐 Netscape | `netscape.css` | Windows 98 window and 1990s web portal |
 | 🦊 GitLab | `gitlab.css` | inspired by the Pajamas design system |
+| 📐 Blueprint | `blueprint.css` | line drawing on graph paper; 2 variants (tracing paper, cyanotype); login on a drawing sheet with a title block |
 
 - The switcher sits in the top right corner, next to the logout button. The choice is remembered in the browser
   (`localStorage`).
@@ -348,14 +350,14 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image built from this repository**: `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (file names without `.css`; an unknown name makes the build fail).
 - **Official image**: mount, in place of `theme/`, a folder that only contains those files.
-- **A single theme**: the list goes away. If the theme has options (Kawaii's variants and accent), they stay visible;
-  otherwise, no switcher is shown at all.
+- **A single theme**: the list goes away. If the theme has options (Kawaii's and Blueprint's variants, Kawaii's
+  accent), they stay visible; otherwise, no switcher is shown at all.
 - **Default theme**: DBHub if installed, otherwise the first one in the list.
 
 ### Usage
 
-- Pick a theme from the list in the top right corner. For Kawaii, the swatches switch variants and the color picker
-  sets the accent color.
+- Pick a theme from the list in the top right corner. For Kawaii and Blueprint, the swatches switch variants; for
+  Kawaii, the color picker also sets the accent color.
 - The choice is per browser. The default theme is set with `DEFAULT_THEME` in `theme/switcher.js`.
 
 ### Adding your own theme

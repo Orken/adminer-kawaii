@@ -174,6 +174,11 @@ th a, thead td { color: var(--th-text); }
    min-width l'emporte sur cette largeur en ligne ; l'id donne la priorité sur les marges des thèmes. */
 :root #table tbody td > :is(input, textarea):only-child { min-width: 7em; padding-inline: 6px; text-align: inherit; }   /* inherit : nombres à droite comme dans la cellule */
 .nowrap td, td.nowrap { white-space: nowrap; }
+/* familles de types (schéma de la base) : Adminer les colore en vert, violet, sarcelle et rouge, illisibles sur fond sombre */
+.char { color: var(--jush-str); }
+.date { color: var(--jush-id); }
+.enum { color: var(--jush-num); }
+.binary { color: var(--err); }
 
 /* ---------- Formulaires ---------- */
 input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea {
@@ -269,6 +274,13 @@ pre.jush { background: var(--lit); }
 @media (max-width: 800px) {
   .js #foot:not(.foot) { display: flex; flex-direction: column-reverse; }
   .js #foot .logout { position: static; margin: 0; padding: 4px 8px; text-align: right; }
+  /* le volet des options tomberait sur le haut du menu : elles passent en seconde ligne, dans le cadre du sélecteur */
+  #kawaii-switcher.in-bar { flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  /* largeur nulle pour le calcul de celle du cadre (qui reste celle de la liste), puis toute la ligne */
+  #kawaii-switcher.in-bar .opts {
+    position: static; width: 0; min-width: 100%; justify-content: flex-end;
+    padding: 0 0 2px; border: 0; background: none; box-shadow: none;
+  }
 }
 @media (max-width: 600px) {
   #kawaii-switcher { right: 8px; }
