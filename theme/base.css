@@ -227,7 +227,9 @@ fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
 fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: var(--on-accent); }
 /* ouvert : titre cliquable en pastille d'accent */
 fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background-color: var(--accent); padding: 0 12px; }
-fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--on-accent); }
+/* au survol aussi : la couleur des liens survolés (--text) peut se confondre avec l'accent */
+fieldset:has(> legend a):has(> div:not(.hidden)) > legend a,
+fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--on-accent); }
 fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "－"; margin-right: 4px; }
 
 /* ---------- Coloration SQL (variables natives .jush d'Adminer) ---------- */

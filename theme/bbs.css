@@ -1,0 +1,297 @@
+/* ===== Thème BBS =====
+   Actif quand <html data-theme="bbs">. Un BBS des années 1990 vu dans un logiciel de terminal : mode texte, palette CGA
+   de 16 couleurs, police VGA 9×16 à sa seule taille nette (16 px, imposée partout), cadres en double trait (le
+   « 3px double » de CSS trace exactement le ═ de la police). Barre bleue sous ce que survole la souris, initiale des
+   entrées de menu en jaune comme un raccourci clavier, boutons entre crochets, code SQL sur le bleu de l'éditeur QBasic.
+   Sur chaque page, la ligne d'état du terminal, avec la durée de connexion.
+   Connexion : la composition du numéro, puis l'écran d'accueil en ANSI qui se dessine à 2400 bauds, puis les invites.
+   Police : WebPlus IBM VGA 9x16, de VileR (The Ultimate Oldschool PC Font Pack, https://int10h.org/oldschool-pc-fonts/),
+   sous licence CC BY-SA 4.0. Sous-ensemble (latin, cadres, blocs) en WOFF2, incorporé ci-dessous. */
+
+@font-face {
+  font-family: "Adminer VGA"; font-display: block;
+  src: url("data:font/woff2;base64,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") format("woff2");
+}
+
+/* durée de connexion : secondes et minutes avancées par deux animations, affichées par des compteurs CSS */
+@property --bbs-s { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@property --bbs-m { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@keyframes bbs-s { to { --bbs-s: 60; } }
+@keyframes bbs-m { to { --bbs-m: 60; } }
+/* affichage au rythme du modem : de haut en bas, une ligne de texte par étape */
+@keyframes bbs-draw { from { clip-path: inset(0 0 100% 0); } }
+
+/* ---------- Variables ---------- */
+:root[data-theme="bbs"] {
+  /* palette CGA (les 16 couleurs du mode texte, dont celles employées ici) */
+  --cga-blue: #0000aa; --cga-cyan: #00aaaa; --cga-red: #aa0000; --cga-gray: #aaaaaa; --cga-dark: #555555;
+  --cga-lblue: #5555ff; --cga-lgreen: #55ff55; --cga-lcyan: #55ffff; --cga-lred: #ff5555; --cga-lmagenta: #ff55ff;
+  --cga-yellow: #ffff55; --cga-white: #ffffff;
+
+  --bg: #000000; --surface: #000000; --surface-2: var(--cga-blue);
+  --text: var(--cga-gray); --muted: var(--cga-cyan); --border: var(--cga-lblue);
+  --accent: var(--cga-yellow); --on-accent: #000000; --accent-text: var(--cga-lcyan);
+  --ok: var(--cga-lgreen); --err: var(--cga-lred); --on-err: #000000;
+  --jush-str: var(--cga-lgreen); --jush-num: var(--cga-lmagenta); --jush-id: var(--cga-yellow);
+  --shadow: none;
+  color-scheme: dark;
+
+  --radius: 0; --radius-sm: 0; --pill: 0;
+  --fs: 16px; --pad-y: 0; --pad-x: 9px; --gap: 16px;
+  --font: "Adminer VGA", "Px437 IBM VGA 9x16", "Lucida Console", Consolas, monospace;
+  --font-heading: var(--font); --font-mono: var(--font);
+  --h2-border: 0;
+
+  --e-title: ""; --e-after: ""; --e-table: "■"; --e-logo: ""; --e-ok: "√ "; --e-err: "‼ ";
+  --banner: "24 HRS · 2400 BAUD · NODE 1";
+  --bg-pattern: none; --bg-size: auto; --bg-pos: 0 0;
+
+  --th-bg: var(--cga-cyan); --th-text: #000000;
+  --zebra: #000000; --row-hover: var(--cga-blue);
+  --lit: var(--cga-blue);
+  font-synthesis: none;   /* police bitmap : ni gras ni italique simulés, l'emphase passe par la couleur */
+}
+
+/* mode texte : une seule taille et une seule graisse, celles de la police */
+:root[data-theme="bbs"] *, :root[data-theme="bbs"] *::before, :root[data-theme="bbs"] *::after {
+  font-size: 16px !important; font-weight: normal !important; letter-spacing: 0 !important;
+}
+
+/* ---------- Page ---------- */
+:root[data-theme="bbs"] body { line-height: 16px; padding-bottom: 32px; }
+:root[data-theme="bbs"] * { scrollbar-color: var(--cga-cyan) var(--cga-blue); }
+:root[data-theme="bbs"] ::selection { background: var(--cga-gray); color: #000; }
+:root[data-theme="bbs"] :is(h1, h2, h3) { color: var(--cga-white); }
+:root[data-theme="bbs"] hr { border-top: 3px double var(--border); }
+:root[data-theme="bbs"] code { padding: 0 4px; color: var(--cga-white); }
+:root[data-theme="bbs"] a:is(:link, :visited) { color: var(--accent-text); }
+:root[data-theme="bbs"] a:is(:link, :visited):hover { background-color: var(--cga-blue); color: var(--cga-white); }
+/* focus clavier : vidéo inverse jaune sur les liens, cadre jaune sur les champs et boutons */
+:root[data-theme="bbs"] a:is(:link, :visited):focus-visible { outline: 0; background-color: var(--cga-yellow); color: #000; }
+:root[data-theme="bbs"] :where(button, input, select, textarea, summary):focus-visible, :root[data-theme="bbs"] [contenteditable]:focus { outline: 1px solid var(--cga-yellow); outline-offset: 1px; }
+/* lien de documentation : [?] à la place de l'emoji livre */
+:root[data-theme="bbs"] a.doc { font-size: 0 !important; }
+:root[data-theme="bbs"] a.doc::after { content: "[?]"; }
+
+/* ligne d'état du logiciel de terminal, fixée en bas de l'écran */
+:root[data-theme="bbs"] body::after {
+  content: "Alt-Z for Help │ ANSI-BBS │ 2400 N81 │ FDX │ LOG CLOSED │ PRINT OFF │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero);
+  content: "Alt-Z for Help │ ANSI-BBS │ 2400 N81 │ FDX │ LOG CLOSED │ PRINT OFF │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero) / "";
+  position: fixed; inset: auto 0 0; z-index: 100; height: 16px; padding: 0 9px; overflow: hidden; white-space: pre;
+  background: var(--cga-cyan); color: #000; pointer-events: none;
+  counter-reset: bbs-m var(--bbs-m) bbs-s var(--bbs-s);
+  animation: bbs-s 60s steps(60) infinite, bbs-m 3600s steps(60) infinite;
+}
+/* barre d'actions collante d'Adminer : posée sur la ligne d'état, pas dessous */
+:root[data-theme="bbs"] .footer { bottom: 16px; }
+
+/* ---------- Barre du haut ---------- */
+:root[data-theme="bbs"] #breadcrumb { height: auto; padding: 4px 9px; line-height: 16px; background: #000; border-bottom: 3px double var(--border); }
+:root[data-theme="bbs"] .logout { line-height: 16px; }
+
+/* ---------- Menu : le menu principal du BBS ---------- */
+:root[data-theme="bbs"] #menu { margin-top: 0; padding: 12px 9px 16px; background: #000; }
+:root[data-theme="bbs"] #menu h1 { margin: 0 0 8px; padding: 0; border: 0; }
+:root[data-theme="bbs"] #logo { display: none; }
+/* logo en demi-blocs, dégradé du cyan clair au bleu ; « Adminer » reste le texte du lien pour les lecteurs d'écran */
+:root[data-theme="bbs"] #h1 { display: block; font-size: 0 !important; line-height: 0; }   /* line-height : le texte masqué ne réserve pas de ligne */
+:root[data-theme="bbs"] #h1::after {
+  content: "▄▀█ █▀▄ █▀▄▀█ █ █▄ █ █▀▀ █▀█\A █▀█ █▄▀ █ ▀ █ █ █ ▀█ ██▄ █▀▄"; content: "▄▀█ █▀▄ █▀▄▀█ █ █▄ █ █▀▀ █▀█\A █▀█ █▄▀ █ ▀ █ █ █ ▀█ ██▄ █▀▄" / "";
+  display: block; white-space: pre; line-height: 16px; color: transparent;
+  background: linear-gradient(var(--cga-lcyan) 50%, var(--cga-lblue) 0); -webkit-background-clip: text; background-clip: text;
+}
+:root[data-theme="bbs"] #menu .version { color: var(--muted); }
+:root[data-theme="bbs"] #menu h1::after { margin: 4px 0 0; padding: 0; color: var(--cga-yellow); text-align: left; }
+
+/* entrées du menu : initiale en jaune (le raccourci), barre bleue au survol et sur la page courante */
+:root[data-theme="bbs"] #menu :is(p, #dbs), :root[data-theme="bbs"] :is(#tables, #logins) { border-color: var(--cga-blue); }
+:root[data-theme="bbs"] #menu p.links { gap: 0 9px; padding: 4px 0 8px; margin: 0; }
+:root[data-theme="bbs"] #menu p.links a { padding: 0 9px; border: 0; background: none; color: var(--accent-text); text-align: left; }
+:root[data-theme="bbs"] #menu p.links a::first-letter { color: var(--cga-yellow); }
+:root[data-theme="bbs"] #menu p.links a:is(:hover, .active) { background: var(--cga-blue); color: var(--cga-white); }
+
+/* liste des tables : titre en vidéo inverse, table courante sur la barre bleue */
+:root[data-theme="bbs"] #tables { margin-top: 8px; padding: 0; }
+:root[data-theme="bbs"] #tables::before { margin: 0 0 4px; padding: 0 9px; background: var(--cga-cyan); color: #000; }
+:root[data-theme="bbs"] #tables li { margin: 0; }
+:root[data-theme="bbs"] #tables li:hover, :root[data-theme="bbs"] #tables li:has(a.active) { background: var(--cga-blue); box-shadow: none; }
+:root[data-theme="bbs"] #tables a.structure { padding: 0 9px; color: var(--text); }
+:root[data-theme="bbs"] #tables li:is(:hover, :has(a.active)) a.structure { color: var(--cga-white); }
+:root[data-theme="bbs"] #tables a.structure::before { margin-right: 9px; color: var(--border); }
+:root[data-theme="bbs"] #tables li:has(a.active) a.structure::before { content: "►"; color: var(--cga-yellow); }
+:root[data-theme="bbs"] #tables a.select { width: 18px; height: 16px; margin: 0; border-radius: 0; font-size: 0 !important; line-height: 16px; }
+:root[data-theme="bbs"] #tables a.select::before { content: "≡"; }
+
+/* ---------- Contenu ---------- */
+:root[data-theme="bbs"] #content { padding-top: 16px; }
+:root[data-theme="bbs"] h2 { margin: 0 0 16px; padding: 0; }
+:root[data-theme="bbs"] h2::before { content: "░▒▓ "; content: "░▒▓ " / ""; color: var(--border); }
+:root[data-theme="bbs"] h2::after { content: " ▓▒░"; content: " ▓▒░" / ""; color: var(--border); }
+:root[data-theme="bbs"] #content .links a { margin-right: 9px; padding: 0 9px; border: 0; background: none; }
+:root[data-theme="bbs"] #content .links a::first-letter { color: var(--cga-yellow); }
+:root[data-theme="bbs"] #content .links a:is(:hover, .active) { background: var(--cga-blue); color: var(--cga-white); }
+
+/* messages : une ligne de texte, verte ou rouge */
+:root[data-theme="bbs"] :is(.message, .error) { margin: 16px 0; padding: 0; border: 0; background: none; box-shadow: none; }
+:root[data-theme="bbs"] .message { color: var(--ok); }
+:root[data-theme="bbs"] .error { color: var(--err); }
+
+/* ---------- Tableaux : cadre double, colonnes au trait simple, en-tête en vidéo inverse ---------- */
+:root[data-theme="bbs"] table { border: 3px double var(--border); }
+:root[data-theme="bbs"] :is(th, td) { padding: 0 9px; border-bottom: 0; border-right: 1px solid var(--cga-blue); line-height: 16px; }
+:root[data-theme="bbs"] :is(th, td):last-child { border-right: 0; }
+:root[data-theme="bbs"] :is(th, td):has(> :is(input, select, textarea)) { padding-block: 1px; }
+:root[data-theme="bbs"] :is(thead, tbody) td.hover { border-bottom-width: 0; }
+:root[data-theme="bbs"] tbody tr:hover :is(td, th, td.hover) { color: var(--cga-white); }
+:root[data-theme="bbs"].js .checkable .checked :is(td, th, td.hover) { background: var(--cga-dark); color: var(--cga-white); }
+:root[data-theme="bbs"] :is(tbody, tfoot) th a { color: var(--accent-text); }
+
+/* ---------- Formulaires ---------- */
+/* champs : barre bleue, le champ actif passe en cyan */
+:root[data-theme="bbs"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea) {
+  min-height: 18px; padding: 0 4px; border: 0; background-color: var(--cga-blue); color: var(--cga-white); line-height: 16px;
+}
+:root[data-theme="bbs"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select):focus {
+  background-color: var(--cga-cyan); color: #000; caret-color: #000; box-shadow: none;
+}
+:root[data-theme="bbs"] textarea:focus { box-shadow: none; }
+
+/* boutons : libellé entre crochets (dessinés en fond, à la forme de ceux de la police) */
+:root[data-theme="bbs"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  --brk: var(--cga-lblue);
+  min-height: 18px; padding: 0 14px; border: 0; color: var(--cga-white); font: 16px/16px var(--font); box-shadow: none;
+  background:
+    linear-gradient(var(--brk) 0 0) left 2px top 2px / 2px calc(100% - 4px) no-repeat,
+    linear-gradient(var(--brk) 0 0) left 2px top 2px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) left 2px bottom 2px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) right 2px top 2px / 2px calc(100% - 4px) no-repeat,
+    linear-gradient(var(--brk) 0 0) right 2px top 2px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) right 2px bottom 2px / 5px 2px no-repeat,
+    var(--btn-bg, transparent);
+}
+:root[data-theme="bbs"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { --brk: var(--cga-yellow); --btn-bg: var(--cga-blue); transform: none; filter: none; }
+:root[data-theme="bbs"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { --brk: #000; --btn-bg: var(--cga-cyan); color: #000; transform: none; }
+:root[data-theme="bbs"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { --brk: var(--cga-lred); color: var(--cga-lred); box-shadow: none; }
+:root[data-theme="bbs"] :is(input[name*=delete], input[name=drop], input[name=truncate]):hover { --brk: var(--cga-white); --btn-bg: var(--cga-red); color: var(--cga-white); }
+
+/* cases à cocher [■] et boutons radio, au trait de la police */
+:root[data-theme="bbs"] input[type=checkbox] {
+  --brk: var(--cga-gray); --mark: transparent;
+  appearance: none; width: 27px; height: 16px; margin: 0 9px 0 5px; vertical-align: middle; cursor: pointer;
+  background:
+    linear-gradient(var(--brk) 0 0) left 4px top 1px / 2px 14px no-repeat,
+    linear-gradient(var(--brk) 0 0) left 4px top 1px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) left 4px bottom 1px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) right 4px top 1px / 2px 14px no-repeat,
+    linear-gradient(var(--brk) 0 0) right 4px top 1px / 5px 2px no-repeat,
+    linear-gradient(var(--brk) 0 0) right 4px bottom 1px / 5px 2px no-repeat,
+    linear-gradient(var(--mark) 0 0) center / 7px 6px no-repeat;
+}
+:root[data-theme="bbs"] input[type=checkbox]:checked { --mark: var(--cga-yellow); }
+:root[data-theme="bbs"] input[type=checkbox]:indeterminate { --mark: var(--cga-gray); }
+:root[data-theme="bbs"] input[type=radio] {
+  --brk: var(--cga-gray); --mark: transparent;
+  appearance: none; width: 16px; height: 16px; margin: 0 4px; border: 2px solid var(--brk); border-radius: 50%; cursor: pointer;
+  background: radial-gradient(var(--mark) 0 3px, transparent 3.5px);
+}
+:root[data-theme="bbs"] input[type=radio]:checked { --mark: var(--cga-yellow); }
+:root[data-theme="bbs"] input:is([type=checkbox], [type=radio]):hover { --brk: var(--cga-yellow); }
+
+/* boutons-icônes : le carré clair d'Adminer est inversé, le pictogramme prend le cyan des liens */
+:root[data-theme="bbs"] button.icon { filter: invert(1); background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="bbs"] button.icon:hover { background-color: rgb(from var(--cga-yellow) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Cadres : double trait, titre posé sur le trait ; repliés : [+] Titre ---------- */
+:root[data-theme="bbs"] fieldset { padding: 0 9px 4px; border: 3px double var(--border); background: #000; }
+:root[data-theme="bbs"] legend { padding: 0 4px; background: #000; color: var(--cga-white); }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 0; background: none; box-shadow: none; }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0 9px 0 0; color: var(--accent-text); }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "[+] "; margin: 0; color: var(--cga-yellow); }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--cga-blue); transform: none; }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--cga-white); }
+:root[data-theme="bbs"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: var(--cga-yellow); }
+:root[data-theme="bbs"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 4px; background: #000; }
+:root[data-theme="bbs"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--cga-white); }
+:root[data-theme="bbs"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "[-] "; margin: 0; color: var(--cga-yellow); }
+
+/* ---------- Schéma : tables en cadre double, nom en vidéo inverse ---------- */
+/* Adminer place tables et liaisons en em, sur des lignes de 1,25 em : on garde cette hauteur de ligne ; la bande du nom
+   est un fond (elle ne décale rien) */
+:root[data-theme="bbs"] #schema .table {
+  padding: 0 9px; border: 3px double var(--border); line-height: 1.25;
+  background: linear-gradient(var(--cga-cyan) 0 0) 0 0 / 100% 1.25em no-repeat, #000;
+}
+:root[data-theme="bbs"] #schema .table > a:first-child { color: #000; }
+:root[data-theme="bbs"] #schema .table > a:first-child:hover { background: none; color: var(--cga-white); }
+:root[data-theme="bbs"] #schema .references div { border-color: var(--cga-lblue) !important; }
+
+/* sélecteur de thème */
+:root[data-theme="bbs"] #kawaii-switcher { padding: 1px 4px; border: 3px double var(--border); background: #000; }
+:root[data-theme="bbs"] #kawaii-switcher .opts { border: 3px double var(--border); }
+
+/* ---------- Page de connexion : l'appel du BBS ---------- */
+/* Repérée par le champ mot de passe. Une colonne de la largeur du logo : la composition du numéro (body::before),
+   l'écran d'accueil (#foot : logo ANSI, en deux calques superposés pour colorer les blocs et leur ombre), puis les
+   invites (#content). Chaque partie s'affiche ligne à ligne, à la suite, comme reçue du modem. */
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(504px, 100%); justify-content: center; align-content: center;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 40px 16px 48px;
+}
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) body::before {
+  content: "ATZ\A OK\A ATDT 555-0199\A CONNECT 2400/ARQ\A "; content: "ATZ\A OK\A ATDT 555-0199\A CONNECT 2400/ARQ\A " / "";
+  order: -2; margin-bottom: 16px; white-space: pre; color: var(--text);
+  animation: bbs-draw .3s steps(4) backwards;
+}
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #foot { order: -1; display: block; position: static; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu {
+  position: static; width: auto; min-width: 0; margin: 0; padding: 0; border: 0; background: none;
+}
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu h1 { margin: 0 0 24px; animation: bbs-draw .45s .3s steps(8) backwards; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #h1 { position: relative; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #h1::after {
+  content: " █████  ██████  ███    ███ ██ ███    ██ ███████ ██████\A ██   ██ ██   ██ ████  ████ ██ ████   ██ ██      ██   ██\A ███████ ██   ██ ██ ████ ██ ██ ██ ██  ██ █████   ██████\A ██   ██ ██   ██ ██  ██  ██ ██ ██  ██ ██ ██      ██   ██\A ██   ██ ██████  ██      ██ ██ ██   ████ ███████ ██   ██\A  "; content: " █████  ██████  ███    ███ ██ ███    ██ ███████ ██████\A ██   ██ ██   ██ ████  ████ ██ ████   ██ ██      ██   ██\A ███████ ██   ██ ██ ████ ██ ██ ██ ██  ██ █████   ██████\A ██   ██ ██   ██ ██  ██  ██ ██ ██  ██ ██ ██      ██   ██\A ██   ██ ██████  ██      ██ ██ ██   ████ ███████ ██   ██\A  " / "";
+  background: linear-gradient(var(--cga-white) 16px, var(--cga-lcyan) 0 48px, var(--cga-cyan) 0 80px, var(--cga-blue) 0);
+  -webkit-background-clip: text; background-clip: text;
+}
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #h1::before {
+  content: "      ╗       ╗    ╗      ╗  ╗   ╗     ╗       ╗      ╗\A   ╔══  ╗  ╔══  ╗    ╗     ║  ║    ╗    ║  ╔════╝  ╔══  ╗\A        ║  ║    ║  ╔    ╔  ║  ║  ╔  ╗   ║     ╗        ╔╝\A   ╔══  ║  ║    ║  ║╚  ╔╝  ║  ║  ║╚  ╗  ║  ╔══╝    ╔══  ╗\A   ║    ║      ╔╝  ║ ╚═╝   ║  ║  ║ ╚    ║       ╗  ║    ║\A ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝"; content: "      ╗       ╗    ╗      ╗  ╗   ╗     ╗       ╗      ╗\A   ╔══  ╗  ╔══  ╗    ╗     ║  ║    ╗    ║  ╔════╝  ╔══  ╗\A        ║  ║    ║  ╔    ╔  ║  ║  ╔  ╗   ║     ╗        ╔╝\A   ╔══  ║  ║    ║  ║╚  ╔╝  ║  ║  ║╚  ╗  ║  ╔══╝    ╔══  ╗\A   ║    ║      ╔╝  ║ ╚═╝   ║  ║  ║ ╚    ║       ╗  ║    ║\A ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝" / "";
+  position: absolute; inset: 0 auto auto 0; white-space: pre; line-height: 16px; color: var(--cga-lblue);
+}
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu .version { display: block; text-align: right; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu h1::after { margin: 0; text-align: center; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #lang { position: fixed; top: 8px; left: 9px; padding: 0; }
+
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #content { margin: 0 !important; padding: 0; animation: bbs-draw .25s .75s steps(9) backwards; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #content > h2 { margin-bottom: 8px; }
+/* invites : libellé prolongé de points de conduite, puis le champ */
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; border: 0; table-layout: fixed; background: none; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 1px 0; border: 0; background: none; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout th { width: 144px; overflow: hidden; color: var(--cga-lcyan); white-space: nowrap; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout th::after { content: " ................"; content: " ................" / ""; color: var(--cga-dark); }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout td { display: flex; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout td::before { content: ": "; content: ": " / ""; white-space: pre; color: var(--cga-dark); }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout :is(input, select) { flex: 1; min-width: 0; }
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; gap: 18px; margin: 16px 0 0; }
+/* après une déconnexion, le modem raccroche */
+:root[data-theme="bbs"]:has(input[name="auth[password]"]) .message::before { content: "NO CARRIER\A "; content: "NO CARRIER\A " / ""; white-space: pre; color: var(--text); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="bbs"] body::after {
+    content: "2400 N81 │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero);
+    content: "2400 N81 │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero) / "";
+  }
+}
+@media (max-width: 600px) {
+  /* le logo d'accueil (56 colonnes) ne tient pas : celui du menu le remplace */
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) #h1::after {
+    content: "▄▀█ █▀▄ █▀▄▀█ █ █▄ █ █▀▀ █▀█\A █▀█ █▄▀ █ ▀ █ █ █ ▀█ ██▄ █▀▄"; content: "▄▀█ █▀▄ █▀▄▀█ █ █▄ █ █▀▀ █▀█\A █▀█ █▄▀ █ ▀ █ █ █ ▀█ ██▄ █▀▄" / "";
+    background: linear-gradient(var(--cga-lcyan) 50%, var(--cga-lblue) 0); -webkit-background-clip: text; background-clip: text;
+  }
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) #h1::before { content: none; }
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu .version { text-align: left; }
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) #menu h1::after { text-align: left; }
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) table.layout th { width: 108px; }
+  :root[data-theme="bbs"]:has(input[name="auth[password]"]) #lang { position: static; margin: 16px 0; }
+}

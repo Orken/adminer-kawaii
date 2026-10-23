@@ -209,6 +209,7 @@
 :root[data-theme="netscape"] fieldset { padding: 4px 8px 6px; border: 1px solid var(--teal); border-radius: 0; background: #fff; box-shadow: none; }
 :root[data-theme="netscape"] legend { padding: 1px 8px; border-radius: 0; background: var(--teal); color: #fff; font: bold 12px var(--font); }
 :root[data-theme="netscape"] legend :is(a:link, a:visited) { color: #fff; text-decoration: none; }
+:root[data-theme="netscape"] legend :is(a:link, a:visited):hover { color: #fff; text-decoration: underline; }   /* pas le rouge des liens, illisible sur le bleu-vert */
 /* replié : bouton Windows */
 :root[data-theme="netscape"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
   padding: 0; border: 0; background: var(--chrome); box-shadow: var(--raised); transition: none;

@@ -81,6 +81,34 @@
           '<path d="M5 4.5V27h22.5zM9 14.2V23h8.8z" fill="' + ink + '" fill-rule="evenodd"/>';
       }
     },
+    bbs: {
+      label: '📞 BBS',
+      // écran noir en double cadre bleu, invite cyan et curseur jaune
+      icon: '<rect width="32" height="32" rx="3" fill="#000"/>' +
+        '<path d="M2.5 2.5h27v27h-27zM5.5 5.5h21v21h-21z" fill="none" stroke="#5555ff"/>' +
+        '<path d="M9 10l6 6-6 6" fill="none" stroke="#55ffff" stroke-width="3"/>' +
+        '<path d="M16 20h7v3h-7z" fill="#ffff55"/>'
+    },
+    minitel: {
+      label: '📠 Minitel',
+      variants: { couleur: '#0000ff', monochrome: '#c0c0c0' },
+      defaultVariant: 'couleur',
+      // coque beige, écran noir arrondi, bande de mosaïque dans la couleur de la variante
+      icon: function (c) {
+        return '<rect x="1" y="2" width="30" height="24" rx="4" fill="#cbb994"/>' +
+          '<rect x="4.5" y="5" width="23" height="17" rx="3" fill="#000"/>' +
+          '<path d="M8 17h4v-3h4v-3h4v3h4v3H8z" fill="' + c + '"/><path d="M8 9h6v2H8z" fill="#fff"/>' +
+          '<path d="M3 27h26l2 3H1z" fill="#a8956f"/>';
+      }
+    },
+    verre: {
+      label: '🌌 Verre',
+      // vitre dépolie, arête claire, devant une vague d'aurore turquoise-violet dans un ciel de nuit
+      icon: '<defs><linearGradient id="a" x2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>' +
+        '<rect width="32" height="32" rx="8" fill="#0b1030"/>' +
+        '<path d="M0 21c6-9 10-12 15-7s11 4 17-8v15c-9 6-21 6-32 0z" fill="url(#a)"/>' +
+        '<rect x="6.5" y="8.5" width="19" height="15" rx="4.5" fill="#fff" fill-opacity=".24" stroke="#fff" stroke-opacity=".8" stroke-width="1.2"/>'
+    },
     kawaii: {
       label: '🎀 Kawaii',
       variants: { lavande: '#a78bfa', bonbon: '#ff8fb1', menthe: '#5fcfa5', nuit: '#b69cff' },
@@ -108,6 +136,9 @@
     installed.forEach(function (name) { if (!has(THEMES, name)) THEMES[name] = { label: name.charAt(0).toUpperCase() + name.slice(1) }; });
   }
   if (!Object.keys(THEMES).length) return;   // aucun thème installé : base.css seule, pas de sélecteur
+  // ordre du menu : alphabétique, sur le nom sans l'emoji qui ouvre le libellé
+  function title(name) { return String(THEMES[name].label || name).replace(/^[^\p{L}\p{N}]+/u, ''); }
+  var NAMES = Object.keys(THEMES).sort(function (a, b) { return title(a).localeCompare(title(b)); });
   var DEFAULT_THEME = 'dbhub';
   var root = document.documentElement;
 
@@ -120,10 +151,10 @@
   }
   function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
 
-  // thème mémorisé s'il est installé, sinon le thème par défaut, sinon le premier installé
+  // thème mémorisé s'il est installé, sinon le thème par défaut, sinon le premier du menu
   function theme() {
     var t = get('kawaii-family');
-    return has(THEMES, t) ? t : has(THEMES, DEFAULT_THEME) ? DEFAULT_THEME : Object.keys(THEMES)[0];
+    return has(THEMES, t) ? t : has(THEMES, DEFAULT_THEME) ? DEFAULT_THEME : NAMES[0];
   }
   function variant() {
     var def = THEMES[theme()].variants;
@@ -194,7 +225,7 @@
     var select = document.createElement('select');
     select.className = 'theme';
     select.setAttribute('aria-label', 'Thème');
-    Object.keys(THEMES).forEach(function (name) {
+    NAMES.forEach(function (name) {
       var o = document.createElement('option');
       o.value = name;
       o.textContent = THEMES[name].label;

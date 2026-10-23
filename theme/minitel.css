@@ -1,0 +1,325 @@
+/* ===== Thème Minitel =====
+   Actif quand <html data-theme="minitel">. Le 3615 des années 1980 : écran Vidéotex noir, huit couleurs pures, police
+   du Minitel (cellule de 8×10 points, affichée à 12 px), titres en double hauteur, sommaire numéroté en vidéo inverse,
+   champs de saisie en pointillés, bandes de mosaïque. Dans le menu, le compteur de la communication à 1,29 F la minute.
+   Variantes (data-variant) : couleur (défaut) et monochrome, les niveaux de gris du Minitel 1.
+   Connexion : le Minitel entier, écran cathodique dans sa coque, rangée 0, logo en mosaïque, « Tapez votre code puis
+   ENVOI » et les touches de fonction.
+   Police : Minitel, de Frédéric Bisson (https://github.com/zigazou/minitel-canvas), domaine public (CC0 1.0).
+   Incorporée ci-dessous en WOFF2. Elle n'a pas de capitales accentuées (le Minitel non plus) : elles viennent de la
+   police de repli. */
+
+@font-face {
+  font-family: "Adminer Minitel"; font-display: block;
+  src: url("data:font/woff2;base64,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") format("woff2");
+}
+
+/* coût de la communication : 1,29 F/mn, soit un centime toutes les 0,465 s ; francs et centimes avancent ensemble */
+@property --mt-c { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@property --mt-f { syntax: "<integer>"; inherits: false; initial-value: 0; }
+@keyframes mt-c { to { --mt-c: 100; } }
+@keyframes mt-f { to { --mt-f: 100; } }
+
+/* ---------- Variables ---------- */
+:root[data-theme="minitel"] {
+  /* les huit couleurs du Vidéotex */
+  --mt-blue: #0000ff; --mt-red: #ff0000; --mt-magenta: #ff00ff; --mt-green: #00ff00;
+  --mt-cyan: #00ffff; --mt-yellow: #ffff00; --mt-white: #ffffff;
+  --mt-logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='410' height='70' viewBox='0 0 410 70'%3E%3Cpath fill='%23ffff00' d='M10 0h9v9h-9zM20 0h9v9h-9zM30 0h9v9h-9zM0 10h9v9h-9zM40 10h9v9h-9zM60 0h9v9h-9zM70 0h9v9h-9zM80 0h9v9h-9zM90 0h9v9h-9zM60 10h9v9h-9zM100 10h9v9h-9zM120 0h9v9h-9zM160 0h9v9h-9zM120 10h9v9h-9zM130 10h9v9h-9zM150 10h9v9h-9zM160 10h9v9h-9zM190 0h9v9h-9zM200 0h9v9h-9zM210 0h9v9h-9zM200 10h9v9h-9zM240 0h9v9h-9zM280 0h9v9h-9zM240 10h9v9h-9zM280 10h9v9h-9zM300 0h9v9h-9zM310 0h9v9h-9zM320 0h9v9h-9zM330 0h9v9h-9zM340 0h9v9h-9zM300 10h9v9h-9zM360 0h9v9h-9zM370 0h9v9h-9zM380 0h9v9h-9zM390 0h9v9h-9zM360 10h9v9h-9zM400 10h9v9h-9z'/%3E%3Cpath fill='%23ffffff' d='M0 20h9v9h-9zM40 20h9v9h-9zM0 30h9v9h-9zM40 30h9v9h-9zM60 20h9v9h-9zM100 20h9v9h-9zM60 30h9v9h-9zM100 30h9v9h-9zM120 20h9v9h-9zM140 20h9v9h-9zM160 20h9v9h-9zM120 30h9v9h-9zM160 30h9v9h-9zM200 20h9v9h-9zM200 30h9v9h-9zM240 20h9v9h-9zM250 20h9v9h-9zM280 20h9v9h-9zM240 30h9v9h-9zM260 30h9v9h-9zM280 30h9v9h-9zM300 20h9v9h-9zM300 30h9v9h-9zM310 30h9v9h-9zM320 30h9v9h-9zM360 20h9v9h-9zM400 20h9v9h-9zM360 30h9v9h-9zM370 30h9v9h-9zM380 30h9v9h-9zM390 30h9v9h-9z'/%3E%3Cpath fill='%2300ffff' d='M0 40h9v9h-9zM10 40h9v9h-9zM20 40h9v9h-9zM30 40h9v9h-9zM40 40h9v9h-9zM0 50h9v9h-9zM40 50h9v9h-9zM0 60h9v9h-9zM40 60h9v9h-9zM60 40h9v9h-9zM100 40h9v9h-9zM60 50h9v9h-9zM100 50h9v9h-9zM60 60h9v9h-9zM70 60h9v9h-9zM80 60h9v9h-9zM90 60h9v9h-9zM120 40h9v9h-9zM160 40h9v9h-9zM120 50h9v9h-9zM160 50h9v9h-9zM120 60h9v9h-9zM160 60h9v9h-9zM200 40h9v9h-9zM200 50h9v9h-9zM190 60h9v9h-9zM200 60h9v9h-9zM210 60h9v9h-9zM240 40h9v9h-9zM270 40h9v9h-9zM280 40h9v9h-9zM240 50h9v9h-9zM280 50h9v9h-9zM240 60h9v9h-9zM280 60h9v9h-9zM300 40h9v9h-9zM300 50h9v9h-9zM300 60h9v9h-9zM310 60h9v9h-9zM320 60h9v9h-9zM330 60h9v9h-9zM340 60h9v9h-9zM360 40h9v9h-9zM380 40h9v9h-9zM360 50h9v9h-9zM390 50h9v9h-9zM360 60h9v9h-9zM400 60h9v9h-9z'/%3E%3C/svg%3E");
+  --mt-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='30' viewBox='0 0 288 30'%3E%3Cpath fill='%230000ff' d='M0 25h6v5h-6zM0 20h6v5h-6zM6 25h6v5h-6zM6 20h6v5h-6zM12 25h6v5h-6zM12 20h6v5h-6zM12 15h6v5h-6zM18 25h6v5h-6zM18 20h6v5h-6zM18 15h6v5h-6zM24 25h6v5h-6zM24 20h6v5h-6zM24 15h6v5h-6zM30 25h6v5h-6zM30 20h6v5h-6zM30 15h6v5h-6zM36 25h6v5h-6zM36 20h6v5h-6zM36 15h6v5h-6zM36 10h6v5h-6zM42 25h6v5h-6zM42 20h6v5h-6zM42 15h6v5h-6zM42 10h6v5h-6zM48 25h6v5h-6zM48 20h6v5h-6zM48 15h6v5h-6zM48 10h6v5h-6zM54 25h6v5h-6zM54 20h6v5h-6zM54 15h6v5h-6zM54 10h6v5h-6zM60 25h6v5h-6zM60 20h6v5h-6zM60 15h6v5h-6zM60 10h6v5h-6zM66 25h6v5h-6zM66 20h6v5h-6zM66 15h6v5h-6zM66 10h6v5h-6zM72 25h6v5h-6zM72 20h6v5h-6zM72 15h6v5h-6zM72 10h6v5h-6zM78 25h6v5h-6zM78 20h6v5h-6zM78 15h6v5h-6zM78 10h6v5h-6zM84 25h6v5h-6zM84 20h6v5h-6zM84 15h6v5h-6zM84 10h6v5h-6zM90 25h6v5h-6zM90 20h6v5h-6zM90 15h6v5h-6zM90 10h6v5h-6zM96 25h6v5h-6zM96 20h6v5h-6zM96 15h6v5h-6zM96 10h6v5h-6zM102 25h6v5h-6zM102 20h6v5h-6zM102 15h6v5h-6zM102 10h6v5h-6zM108 25h6v5h-6zM108 20h6v5h-6zM108 15h6v5h-6zM108 10h6v5h-6zM114 25h6v5h-6zM114 20h6v5h-6zM114 15h6v5h-6zM120 25h6v5h-6zM120 20h6v5h-6zM120 15h6v5h-6zM126 25h6v5h-6zM126 20h6v5h-6zM126 15h6v5h-6zM132 25h6v5h-6zM132 20h6v5h-6zM132 15h6v5h-6zM138 25h6v5h-6zM138 20h6v5h-6zM144 25h6v5h-6zM144 20h6v5h-6zM150 25h6v5h-6zM150 20h6v5h-6zM156 25h6v5h-6zM162 25h6v5h-6zM168 25h6v5h-6zM174 25h6v5h-6zM258 25h6v5h-6zM264 25h6v5h-6zM270 25h6v5h-6zM276 25h6v5h-6zM282 25h6v5h-6zM282 20h6v5h-6z'/%3E%3Cpath fill='%2300ffff' d='M0 15h6v5h-6zM6 15h6v5h-6zM12 10h6v5h-6zM18 10h6v5h-6zM24 10h6v5h-6zM30 10h6v5h-6zM36 5h6v5h-6zM42 5h6v5h-6zM48 5h6v5h-6zM54 5h6v5h-6zM60 5h6v5h-6zM66 5h6v5h-6zM72 5h6v5h-6zM78 5h6v5h-6zM84 5h6v5h-6zM90 5h6v5h-6zM96 5h6v5h-6zM102 5h6v5h-6zM108 5h6v5h-6zM114 10h6v5h-6zM120 10h6v5h-6zM126 10h6v5h-6zM132 10h6v5h-6zM138 15h6v5h-6zM144 15h6v5h-6zM150 15h6v5h-6zM156 20h6v5h-6zM162 20h6v5h-6zM168 20h6v5h-6zM174 20h6v5h-6zM180 25h6v5h-6zM186 25h6v5h-6zM192 25h6v5h-6zM198 25h6v5h-6zM204 25h6v5h-6zM210 25h6v5h-6zM216 25h6v5h-6zM222 25h6v5h-6zM228 25h6v5h-6zM234 25h6v5h-6zM240 25h6v5h-6zM246 25h6v5h-6zM252 25h6v5h-6zM258 20h6v5h-6zM264 20h6v5h-6zM270 20h6v5h-6zM276 20h6v5h-6zM282 15h6v5h-6z'/%3E%3C/svg%3E");
+
+  --bg: #000000; --surface: #000000; --surface-2: var(--mt-blue);
+  --text: var(--mt-white); --muted: var(--mt-cyan); --border: var(--mt-blue);
+  --accent: var(--mt-yellow); --on-accent: #000000; --accent-text: var(--mt-cyan);
+  --ok: var(--mt-green); --err: var(--mt-red); --on-err: #000000;
+  --jush-str: var(--mt-green); --jush-num: var(--mt-magenta); --jush-id: var(--mt-yellow);
+  --shadow: none;
+  color-scheme: dark;
+
+  --radius: 0; --radius-sm: 0; --pill: 0;
+  --fs: 12px; --pad-y: 0; --pad-x: 12px; --gap: 15px;
+  --font: "Adminer Minitel", "Lucida Console", Consolas, monospace;
+  --font-heading: var(--font); --font-mono: var(--font);
+  --h2-border: 0;
+
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+  --bg-pattern: none; --bg-size: auto; --bg-pos: 0 0;
+
+  --th-bg: var(--mt-blue); --th-text: var(--mt-white);
+  --zebra: #000000; --row-hover: var(--mt-cyan);
+  --lit: #000000;
+  --dot: var(--mt-white);   /* pointillés des zones de saisie */
+  font-synthesis: none;
+}
+/* Minitel 1 : un écran noir et blanc, chaque couleur rendue par un niveau de gris */
+:root[data-theme="minitel"][data-variant="monochrome"] {
+  --mt-blue: #4d4d4d; --mt-red: #808080; --mt-magenta: #999999; --mt-green: #b3b3b3;
+  --mt-cyan: #cccccc; --mt-yellow: #e6e6e6; --mt-white: #ffffff;
+  --mt-logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='410' height='70' viewBox='0 0 410 70'%3E%3Cpath fill='%23e6e6e6' d='M10 0h9v9h-9zM20 0h9v9h-9zM30 0h9v9h-9zM0 10h9v9h-9zM40 10h9v9h-9zM60 0h9v9h-9zM70 0h9v9h-9zM80 0h9v9h-9zM90 0h9v9h-9zM60 10h9v9h-9zM100 10h9v9h-9zM120 0h9v9h-9zM160 0h9v9h-9zM120 10h9v9h-9zM130 10h9v9h-9zM150 10h9v9h-9zM160 10h9v9h-9zM190 0h9v9h-9zM200 0h9v9h-9zM210 0h9v9h-9zM200 10h9v9h-9zM240 0h9v9h-9zM280 0h9v9h-9zM240 10h9v9h-9zM280 10h9v9h-9zM300 0h9v9h-9zM310 0h9v9h-9zM320 0h9v9h-9zM330 0h9v9h-9zM340 0h9v9h-9zM300 10h9v9h-9zM360 0h9v9h-9zM370 0h9v9h-9zM380 0h9v9h-9zM390 0h9v9h-9zM360 10h9v9h-9zM400 10h9v9h-9z'/%3E%3Cpath fill='%23ffffff' d='M0 20h9v9h-9zM40 20h9v9h-9zM0 30h9v9h-9zM40 30h9v9h-9zM60 20h9v9h-9zM100 20h9v9h-9zM60 30h9v9h-9zM100 30h9v9h-9zM120 20h9v9h-9zM140 20h9v9h-9zM160 20h9v9h-9zM120 30h9v9h-9zM160 30h9v9h-9zM200 20h9v9h-9zM200 30h9v9h-9zM240 20h9v9h-9zM250 20h9v9h-9zM280 20h9v9h-9zM240 30h9v9h-9zM260 30h9v9h-9zM280 30h9v9h-9zM300 20h9v9h-9zM300 30h9v9h-9zM310 30h9v9h-9zM320 30h9v9h-9zM360 20h9v9h-9zM400 20h9v9h-9zM360 30h9v9h-9zM370 30h9v9h-9zM380 30h9v9h-9zM390 30h9v9h-9z'/%3E%3Cpath fill='%23cccccc' d='M0 40h9v9h-9zM10 40h9v9h-9zM20 40h9v9h-9zM30 40h9v9h-9zM40 40h9v9h-9zM0 50h9v9h-9zM40 50h9v9h-9zM0 60h9v9h-9zM40 60h9v9h-9zM60 40h9v9h-9zM100 40h9v9h-9zM60 50h9v9h-9zM100 50h9v9h-9zM60 60h9v9h-9zM70 60h9v9h-9zM80 60h9v9h-9zM90 60h9v9h-9zM120 40h9v9h-9zM160 40h9v9h-9zM120 50h9v9h-9zM160 50h9v9h-9zM120 60h9v9h-9zM160 60h9v9h-9zM200 40h9v9h-9zM200 50h9v9h-9zM190 60h9v9h-9zM200 60h9v9h-9zM210 60h9v9h-9zM240 40h9v9h-9zM270 40h9v9h-9zM280 40h9v9h-9zM240 50h9v9h-9zM280 50h9v9h-9zM240 60h9v9h-9zM280 60h9v9h-9zM300 40h9v9h-9zM300 50h9v9h-9zM300 60h9v9h-9zM310 60h9v9h-9zM320 60h9v9h-9zM330 60h9v9h-9zM340 60h9v9h-9zM360 40h9v9h-9zM380 40h9v9h-9zM360 50h9v9h-9zM390 50h9v9h-9zM360 60h9v9h-9zM400 60h9v9h-9z'/%3E%3C/svg%3E");
+  --mt-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='288' height='30' viewBox='0 0 288 30'%3E%3Cpath fill='%234d4d4d' d='M0 25h6v5h-6zM0 20h6v5h-6zM6 25h6v5h-6zM6 20h6v5h-6zM12 25h6v5h-6zM12 20h6v5h-6zM12 15h6v5h-6zM18 25h6v5h-6zM18 20h6v5h-6zM18 15h6v5h-6zM24 25h6v5h-6zM24 20h6v5h-6zM24 15h6v5h-6zM30 25h6v5h-6zM30 20h6v5h-6zM30 15h6v5h-6zM36 25h6v5h-6zM36 20h6v5h-6zM36 15h6v5h-6zM36 10h6v5h-6zM42 25h6v5h-6zM42 20h6v5h-6zM42 15h6v5h-6zM42 10h6v5h-6zM48 25h6v5h-6zM48 20h6v5h-6zM48 15h6v5h-6zM48 10h6v5h-6zM54 25h6v5h-6zM54 20h6v5h-6zM54 15h6v5h-6zM54 10h6v5h-6zM60 25h6v5h-6zM60 20h6v5h-6zM60 15h6v5h-6zM60 10h6v5h-6zM66 25h6v5h-6zM66 20h6v5h-6zM66 15h6v5h-6zM66 10h6v5h-6zM72 25h6v5h-6zM72 20h6v5h-6zM72 15h6v5h-6zM72 10h6v5h-6zM78 25h6v5h-6zM78 20h6v5h-6zM78 15h6v5h-6zM78 10h6v5h-6zM84 25h6v5h-6zM84 20h6v5h-6zM84 15h6v5h-6zM84 10h6v5h-6zM90 25h6v5h-6zM90 20h6v5h-6zM90 15h6v5h-6zM90 10h6v5h-6zM96 25h6v5h-6zM96 20h6v5h-6zM96 15h6v5h-6zM96 10h6v5h-6zM102 25h6v5h-6zM102 20h6v5h-6zM102 15h6v5h-6zM102 10h6v5h-6zM108 25h6v5h-6zM108 20h6v5h-6zM108 15h6v5h-6zM108 10h6v5h-6zM114 25h6v5h-6zM114 20h6v5h-6zM114 15h6v5h-6zM120 25h6v5h-6zM120 20h6v5h-6zM120 15h6v5h-6zM126 25h6v5h-6zM126 20h6v5h-6zM126 15h6v5h-6zM132 25h6v5h-6zM132 20h6v5h-6zM132 15h6v5h-6zM138 25h6v5h-6zM138 20h6v5h-6zM144 25h6v5h-6zM144 20h6v5h-6zM150 25h6v5h-6zM150 20h6v5h-6zM156 25h6v5h-6zM162 25h6v5h-6zM168 25h6v5h-6zM174 25h6v5h-6zM258 25h6v5h-6zM264 25h6v5h-6zM270 25h6v5h-6zM276 25h6v5h-6zM282 25h6v5h-6zM282 20h6v5h-6z'/%3E%3Cpath fill='%23cccccc' d='M0 15h6v5h-6zM6 15h6v5h-6zM12 10h6v5h-6zM18 10h6v5h-6zM24 10h6v5h-6zM30 10h6v5h-6zM36 5h6v5h-6zM42 5h6v5h-6zM48 5h6v5h-6zM54 5h6v5h-6zM60 5h6v5h-6zM66 5h6v5h-6zM72 5h6v5h-6zM78 5h6v5h-6zM84 5h6v5h-6zM90 5h6v5h-6zM96 5h6v5h-6zM102 5h6v5h-6zM108 5h6v5h-6zM114 10h6v5h-6zM120 10h6v5h-6zM126 10h6v5h-6zM132 10h6v5h-6zM138 15h6v5h-6zM144 15h6v5h-6zM150 15h6v5h-6zM156 20h6v5h-6zM162 20h6v5h-6zM168 20h6v5h-6zM174 20h6v5h-6zM180 25h6v5h-6zM186 25h6v5h-6zM192 25h6v5h-6zM198 25h6v5h-6zM204 25h6v5h-6zM210 25h6v5h-6zM216 25h6v5h-6zM222 25h6v5h-6zM228 25h6v5h-6zM234 25h6v5h-6zM240 25h6v5h-6zM246 25h6v5h-6zM252 25h6v5h-6zM258 20h6v5h-6zM264 20h6v5h-6zM270 20h6v5h-6zM276 20h6v5h-6zM282 15h6v5h-6z'/%3E%3C/svg%3E");
+}
+
+/* une seule taille de caractère, celle de la police ; la double hauteur passe par une mise à l'échelle */
+:root[data-theme="minitel"] *, :root[data-theme="minitel"] *::before, :root[data-theme="minitel"] *::after {
+  font-size: 12px !important; font-weight: normal !important; letter-spacing: 0 !important;
+}
+
+/* ---------- Page ---------- */
+:root[data-theme="minitel"] body { line-height: 15px; }
+:root[data-theme="minitel"] * { scrollbar-color: var(--mt-cyan) #000; }
+:root[data-theme="minitel"] ::selection { background: var(--mt-white); color: #000; }
+:root[data-theme="minitel"] :is(h1, h2, h3) { color: var(--mt-yellow); }
+:root[data-theme="minitel"] hr { border-top: 2px solid var(--border); }
+:root[data-theme="minitel"] code { padding: 0; background: none; color: var(--mt-white); }
+:root[data-theme="minitel"] a:is(:link, :visited) { color: var(--accent-text); }
+:root[data-theme="minitel"] a:is(:link, :visited):hover { background-color: var(--mt-cyan); color: #000; }
+:root[data-theme="minitel"] a:is(:link, :visited):focus-visible { outline: 0; background-color: var(--mt-yellow); color: #000; }
+:root[data-theme="minitel"] :where(button, input, select, textarea, summary):focus-visible, :root[data-theme="minitel"] [contenteditable]:focus { outline: 2px solid var(--mt-yellow); outline-offset: 1px; }
+/* lien de documentation : « ? » en vidéo inverse, la touche Guide */
+:root[data-theme="minitel"] a.doc { font-size: 0 !important; }
+:root[data-theme="minitel"] a.doc::after { content: "?"; padding: 0 2px; background: var(--mt-cyan); color: #000; }
+
+/* titres en double hauteur : la ligne garde 15 px et s'étire vers le haut, dans la marge */
+:root[data-theme="minitel"] h2 {
+  height: 15px; margin: 15px 0 15px; padding: 0; overflow: visible; white-space: nowrap;
+  transform: scaleY(2); transform-origin: 0 100%;
+}
+
+/* ---------- Barre du haut ---------- */
+:root[data-theme="minitel"] #breadcrumb { height: auto; padding: 3px 12px; line-height: 15px; background: var(--mt-blue); color: var(--mt-white); }
+:root[data-theme="minitel"] #breadcrumb a { color: var(--mt-cyan); }
+:root[data-theme="minitel"] .logout { line-height: 15px; }
+:root[data-theme="minitel"] #lang { white-space: nowrap; }
+:root[data-theme="minitel"] #lang select { max-width: 168px; }
+
+/* ---------- Menu : le sommaire du service ---------- */
+/* 26 caractères de large (19 chez Adminer) : le sommaire tient sur une colonne, les listes ne se replient pas */
+@media (min-width: 801px) {
+  :root[data-theme="minitel"] #menu { width: 26em; }
+  :root[data-theme="minitel"] #content { margin-inline-start: 28em; }
+  :root[data-theme="minitel"] #breadcrumb { left: 28em; }
+}
+:root[data-theme="minitel"] #menu { margin-top: 0; padding: 12px 0 15px; border: 0; background: #000; }
+/* en-tête : « 3615 ADMINER » en double hauteur, sur une bande de mosaïque ; « Adminer » reste le texte du lien */
+:root[data-theme="minitel"] #menu h1 {
+  margin: 0; padding: 15px 12px 39px; border: 0;
+  background: var(--mt-band) left bottom 4px / 288px 30px repeat-x;
+}
+:root[data-theme="minitel"] #logo { display: none; }
+:root[data-theme="minitel"] #h1 { display: block; font-size: 0 !important; line-height: 0; }
+:root[data-theme="minitel"] #h1::after {
+  content: "3615 ADMINER"; display: block; height: 15px; line-height: 15px; color: var(--mt-white);
+  transform: scaleY(2); transform-origin: 0 100%;
+}
+:root[data-theme="minitel"] #h1:hover { background: none; }
+:root[data-theme="minitel"] #h1:hover::after { color: var(--mt-yellow); }
+:root[data-theme="minitel"] #menu .version { color: var(--mt-cyan); }
+/* compteur de la communication */
+:root[data-theme="minitel"] #menu h1::after {
+  content: "1,29 F/mn   " counter(mt-f) "," counter(mt-c, decimal-leading-zero) " F";
+  content: "1,29 F/mn   " counter(mt-f) "," counter(mt-c, decimal-leading-zero) " F" / "";
+  margin: 3px 0 0; padding: 0; color: var(--mt-yellow); text-align: left; white-space: pre;
+  counter-reset: mt-f var(--mt-f) mt-c var(--mt-c);
+  animation: mt-c 46.512s steps(100) infinite, mt-f 4651.2s steps(100) infinite;
+}
+
+/* sommaire : une entrée par ligne, numéro en vidéo inverse */
+:root[data-theme="minitel"] #menu :is(p, #dbs), :root[data-theme="minitel"] :is(#tables, #logins) { padding: 0 12px; border-color: var(--mt-blue); }
+:root[data-theme="minitel"] #menu p.links { grid-template-columns: 1fr; gap: 0; margin: 8px 0; padding: 0 12px; counter-reset: mt-item; }
+:root[data-theme="minitel"] #menu p.links a { padding: 0; border: 0; background: none; color: var(--mt-white); text-align: left; counter-increment: mt-item; }
+:root[data-theme="minitel"] #menu p.links a::before {
+  content: counter(mt-item); content: counter(mt-item) / ""; display: inline-block; width: 12px; margin-right: 12px;
+  background: var(--mt-cyan); color: #000; text-align: center;
+}
+:root[data-theme="minitel"] #menu p.links a:is(:hover, .active) { background: none; color: var(--mt-yellow); }
+:root[data-theme="minitel"] #menu p.links a:is(:hover, .active)::before { background: var(--mt-yellow); }
+
+/* tables : numérotées à leur tour, la table courante en vidéo inverse */
+:root[data-theme="minitel"] #tables { margin-top: 8px; padding: 0; counter-reset: mt-table; }
+:root[data-theme="minitel"] #tables::before { margin: 0 0 4px; padding: 0 12px; background: var(--mt-blue); color: var(--mt-white); text-transform: none; }
+:root[data-theme="minitel"] #tables li { margin: 0; padding: 0 12px; counter-increment: mt-table; }
+:root[data-theme="minitel"] #tables li:hover, :root[data-theme="minitel"] #tables li:has(a.active) { background: none; box-shadow: none; }
+:root[data-theme="minitel"] #tables a.structure { padding: 0; color: var(--mt-white); }
+:root[data-theme="minitel"] #tables a.structure::before {
+  content: counter(mt-table, decimal-leading-zero); content: counter(mt-table, decimal-leading-zero) / "";
+  display: inline-block; width: 24px; margin-right: 12px; background: var(--mt-blue); color: var(--mt-white); text-align: center;
+}
+:root[data-theme="minitel"] #tables li:is(:hover, :has(a.active)) a.structure { background: none; color: var(--mt-yellow); }
+:root[data-theme="minitel"] #tables li:is(:hover, :has(a.active)) a.structure::before { background: var(--mt-yellow); color: #000; }
+:root[data-theme="minitel"] #tables a.select { width: 24px; height: 15px; margin: 0; border-radius: 0; background: var(--mt-cyan); font-size: 0 !important; line-height: 15px; }
+:root[data-theme="minitel"] #tables a.select::before { content: "→"; color: #000; }
+
+/* ---------- Contenu ---------- */
+:root[data-theme="minitel"] #content { padding-top: 12px; }
+:root[data-theme="minitel"] #content .links a { margin-right: 12px; padding: 0; border: 0; background: none; color: var(--mt-cyan); }
+:root[data-theme="minitel"] #content .links a:hover { background: var(--mt-cyan); color: #000; }
+:root[data-theme="minitel"] #content .links a.active { background: var(--mt-white); color: #000; }
+
+/* messages : en vert ; les erreurs en vidéo inverse rouge */
+:root[data-theme="minitel"] :is(.message, .error) { margin: 15px 0; padding: 0; border: 0; background: none; box-shadow: none; }
+:root[data-theme="minitel"] .message { color: var(--ok); }
+:root[data-theme="minitel"] .error { width: fit-content; padding: 0 12px; background: var(--err); color: #000; }
+
+/* ---------- Tableaux : en-tête bleu, survol en vidéo inverse ---------- */
+:root[data-theme="minitel"] table { border: 0; }
+:root[data-theme="minitel"] :is(th, td) { padding: 0 12px 0 0; border: 0; line-height: 15px; }
+:root[data-theme="minitel"] :is(th, td):first-child { padding-left: 12px; }
+:root[data-theme="minitel"] :is(th, td):has(> :is(input, select, textarea)) { padding-block: 2px; }
+:root[data-theme="minitel"] :is(thead, tbody) td.hover { border-bottom-width: 0; }
+/* ligne survolée ou cochée : tout le texte passe en noir sur la couleur, comme en vidéo inverse */
+:root[data-theme="minitel"] tbody tr:hover, :root[data-theme="minitel"].js .checkable .checked { --dot: #000; --box: #000; }
+:root[data-theme="minitel"] tbody tr:hover :is(td, th, td.hover), :root[data-theme="minitel"] tbody tr:hover :is(td, th) * { color: #000; }
+:root[data-theme="minitel"].js .checkable .checked :is(td, th, td.hover) { background: var(--mt-magenta); color: #000; }
+:root[data-theme="minitel"].js .checkable .checked :is(td, th) * { color: #000; }
+:root[data-theme="minitel"] :is(tbody, tfoot) th a { color: var(--accent-text); }
+
+/* ---------- Formulaires ---------- */
+/* zones de saisie : une ligne de points, un par caractère, sous le texte ; la zone active passe sur fond bleu */
+:root[data-theme="minitel"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  min-height: 15px; padding: 0; border: 0; color: var(--mt-white); line-height: 15px;
+  background: linear-gradient(90deg, transparent 5px, var(--dot) 0 7px, transparent 0) 0 calc(100% - 1px) / 12px 2px repeat-x, transparent;
+}
+:root[data-theme="minitel"] select { padding-right: 2px; }
+:root[data-theme="minitel"] select option { background: #000; color: var(--mt-white); }
+:root[data-theme="minitel"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select):focus {
+  --dot: var(--mt-yellow); background-color: var(--mt-blue); color: var(--mt-white); caret-color: var(--mt-yellow); box-shadow: none;
+}
+:root[data-theme="minitel"] textarea { padding: 0 2px; border: 2px solid var(--mt-blue); background: #000; color: var(--mt-white); line-height: 15px; }
+:root[data-theme="minitel"] textarea:focus { border-color: var(--mt-yellow); box-shadow: none; }
+:root[data-theme="minitel"] pre.jush { border: 2px solid var(--mt-blue); }
+
+/* boutons : libellé en vidéo inverse */
+:root[data-theme="minitel"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 15px; padding: 0 12px; border: 0; background: var(--mt-cyan); color: #000; font: 12px/15px var(--font); box-shadow: none;
+}
+:root[data-theme="minitel"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { background: var(--mt-yellow); transform: none; filter: none; }
+:root[data-theme="minitel"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: var(--mt-white); transform: none; }
+:root[data-theme="minitel"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { background: var(--mt-red); color: #000; box-shadow: none; }
+:root[data-theme="minitel"] :is(input[name*=delete], input[name=drop], input[name=truncate]):hover { background: var(--mt-white); }
+
+/* cases à cocher et boutons radio : un pavé de mosaïque, plein quand il est coché */
+:root[data-theme="minitel"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; width: 12px; height: 12px; margin: 0 6px 0 2px; vertical-align: -1px; cursor: pointer;
+  border: 2px solid var(--box, var(--mt-cyan)); background: none;
+}
+:root[data-theme="minitel"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="minitel"] input:is([type=checkbox], [type=radio]):checked { background: var(--mt-yellow); box-shadow: inset 0 0 0 2px #000; }
+:root[data-theme="minitel"] input[type=checkbox]:indeterminate { background: linear-gradient(var(--box, var(--mt-cyan)) 0 0) center / 6px 2px no-repeat; }
+:root[data-theme="minitel"] input:is([type=checkbox], [type=radio]):hover { --box: var(--mt-yellow); }
+
+/* boutons-icônes : le carré clair d'Adminer est inversé, le pictogramme prend le cyan */
+:root[data-theme="minitel"] button.icon { filter: invert(1); background-color: rgb(from var(--mt-cyan) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="minitel"] button.icon:hover { background-color: rgb(from var(--mt-yellow) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Cadres : trait bleu, titre en vidéo inverse ; repliés : « + Titre » ---------- */
+:root[data-theme="minitel"] fieldset { padding: 0 12px 4px; border: 2px solid var(--mt-blue); background: #000; }
+:root[data-theme="minitel"] legend { padding: 0 12px; background: var(--mt-blue); color: var(--mt-white); }
+:root[data-theme="minitel"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 0; background: none; box-shadow: none; }
+:root[data-theme="minitel"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0; color: var(--mt-cyan); }
+:root[data-theme="minitel"] fieldset:has(> legend a) > legend a::before { content: "+"; margin: 0 12px 0 0; padding: 0; background: var(--mt-yellow); color: #000; }
+:root[data-theme="minitel"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: none; transform: none; }
+:root[data-theme="minitel"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { background: none; color: var(--mt-yellow); }
+:root[data-theme="minitel"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 12px; background: var(--mt-blue); }
+:root[data-theme="minitel"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--mt-white); }
+:root[data-theme="minitel"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "−"; }
+
+/* ---------- Schéma : tables sur fond noir, nom sur bande bleue ---------- */
+/* Adminer place tables et liaisons en em, sur des lignes de 1,25 em, et compte 0,75 em par caractère pour la largeur des
+   boîtes : le texte passe à 9 px (9 px d'avance = 0,75 em de 12 px) sur des lignes de 15 px */
+:root[data-theme="minitel"] #schema .table {
+  padding: 0 6px; border: 2px solid var(--mt-blue); line-height: 15px;
+  background: linear-gradient(var(--mt-blue) 0 0) 0 0 / 100% 15px no-repeat, #000;
+}
+:root[data-theme="minitel"] #schema .table * { font-size: 9px !important; line-height: 15px; }
+:root[data-theme="minitel"] #schema .table > a:first-child { color: var(--mt-white); }
+:root[data-theme="minitel"] #schema .table > a:first-child:hover { background: none; color: var(--mt-yellow); }
+:root[data-theme="minitel"] #schema .references div { border-color: var(--mt-cyan) !important; }
+
+/* sélecteur de thème */
+:root[data-theme="minitel"] #kawaii-switcher { padding: 2px 4px; border: 2px solid var(--mt-blue); background: #000; }
+:root[data-theme="minitel"] #kawaii-switcher .opts { border-width: 2px; border-color: var(--mt-blue); }
+:root[data-theme="minitel"] #kawaii-switcher button.sw { border-radius: 0; }
+
+/* ---------- Page de connexion : le Minitel ---------- */
+/* Repérée par le champ mot de passe. Une colonne de 40 caractères : la rangée 0 et le logo (#foot), puis le formulaire
+   (#content). body::before, étalé sur ces deux lignes de la grille, dessine l'écran et sa coque ; body::after, en
+   dessous, le clavier et ses touches de fonction. */
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) {
+  --case: #cbb994; --case-dark: #3a2c22; --key: #ebe5d6;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(480px, 100%); justify-content: center; align-content: center;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 96px 16px 48px;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) body::before {
+  content: ""; grid-area: 1 / 1 / 3 / 2; z-index: -1; margin: -24px;
+  border-radius: 28px / 40px; background: #000;
+  box-shadow: inset 0 0 48px rgb(255 255 255 / .07), 0 0 0 14px var(--case-dark), 0 0 0 46px var(--case), 0 6px 0 46px #a8956f;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) body::after {
+  content: "  Sommaire    Annulation     Retour     Répétition \A    Guide      Correction     Suite        Envoi    "; content: "  Sommaire    Annulation     Retour     Répétition \A    Guide      Correction     Suite        Envoi    " / "";
+  grid-area: 3 / 1; justify-self: center; margin-top: 100px; padding: 14px 28px; border-radius: 10px;
+  font-size: 8px !important; line-height: 22px; white-space: pre; color: #2a211b;
+  background:
+    linear-gradient(var(--mt-green) 0 0) 312px 25px / 96px 16px no-repeat content-box,
+    conic-gradient(at 96px 16px, transparent 270deg, var(--key) 0) 0 3px / 104px 22px content-box,
+    var(--case);
+  box-shadow: 0 6px 0 #a8956f;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #foot { grid-area: 1 / 1; display: block; position: relative; }
+/* rangée 0 : le compteur à gauche, le « C » de la connexion établie à droite */
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #foot::before {
+  content: "1,29 F/mn   " counter(mt-f) "," counter(mt-c, decimal-leading-zero) " F";
+  content: "1,29 F/mn   " counter(mt-f) "," counter(mt-c, decimal-leading-zero) " F" / "";
+  display: block; margin-bottom: 15px; white-space: pre; color: var(--mt-white);
+  counter-reset: mt-f var(--mt-f) mt-c var(--mt-c);
+  animation: mt-c 46.512s steps(100) infinite, mt-f 4651.2s steps(100) infinite;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #foot::after { content: "C"; content: "C" / ""; position: absolute; top: 0; right: 0; color: var(--mt-white); }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #menu {
+  position: static; width: auto; min-width: 0; margin: 0; padding: 0; border: 0; background: none;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #menu h1 { padding: 0 0 45px; text-align: center; background-position: left bottom 0; }
+/* « 3615 » en double grandeur, puis « ADMINER » en mosaïque */
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #h1 { width: 100%; padding-top: 30px; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #h1::after {
+  content: ""; height: auto; aspect-ratio: 410 / 70; margin: 12px auto 0; max-width: 410px;
+  background: var(--mt-logo) center / contain no-repeat; transform: none;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #h1::before {
+  content: "3615"; content: "3615" / ""; display: block; width: fit-content; height: 15px; margin: 0 auto; line-height: 15px;
+  color: var(--mt-white); transform: scale(2); transform-origin: 50% 100%;   /* largeur du texte : l'agrandissement ne déborde pas */
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #menu .version { display: block; text-align: right; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #menu h1::after {
+  content: "Le service des bases de données"; content: "Le service des bases de données" / "";
+  margin: 12px 0 0; color: var(--mt-cyan); text-align: center; white-space: normal; animation: none;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #lang { position: fixed; top: 8px; left: 12px; padding: 0; }
+
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content { grid-area: 2 / 1; margin: 0 !important; padding: 15px 0 0; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content > h2 { margin-top: 15px; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; border: 0; table-layout: fixed; background: none; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 2px 0; border: 0; background: none; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) table.layout th { width: 144px; overflow: hidden; color: var(--mt-cyan); white-space: nowrap; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 100%; box-sizing: border-box; }
+/* « Tapez votre code puis ENVOI » : le bouton, quelle que soit la langue, affiche ENVOI par-dessus son libellé */
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content form > p { display: flex; flex-wrap: wrap; align-items: center; margin: 24px 0 0; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content form > p::before { content: "Tapez votre code puis "; content: "Tapez votre code puis " / ""; white-space: pre; color: var(--mt-white); }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content form > p > input[type=submit] { width: 84px; padding: 0; color: transparent; }
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content form > p::after {
+  content: "ENVOI"; content: "ENVOI" / ""; order: 1; width: 84px; margin-left: -84px; color: #000; text-align: center; pointer-events: none;
+}
+:root[data-theme="minitel"]:has(input[name="auth[password]"]) #content form > p > label { order: 2; flex-basis: 100%; margin-top: 15px; color: var(--mt-white); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  /* l'écran seul, sans coque ni clavier */
+  :root[data-theme="minitel"]:has(input[name="auth[password]"]) body { padding: 48px 16px 32px; }
+  :root[data-theme="minitel"]:has(input[name="auth[password]"]) body::before { margin: -12px; border-radius: 0; box-shadow: none; outline: 2px solid var(--mt-blue); }
+  :root[data-theme="minitel"]:has(input[name="auth[password]"]) body::after { content: none; }
+  :root[data-theme="minitel"]:has(input[name="auth[password]"]) #lang { position: static; margin: 15px 0; }
+  :root[data-theme="minitel"]:has(input[name="auth[password]"]) table.layout th { width: 108px; }
+}

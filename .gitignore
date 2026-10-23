@@ -13,6 +13,9 @@ Thumbs.db
 *.local
 .claude/settings.local.json
 
+# Dépendances des scripts (Playwright pour scripts/screenshots.js)
+node_modules/
+
 # Logs et temporaires
 *.log
 *.tmp

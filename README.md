@@ -19,11 +19,66 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 | 🌐 Netscape | `netscape.css` | fenêtre Windows 98 et portail web des années 1990 |
 | 🦊 GitLab | `gitlab.css` | inspiré du design system Pajamas |
 | 📐 Blueprint | `blueprint.css` | plan technique au trait sur papier millimétré ; 2 variantes (calque, cyanotype) ; connexion sur une feuille avec cartouche |
+| 📞 BBS | `bbs.css` | BBS des années 1990 en mode texte : palette CGA, police VGA, cadres doubles, ligne d'état du terminal ; connexion par modem et écran d'accueil ANSI |
+| 📠 Minitel | `minitel.css` | 3615 des années 1980 : couleurs du Vidéotex, double hauteur, mosaïques, compteur en francs ; 2 variantes (couleur, monochrome) ; connexion sur le Minitel entier |
+| 🌌 Verre | `verre.css` | verre dépoli façon visionOS : fenêtres translucides et floues aux arêtes lumineuses, sur une aurore boréale violet-turquoise qui ondule lentement ; connexion dans une fenêtre de verre |
 
 - Le sélecteur s'affiche en haut à droite, à côté de la déconnexion. Le choix est mémorisé dans le navigateur (`localStorage`).
 - Chaque thème a sa propre icône d'onglet.
 - Installez-les tous, ou seulement ceux qui vous plaisent.
 - Tout passe par un seul plugin Adminer : aucun fichier d'Adminer n'est modifié.
+
+### Captures
+
+<!-- captures:fr -->
+Les données d'une table avec chaque thème (cliquez sur une image pour l'agrandir) :
+
+<table>
+<tr>
+<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="Thème DBHub : données d'une table"></a></td>
+<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Thème Kawaii : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Thème Oktoberfest : données d'une table"></a></td>
+<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Thème Halloween : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Thème Skeuomorphic : données d'une table"></a></td>
+<td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-select.webp"><img src="docs/screenshots/adminiz-select.webp" width="380" alt="Thème Adminiz : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Thème Netscape : données d'une table"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-select.webp"><img src="docs/screenshots/gitlab-select.webp" width="380" alt="Thème GitLab : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Thème Blueprint : données d'une table"></a></td>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="Thème BBS : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Thème Minitel : données d'une table"></a></td>
+<td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Thème Verre : données d'une table"></a></td>
+</tr>
+</table>
+
+Et les pages de connexion mises en scène :
+
+<table>
+<tr>
+<td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-login.webp"><img src="docs/screenshots/adminiz-login.webp" width="245" alt="Thème Adminiz : page de connexion"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Thème Netscape : page de connexion"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="Thème GitLab : page de connexion"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Thème Blueprint : page de connexion"></a></td>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="Thème BBS : page de connexion"></a></td>
+<td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Thème Minitel : page de connexion"></a></td>
+</tr>
+<tr>
+<td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Thème Verre : page de connexion"></a></td>
+</tr>
+</table>
+
+<!-- /captures:fr -->
 
 ### Prérequis
 
@@ -150,13 +205,13 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image construite depuis ce dépôt** : `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (noms des fichiers sans `.css` ; un nom inconnu fait échouer la construction).
 - **Image officielle** : montez à la place de `theme/` un dossier qui ne contient que ces fichiers.
-- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii et de Blueprint, accent de Kawaii),
+- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii, de Blueprint et du Minitel, accent de Kawaii),
   elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
 - **Thème par défaut** : DBHub s'il est installé, sinon le premier de la liste.
 
 ### Utilisation
 
-- Choisissez le thème dans la liste en haut à droite. Pour Kawaii et Blueprint, les pastilles changent de variante ;
+- Choisissez le thème dans la liste en haut à droite. Pour Kawaii, Blueprint et le Minitel, les pastilles changent de variante ;
   pour Kawaii, le nuancier règle aussi la couleur d'accent.
 - Le choix est propre à chaque navigateur. Le thème par défaut se règle avec `DEFAULT_THEME` dans `theme/switcher.js`.
 
@@ -173,6 +228,8 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
      icon: '<rect width="32" height="32" rx="6" fill="#c0392b"/>'   // facultatif : contenu d'un SVG de 32 × 32
    };
    ```
+
+3. Facultatif : ajoutez-le aux captures du README avec `node scripts/screenshots.js noel` (voir Développement).
 
 Le plugin charge tout seul les fichiers `.css` et `.js` du dossier `theme/`.
 
@@ -192,11 +249,27 @@ Ouvrez http://127.0.0.1:8080 et connectez-vous avec le serveur `db`, l'utilisate
 et la base `boutique_kawaii` (données de démonstration). `theme/` et `plugins-enabled/` sont montés dans le
 conteneur : il suffit de recharger la page après une modification.
 
+Les captures du README se refont avec `scripts/screenshots.js`, l'environnement de développement lancé. Il faut
+Node 18 ou plus, Playwright et ffmpeg (avec libwebp) :
+
+```sh
+npm install --no-save playwright && npx playwright install chromium
+node scripts/screenshots.js noel    # un seul thème ; sans argument, tous les thèmes
+```
+
+Pour chaque thème, le script enregistre dans `docs/screenshots/` la page de données et, si le thème la met en scène,
+la page de connexion. Il régénère ensuite les galeries du README, dans l'ordre du tableau des thèmes. Le rendu est
+reproductible : relancer le script ne modifie que les images des thèmes qui ont changé.
+
 ### Marques et licence
 
-- Netscape, GitLab et les autres noms cités sont des marques de leurs propriétaires respectifs. Ces thèmes sont des
-  clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part.
-- Ce projet est sous licence [MIT](LICENSE).
+- Netscape, GitLab, Minitel et les autres noms cités sont des marques de leurs propriétaires respectifs. Ces thèmes
+  sont des clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part.
+- Polices incorporées : `bbs.css` contient un sous-ensemble de WebPlus IBM VGA 9x16, de VileR
+  ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), sous licence
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), qui reste la sienne ; `minitel.css` contient la police
+  Minitel de Frédéric Bisson ([minitel-canvas](https://github.com/zigazou/minitel-canvas)), dans le domaine public (CC0 1.0).
+- Le reste du projet est sous licence [MIT](LICENSE).
 - Adminer, qui n'est pas inclus ici, est © Jakub Vrána, sous licence Apache 2.0 ou GPL 2.0.
 
 ---
@@ -218,12 +291,67 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 | 🌐 Netscape | `netscape.css` | Windows 98 window and 1990s web portal |
 | 🦊 GitLab | `gitlab.css` | inspired by the Pajamas design system |
 | 📐 Blueprint | `blueprint.css` | line drawing on graph paper; 2 variants (tracing paper, cyanotype); login on a drawing sheet with a title block |
+| 📞 BBS | `bbs.css` | 1990s text-mode BBS: CGA palette, VGA font, double-line frames, terminal status line; login through a modem dial-up and an ANSI welcome screen |
+| 📠 Minitel | `minitel.css` | the 1980s French videotex terminal: Videotex colors, double-height text, mosaic graphics, a cost meter in francs; 2 variants (color, monochrome); login on the whole Minitel |
+| 🌌 Verre | `verre.css` | French for “glass”: visionOS-style frosted glass, translucent blurred windows with glowing edges over a slowly drifting purple and teal aurora; login in a single glass window |
 
 - The switcher sits in the top right corner, next to the logout button. The choice is remembered in the browser
   (`localStorage`).
 - Each theme has its own tab icon.
 - Install them all, or only the ones you like.
 - Everything goes through a single Adminer plugin: no Adminer file is modified.
+
+### Screenshots
+
+<!-- captures:en -->
+A table's data with each theme (click an image to enlarge it):
+
+<table>
+<tr>
+<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="DBHub theme: table data"></a></td>
+<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Kawaii theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Oktoberfest theme: table data"></a></td>
+<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Halloween theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Skeuomorphic theme: table data"></a></td>
+<td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-select.webp"><img src="docs/screenshots/adminiz-select.webp" width="380" alt="Adminiz theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Netscape theme: table data"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-select.webp"><img src="docs/screenshots/gitlab-select.webp" width="380" alt="GitLab theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Blueprint theme: table data"></a></td>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="BBS theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Minitel theme: table data"></a></td>
+<td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Verre theme: table data"></a></td>
+</tr>
+</table>
+
+And the themes with a staged login page:
+
+<table>
+<tr>
+<td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-login.webp"><img src="docs/screenshots/adminiz-login.webp" width="245" alt="Adminiz theme: login page"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Netscape theme: login page"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="GitLab theme: login page"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Blueprint theme: login page"></a></td>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="BBS theme: login page"></a></td>
+<td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Minitel theme: login page"></a></td>
+</tr>
+<tr>
+<td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Verre theme: login page"></a></td>
+</tr>
+</table>
+
+<!-- /captures:en -->
 
 ### Requirements
 
@@ -350,13 +478,13 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image built from this repository**: `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (file names without `.css`; an unknown name makes the build fail).
 - **Official image**: mount, in place of `theme/`, a folder that only contains those files.
-- **A single theme**: the list goes away. If the theme has options (Kawaii's and Blueprint's variants, Kawaii's
-  accent), they stay visible; otherwise, no switcher is shown at all.
+- **A single theme**: the list goes away. If the theme has options (Kawaii's, Blueprint's and Minitel's variants,
+  Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
 - **Default theme**: DBHub if installed, otherwise the first one in the list.
 
 ### Usage
 
-- Pick a theme from the list in the top right corner. For Kawaii and Blueprint, the swatches switch variants; for
+- Pick a theme from the list in the top right corner. For Kawaii, Blueprint and Minitel, the swatches switch variants; for
   Kawaii, the color picker also sets the accent color.
 - The choice is per browser. The default theme is set with `DEFAULT_THEME` in `theme/switcher.js`.
 
@@ -373,6 +501,8 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
      icon: '<rect width="32" height="32" rx="6" fill="#c0392b"/>'   // optional: content of a 32 × 32 SVG
    };
    ```
+
+3. Optional: add it to the README screenshots with `node scripts/screenshots.js christmas` (see Development).
 
 The plugin loads every `.css` and `.js` file in the `theme/` folder on its own.
 
@@ -391,9 +521,26 @@ docker compose up --build
 Open http://127.0.0.1:8080 and log in with server `db`, user `root`, password `kawaii` and database `boutique_kawaii`
 (demo data). `theme/` and `plugins-enabled/` are mounted into the container: just reload the page after a change.
 
+The README screenshots are rebuilt with `scripts/screenshots.js`, with the development environment running. It needs
+Node 18 or later, Playwright and ffmpeg (with libwebp):
+
+```sh
+npm install --no-save playwright && npx playwright install chromium
+node scripts/screenshots.js christmas    # a single theme; with no argument, every theme
+```
+
+For each theme, the script saves the data page to `docs/screenshots/` and, if the theme stages it, the login page.
+It then rebuilds the README galleries, in the order of the themes table. Rendering is reproducible: running the
+script again only changes the images of the themes that changed.
+
 ### Trademarks and license
 
-- Netscape, GitLab and the other names mentioned are trademarks of their respective owners. These themes are
-  unofficial nods, not affiliated with or endorsed by them.
-- This project is released under the [MIT](LICENSE) license.
+- Netscape, GitLab, Minitel and the other names mentioned are trademarks of their respective owners. These themes
+  are unofficial nods, not affiliated with or endorsed by them.
+- Embedded fonts: `bbs.css` contains a subset of WebPlus IBM VGA 9x16 by VileR
+  ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), licensed under
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), which still applies to it; `minitel.css` contains the
+  Minitel font by Frédéric Bisson ([minitel-canvas](https://github.com/zigazou/minitel-canvas)), in the public domain
+  (CC0 1.0).
+- The rest of the project is released under the [MIT](LICENSE) license.
 - Adminer, which is not included here, is © Jakub Vrána, licensed under Apache 2.0 or GPL 2.0.

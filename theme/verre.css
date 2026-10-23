@@ -1,0 +1,284 @@
+/* ===== Thème Verre =====
+   Verre dépoli façon visionOS : deux fenêtres de verre (menu et contenu), floues et translucides, aux arêtes lumineuses,
+   flottent au-dessus d'une aurore boréale violet-turquoise qui ondule lentement dans un ciel de nuit. Dans les fenêtres,
+   tableaux, cartes et boutons sont des plateaux à peine éclairés, sans second flou. Tout en CSS, sans image ni police.
+   Lisibilité : le verre assombrit ce qu'il floute (brightness dans backdrop-filter), pour que le texte reste contrasté
+   même quand le voile le plus lumineux de l'aurore passe derrière. Sans flou possible, ou si le système demande moins de
+   transparence, le verre devient presque opaque. */
+
+:root[data-theme="verre"] {
+  --bg: #070a20; --surface: rgb(255 255 255 / .06); --surface-2: rgb(255 255 255 / .11);
+  --text: #f5f7ff; --muted: #ccd2ec; --border: rgb(255 255 255 / .12);
+  --accent: #5eead4; --on-accent: #042f2a; --accent-text: #86f3e4;
+  --ok: #6ee7b7; --err: #fb7185; --on-err: #2a0710;
+  --jush-str: #a7f3d0; --jush-num: #f5b4fb; --jush-id: #b4ccff;
+  --shadow: none;
+  color-scheme: dark;
+
+  --radius: 16px; --radius-sm: 11px; --pill: 999px;
+  --pad-y: 3px;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --h2-border: 0;
+  --e-table: "";
+
+  --th-bg: transparent; --th-text: var(--muted);
+  --zebra: transparent;
+  --row-hover: rgb(255 255 255 / .08);
+  --lit: rgb(0 0 0 / .26);
+  --dim: rgb(255 255 255 / .11);
+
+  /* verre des fenêtres : flou qui assombrit, reflet en biais, arête haute, ombre portée, liseré lumineux (--rim) */
+  --frost: blur(24px) saturate(170%) brightness(.62);
+  --sheen: linear-gradient(155deg, rgb(255 255 255 / .11), rgb(255 255 255 / .03) 42%, rgb(255 255 255 / .05));
+  --edge: inset 0 1px 0 rgb(255 255 255 / .22);
+  --lift: 0 30px 70px -24px rgb(0 0 0 / .7);
+  --rim: linear-gradient(160deg, rgb(255 255 255 / .55), rgb(255 255 255 / .14) 28%, rgb(255 255 255 / .05) 60%, rgb(255 255 255 / .28));
+  /* pastilles posées sur l'aurore (langue, utilisateur, sélecteur) : teinte sombre en plus du flou */
+  --float: rgb(10 12 34 / .42);
+  /* dans les fenêtres : plateaux, pastilles, champs creusés, lignes cochées (violet de l'aurore) */
+  --platter: rgb(255 255 255 / .055);
+  --platter-edge: inset 0 1px 0 rgb(255 255 255 / .10);
+  --chip: rgb(255 255 255 / .11);
+  --chip-edge: inset 0 1px 0 rgb(255 255 255 / .20);
+  --well: rgb(0 0 0 / .26);
+  --sel: rgb(139 92 246 / .30);
+  --ink: #0b1030;   /* texte sur pastille blanche (survol, sélection) */
+
+  /* ciel de nuit étoilé ; l'aurore est sur ::before et ::after de la racine */
+  --bg-pattern:
+    radial-gradient(1px 1px at 23px 41px, rgb(255 255 255 / .8), transparent),
+    radial-gradient(1px 1px at 131px 87px, rgb(255 255 255 / .5), transparent),
+    radial-gradient(1.5px 1.5px at 197px 163px, rgb(255 255 255 / .7), transparent),
+    radial-gradient(1px 1px at 61px 199px, rgb(255 255 255 / .45), transparent),
+    linear-gradient(#04061a, #0a0f2e 55%, #150b33);
+  --bg-size: 240px 240px, 240px 240px, 240px 240px, 240px 240px, 100% 100%;
+}
+
+/* ---------- Aurore : deux voiles flous, découpés en rideaux, qui dérivent lentement en sens contraire ---------- */
+/* seule la transformation est animée : le flou de chaque voile est calculé une fois, le compositeur le déplace */
+:root[data-theme="verre"]::before, :root[data-theme="verre"]::after {
+  content: ""; position: fixed; inset: -20vmax; z-index: -1; pointer-events: none; mix-blend-mode: screen; will-change: transform;
+}
+:root[data-theme="verre"]::before {
+  background:
+    radial-gradient(42% 16% at 28% 40%, rgb(45 212 191 / .80), transparent 70%),
+    radial-gradient(30% 12% at 50% 33%, rgb(34 211 238 / .55), transparent 70%),
+    radial-gradient(40% 18% at 70% 44%, rgb(168 85 247 / .75), transparent 70%);
+  filter: blur(36px);
+  -webkit-mask-image: repeating-linear-gradient(98deg, #000 0 2%, rgb(0 0 0 / .45) 3.5%, #000 5.5%);
+  mask-image: repeating-linear-gradient(98deg, #000 0 2%, rgb(0 0 0 / .45) 3.5%, #000 5.5%);
+  transform: rotate(-10deg);
+  animation: verre-aurore-a 46s ease-in-out infinite alternate;
+}
+:root[data-theme="verre"]::after {
+  background:
+    radial-gradient(34% 14% at 62% 26%, rgb(217 70 239 / .45), transparent 70%),
+    radial-gradient(38% 15% at 36% 58%, rgb(94 234 212 / .40), transparent 70%);
+  filter: blur(48px);
+  transform: rotate(8deg);
+  animation: verre-aurore-b 63s ease-in-out infinite alternate;
+}
+@keyframes verre-aurore-a { to { transform: rotate(-4deg) translate(6vw, 3vh) scale(1.08); } }
+@keyframes verre-aurore-b { to { transform: rotate(2deg) translate(-7vw, -2vh) scale(1.12); } }
+
+/* ---------- Fenêtres de verre : menu et contenu ---------- */
+:root[data-theme="verre"] :is(#menu, #content) {
+  background: var(--sheen); -webkit-backdrop-filter: var(--frost); backdrop-filter: var(--frost);
+  border: 0; box-shadow: var(--edge), var(--lift);
+}
+/* liseré lumineux, plus vif en haut à gauche et en bas à droite : dégradé limité au bord par un masque */
+:root[data-theme="verre"] :is(#menu, #content)::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: var(--rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* margin-inline-start (21em) reste celui d'Adminer : seules les autres marges changent */
+:root[data-theme="verre"] #content {
+  position: relative; border-radius: 30px; margin-top: 48px; margin-right: 14px; margin-bottom: 14px; padding: 18px 24px 20px;
+}
+:root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 54px; }
+:root[data-theme="verre"] #menu { border-radius: 28px; margin: 22px 0 0 14px; padding: 12px 10px 16px; }
+
+/* ---------- Barre du haut : langue et utilisateur en pastilles de verre sur l'aurore ---------- */
+:root[data-theme="verre"] :is(#lang, .logout) {
+  background: var(--float); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
+  border-radius: var(--pill); box-shadow: var(--edge), 0 10px 30px -12px rgb(0 0 0 / .7); color: var(--muted);
+}
+:root[data-theme="verre"] #lang { padding: 3px 4px 3px 12px; }
+:root[data-theme="verre"] .logout { top: 8px; right: 14px; margin: 0; padding: 3px 4px 3px 14px; }
+/* fil d'Ariane : pastille dans l'en-tête de la fenêtre de contenu (Adminer le place en absolu, ici par rapport à elle) */
+:root[data-theme="verre"] #breadcrumb {
+  top: 16px; left: 24px; height: auto; margin: 0; padding: 2px 12px; line-height: 20px;
+  background: var(--chip); border-radius: var(--pill); box-shadow: var(--chip-edge); color: var(--muted);
+}
+:root[data-theme="verre"] #breadcrumb a { color: var(--text); }
+:root[data-theme="verre"] #breadcrumb a:hover { color: var(--accent-text); }
+
+/* ---------- Titres et liens ---------- */
+:root[data-theme="verre"] h2 { font-weight: 700; font-size: 1.6em; letter-spacing: -.015em; padding: 0; margin-bottom: 12px; }
+:root[data-theme="verre"] h3 { font-weight: 650; }
+:root[data-theme="verre"] a:is(:link, :visited) { font-weight: 600; }
+:root[data-theme="verre"] a:is(:link, :visited):hover { color: var(--text); }
+
+/* ---------- Menu : logo en titre de fenêtre, actions et tables en pastilles ---------- */
+:root[data-theme="verre"] #menu h1 { border: 0; margin: 2px 8px 8px; }
+:root[data-theme="verre"] #h1 { font: 700 19px/1.2 var(--font-heading); font-style: normal; letter-spacing: -.01em; color: var(--text); }
+:root[data-theme="verre"] #h1 img { display: none; }
+:root[data-theme="verre"] :is(#menu p, #menu #dbs, #logins, #tables) { border-color: rgb(255 255 255 / .08); }
+:root[data-theme="verre"] #menu p.links a { border: 0; border-radius: var(--pill); background: var(--chip); box-shadow: var(--chip-edge); font-weight: 600; }
+:root[data-theme="verre"] #menu p.links a:is(:hover, .active) { background: #fff; color: var(--ink); }
+:root[data-theme="verre"] #tables::before { color: var(--muted); font-weight: 700; }
+:root[data-theme="verre"] #tables li { border-radius: var(--pill); }
+:root[data-theme="verre"] #tables li:hover { background: rgb(255 255 255 / .08); }
+:root[data-theme="verre"] #tables li:has(a.active) { background: rgb(255 255 255 / .17); box-shadow: var(--chip-edge); }
+:root[data-theme="verre"] #tables a.structure::before { margin-right: 0; }
+:root[data-theme="verre"] #tables a.select { background-color: rgb(255 255 255 / .92); }
+:root[data-theme="verre"] #tables a.select::before { color: var(--ink); }
+
+/* ---------- Pastilles d'action (Select data, Show structure…) ---------- */
+:root[data-theme="verre"] .links a { border: 0; background: var(--chip); padding: 2px 12px; box-shadow: var(--chip-edge); }
+:root[data-theme="verre"] .links a:hover { background: #fff; color: var(--ink); }
+
+/* ---------- Tableaux : plateau dans la fenêtre, filets fins ---------- */
+:root[data-theme="verre"] table { background: var(--platter); border: 0; border-radius: 16px; box-shadow: var(--platter-edge); }
+:root[data-theme="verre"] :is(th, td) { border-bottom-color: rgb(255 255 255 / .07); }
+:root[data-theme="verre"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
+:root[data-theme="verre"] :is(tbody, tfoot) :is(td, th, td.hover) { background: transparent; }
+:root[data-theme="verre"] thead :is(th, td, td.hover) { font-weight: 600; }
+/* en-tête collant : flou des lignes qui passent dessous */
+:root[data-theme="verre"] thead { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+:root[data-theme="verre"] thead :is(th, td, td.hover) { background-color: rgb(8 10 30 / .30); }
+:root[data-theme="verre"].js .checkable .checked :is(td, th, td.hover) { background: var(--sel); }
+/* menu de colonne (tri, recherche) : posé sur l'en-tête, il doit le masquer */
+:root[data-theme="verre"] thead th .column { background: rgb(22 24 56 / .96); border-color: rgb(255 255 255 / .16); }
+
+/* ---------- Champs : creusés dans le verre ---------- */
+:root[data-theme="verre"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea) {
+  background: var(--well); border: 1px solid rgb(255 255 255 / .08); box-shadow: inset 0 1px 3px rgb(0 0 0 / .35); color: var(--text);
+}
+:root[data-theme="verre"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea):focus {
+  border-color: rgb(94 234 212 / .6);
+}
+/* focus clavier : anneau turquoise plutôt que le blanc de base.css, qui doublait le bord du champ */
+:root[data-theme="verre"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:root[data-theme="verre"] option { background: #161a3a; color: var(--text); }
+:root[data-theme="verre"] * { scrollbar-color: rgb(255 255 255 / .35) transparent; }
+
+/* ---------- Boutons : verre clair, blanc au survol comme la sélection de visionOS ---------- */
+:root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  background: var(--chip); color: var(--text); border: 0; font-weight: 600; padding: 3px 14px; box-shadow: var(--chip-edge);
+}
+:root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
+  background: #fff; color: var(--ink); transform: none; filter: none;
+}
+:root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: rgb(255 255 255 / .75); transform: none; }
+/* destructifs : teinte rose, rose plein au survol */
+:root[data-theme="verre"] :is(input[type=submit], input[type=button]):is([name*=delete], [name=drop], [name=truncate]) { background: rgb(251 113 133 / .30); }
+:root[data-theme="verre"] :is(input[type=submit], input[type=button]):is([name*=delete], [name=drop], [name=truncate]):hover { background: var(--err); color: var(--on-err); }
+/* boutons-icônes : carré clair d'Adminer inversé (voir dbhub.css), pictogramme dans la couleur du texte */
+:root[data-theme="verre"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="verre"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Cartes : plateaux, titre discret ; repliées, en pastilles ; ouvertes, titre en lien (blanc au survol) ---------- */
+:root[data-theme="verre"] fieldset { border: 0; background: var(--platter); border-radius: 16px; box-shadow: var(--platter-edge); }
+:root[data-theme="verre"] legend { background: none; color: var(--muted); font-weight: 600; }
+:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 0; background: var(--chip); box-shadow: var(--chip-edge); }
+:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: #fff; }
+:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover :is(a, a::before) { color: var(--ink); }
+:root[data-theme="verre"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background: none; padding: 0 8px; }
+:root[data-theme="verre"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--accent-text); }
+
+/* pied collant (actions, pagination) : barre de verre au-dessus des lignes qui défilent */
+:root[data-theme="verre"] .footer { background: none; box-shadow: none; margin-inline-end: 0; }   /* Adminer l'étire de 20px vers la droite */
+:root[data-theme="verre"] .footer > div {
+  background: rgb(10 12 34 / .45); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  border-radius: 20px; box-shadow: var(--edge); padding: 0 6px 6px;
+}
+
+/* ---------- Messages, aide, code ---------- */
+:root[data-theme="verre"] :is(.message, .error) { border-width: 1px; border-radius: 16px; }
+:root[data-theme="verre"] .message { background: rgb(110 231 183 / .14); border-color: rgb(110 231 183 / .45); }
+:root[data-theme="verre"] .error { background: rgb(251 113 133 / .16); border-color: rgb(251 113 133 / .5); }
+:root[data-theme="verre"] #help { background: rgb(16 18 44 / .95); border: 1px solid rgb(255 255 255 / .16); border-radius: 12px; color: var(--text); }
+:root[data-theme="verre"] code { background: var(--well); border-radius: 6px; }
+:root[data-theme="verre"] :is(pre.jush, textarea.sqlarea, .sqlarea) { border-radius: 14px; }
+
+/* ---------- Schéma de la base : tables en plateaux ---------- */
+:root[data-theme="verre"] #schema .table { background: rgb(18 20 50 / .6); border: 1px solid rgb(255 255 255 / .16); border-radius: 10px; box-shadow: var(--platter-edge); }
+:root[data-theme="verre"] #schema .references div { border-color: rgb(255 255 255 / .45) !important; }
+
+/* ---------- Sélecteur de thème : pastille de verre (page de connexion), fondu dans la barre une fois connecté ---------- */
+:root[data-theme="verre"] #kawaii-switcher {
+  background: var(--float); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
+  border: 0; border-radius: var(--pill); box-shadow: var(--edge), 0 10px 30px -12px rgb(0 0 0 / .7);
+}
+:root[data-theme="verre"] #kawaii-switcher.in-bar { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; }
+
+/* ---------- Page de connexion : une seule fenêtre de verre au milieu de l'aurore ---------- */
+/* Repérée par le champ mot de passe. La grille centre le logo (#foot) puis le formulaire (#content) ; body::before,
+   étalé sur les deux lignes, est la fenêtre de verre, body::after son liseré lumineux. Le flou fait de la fenêtre un
+   contexte d'empilement, peint après les blocs ordinaires : logo et formulaire passent devant elle (z-index). */
+:root[data-theme="verre"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(380px, 100%); justify-content: center; align-content: center;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 64px 16px;
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) body::before,
+:root[data-theme="verre"]:has(input[name="auth[password]"]) body::after { content: ""; grid-area: 1 / 1 / 3 / 2; border-radius: 36px; pointer-events: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) body::before {
+  background: var(--sheen); -webkit-backdrop-filter: var(--frost); backdrop-filter: var(--frost); box-shadow: var(--edge), var(--lift);
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) body::after {
+  padding: 1px; background: var(--rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #foot { grid-area: 1 / 1; position: relative; top: 0; z-index: 1; display: block; padding: 30px 32px 0; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #menu {
+  position: static; width: auto; min-width: 0; margin: 0; padding: 0; background: none; box-shadow: none; border: 0;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #menu::before { content: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #menu h1 { margin: 0; text-align: center; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #h1 { font-size: 15px; font-weight: 600; color: var(--muted); }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #lang { position: fixed; top: 8px; left: 14px; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content {
+  grid-area: 2 / 1; position: relative; z-index: 1; margin: 0 !important; padding: 4px 32px 30px;
+  background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content::before { content: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content > h2 { text-align: center; font-size: 2em; margin: 0 0 18px; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; background: none; box-shadow: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) table.layout :is(th, td) { display: block; padding: 0; border: 0; background: none; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) table.layout th { margin: 10px 6px 5px; color: var(--muted); font-weight: 600; }
+/* même :is() que la règle générale des champs, pour passer devant elle */
+:root[data-theme="verre"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; min-height: 36px; padding: 4px 12px; border-radius: 14px; font-size: 14px;
+}
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 22px 0 0; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { order: 2; padding: 8px 28px; font-size: 14px; }
+:root[data-theme="verre"]:has(input[name="auth[password]"]) #content form > p label { color: var(--muted); cursor: pointer; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="verre"] #content { margin-top: 52px; margin-right: 10px; padding: 14px 14px 16px; border-radius: 24px; }
+  :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 48px; }
+  :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; max-width: calc(100% - 28px); overflow: hidden; text-overflow: ellipsis; }
+  /* menu ouvert : fenêtre de verre posée sur la page (Adminer lui donne un fond, un cadre et une ombre opaques) */
+  :root[data-theme="verre"] #menu { position: relative; margin: 9px 10px 0; background: rgb(14 16 42 / .55); border: 0; box-shadow: var(--edge), var(--lift); border-radius: 24px; }
+  :root[data-theme="verre"] .js #foot .logout { background: var(--float); box-shadow: var(--edge); margin: 0 10px; border-radius: var(--pill); }
+}
+@media (max-width: 600px) {
+  :root[data-theme="verre"]:has(input[name="auth[password]"]) body { grid-template-columns: 100%; padding: 56px 10px 24px; }
+  :root[data-theme="verre"]:has(input[name="auth[password]"]) :is(#foot, #content) { padding-inline: 20px; }
+}
+
+/* ---------- Sans flou possible, ou transparence réduite à la demande du système : verre presque opaque ---------- */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root[data-theme="verre"] { --sheen: linear-gradient(rgb(16 18 46 / .92), rgb(16 18 46 / .92)); --float: rgb(16 18 46 / .92); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root[data-theme="verre"] { --sheen: linear-gradient(rgb(16 18 46 / .94), rgb(16 18 46 / .94)); --float: rgb(16 18 46 / .94); }
+}
