@@ -119,7 +119,7 @@
 /* sélecteur de thème : liste à contour, sans cadre autour */
 :root[data-theme="gmail"] #kawaii-switcher { top: 14px; padding: 0; font-size: 14px; border: 0; border-radius: 0; background: none; box-shadow: none; }
 :root[data-theme="gmail"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
-:root[data-theme="gmail"] #kawaii-switcher select.theme { font-weight: 500; }
+:root[data-theme="gmail"] #kawaii-switcher button.theme { font-weight: 500; }
 
 /* ---------- Colonne de gauche : logo, « Nouveau message », dossiers, base, libellés, langue ---------- */
 /* p.links s'efface (display: contents) : ses liens se rangent un à un, la base de données s'intercale après le premier */
@@ -203,7 +203,7 @@
 :root[data-theme="gmail"] #menu .message { margin: 4px 16px 0 26px; padding: 0; border: 0; background: none; box-shadow: none; color: var(--muted); }
 
 /* ---------- Panneau central ---------- */
-:root[data-theme="gmail"] #content { box-sizing: border-box; padding: 4px 16px 16px; background: var(--surface); border-radius: 16px; }
+:root[data-theme="gmail"] #content { box-sizing: border-box; padding: 4px 16px 16px; background: var(--surface); border-radius: 16px; --content-end: 16px; }
 
 /* liens d'action : onglets façon catégories (Principale, Promotions…) quand l'un est la page courante, sinon boutons */
 :root[data-theme="gmail"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -214,6 +214,7 @@
 :root[data-theme="gmail"] #content .links a:hover { background: rgb(11 87 208 / .08); color: var(--accent); text-decoration: none; }
 :root[data-theme="gmail"] #content .links:has(a.active) {
   flex-wrap: nowrap; gap: 0; margin: 0 -16px 4px; padding: 0 8px; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none;
+  contain: inline-size;   /* les onglets défilent dans la barre : sans quoi la page (min-width: fit-content chez Adminer) s'élargit à leur mesure */
 }
 :root[data-theme="gmail"] #content .links:has(a.active) a {
   position: relative; display: flex; align-items: center; gap: 14px; flex: 0 1 220px; min-width: max-content; height: 48px; box-sizing: border-box;
@@ -249,7 +250,7 @@
 :root[data-theme="gmail"].js .checkable .checked :is(td, th, td.hover),
 :root[data-theme="gmail"].js .checkable .checked:hover :is(td, th, td.hover) { background: var(--checked); }
 /* listes pleine largeur, d'un bord à l'autre du panneau, comme la boîte de réception */
-:root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -16px; }
+:root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -16px; --content-end: 0px; }   /* déjà au bord : rien à mordre */
 :root[data-theme="gmail"] #content .scrollable > .checkable { width: 100%; }
 /* case à cocher en tête de ligne, crayon « edit » à sa droite (à la place de l'étoile) */
 :root[data-theme="gmail"] :is(td, th).check { width: 1%; padding-inline: 12px 8px; text-align: start; }
@@ -441,7 +442,7 @@
 
 /* ---------- Mobile : barre de recherche en haut, menu en tiroir, comme l'application ---------- */
 @media (max-width: 800px) {
-  :root[data-theme="gmail"] #content { margin: var(--bar-h) 8px 8px; margin-inline-start: 8px !important; padding: 4px 12px 12px; }
+  :root[data-theme="gmail"] #content { margin: var(--bar-h) 8px 8px; margin-inline-start: 8px !important; padding: 4px 12px 12px; --content-end: 12px; }
   :root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -12px; }
   :root[data-theme="gmail"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case : le crayon s'y repère */
   :root[data-theme="gmail"] #breadcrumb { top: 8px; left: 8px !important; right: 8px; padding-left: 56px; }

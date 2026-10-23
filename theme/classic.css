@@ -118,7 +118,7 @@
 /* ---------- Barre du haut (écran large) : titre gris à gauche, fil d'Ariane, utilisateur à droite ---------- */
 @media not all and (max-width: 800px) {
   :root[data-theme="classic"] #menu { top: 0; width: var(--side); }
-  :root[data-theme="classic"] #content { margin: var(--bar) 0 0 var(--side); padding: 0 32px 32px; }
+  :root[data-theme="classic"] #content { margin: var(--bar) 0 0 var(--side); padding: 0 32px 32px; --content-end: 32px; }
   :root[data-theme="classic"] #content > h2 { margin: 0 -32px 20px; padding: 13px 32px 12px; }
   :root[data-theme="classic"] #breadcrumb { left: var(--side); right: 0; padding: 0 380px 0 32px; border-left: 1px solid var(--filet); }
   :root[data-theme="classic"] .logout {
@@ -136,7 +136,7 @@
 /* sélecteur de thème : une liste comme les autres, sans cadre autour */
 :root[data-theme="classic"] #kawaii-switcher { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 12px; }
 :root[data-theme="classic"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
-:root[data-theme="classic"] #kawaii-switcher select.theme { font-weight: 400; }
+:root[data-theme="classic"] #kawaii-switcher button.theme { font-weight: 400; }
 
 /* ---------- Titre de page : le bandeau lavande et son filet ---------- */
 :root[data-theme="classic"] h2 {
@@ -362,7 +362,7 @@
 /* ---------- Mobile : la barre ne garde que le fil d'Ariane et le bouton du menu ; menu en volet ---------- */
 @media (max-width: 800px) {
   :root[data-theme="classic"] { --bg-pattern: none; }
-  :root[data-theme="classic"] #content { margin: var(--bar) 0 0; margin-inline-start: 0 !important; padding: 0 12px 24px; }
+  :root[data-theme="classic"] #content { margin: var(--bar) 0 0; margin-inline-start: 0 !important; padding: 0 12px 24px; --content-end: 12px; }
   :root[data-theme="classic"] #content > h2 { margin: 0 -12px 16px; padding: 12px; }
   :root[data-theme="classic"] #breadcrumb { left: 0 !important; right: 0; padding: 0 12px 0 52px; }
   :root[data-theme="classic"].js #menuopen { top: 13px; left: 14px; z-index: 4; }   /* au-dessus du fil d'Ariane, pleine largeur */

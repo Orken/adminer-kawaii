@@ -1,0 +1,515 @@
+/* ===== Thème Adminit (2 variantes) =====
+   Actif quand <html data-theme="adminit">. Variante : data-variant = clair (défaut) | sombre. Adminer présenté comme
+   Reddit (clin d'œil non officiel, sans le Snoo ni le logo de Reddit) :
+   - en-tête blanc à filet : logo « adminit », fil d'Ariane en recherche en pilule, sélecteur de thème, déconnexion et
+     avatar (pastille verte « en ligne ») ;
+   - à gauche, le menu de navigation : les actions du menu en entrées à icône, les tables en communautés « r/ », chacune
+     avec son icône ronde de couleur ;
+   - chaque page en communauté : bannière à flèches de vote, icône ronde qui la chevauche et grand titre ; les liens de la
+     table en onglets de profil, les filtres en boutons gris à chevron ;
+   - les cases qui sélectionnent les lignes deviennent des flèches de vote : grises, orange au survol, pastille orange une
+     fois cochées (la ligne votée se teinte) ;
+   - les messages de succès en commentaire d'AutoModerator ; la connexion en page « Créer une publication » (champs
+     arrondis à étiquette intégrée, interrupteur, bouton bleu), qui n'imite pas la connexion de Reddit.
+   Pas de police embarquée : Reddit Sans ou IBM Plex Sans si elles sont installées, sinon celles du système. */
+
+/* ---------- Variables : clair (variante par défaut) ---------- */
+:root[data-theme="adminit"] {
+  --page: #ffffff; --hover: #f6f8f9; --tone: #e5ebee; --tone-hover: #d9e2e7; --tone-active: #c9d4da;
+  --strong: #0f1a1c; --soft: #333d42; --weak: #576f76; --line: #e0e6e9; --field-line: #8ba2ad;
+  --brand: #ff4500; --upvote: #d93900; --voted: rgb(217 57 0 / .08);
+  --blue: #0045ac; --blue-hover: #003a92; --link: #0045ac;
+  --mod: #008a10; --danger: #c4001a; --danger-subtle: #fff0f1;
+  --card-shadow: 0 2px 8px rgb(15 26 28 / .12), 0 0 0 1px rgb(15 26 28 / .06);
+
+  --bg: var(--page); --surface: var(--page); --surface-2: var(--hover); --text: var(--strong); --muted: var(--weak); --border: var(--line);
+  --accent: var(--blue); --on-accent: #ffffff; --accent-text: var(--link);
+  --ok: var(--mod); --err: var(--danger); --on-err: #ffffff;
+  --jush-str: #0a7f3f; --jush-num: #8132d6; --jush-id: #b04500;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 16px; --radius-sm: 8px; --pill: 999px;
+  --fs: 14px; --pad-y: 6px; --pad-x: 12px;
+  --font: "Reddit Sans", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: var(--font);
+  --font-mono: "Reddit Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --h2-border: 0;
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  --th-bg: var(--page); --th-text: var(--weak);
+  --zebra: var(--page); --row-hover: var(--hover);
+  --lit: var(--hover); --dim: var(--tone);
+
+  --hdr: 56px;                                   /* en-tête */
+  --side: 272px;                                 /* menu de navigation */
+  --banner-h: 80px; --avatar: 72px;              /* bannière et icône de la communauté (titre de page) */
+
+  /* pictogrammes (masques, peints dans la couleur du texte) */
+  --i-code: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2.75' y='3.75' width='14.5' height='12.5' rx='2.5'/%3E%3Cpath d='m6 8 2.5 2L6 12M10.5 12.5H14'/%3E%3C/svg%3E");
+  --i-import: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 3v9M6.5 8.75 10 12.25l3.5-3.5M3.75 13.5v1.75c0 .83.67 1.5 1.5 1.5h9.5c.83 0 1.5-.67 1.5-1.5V13.5'/%3E%3C/svg%3E");
+  --i-share: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 12.5V3.25M6.5 6.5 10 3l3.5 3.5M3.75 11v4.25c0 .83.67 1.5 1.5 1.5h9.5c.83 0 1.5-.67 1.5-1.5V11'/%3E%3C/svg%3E");
+  --i-create: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='7.25'/%3E%3Cpath d='M10 6.5v7M6.5 10h7'/%3E%3C/svg%3E");
+  --i-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='8.75' cy='8.75' r='5.5'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E");
+  --i-list: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M7 5.5h9.5M7 10h9.5M7 14.5h9.5M3.5 5.5h.01M3.5 10h.01M3.5 14.5h.01'/%3E%3C/svg%3E");
+  --i-pencil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M12.75 3.5 16.5 7.25l-9 9H3.75V12.5zM11 5.25 14.75 9'/%3E%3C/svg%3E");
+  --i-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.5 8 4.5 4.5L14.5 8'/%3E%3C/svg%3E");
+  --i-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.5 12.5 4.5-4.5 4.5 4.5'/%3E%3C/svg%3E");
+  --i-alert: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7.25'/%3E%3Cpath d='M10 6.25v4.5M10 13.5v.01'/%3E%3C/svg%3E");
+  --i-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3.5 5.5h13M3.5 10h13M3.5 14.5h13'/%3E%3C/svg%3E");
+  /* logo : disque orange marqué d'une pile de base de données (pas le Snoo) */
+  --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23ff4500'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.2'%3E%3Cellipse cx='16' cy='10' rx='7' ry='2.75'/%3E%3Cpath d='M9 10v12c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75V10M9 16c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75'/%3E%3C/g%3E%3C/svg%3E");
+  /* flèches de vote (cases à cocher des lignes) : contour gris, contour orange au survol, pleine et blanche une fois votée */
+  --up-off: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3.25 3.5 10.5h3.75v6.25h5.5V10.5h3.75z' fill='none' stroke='%23576f76' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --up-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3.25 3.5 10.5h3.75v6.25h5.5V10.5h3.75z' fill='none' stroke='%23d93900' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --up-on: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3.25 3.5 10.5h3.75v6.25h5.5V10.5h3.75z' fill='%23fff' stroke='%23fff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  /* avatar de l'utilisateur : silhouette sur disque gris, pastille verte « en ligne » cerclée de la couleur de l'en-tête */
+  --me: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3CclipPath id='c'%3E%3Ccircle cx='16' cy='16' r='16'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23c)'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23dbe4e9'/%3E%3Ccircle cx='16' cy='12.5' r='5.5' fill='%23576f76'/%3E%3Cellipse cx='16' cy='29' rx='10.5' ry='8.5' fill='%23576f76'/%3E%3C/g%3E%3Ccircle cx='27' cy='27' r='4.25' fill='%2301a816' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E");
+  /* bannière de communauté : flèches de vote en filigrane sur un dégradé orange */
+  --banner-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.22' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M14 5 6 14h4.5v8h7v-8H22z'/%3E%3Cpath d='M42 33l-8 9h4.5v8h7v-8H50z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 56px 56px,
+    linear-gradient(100deg, #ff4500, #ff6d3a 55%, #ffa25e);
+
+  /* filet vertical du menu de navigation, de haut en bas de la page */
+  --bg-pattern: linear-gradient(var(--line), var(--line)); --bg-size: 1px 100%; --bg-pos: calc(var(--side) - 1px) 0;
+  background-repeat: no-repeat; background-attachment: scroll;
+}
+
+/* ---------- Variante sombre ---------- */
+:root[data-theme="adminit"][data-variant="sombre"] {
+  --page: #0e1113; --hover: #181c1f; --tone: #2a3236; --tone-hover: #333d42; --tone-active: #3e4a50;
+  --strong: #f2f4f5; --soft: #b7cad4; --weak: #8ba2ad; --line: #262d31; --field-line: #576f76;
+  --upvote: #ff4500; --voted: rgb(255 69 0 / .12);
+  --blue: #115bca; --blue-hover: #1870f4; --link: #648efc;
+  --mod: #2fbf40; --danger: #ff6b7a; --danger-subtle: #2b1418;
+  --card-shadow: 0 2px 12px rgb(0 0 0 / .5), 0 0 0 1px rgb(255 255 255 / .08);
+  --jush-str: #4fd18b; --jush-num: #c79bff; --jush-id: #ffa25e;
+  color-scheme: dark;
+  --up-off: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3.25 3.5 10.5h3.75v6.25h5.5V10.5h3.75z' fill='none' stroke='%238ba2ad' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --up-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3.25 3.5 10.5h3.75v6.25h5.5V10.5h3.75z' fill='none' stroke='%23ff4500' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --me: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3CclipPath id='c'%3E%3Ccircle cx='16' cy='16' r='16'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23c)'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23333d42'/%3E%3Ccircle cx='16' cy='12.5' r='5.5' fill='%238ba2ad'/%3E%3Cellipse cx='16' cy='29' rx='10.5' ry='8.5' fill='%238ba2ad'/%3E%3C/g%3E%3Ccircle cx='27' cy='27' r='4.25' fill='%2301a816' stroke='%230e1113' stroke-width='2'/%3E%3C/svg%3E");
+}
+/* (l'orange de la flèche votée reste lisible sous le blanc : #d93900 dans les deux variantes) */
+:root[data-theme="adminit"][data-variant="sombre"] .checkable input[type=checkbox]:checked { background-color: #d93900; }
+
+:root[data-theme="adminit"] * { scrollbar-color: var(--tone-active) transparent; }
+:root[data-theme="adminit"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* ---------- Page : titres très gras, liens bleus ---------- */
+:root[data-theme="adminit"] body { font: 400 var(--fs)/20px var(--font); }
+:root[data-theme="adminit"] h2 { margin: 0 0 16px; padding: 0; color: var(--strong); font: 700 24px/32px var(--font-heading); }
+:root[data-theme="adminit"] h3 { margin: 24px 0 8px; font: 700 16px/24px var(--font-heading); }
+:root[data-theme="adminit"] a:is(:link, :visited) { color: var(--link); font-weight: 400; }
+:root[data-theme="adminit"] a:is(:link, :visited):hover { color: var(--link); text-decoration: underline; }
+:root[data-theme="adminit"] code { padding: 1px 6px; border-radius: 4px; background: var(--tone); color: var(--strong); font-size: 13px; }
+:root[data-theme="adminit"] pre.jush { padding: 12px 16px; border-radius: 8px; background: var(--hover); }
+/* requête exécutée (pre > code) : bloc de code d'un commentaire */
+:root[data-theme="adminit"] pre > code { display: block; padding: 8px 12px; border-radius: 8px; background: var(--hover); box-shadow: inset 0 0 0 1px var(--line); }
+:root[data-theme="adminit"] hr { border: 0; border-top: 1px solid var(--line); }
+:root[data-theme="adminit"] mark { background: rgb(255 69 0 / .25); color: var(--strong); }
+:root[data-theme="adminit"] .time { color: var(--weak); font-size: 12px; }
+
+/* ---------- En-tête : bandeau blanc à filet, peint par body::before (fixe une fois connecté sur ordinateur) ---------- */
+:root[data-theme="adminit"] body::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; z-index: 2; height: var(--hdr); pointer-events: none;
+  background: linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat, var(--page);
+}
+@media not all and (max-width: 800px) {
+  :root[data-theme="adminit"] #menu { top: var(--hdr); width: var(--side); }
+  :root[data-theme="adminit"] #content { margin: var(--hdr) 0 0 var(--side); padding: 16px 24px 24px; --content-end: 24px; }
+  /* recherche en pilule : centrée sur la page dès que la place le permet, jamais sous le menu ni sous le compte */
+  :root[data-theme="adminit"] #breadcrumb { top: 8px; left: max(calc(var(--side) + 16px), calc(50% - 300px)); right: 420px; max-width: 600px; }
+  :root[data-theme="adminit"] .logout {
+    top: 0; right: 0; height: var(--hdr); box-sizing: border-box; margin: 0; padding: 0 16px 0 8px;
+    display: flex; align-items: center; gap: 8px; background: none; box-shadow: none;
+  }
+  /* logo dans l'en-tête, au-dessus du menu (placé par rapport à lui) */
+  :root[data-theme="adminit"] #menu h1 { position: absolute; top: calc(-1 * var(--hdr)); left: 16px; height: var(--hdr); }
+  /* en-tête fixe une fois connecté : le menu ne bouge pas quand la page défile, son logo non plus ; l'en-tête entier reste
+     donc en place et le contenu passe dessous (au-dessus de l'en-tête collant des tableaux, z-index 1) */
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) { scroll-padding-top: var(--hdr); }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) body::before { position: fixed; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) :is(#breadcrumb, .logout) { position: fixed; z-index: 3; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #menu { z-index: 3; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) :is(thead, #ajaxstatus.sticky) { top: var(--hdr); }
+}
+:root[data-theme="adminit"] #breadcrumb {
+  height: 40px; box-sizing: border-box; margin: 0; padding: 0 16px 0 44px; border-radius: 999px;
+  background: var(--tone); color: var(--weak); font: 400 14px/40px var(--font); overflow: hidden; text-overflow: ellipsis;
+}
+:root[data-theme="adminit"] #breadcrumb::before {
+  content: ""; position: absolute; left: 16px; top: 10px; width: 20px; height: 20px; background-color: var(--soft); mask: var(--i-search) center / 20px no-repeat;
+}
+:root[data-theme="adminit"] #breadcrumb a:is(:link, :visited) { color: var(--soft); }
+:root[data-theme="adminit"] #breadcrumb a:is(:link, :visited):hover { color: var(--strong); }
+
+/* utilisateur : avatar rond (le nom reste dans le texte, lu par les lecteurs d'écran) */
+:root[data-theme="adminit"] .logout span[title=Username] {
+  order: 3; flex: none; width: 32px; height: 32px; overflow: hidden; font-size: 0; background: var(--me) center / 32px no-repeat;
+}
+:root[data-theme="adminit"] .logout #logout { order: 2; }
+
+/* sélecteur de thème : liste comme les autres, sans cadre autour */
+:root[data-theme="adminit"] #kawaii-switcher { top: 12px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 14px; }
+:root[data-theme="adminit"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
+:root[data-theme="adminit"] #kawaii-switcher button.theme { font-weight: 600; }
+
+/* ---------- Menu de navigation : entrées à icône, communautés, langue en pied ---------- */
+:root[data-theme="adminit"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 16px;
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="adminit"] #menu > * { order: 4; }
+:root[data-theme="adminit"] #menu > h1 { order: 0; }
+:root[data-theme="adminit"] #menu > p.links { order: 1; }
+:root[data-theme="adminit"] #menu > form:has(#dbs) { order: 2; }
+:root[data-theme="adminit"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="adminit"] #menu :is(p, #dbs, #logins, #tables) { border: 0; }
+:root[data-theme="adminit"] #menu a:hover { background: none; text-decoration: none; }
+
+/* logo : disque orange et mot « adminit » orange en minuscules grasses (le texte « Adminer » reste lu), version discrète */
+:root[data-theme="adminit"] #menu h1 { display: flex; align-items: center; gap: 8px; box-sizing: border-box; margin: 0; padding: 0; border: 0; }
+:root[data-theme="adminit"] #h1 {
+  display: inline-flex; align-items: center; height: 32px; padding-left: 40px; background: var(--logo) left center / 32px no-repeat;
+  color: var(--brand); font: 800 0/32px var(--font); font-style: normal;
+}
+:root[data-theme="adminit"] #h1::after { content: "adminit"; font-size: 24px; letter-spacing: -.04em; }
+:root[data-theme="adminit"] #h1 img { display: none; }
+:root[data-theme="adminit"] #menu #h1:hover { color: var(--brand); text-decoration: none; }
+:root[data-theme="adminit"] #menu .version { margin-top: 6px; color: var(--weak); font: 400 11px/1 var(--font); }
+
+/* actions du menu : entrées de 40px à icône, l'entrée courante sur fond gris */
+:root[data-theme="adminit"] #menu p.links {
+  display: flex; flex-direction: column; gap: 0; margin: 0 0 12px; padding: 0 0 12px; border-bottom: 1px solid var(--line);
+}
+:root[data-theme="adminit"] #menu p.links a {
+  display: flex; align-items: center; gap: 12px; height: 40px; box-sizing: border-box; padding: 0 16px; border: 0; border-radius: 8px;
+  background: none; color: var(--soft); font: 400 14px/20px var(--font); text-align: left; white-space: nowrap;
+}
+:root[data-theme="adminit"] #menu p.links a::before {
+  content: ""; flex: none; width: 20px; height: 20px; background-color: currentColor; mask: var(--icon, var(--i-create)) center / 20px no-repeat;
+}
+:root[data-theme="adminit"] #menu p.links a[href*="sql="] { --icon: var(--i-code); }
+:root[data-theme="adminit"] #menu p.links a[href*="import="] { --icon: var(--i-import); }
+:root[data-theme="adminit"] #menu p.links a[href*="dump="] { --icon: var(--i-share); }
+:root[data-theme="adminit"] #menu p.links a:hover { background: var(--hover); color: var(--strong); }
+:root[data-theme="adminit"] #menu p.links a.active { background: var(--tone); border-color: transparent; color: var(--strong); font-weight: 600; }
+
+/* intertitres de section en petites capitales grises, comme « COMMUNITIES » */
+:root[data-theme="adminit"] #menu :is(#dbs, #lang) { margin: 0 0 12px; padding: 0; }
+:root[data-theme="adminit"] #menu :is(#dbs, #lang) label { display: flex; align-items: center; gap: 8px; color: var(--weak); font-size: 12px; }
+:root[data-theme="adminit"] #menu :is(#dbs, #lang) select { flex: 1; min-width: 0; }
+:root[data-theme="adminit"] #menu #dbs label { padding-left: 16px; letter-spacing: .06em; text-transform: uppercase; }
+:root[data-theme="adminit"] #menu #lang { position: static; margin: 12px 0 0; padding: 12px 0 0 16px; border-top: 1px solid var(--line); }
+
+/* tables : communautés « r/ », icône ronde de couleur, la courante sur fond gris */
+:root[data-theme="adminit"] #tables { margin: 0; padding: 0; }
+:root[data-theme="adminit"] #tables::before { margin: 0; padding: 8px 16px; color: var(--weak); font: 400 12px/16px var(--font); letter-spacing: .06em; }
+:root[data-theme="adminit"] #tables li { min-height: 40px; margin: 0; padding: 0 8px 0 16px; border-radius: 8px; }
+:root[data-theme="adminit"] #tables li:hover { background: var(--hover); }
+:root[data-theme="adminit"] #tables li:has(a.active) { background: var(--tone); box-shadow: none; }
+:root[data-theme="adminit"] #tables :is(a.structure, a.view) { padding: 4px 0; color: var(--soft); font-weight: 400; }
+:root[data-theme="adminit"] #menu #tables :is(a.structure, a.view):hover { background: none; color: var(--strong); }
+:root[data-theme="adminit"] #tables :is(a.structure, a.view)::before {
+  content: "r/"; display: inline-block; width: 32px; height: 32px; margin-right: 12px; border-radius: 50%; vertical-align: middle;
+  background: var(--community, #d93900); color: #fff; font: 700 13px/32px var(--font); text-align: center; letter-spacing: -.02em;
+}
+:root[data-theme="adminit"] #tables li:nth-child(8n+2) { --community: #0067c6; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+3) { --community: #13832b; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+4) { --community: #c4246f; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+5) { --community: #6b43b5; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+6) { --community: #a35f00; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+7) { --community: #0a7a6e; }
+:root[data-theme="adminit"] #tables li:nth-child(8n+8) { --community: #475a63; }
+:root[data-theme="adminit"] #tables li:has(a.active) :is(a.structure, a.view) { color: var(--strong); font-weight: 600; }
+:root[data-theme="adminit"] #tables a.select { width: 28px; height: 28px; margin: 0; line-height: 28px; border-radius: 50%; background-color: transparent; }
+:root[data-theme="adminit"] #tables a.select::before {
+  content: ""; display: inline-block; width: 18px; height: 18px; vertical-align: middle;
+  background-color: var(--soft); mask: var(--i-list) center / 18px no-repeat;
+}
+:root[data-theme="adminit"] #menu #tables a.select:hover { background-color: var(--tone-hover); }
+:root[data-theme="adminit"] #menu .message { margin: 4px 16px 0; padding: 0; border: 0; background: none; box-shadow: none; color: var(--weak); }
+:root[data-theme="adminit"] #menu .message::before, :root[data-theme="adminit"] #menu .message::after { content: none; }
+
+/* ---------- Titre de page : en-tête de communauté (bannière, icône ronde qui la chevauche, grand titre) ---------- */
+:root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #content > h2 {
+  position: relative; isolation: isolate; min-height: 36px;
+  margin: 0 0 16px; padding: calc(var(--banner-h) + 10px) 0 4px calc(16px + var(--avatar) + 16px); font-size: 28px; line-height: 36px;
+}
+:root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #content > h2::after {
+  content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: var(--banner-h); border-radius: 8px; background: var(--banner-img);
+}
+:root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #content > h2::before {
+  content: ""; position: absolute; left: 16px; top: calc(var(--banner-h) - var(--avatar) / 2); width: var(--avatar); height: var(--avatar);
+  border: 4px solid var(--page); border-radius: 50%; box-sizing: border-box; background: var(--logo) center / cover;
+}
+
+/* ---------- Liens de la table : onglets de profil (avec une page courante), sinon boutons gris ---------- */
+:root[data-theme="adminit"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; }
+:root[data-theme="adminit"] #content .links a {
+  margin: 0; padding: 0 16px; border: 0; border-radius: 999px; background: var(--tone);
+  color: var(--strong); font: 600 14px/36px var(--font);
+}
+:root[data-theme="adminit"] #content .links a:hover { background: var(--tone-hover); color: var(--strong); text-decoration: none; }
+:root[data-theme="adminit"] #content .links:has(a.active) { gap: 4px; margin-bottom: 16px; }
+:root[data-theme="adminit"] #content .links:has(a.active) a { background: none; color: var(--soft); }
+:root[data-theme="adminit"] #content .links:has(a.active) a:hover { background: var(--hover); color: var(--strong); }
+:root[data-theme="adminit"] #content .links:has(a.active) a.active { background: var(--tone-hover); color: var(--strong); }
+
+/* ---------- Tableaux : cadre arrondi à filet, lignes qui grisent au survol ---------- */
+:root[data-theme="adminit"] table { border: 1px solid var(--line); border-radius: 12px; background: var(--page); box-shadow: none; }
+:root[data-theme="adminit"] :is(th, td) { border-bottom: 1px solid var(--line); line-height: 20px; }
+:root[data-theme="adminit"] thead :is(th, td, td.hover) { color: var(--weak); font: 600 12px/20px var(--font); white-space: nowrap; }
+:root[data-theme="adminit"] thead th .column { border-color: var(--line); border-radius: 8px; box-shadow: var(--card-shadow); }
+:root[data-theme="adminit"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: var(--tone); color: var(--strong); }
+:root[data-theme="adminit"] table > :last-child > tr:last-child > :is(th, td) { border-bottom: 0; }   /* le cadre ferme la boîte */
+:root[data-theme="adminit"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
+:root[data-theme="adminit"] #content .scrollable > .checkable { width: 100%; }
+:root[data-theme="adminit"] .checkable tbody td { height: 40px; padding-block: 0; }
+/* ligne votée (cochée) : teinte orange */
+:root[data-theme="adminit"].js .checkable .checked :is(td, th, td.hover),
+:root[data-theme="adminit"].js .checkable .checked:hover :is(td, th, td.hover) { background: linear-gradient(var(--voted), var(--voted)), var(--page); }
+
+/* cases de sélection des lignes : flèches de vote (grise, orange au survol, pastille orange une fois votée) */
+:root[data-theme="adminit"] :is(td, th).check { width: 1%; padding-inline: 12px 8px; text-align: start; }
+:root[data-theme="adminit"] .checkable input[type=checkbox] {
+  appearance: none; flex: none; width: 28px; height: 28px; margin: -4px 0; border: 0; border-radius: 50%; vertical-align: middle;
+  background: var(--up-off) center / 18px no-repeat; cursor: pointer;
+}
+:root[data-theme="adminit"] .checkable input[type=checkbox]:hover { background-image: var(--up-hover); background-color: var(--voted); }
+:root[data-theme="adminit"] .checkable input[type=checkbox]:is(:checked, :indeterminate) { background-image: var(--up-on); background-color: var(--upvote); }
+:root[data-theme="adminit"] .checkable input[type=checkbox]:focus-visible { outline-offset: 0; }
+/* lien « edit » : crayon avant la flèche */
+:root[data-theme="adminit"] td.check a.edit {
+  position: relative; display: inline-block; width: 28px; height: 28px; margin: -4px 4px -4px 0; border-radius: 50%; font-size: 0; vertical-align: middle;
+}
+:root[data-theme="adminit"] td.check a.edit::before {
+  content: ""; position: absolute; inset: 5px; background-color: var(--weak); mask: var(--i-pencil) center / 18px no-repeat;
+}
+:root[data-theme="adminit"] td.check a.edit:hover { background: var(--tone); }
+:root[data-theme="adminit"] td.check a.edit:hover::before { background-color: var(--strong); }
+
+/* ---------- Filtres de la page « Sélectionner » : boutons gris à chevron, champs étiquetés ---------- */
+:root[data-theme="adminit"] form#form:not([method]) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+:root[data-theme="adminit"] form#form:not([method]) > fieldset { margin: 0; }
+:root[data-theme="adminit"] form#form:not([method]) > fieldset:not(:has(> legend a)) { display: flex; align-items: center; gap: 8px; padding: 0 4px 0 0; border: 0; background: none; }
+:root[data-theme="adminit"] form#form:not([method]) > fieldset:not(:has(> legend a)) > legend { float: left; margin: 0; padding: 0 0 0 4px; background: none; color: var(--weak); font-weight: 600; }
+:root[data-theme="adminit"] form#form:not([method]) > fieldset:not(:has(> legend a)) input.size { width: 5.5em; min-width: 0; }
+/* fieldset « Action » : le bouton seul (titre lu par les lecteurs d'écran) */
+:root[data-theme="adminit"] form#form:not([method]) > fieldset:has(input[type=submit]) > legend {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Cartes : cadre arrondi à filet ; repliées, boutons gris à chevron ---------- */
+:root[data-theme="adminit"] fieldset { padding: 6px 16px 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--page); box-shadow: none; }
+:root[data-theme="adminit"] legend { padding: 0 6px; background: none; border-radius: 0; color: var(--strong); font-weight: 600; }
+:root[data-theme="adminit"] fieldset > legend a.toggle::after {
+  content: ""; display: inline-block; width: 18px; height: 18px; margin-left: 4px; vertical-align: -4px;
+  background-color: currentColor; mask: var(--i-up) center / 18px no-repeat;
+}
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  border: 0; border-radius: 999px; background: var(--tone); box-shadow: none; transition: none;
+}
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0 12px 0 16px; color: var(--strong); font-weight: 600; line-height: 32px; }
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: none; }
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a.toggle::after { mask-image: var(--i-down); }
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--tone-hover); transform: none; }
+:root[data-theme="adminit"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--strong); text-decoration: none; }
+:root[data-theme="adminit"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 6px; background: none; }
+:root[data-theme="adminit"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a,
+:root[data-theme="adminit"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--strong); }
+:root[data-theme="adminit"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
+
+/* pied collant (actions, pagination) : bandeau à filet d'un bord à l'autre du contenu, boutons alignés sur les tableaux
+   (il suit ainsi un tableau qui déborde dans la marge, voir --content-end dans base.css) ; titres à côté des boutons */
+:root[data-theme="adminit"] .footer { margin-inline: calc(-1 * var(--content-end)); box-shadow: none; }
+:root[data-theme="adminit"] .footer > div {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px var(--content-end); background: var(--page); border-top: 1px solid var(--line);
+}
+:root[data-theme="adminit"] .footer fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; border: 0; background: none; }
+:root[data-theme="adminit"] .footer fieldset > legend { float: left; margin: 0; padding: 0; color: var(--weak); font-weight: 400; }
+:root[data-theme="adminit"] .footer fieldset > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* ---------- Formulaires : champs gris arrondis, cases bleues ---------- */
+:root[data-theme="adminit"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="adminit"] select {   /* hors du :is(), sinon sa spécificité écraserait la marge du chevron ci-dessous */
+  min-height: 32px; padding: 5px 12px; border: 1px solid transparent; border-radius: 16px; background-color: var(--tone);
+  color: var(--strong); line-height: 20px; box-shadow: none;
+}
+:root[data-theme="adminit"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):hover { background-color: var(--tone-hover); }
+:root[data-theme="adminit"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus {
+  border-color: var(--link); background-color: var(--page); box-shadow: none; outline: none;
+}
+:root[data-theme="adminit"] :is(input, select, textarea):disabled { opacity: .55; }
+:root[data-theme="adminit"] select:not([multiple]) {
+  appearance: none; padding-right: 34px;
+  background: var(--chevron) right 10px center / 18px no-repeat, var(--tone);
+}
+:root[data-theme="adminit"] select:not([multiple]):hover { background-color: var(--tone-hover); }
+:root[data-theme="adminit"] select:not([multiple]):focus { background-color: var(--page); }
+:root[data-theme="adminit"] { --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23333d42' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.5 8 4.5 4.5L14.5 8'/%3E%3C/svg%3E"); }
+:root[data-theme="adminit"][data-variant="sombre"] { --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23b7cad4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5.5 8 4.5 4.5L14.5 8'/%3E%3C/svg%3E"); }
+:root[data-theme="adminit"] select option { background: var(--page); color: var(--strong); }
+/* autocomplétion de l'éditeur SQL (liste ouverte) : menu flottant, sans chevron */
+:root[data-theme="adminit"] select.jush-autocomplete { padding: 6px 0; border: 0; border-radius: 8px; background: var(--page); box-shadow: var(--card-shadow); }
+/* cases à cocher alignées sur une ligne (« Default values », « Comment »…) : espacées */
+:root[data-theme="adminit"] label:has(> input:is([type=checkbox], [type=radio])) + label { margin-inline-start: 12px; }
+:root[data-theme="adminit"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 18px; height: 18px; box-sizing: border-box; margin: 0 8px 0 0; vertical-align: -4px;
+  border: 2px solid var(--weak); border-radius: 4px; background: var(--page); cursor: pointer;
+}
+:root[data-theme="adminit"] input[type=radio] { border-radius: 50%; }
+/* case après son texte (colonne « Data » de l'export, alignée à droite) */
+:root[data-theme="adminit"] :is(td[align=right], th[style*="right"]) > label > input:is([type=checkbox], [type=radio]) { margin: 0 0 0 8px; }
+:root[data-theme="adminit"] input[type=checkbox]:checked {
+  border-color: var(--blue); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='m3 7.2 2.6 2.6L11 4.4' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat, var(--blue);
+}
+:root[data-theme="adminit"] input[type=checkbox]:indeterminate { border-color: var(--blue); background: linear-gradient(#fff, #fff) center / 8px 2px no-repeat, var(--blue); }
+:root[data-theme="adminit"] input[type=radio]:checked { border: 5px solid var(--blue); }
+:root[data-theme="adminit"] input:is([type=checkbox], [type=radio]):disabled { opacity: .5; cursor: default; }
+
+/* boutons : pilules grises ; action principale en bleu, suppressions en rouge (rouge plein au survol) */
+:root[data-theme="adminit"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 32px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--tone); color: var(--strong);
+  font: 600 14px/32px var(--font); box-shadow: none; transition: background-color .1s;
+}
+:root[data-theme="adminit"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { background: var(--tone-hover); transform: none; filter: none; }
+:root[data-theme="adminit"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: var(--tone-active); transform: none; box-shadow: none; }
+:root[data-theme="adminit"] input.default[type=submit] { background: var(--blue); color: #fff; }
+:root[data-theme="adminit"] input.default[type=submit]:hover { background: var(--blue-hover); }
+/* (sélecteurs répétés : ils doivent l'emporter sur la règle générale des boutons, plus spécifique) */
+:root[data-theme="adminit"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { color: var(--danger); }
+:root[data-theme="adminit"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]):hover { background: #c4001a; color: #fff; }
+:root[data-theme="adminit"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="adminit"] :is(input[type=submit], input[type=button]):disabled:hover { background: var(--tone); color: var(--weak); opacity: .6; cursor: not-allowed; }
+/* boutons-icônes d'Adminer (ajouter, supprimer une colonne) : pictogramme gris, bleu au survol */
+:root[data-theme="adminit"] button.icon { background-color: var(--soft); border-radius: 4px; }
+:root[data-theme="adminit"] button.icon:hover { background-color: var(--link); }
+/* déconnexion : bouton gris de l'en-tête, à la hauteur des boutons ronds de Reddit */
+:root[data-theme="adminit"] .logout #logout { min-height: 40px; line-height: 40px; }
+
+/* ---------- Messages : succès en commentaire d'AutoModerator, erreurs en encadré rouge ---------- */
+/* avatar en fond, nom et badge en ::before, signature du robot en ::after */
+:root[data-theme="adminit"] #content .message {
+  position: relative; padding: 34px 16px 32px 56px; border: 1px solid var(--line); border-radius: 16px; color: var(--strong); box-shadow: none;
+  background: var(--logo) 16px 14px / 28px no-repeat, var(--page);
+}
+:root[data-theme="adminit"] #content .message::before {
+  content: "AutoModerator · MOD"; position: absolute; top: 18px; left: 56px; color: var(--mod); font: 700 12px/16px var(--font);
+}
+:root[data-theme="adminit"] #content .message::after {
+  content: "I am a bot, and this action was performed automatically."; position: absolute; left: 56px; bottom: 10px;
+  color: var(--weak); font: italic 400 12px/16px var(--font);
+}
+:root[data-theme="adminit"] #content .message :is(code, .time) { white-space: normal; }
+:root[data-theme="adminit"] .error {
+  padding: 12px 16px 12px 44px; border: 1px solid var(--danger); border-radius: 16px; color: var(--strong); box-shadow: none;
+  background: var(--danger-subtle); position: relative;
+}
+:root[data-theme="adminit"] .error::before {
+  content: ""; position: absolute; left: 16px; top: 12px; width: 20px; height: 20px; background-color: var(--danger); mask: var(--i-alert) center / 20px no-repeat;
+}
+
+/* bulle d'aide (fonctions SQL) : carte flottante */
+:root[data-theme="adminit"] #help { padding: 8px 12px; border: 0; border-radius: 12px; background: var(--page); color: var(--strong); box-shadow: var(--card-shadow); }
+
+/* éditeur SQL : champ comme les autres */
+:root[data-theme="adminit"] [contenteditable].jush { border-radius: 16px; background: var(--hover); box-shadow: inset 0 0 0 1px var(--line); }
+:root[data-theme="adminit"] [contenteditable].jush:focus { box-shadow: inset 0 0 0 2px var(--link); outline: none; }   /* le contour bleu fait office d'anneau */
+
+/* ---------- Schéma de la base : tables en cartes ---------- */
+/* interligne de 1,25 : celui sur lequel Adminer place les flèches des clés (en em) */
+:root[data-theme="adminit"] #schema { margin-bottom: 40px; }
+:root[data-theme="adminit"] #schema .table { padding: 0 8px 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--page); box-shadow: var(--card-shadow); line-height: 1.25; }
+:root[data-theme="adminit"] #schema .table a:first-child { font-weight: 700; }
+
+/* ---------- Page de connexion : « Créer une publication » ---------- */
+/* Repérée par le champ mot de passe. Titre très gras, communauté en badge, un champ arrondi par réglage (étiquette dans le
+   champ), interrupteur pour la connexion permanente et bouton bleu à droite ; logo dans l'en-tête, langue sous le formulaire. */
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(600px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: calc(var(--hdr) + 32px) 16px 32px;
+}
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content { grid-row: 1; margin: 0 !important; padding: 0; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content > h2 { margin: 0 0 16px; font-size: 24px; line-height: 32px; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form::before {
+  content: "r/adminer"; display: inline-block; height: 40px; margin: 0 0 20px; padding: 0 16px 0 48px; border-radius: 999px;
+  background: var(--logo) 6px center / 32px no-repeat, var(--tone); color: var(--strong); font: 600 14px/40px var(--font);
+}
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content .error { margin: 0 0 16px; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout { display: block; margin: 0; border: 0; border-radius: 0; background: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(tbody, tr, td) { display: block; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout tr { position: relative; margin: 0 0 16px; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 0; border: 0; background: none; }
+/* étiquette dans le champ, en haut à gauche */
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout th {
+  position: absolute; z-index: 1; top: 8px; left: 17px; color: var(--weak); font: 400 12px/16px var(--font); pointer-events: none;
+}
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; height: 56px; padding: 24px 16px 6px; border: 1px solid var(--field-line); border-radius: 20px; background-color: var(--page); font-size: 14px;
+}
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout select:not([multiple]) { padding-right: 40px; background: var(--chevron) right 14px center / 18px no-repeat, var(--page); }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(input, select):hover { border-color: var(--strong); background-color: var(--page); }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(input, select):focus { border-color: var(--link); box-shadow: inset 0 0 0 1px var(--link); }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(input, select):focus-visible { outline: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout tr:focus-within th { color: var(--link); }
+/* bouton bleu à droite, interrupteur de connexion permanente à gauche */
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p { display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; gap: 16px; margin: 4px 0 0; }
+/* (Adminer ne marque le bouton principal, .default, que lorsque le formulaire a le focus : bleu ici en permanence) */
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { min-height: 40px; padding: 0 20px; background: var(--blue); color: #fff; line-height: 40px; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p input[type=submit]:hover { background: var(--blue-hover); }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p label { display: inline-flex; align-items: center; gap: 12px; color: var(--soft); cursor: pointer; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p input[type=checkbox] {
+  width: 36px; height: 20px; margin: 0; border: 0; border-radius: 999px;
+  background: radial-gradient(circle at 10px 50%, #fff 7px, transparent 7.5px), var(--tone-active);
+}
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #content form > p input[type=checkbox]:checked {
+  background: radial-gradient(circle at 26px 50%, #fff 7px, transparent 7.5px), var(--blue);
+}
+/* logo dans l'en-tête, langue sous le formulaire */
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #foot { grid-row: 2; position: static; display: block; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu { position: static; width: auto; min-width: 0; margin: 0; padding: 0; background: none; border: 0; box-shadow: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu h1 { position: absolute; z-index: 3; top: 0; left: 16px; height: var(--hdr); }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu #lang { margin: 24px 0 0; padding: 0; border: 0; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu #lang label { justify-content: center; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu #lang select { flex: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) { --bg-pattern: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) #kawaii-switcher { z-index: 3; }
+
+/* ---------- Mobile : en-tête d'une ligne (bouton du menu, logo, recherche), menu en volet ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="adminit"] { --bg-pattern: none; --banner-h: 56px; --avatar: 48px; }
+  :root[data-theme="adminit"] body::before { background: var(--logo) 60px 12px / 32px no-repeat, linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat, var(--page); }
+  :root[data-theme="adminit"]:has(input[name="auth[password]"]) body::before { background: linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat, var(--page); }
+  :root[data-theme="adminit"] #content { margin: var(--hdr) 0 0; margin-inline-start: 0 !important; padding: 12px 16px 16px; --content-end: 16px; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #content > h2 { padding-left: calc(12px + var(--avatar) + 12px); font-size: 22px; line-height: 28px; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #content > h2::before { left: 12px; border-width: 3px; }
+  :root[data-theme="adminit"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case */
+  :root[data-theme="adminit"] #breadcrumb { top: 8px; left: 104px !important; right: 12px; z-index: 3; }
+  :root[data-theme="adminit"].js #menuopen { top: 8px; left: 12px; z-index: 3; }
+  :root[data-theme="adminit"] #menuopen button.icon { width: 40px; height: 40px; border-radius: 50%; background: none; }
+  :root[data-theme="adminit"] #menuopen button.icon::before {
+    content: ""; display: block; width: 20px; height: 20px; margin: auto; background-color: var(--soft); mask: var(--i-menu) center / 20px no-repeat;
+  }
+  :root[data-theme="adminit"] #menuopen button.icon:hover { background-color: var(--hover); }
+  /* volet sous l'en-tête (le bouton du menu reste à portée pour le refermer) */
+  :root[data-theme="adminit"].js #foot:not(.foot) {
+    top: var(--hdr); z-index: 5; width: min(320px, calc(100% - 40px)); padding-bottom: 8px;
+    background: var(--page); border-right: 1px solid var(--line); border-radius: 0 16px 16px 0; box-shadow: var(--card-shadow);
+  }
+  :root[data-theme="adminit"] #menu { position: static; min-width: 0; width: auto; margin: 0; background: none; border: 0; box-shadow: none; }
+  :root[data-theme="adminit"]:not(:has(input[name="auth[password]"])) #menu h1 { position: static; height: auto; margin: 0 0 12px 8px; }
+  :root[data-theme="adminit"].js #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line);
+    background: none; box-shadow: none;
+  }
+  :root[data-theme="adminit"]:has(input[name="auth[password]"]) body { padding: calc(var(--hdr) + 24px) 16px 24px; }
+  :root[data-theme="adminit"]:has(input[name="auth[password]"]) #foot { position: static; }
+}
+@media (max-width: 600px) {
+  :root[data-theme="adminit"] #kawaii-switcher { top: 12px; }
+  /* connexion : logo réduit à son icône, comme une fois connecté, pour laisser la place au sélecteur de thème */
+  :root[data-theme="adminit"]:has(input[name="auth[password]"]) #h1::after,
+  :root[data-theme="adminit"]:has(input[name="auth[password]"]) #menu .version { display: none; }
+}

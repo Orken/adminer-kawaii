@@ -159,6 +159,7 @@
 /* sélecteur de thème */
 :root[data-theme="blueprint"] #kawaii-switcher { border: 1px solid var(--ink); background: var(--paper); }
 :root[data-theme="blueprint"] #kawaii-switcher button.sw { border-radius: 0; }
+:root[data-theme="blueprint"] #kawaii-themes button.v::before { border-radius: 0; }
 
 /* ---------- Schéma de la base : le plan ---------- */
 /* Adminer place tables et liaisons en em, sur des lignes de 1,25 em : on garde cette hauteur de ligne, et le trait

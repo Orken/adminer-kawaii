@@ -131,10 +131,10 @@
    l'anneau marque la variante active seule */
 :root[data-theme="spotify"] #kawaii-switcher { gap: 12px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
 :root[data-theme="spotify"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
-:root[data-theme="spotify"] #kawaii-switcher select.theme {
-  height: 32px; min-height: 0; border: 0; border-radius: 500px; background-color: var(--raised); font-weight: 700; field-sizing: content;
+:root[data-theme="spotify"] #kawaii-switcher button.theme {
+  height: 32px; padding: 0 12px; border: 0; border-radius: 500px; background-color: var(--raised); font-weight: 700;
 }
-:root[data-theme="spotify"] #kawaii-switcher select.theme:hover { background-color: var(--hover); }
+:root[data-theme="spotify"] #kawaii-switcher button.theme:hover { background-color: var(--hover); }
 :root[data-theme="spotify"] #kawaii-switcher button.sw:not([aria-pressed="true"]) { box-shadow: none; }
 
 /* ---------- Bibliothèque (menu) : panneau, puces, pochettes ---------- */
@@ -221,7 +221,7 @@
 
 /* ---------- Page : panneau, en-tête de playlist (pochette, grand titre) ---------- */
 :root[data-theme="spotify"] #content {
-  box-sizing: border-box; min-height: calc(100vh - var(--bar) - 8px); padding: 0 24px 24px; border-radius: 8px;
+  box-sizing: border-box; min-height: calc(100vh - var(--bar) - 8px); padding: 0 24px 24px; --content-end: 24px; border-radius: 8px;
   /* sous l'en-tête (qui porte sa propre couleur, quelle que soit sa hauteur), un reflet qui s'éteint */
   background: linear-gradient(color-mix(in srgb, var(--hero) 30%, var(--panel)), var(--panel) 560px) var(--panel);
 }
@@ -330,11 +330,12 @@
 :root[data-theme="spotify"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
 :root[data-theme="spotify"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: #fff; text-decoration: none; }
 
-/* pied collant (actions, pagination) : la barre de lecture, noire */
-:root[data-theme="spotify"] .footer { margin-inline-end: 0; box-shadow: none; }
+/* pied collant (actions, pagination) : la barre de lecture, noire, d'un bord à l'autre du panneau, boutons alignés sur les
+   tableaux : elle suit ainsi un tableau qui déborde dans la marge (voir --content-end, base.css) */
+:root[data-theme="spotify"] .footer { margin-inline: calc(-1 * var(--content-end)); box-shadow: none; }
 :root[data-theme="spotify"] .footer, :root[data-theme="spotify"] .footer > div { background: transparent; }
 :root[data-theme="spotify"] .footer > div {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 12px 16px; border-radius: 8px; background: var(--black);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 12px var(--content-end); background: var(--black);
 }
 :root[data-theme="spotify"] .footer fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; background: none; }
 :root[data-theme="spotify"] .footer fieldset > legend { width: auto; margin: 0; color: var(--sub); font-weight: 400; }
@@ -446,7 +447,7 @@
 /* ---------- Mobile : barre (bouton du menu, recherche), bibliothèque en volet ---------- */
 @media (max-width: 800px) {
   :root[data-theme="spotify"] { --bg-pattern: none; }
-  :root[data-theme="spotify"] #content { margin: var(--bar) 8px 8px; margin-inline-start: 8px !important; padding: 0 16px 16px; }
+  :root[data-theme="spotify"] #content { margin: var(--bar) 8px 8px; margin-inline-start: 8px !important; padding: 0 16px 16px; --content-end: 16px; }
   :root[data-theme="spotify"] #content > h2 { flex-direction: column; align-items: flex-start; min-height: 0; margin: 0 -16px 16px; padding: 24px 16px 16px; gap: 16px; }
   :root[data-theme="spotify"] #content > h2::before { width: 128px; height: 128px; }
   :root[data-theme="spotify"] #content > h2::after { top: 24px; left: 16px; bottom: auto; width: 128px; height: 128px; mask-size: 60px; }

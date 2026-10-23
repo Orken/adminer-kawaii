@@ -10,25 +10,33 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 
 | Thème | Fichier | Style |
 |---|---|---|
-| ▶ DBHub (par défaut) | `dbhub.css` | noir et orange, plat et dense |
-| 🎀 Kawaii | `kawaii.css` | pastel ; 4 variantes (lavande, bonbon, menthe, nuit) et couleur d'accent au choix |
-| 🍺 Oktoberfest | `oktoberfest.css` | losanges bavarois bleu et blanc |
-| 🎃 Halloween | `halloween.css` | violet nuit et orange |
-| 📒 Skeuomorphic | `skeuomorphic.css` | cuir, papier et boutons de verre |
+| **Sites et applis** | | |
+| 🍀 4dminer | `4dminer.css` | Adminer présenté comme un imageboard des années 2000 : fond crème dégradé de pêche, texte bordeaux, tables en boards « /nom/ » dans une boîte à bandeau, pages en board (bannière, titre « /db/ - … »), en-têtes en étiquettes saumon, lignes en messages numérotés « No. », messages de succès en texte vert, contrôles natifs ; 2 variantes (saumon, bleu) ; connexion en formulaire de publication |
+| 👽 Adminit | `adminit.css` | Adminer présenté comme Reddit : en-tête à recherche en pilule, menu de navigation où chaque table devient une communauté « r/ » à icône ronde, pages en communautés (bannière orange, icône ronde, grand titre), onglets en pilules, cases de sélection en flèches de vote orange, messages de succès signés AutoModerator ; 2 variantes (clair, sombre) ; connexion en page « Créer une publication » |
 | 🎓 Adminiz | `adminiz.css` | back-office Material 3 blanc, rouge et bleu nuit ; connexion sur fond corail |
-| 🌐 Netscape | `netscape.css` | fenêtre Windows 98 et portail web des années 1990 |
+| ▶ DBHub (par défaut) | `dbhub.css` | noir et orange, plat et dense |
+| 🐙 GitHub | `github.css` | Adminer présenté comme un dépôt : en-tête gris aux onglets soulignés de corail, tables en arborescence de fichiers, boîtes à filet, bouton principal vert ; connexion en fichier YAML dans la vue de code (numéros de ligne, ligne active surlignée) |
 | 🦊 GitLab | `gitlab.css` | inspiré du design system Pajamas |
-| 📐 Blueprint | `blueprint.css` | plan technique au trait sur papier millimétré ; 2 variantes (calque, cyanotype) ; connexion sur une feuille avec cartouche |
+| ✉️ Gmail | `gmail.css` | « GAdminer » : chaque table rangée comme une boîte de réception Gmail, en densité condensée (lignes qui se soulèvent au survol et bleuissent une fois cochées, onglets, puces de filtre) ; connexion dans une fenêtre « Nouveau message » |
+| 🎧 Spotify | `spotify.css` | Adminer présenté comme un lecteur de musique : panneaux sombres sur fond noir, recherche en pilule, bibliothèque où chaque table a sa pochette et où la table ouverte s'anime d'un égaliseur vert, pages en playlists (grand titre gras sur un en-tête coloré), lignes en liste de morceaux numérotés, boutons en pilules ; 3 variantes de couleur (violet, rose, sarcelle) ; connexion en playlist, avec le bouton vert de lecture |
+| **Rétro** | | |
+| 🗄️ Adminer classic | `classic.css` | L'allure d'origine d'Adminer, reprise au propre : Verdana, bandeau gris du titre en italique, bandeau lavande des pages, tableaux à grille fine, liens bleus qui rougissent au survol ; variantes clair (d'après default.css) et nuit (le marine de dark.css) ; connexion en boîte de dialogue |
 | 📞 BBS | `bbs.css` | BBS des années 1990 en mode texte : palette CGA, police VGA, cadres doubles, ligne d'état du terminal ; connexion par modem et écran d'accueil ANSI |
 | 📠 Minitel | `minitel.css` | 3615 des années 1980 : couleurs du Vidéotex, double hauteur, mosaïques, compteur en francs ; 2 variantes (couleur, monochrome) ; connexion sur le Minitel entier |
+| 🌐 Netscape | `netscape.css` | fenêtre Windows 98 et portail web des années 1990 |
+| **Styles** | | |
+| 📐 Blueprint | `blueprint.css` | plan technique au trait sur papier millimétré ; 2 variantes (calque, cyanotype) ; connexion sur une feuille avec cartouche |
+| 🎀 Kawaii | `kawaii.css` | pastel ; 4 variantes (lavande, bonbon, menthe, nuit) et couleur d'accent au choix |
+| 📒 Skeuomorphic | `skeuomorphic.css` | cuir, papier et boutons de verre |
 | 🌌 Verre | `verre.css` | verre dépoli façon visionOS : fenêtres translucides et floues aux arêtes lumineuses, sur une aurore boréale violet-turquoise qui ondule lentement ; connexion dans une fenêtre de verre |
-| ✉️ Gmail | `gmail.css` | « GAdminer » : chaque table rangée comme une boîte de réception Gmail, en densité condensée (lignes qui se soulèvent au survol et bleuissent une fois cochées, onglets, puces de filtre) ; connexion dans une fenêtre « Nouveau message » |
-| 🐙 GitHub | `github.css` | Adminer présenté comme un dépôt : en-tête gris aux onglets soulignés de corail, tables en arborescence de fichiers, boîtes à filet, bouton principal vert ; connexion en fichier YAML dans la vue de code (numéros de ligne, ligne active surlignée) |
-| 🗄️ Adminer classic | `classic.css` | L'allure d'origine d'Adminer, reprise au propre : Verdana, bandeau gris du titre en italique, bandeau lavande des pages, tableaux à grille fine, liens bleus qui rougissent au survol ; variantes clair (d'après default.css) et nuit (le marine de dark.css) ; connexion en boîte de dialogue |
-| 🎧 Spotify | `spotify.css` | Adminer présenté comme un lecteur de musique : panneaux sombres sur fond noir, recherche en pilule, bibliothèque où chaque table a sa pochette et où la table ouverte s'anime d'un égaliseur vert, pages en playlists (grand titre gras sur un en-tête coloré), lignes en liste de morceaux numérotés, boutons en pilules ; 3 variantes de couleur (violet, rose, sarcelle) ; connexion en playlist, avec le bouton vert de lecture |
+| **Fêtes** | | |
+| 🎃 Halloween | `halloween.css` | violet nuit et orange |
+| 🎄 Noël | `noel.css` | menu en pull de Noël tricoté (côtes, bande jacquard de sapins et de flocons), neige qui tombe doucement, titres soulignés d'une guirlande lumineuse, cases à cocher en boules de sapin, boutons en écussons de feutre surpiqués ; 2 variantes (neige, nuit) ; connexion en lettre au Père Noël, avec timbre et liseré « par avion » |
+| 🍺 Oktoberfest | `oktoberfest.css` | losanges bavarois bleu et blanc |
 
-- Le sélecteur s'affiche en haut à droite, à côté de la déconnexion. Le choix est mémorisé dans le navigateur (`localStorage`).
-- Chaque thème a sa propre icône d'onglet.
+- Le sélecteur s'affiche en haut à droite, à côté de la déconnexion. Il ouvre un panneau où les thèmes sont rangés en
+  colonnes par thématique, comme dans le tableau. Le choix est mémorisé dans le navigateur (`localStorage`).
+- Chaque thème a sa propre icône, dans l'onglet et dans le panneau des thèmes.
 - Installez-les tous, ou seulement ceux qui vous plaisent.
 - Tout passe par un seul plugin Adminer : aucun fichier d'Adminer n'est modifié.
 
@@ -39,36 +47,43 @@ Les données d'une table avec chaque thème (cliquez sur une image pour l'agrand
 
 <table>
 <tr>
-<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="Thème DBHub : données d'une table"></a></td>
-<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Thème Kawaii : données d'une table"></a></td>
+<td><b>🍀 4dminer</b><br><a href="docs/screenshots/4dminer-select.webp"><img src="docs/screenshots/4dminer-select.webp" width="380" alt="Thème 4dminer : données d'une table"></a></td>
+<td><b>👽 Adminit</b><br><a href="docs/screenshots/adminit-select.webp"><img src="docs/screenshots/adminit-select.webp" width="380" alt="Thème Adminit : données d'une table"></a></td>
 </tr>
 <tr>
-<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Thème Oktoberfest : données d'une table"></a></td>
-<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Thème Halloween : données d'une table"></a></td>
-</tr>
-<tr>
-<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Thème Skeuomorphic : données d'une table"></a></td>
 <td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-select.webp"><img src="docs/screenshots/adminiz-select.webp" width="380" alt="Thème Adminiz : données d'une table"></a></td>
+<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="Thème DBHub : données d'une table"></a></td>
 </tr>
 <tr>
-<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Thème Netscape : données d'une table"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="Thème GitHub : données d'une table"></a></td>
 <td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-select.webp"><img src="docs/screenshots/gitlab-select.webp" width="380" alt="Thème GitLab : données d'une table"></a></td>
 </tr>
 <tr>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Thème Blueprint : données d'une table"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Thème Gmail : données d'une table"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Thème Spotify : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Thème Adminer classic : données d'une table"></a></td>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="Thème BBS : données d'une table"></a></td>
 </tr>
 <tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Thème Minitel : données d'une table"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Thème Netscape : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Thème Blueprint : données d'une table"></a></td>
+<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Thème Kawaii : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Thème Skeuomorphic : données d'une table"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Thème Verre : données d'une table"></a></td>
 </tr>
 <tr>
-<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Thème Gmail : données d'une table"></a></td>
-<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="Thème GitHub : données d'une table"></a></td>
+<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Thème Halloween : données d'une table"></a></td>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Thème Noël : données d'une table"></a></td>
 </tr>
 <tr>
-<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Thème Adminer classic : données d'une table"></a></td>
-<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Thème Spotify : données d'une table"></a></td>
+<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Thème Oktoberfest : données d'une table"></a></td>
 </tr>
 </table>
 
@@ -76,23 +91,28 @@ Et les pages de connexion mises en scène :
 
 <table>
 <tr>
+<td><b>🍀 4dminer</b><br><a href="docs/screenshots/4dminer-login.webp"><img src="docs/screenshots/4dminer-login.webp" width="245" alt="Thème 4dminer : page de connexion"></a></td>
+<td><b>👽 Adminit</b><br><a href="docs/screenshots/adminit-login.webp"><img src="docs/screenshots/adminit-login.webp" width="245" alt="Thème Adminit : page de connexion"></a></td>
 <td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-login.webp"><img src="docs/screenshots/adminiz-login.webp" width="245" alt="Thème Adminiz : page de connexion"></a></td>
-<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Thème Netscape : page de connexion"></a></td>
-<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="Thème GitLab : page de connexion"></a></td>
 </tr>
 <tr>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Thème Blueprint : page de connexion"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="Thème GitHub : page de connexion"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="Thème GitLab : page de connexion"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Thème Gmail : page de connexion"></a></td>
+</tr>
+<tr>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Thème Spotify : page de connexion"></a></td>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Thème Adminer classic : page de connexion"></a></td>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="Thème BBS : page de connexion"></a></td>
+</tr>
+<tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Thème Minitel : page de connexion"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Thème Netscape : page de connexion"></a></td>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Thème Blueprint : page de connexion"></a></td>
 </tr>
 <tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Thème Verre : page de connexion"></a></td>
-<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Thème Gmail : page de connexion"></a></td>
-<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="Thème GitHub : page de connexion"></a></td>
-</tr>
-<tr>
-<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Thème Adminer classic : page de connexion"></a></td>
-<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Thème Spotify : page de connexion"></a></td>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-login.webp"><img src="docs/screenshots/noel-login.webp" width="245" alt="Thème Noël : page de connexion"></a></td>
 </tr>
 </table>
 
@@ -223,32 +243,38 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image construite depuis ce dépôt** : `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (noms des fichiers sans `.css` ; un nom inconnu fait échouer la construction).
 - **Image officielle** : montez à la place de `theme/` un dossier qui ne contient que ces fichiers.
-- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii, Blueprint, Minitel, Adminer classic et
-  Spotify, accent de Kawaii), elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
-- **Thème par défaut** : DBHub s'il est installé, sinon le premier de la liste.
+- **Un seul thème** : le bouton et le panneau des thèmes disparaissent. S'il a des options (variantes de Kawaii, Blueprint, Minitel, Adminer classic,
+  Spotify, Adminit, 4dminer et Noël, accent de Kawaii), elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
+- **Thème par défaut** : DBHub s'il est installé, sinon le premier du panneau.
 
 ### Utilisation
 
-- Choisissez le thème dans la liste en haut à droite. Pour Kawaii, Blueprint, le Minitel, Adminer classic et Spotify, les
-  pastilles placées à côté changent de variante ; pour Kawaii, le nuancier règle aussi la couleur d'accent.
+- Le bouton en haut à droite, au nom du thème courant, ouvre le panneau des thèmes : un clic sur un nom choisit le
+  thème, un clic sur une de ses pastilles le choisit dans cette variante (Kawaii, Blueprint, le Minitel, Adminer classic,
+  Spotify, Adminit, 4dminer et Noël en ont). Au clavier : flèches haut et bas d'un thème à l'autre, gauche et droite vers
+  ses variantes, Échap pour fermer.
+- Les pastilles placées à côté du bouton changent de variante sans ouvrir le panneau ; pour Kawaii, le nuancier règle
+  aussi la couleur d'accent.
 - Une fois connecté, le panneau de gauche reste à l'écran quand la page défile, et sa liste de tables défile seule.
 - Le choix est propre à chaque navigateur. Le thème par défaut se règle avec `DEFAULT_THEME` dans `theme/switcher.js`.
 
 ### Ajouter son propre thème
 
-1. Créez `theme/noel.css` en limitant toutes ses règles à `:root[data-theme="noel"]`. Le plus simple est de partir
+1. Créez `theme/paques.css` en limitant toutes ses règles à `:root[data-theme="paques"]`. Le plus simple est de partir
    d'un thème existant ; les variables communes sont décrites dans `theme/base.css`.
-2. Facultatif : donnez-lui un libellé et une icône dans `theme/noel.js`, sans toucher à `switcher.js` (il survivra
-   ainsi aux mises à jour). Sans ce fichier, il apparaît sous son nom de fichier (« Noel ») :
+2. Facultatif : donnez-lui un libellé, un groupe et une icône dans `theme/paques.js`, sans toucher à `switcher.js` (il
+   survivra ainsi aux mises à jour). Sans ce fichier, il apparaît sous son nom de fichier (« Paques »), dans le groupe
+   « Autres », en dernière colonne du panneau :
 
    ```js
-   (window.kawaiiThemes = window.kawaiiThemes || {}).noel = {
-     label: '🎄 Noël',
-     icon: '<rect width="32" height="32" rx="6" fill="#c0392b"/>'   // facultatif : contenu d'un SVG de 32 × 32
+   (window.kawaiiThemes = window.kawaiiThemes || {}).paques = {
+     label: '🐣 Pâques',
+     group: 'Fêtes',   // facultatif : Sites et applis, Rétro, Styles, Fêtes, ou un nouveau groupe, placé après
+     icon: '<rect width="32" height="32" rx="6" fill="#f2c94c"/>'   // facultatif : contenu d'un SVG de 32 × 32 ; sans icône, l'emoji du libellé
    };
    ```
 
-3. Facultatif : ajoutez-le aux captures du README avec `node scripts/screenshots.js noel` (voir Développement).
+3. Facultatif : ajoutez-le aux captures du README avec `node scripts/screenshots.js paques` (voir Développement).
 
 Le plugin charge tout seul les fichiers `.css` et `.js` du dossier `theme/`.
 
@@ -282,7 +308,7 @@ reproductible : relancer le script ne modifie que les images des thèmes qui ont
 
 ### Marques et licence
 
-- Netscape, GitLab, GitHub, Gmail, Spotify, Minitel et les autres noms cités sont des marques de leurs propriétaires
+- Netscape, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel et les autres noms cités sont des marques de leurs propriétaires
   respectifs. Ces thèmes sont des clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part, et
   n'en reprennent pas les logos.
 - Polices incorporées : `bbs.css` contient un sous-ensemble de WebPlus IBM VGA 9x16, de VileR
@@ -302,26 +328,34 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 
 | Theme | File | Style |
 |---|---|---|
-| ▶ DBHub (default) | `dbhub.css` | black and orange, flat and dense |
-| 🎀 Kawaii | `kawaii.css` | pastel; 4 variants (lavender, candy, mint, night) and a custom accent color |
-| 🍺 Oktoberfest | `oktoberfest.css` | blue and white Bavarian diamonds |
-| 🎃 Halloween | `halloween.css` | night purple and orange |
-| 📒 Skeuomorphic | `skeuomorphic.css` | leather, paper and glass buttons |
+| **Sites and apps** | | |
+| 🍀 4dminer | `4dminer.css` | Adminer dressed as a 2000s imageboard: cream background with a peach gradient, maroon text, tables as “/name/” boards in a box with a title bar, pages as boards (banner, “/db/ - …” title), salmon label headers, rows as numbered “No.” posts, success messages in green quote text, native controls; 2 variants (salmon, blue); login as the posting form |
+| 👽 Adminit | `adminit.css` | Adminer dressed as Reddit: header with a pill-shaped search, a navigation menu where every table becomes an “r/” community with a round icon, pages as communities (orange banner, round icon, big title), pill tabs, row checkboxes as orange upvote arrows, success messages signed by AutoModerator; 2 variants (light, dark); login as a “Create post” page |
 | 🎓 Adminiz | `adminiz.css` | white, red and navy Material 3 back office; login card on a coral background |
-| 🌐 Netscape | `netscape.css` | Windows 98 window and 1990s web portal |
+| ▶ DBHub (default) | `dbhub.css` | black and orange, flat and dense |
+| 🐙 GitHub | `github.css` | Adminer dressed as a repository: grey header with coral-underlined tabs, tables as a file tree, bordered boxes, green primary button; login as a YAML file in the code view (line numbers, highlighted active line) |
 | 🦊 GitLab | `gitlab.css` | inspired by the Pajamas design system |
-| 📐 Blueprint | `blueprint.css` | line drawing on graph paper; 2 variants (tracing paper, cyanotype); login on a drawing sheet with a title block |
+| ✉️ Gmail | `gmail.css` | “GAdminer”: every table laid out like a Gmail inbox in compact density (rows that lift on hover and turn blue when checked, category tabs, filter chips); login in a “New message” window |
+| 🎧 Spotify | `spotify.css` | Adminer dressed as a music player: dark panels on black, pill-shaped search, a library where each table gets its cover art and the open one shows a green equaliser, pages as playlists (big bold title over a coloured header), rows as numbered track lists, pill buttons; 3 colour variants (violet, pink, teal); login as a playlist with the green play button |
+| **Retro** | | |
+| 🗄️ Adminer classic | `classic.css` | Adminer's original look, tidied up: Verdana, grey italic title bar, lavender page headings, fine-grid tables, blue links that turn red on hover; light (after default.css) and night (dark.css navy) variants; login as a dialog box |
 | 📞 BBS | `bbs.css` | 1990s text-mode BBS: CGA palette, VGA font, double-line frames, terminal status line; login through a modem dial-up and an ANSI welcome screen |
 | 📠 Minitel | `minitel.css` | the 1980s French videotex terminal: Videotex colors, double-height text, mosaic graphics, a cost meter in francs; 2 variants (color, monochrome); login on the whole Minitel |
+| 🌐 Netscape | `netscape.css` | Windows 98 window and 1990s web portal |
+| **Styles** | | |
+| 📐 Blueprint | `blueprint.css` | line drawing on graph paper; 2 variants (tracing paper, cyanotype); login on a drawing sheet with a title block |
+| 🎀 Kawaii | `kawaii.css` | pastel; 4 variants (lavender, candy, mint, night) and a custom accent color |
+| 📒 Skeuomorphic | `skeuomorphic.css` | leather, paper and glass buttons |
 | 🌌 Verre | `verre.css` | French for “glass”: visionOS-style frosted glass, translucent blurred windows with glowing edges over a slowly drifting purple and teal aurora; login in a single glass window |
-| ✉️ Gmail | `gmail.css` | “GAdminer”: every table laid out like a Gmail inbox in compact density (rows that lift on hover and turn blue when checked, category tabs, filter chips); login in a “New message” window |
-| 🐙 GitHub | `github.css` | Adminer dressed as a repository: grey header with coral-underlined tabs, tables as a file tree, bordered boxes, green primary button; login as a YAML file in the code view (line numbers, highlighted active line) |
-| 🗄️ Adminer classic | `classic.css` | Adminer's original look, tidied up: Verdana, grey italic title bar, lavender page headings, fine-grid tables, blue links that turn red on hover; light (after default.css) and night (dark.css navy) variants; login as a dialog box |
-| 🎧 Spotify | `spotify.css` | Adminer dressed as a music player: dark panels on black, pill-shaped search, a library where each table gets its cover art and the open one shows a green equaliser, pages as playlists (big bold title over a coloured header), rows as numbered track lists, pill buttons; 3 colour variants (violet, pink, teal); login as a playlist with the green play button |
+| **Holidays** | | |
+| 🎃 Halloween | `halloween.css` | night purple and orange |
+| 🎄 Noël | `noel.css` | Christmas: the menu as a knitted Christmas jumper (ribbing, a jacquard band of trees and snowflakes), gently falling snow, headings underlined with fairy lights, checkboxes as baubles, buttons as stitched felt patches; 2 variants (snow, night); login as a letter to Santa, with a stamp and an airmail border |
+| 🍺 Oktoberfest | `oktoberfest.css` | blue and white Bavarian diamonds |
 
-- The switcher sits in the top right corner, next to the logout button. The choice is remembered in the browser
+- The switcher sits in the top right corner, next to the logout button. It opens a panel where themes are laid out in
+  columns by category, as in the table (group names are in French). The choice is remembered in the browser
   (`localStorage`).
-- Each theme has its own tab icon.
+- Each theme has its own icon, in the browser tab and in the theme panel.
 - Install them all, or only the ones you like.
 - Everything goes through a single Adminer plugin: no Adminer file is modified.
 
@@ -332,36 +366,43 @@ A table's data with each theme (click an image to enlarge it):
 
 <table>
 <tr>
-<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="DBHub theme: table data"></a></td>
-<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Kawaii theme: table data"></a></td>
+<td><b>🍀 4dminer</b><br><a href="docs/screenshots/4dminer-select.webp"><img src="docs/screenshots/4dminer-select.webp" width="380" alt="4dminer theme: table data"></a></td>
+<td><b>👽 Adminit</b><br><a href="docs/screenshots/adminit-select.webp"><img src="docs/screenshots/adminit-select.webp" width="380" alt="Adminit theme: table data"></a></td>
 </tr>
 <tr>
-<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Oktoberfest theme: table data"></a></td>
-<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Halloween theme: table data"></a></td>
-</tr>
-<tr>
-<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Skeuomorphic theme: table data"></a></td>
 <td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-select.webp"><img src="docs/screenshots/adminiz-select.webp" width="380" alt="Adminiz theme: table data"></a></td>
+<td><b>▶ DBHub</b><br><a href="docs/screenshots/dbhub-select.webp"><img src="docs/screenshots/dbhub-select.webp" width="380" alt="DBHub theme: table data"></a></td>
 </tr>
 <tr>
-<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Netscape theme: table data"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="GitHub theme: table data"></a></td>
 <td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-select.webp"><img src="docs/screenshots/gitlab-select.webp" width="380" alt="GitLab theme: table data"></a></td>
 </tr>
 <tr>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Blueprint theme: table data"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Gmail theme: table data"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Spotify theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Adminer classic theme: table data"></a></td>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="BBS theme: table data"></a></td>
 </tr>
 <tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Minitel theme: table data"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Netscape theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Blueprint theme: table data"></a></td>
+<td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Kawaii theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Skeuomorphic theme: table data"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Verre theme: table data"></a></td>
 </tr>
 <tr>
-<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Gmail theme: table data"></a></td>
-<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="GitHub theme: table data"></a></td>
+<td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Halloween theme: table data"></a></td>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Noël theme: table data"></a></td>
 </tr>
 <tr>
-<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Adminer classic theme: table data"></a></td>
-<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Spotify theme: table data"></a></td>
+<td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Oktoberfest theme: table data"></a></td>
 </tr>
 </table>
 
@@ -369,23 +410,28 @@ And the themes with a staged login page:
 
 <table>
 <tr>
+<td><b>🍀 4dminer</b><br><a href="docs/screenshots/4dminer-login.webp"><img src="docs/screenshots/4dminer-login.webp" width="245" alt="4dminer theme: login page"></a></td>
+<td><b>👽 Adminit</b><br><a href="docs/screenshots/adminit-login.webp"><img src="docs/screenshots/adminit-login.webp" width="245" alt="Adminit theme: login page"></a></td>
 <td><b>🎓 Adminiz</b><br><a href="docs/screenshots/adminiz-login.webp"><img src="docs/screenshots/adminiz-login.webp" width="245" alt="Adminiz theme: login page"></a></td>
-<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Netscape theme: login page"></a></td>
-<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="GitLab theme: login page"></a></td>
 </tr>
 <tr>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Blueprint theme: login page"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="GitHub theme: login page"></a></td>
+<td><b>🦊 GitLab</b><br><a href="docs/screenshots/gitlab-login.webp"><img src="docs/screenshots/gitlab-login.webp" width="245" alt="GitLab theme: login page"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Gmail theme: login page"></a></td>
+</tr>
+<tr>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Spotify theme: login page"></a></td>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Adminer classic theme: login page"></a></td>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="BBS theme: login page"></a></td>
+</tr>
+<tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Minitel theme: login page"></a></td>
+<td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Netscape theme: login page"></a></td>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Blueprint theme: login page"></a></td>
 </tr>
 <tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Verre theme: login page"></a></td>
-<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Gmail theme: login page"></a></td>
-<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="GitHub theme: login page"></a></td>
-</tr>
-<tr>
-<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Adminer classic theme: login page"></a></td>
-<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Spotify theme: login page"></a></td>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-login.webp"><img src="docs/screenshots/noel-login.webp" width="245" alt="Noël theme: login page"></a></td>
 </tr>
 </table>
 
@@ -516,32 +562,38 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image built from this repository**: `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (file names without `.css`; an unknown name makes the build fail).
 - **Official image**: mount, in place of `theme/`, a folder that only contains those files.
-- **A single theme**: the list goes away. If the theme has options (variants of Kawaii, Blueprint, Minitel, Adminer
-  classic and Spotify, Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
-- **Default theme**: DBHub if installed, otherwise the first one in the list.
+- **A single theme**: the theme button and panel go away. If the theme has options (variants of Kawaii, Blueprint, Minitel, Adminer
+  classic, Spotify, Adminit, 4dminer and Noël, Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
+- **Default theme**: DBHub if installed, otherwise the first one in the panel.
 
 ### Usage
 
-- Pick a theme from the list in the top right corner. For Kawaii, Blueprint, Minitel, Adminer classic and Spotify, the
-  swatches next to it switch variants; for Kawaii, the color picker also sets the accent color.
+- The button in the top right corner, showing the current theme, opens the theme panel: click a name to pick that
+  theme, or one of its swatches to pick it in that variant (Kawaii, Blueprint, Minitel, Adminer classic, Spotify,
+  Adminit, 4dminer and Noël have some). With the keyboard: up and down arrows move between themes, left and right to
+  their variants, Escape closes.
+- The swatches next to the button switch variants without opening the panel; for Kawaii, the color picker also sets
+  the accent color.
 - Once logged in, the left panel stays on screen as the page scrolls, and its list of tables scrolls on its own.
 - The choice is per browser. The default theme is set with `DEFAULT_THEME` in `theme/switcher.js`.
 
 ### Adding your own theme
 
-1. Create `theme/christmas.css`, scoping every rule to `:root[data-theme="christmas"]`. The easiest way is to start
+1. Create `theme/easter.css`, scoping every rule to `:root[data-theme="easter"]`. The easiest way is to start
    from an existing theme; the shared variables are described in `theme/base.css`.
-2. Optional: give it a label and an icon in `theme/christmas.js`, without touching `switcher.js` (so that it survives
-   updates). Without this file, it shows up under its file name ("Christmas"):
+2. Optional: give it a label, a group and an icon in `theme/easter.js`, without touching `switcher.js` (so that it
+   survives updates). Without this file, it shows up under its file name ("Easter"), in the "Autres" (other) group, in
+   the last column of the panel:
 
    ```js
-   (window.kawaiiThemes = window.kawaiiThemes || {}).christmas = {
-     label: '🎄 Christmas',
-     icon: '<rect width="32" height="32" rx="6" fill="#c0392b"/>'   // optional: content of a 32 × 32 SVG
+   (window.kawaiiThemes = window.kawaiiThemes || {}).easter = {
+     label: '🐣 Easter',
+     group: 'Fêtes',   // optional: Sites et applis, Rétro, Styles, Fêtes (holidays), or a new group, placed after them
+     icon: '<rect width="32" height="32" rx="6" fill="#f2c94c"/>'   // optional: content of a 32 × 32 SVG; without it, the label's emoji
    };
    ```
 
-3. Optional: add it to the README screenshots with `node scripts/screenshots.js christmas` (see Development).
+3. Optional: add it to the README screenshots with `node scripts/screenshots.js easter` (see Development).
 
 The plugin loads every `.css` and `.js` file in the `theme/` folder on its own.
 
@@ -566,7 +618,7 @@ Node 18 or later, Playwright and ffmpeg (with libwebp):
 
 ```sh
 npm install --no-save playwright && npx playwright install chromium
-node scripts/screenshots.js christmas    # a single theme; with no argument, every theme
+node scripts/screenshots.js noel    # a single theme; with no argument, every theme
 ```
 
 For each theme, the script saves the data page to `docs/screenshots/` and, if the theme stages it, the login page.
@@ -575,7 +627,7 @@ script again only changes the images of the themes that changed.
 
 ### Trademarks and license
 
-- Netscape, GitLab, GitHub, Gmail, Spotify, Minitel and the other names mentioned are trademarks of their respective
+- Netscape, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel and the other names mentioned are trademarks of their respective
   owners. These themes are unofficial nods, not affiliated with or endorsed by them, and do not use their logos.
 - Embedded fonts: `bbs.css` contains a subset of WebPlus IBM VGA 9x16 by VileR
   ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), licensed under

@@ -126,6 +126,9 @@ input, textarea { caret-color: var(--accent-text); }
 .links a:hover { background-color: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 /* pied collant (actions, pagination) : garder un fond opaque */
 .footer, .footer > div { background: var(--bg); }
+/* Adminer la tire de 20px dans la marge droite du contenu : de cette marge exacte (--content-end, voir Tableaux), sinon
+   une marge plus petite fait déborder la page */
+.footer { margin-inline-end: calc(-1 * var(--content-end, 20px)); }
 
 /* messages */
 .message, .error {
@@ -147,6 +150,13 @@ th, :root thead :is(th, td, td.hover) { background-color: var(--th-bg); color: v
 th a, thead td { color: var(--th-text); }
 :root thead :is(th, td) :is(a, a:link:hover, a:visited:hover, a:focus, .doc) { color: var(--th-text); }
 :is(tbody, tfoot) tr:last-child :is(td, th) { border-bottom: 0; }
+/* tableau des tables (page de la base) : les en-têtes des colonnes chiffrées (« Data Length », « Auto Increment »…) sont
+   bien plus larges que leurs valeurs ; ils passent sur deux lignes plutôt que d'élargir la page */
+#tables-views ~ form thead :is(th, td) { white-space: normal; vertical-align: bottom; }
+/* tableau plus large que la page : il peut mordre sur la marge droite du contenu (--content-end, qu'un thème qui change
+   cette marge redonne), la barre horizontale n'apparaît donc qu'au moment où il touche le bord. Quand il tient, max-width
+   l'arrête au bord du contenu (la marge de 20px d'Adminer en moins). La page de connexion ne déborde jamais : exclue */
+:root:not(:has(input[name="auth[password]"])) #content table:not(table table) { margin-inline-end: calc(-1 * var(--content-end, 20px)); max-width: 100%; }
 /* la cellule de sélection (td.hover) perd son filet bas dans le CSS d'Adminer : on le remet */
 :root :is(thead, tbody) td.hover { border-bottom-width: 1px; }
 :root tbody tr:last-child td.hover { border-bottom-width: 0; }
@@ -250,12 +260,64 @@ pre.jush { background: var(--lit); }
   padding: 2px 6px; box-shadow: var(--shadow); font-size: 12px; color: var(--text);
 }
 #kawaii-switcher.in-bar { position: relative; right: auto; top: auto; display: inline-flex; vertical-align: middle; margin-right: 8px; }
-/* options du thème (variantes, accent) : sur la même ligne que la liste, dans le même cadre */
+/* options du thème (variantes, accent) : sur la même ligne que le bouton du thème, dans le même cadre */
 #kawaii-switcher .opts { display: flex; gap: 8px; align-items: center; white-space: nowrap; }
-#kawaii-switcher :is(.opts, select)[hidden] { display: none; }
+#kawaii-switcher :is(.opts, .theme)[hidden] { display: none; }
 /* les boutons du sélecteur ne reprennent pas le style des boutons pleins du thème */
 #kawaii-switcher button { background-image: none; transform: none; filter: none; box-shadow: none; }
-#kawaii-switcher select.theme { font-weight: 700; cursor: pointer; }
+/* bouton du thème courant (icône, nom, chevron) : il ouvre le panneau des thèmes */
+#kawaii-switcher button.theme {
+  display: inline-flex; align-items: center; gap: 6px; width: auto; height: auto; min-height: 0; margin: 0; padding: 2px 6px;
+  border: 1px solid transparent; border-radius: var(--radius-sm); background-color: transparent; color: var(--text);
+  font: inherit; font-weight: 700; text-transform: none; letter-spacing: normal; text-shadow: none; white-space: nowrap; cursor: pointer;
+}
+#kawaii-switcher button.theme:hover, #kawaii-switcher button.theme[aria-expanded="true"] { background-color: var(--row-hover); }
+#kawaii-switcher button.theme::after {
+  content: ""; width: .38em; height: .38em; margin: 0 2px; border: solid currentColor; border-width: 0 .14em .14em 0;
+  transform: translateY(-25%) rotate(45deg);
+}
+#kawaii-switcher button.theme[aria-expanded="true"]::after { transform: translateY(25%) rotate(225deg); }
+#kawaii-switcher .ico { flex: none; width: 18px; height: 18px; margin: 0; padding: 0; border: 0; text-align: center; line-height: 18px; font-size: 15px; }
+#kawaii-switcher span.ico { font-weight: 700; }
+
+/* Panneau des thèmes : une colonne par groupe, aux couleurs du thème. switcher.js le passe dans la couche supérieure
+   (popover : hors des cadres du thème, au-dessus de tout) et le pose sous le bouton ; pas de display ici, sinon il
+   resterait affiché fermé (display: none de [popover] ou de [hidden]). */
+#kawaii-themes {
+  position: fixed; inset: auto; z-index: 100; box-sizing: border-box; overflow: auto; overscroll-behavior: contain;
+  --col: 184px;   /* largeur minimale d'une colonne : à élargir pour une police large */
+  width: min(calc(var(--cols) * (var(--col) + 28px) + 28px), calc(100vw - 16px)); height: auto; max-height: calc(100vh - 16px); margin: 0; padding: 10px 14px 14px;
+  border: 2px solid var(--border); border-radius: var(--radius); background-color: var(--surface); color: var(--text);
+  box-shadow: var(--shadow), 0 12px 32px rgb(0 0 0 / .2); font: 13px/1.3 var(--font); text-align: start; white-space: normal;
+}
+#kawaii-themes .count { margin: 0 0 10px; padding: 0 6px 8px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+#kawaii-themes .cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(var(--col), 100%), 1fr)); gap: 12px 16px; align-items: start; }
+#kawaii-themes .gt { margin: 0 0 4px; padding: 0 6px; color: var(--muted); font-size: 12px; font-weight: 700; }
+#kawaii-themes ul { margin: 0; padding: 0; list-style: none; }
+#kawaii-themes li { display: flex; align-items: center; margin: 0; padding: 0; background: none; border: 0; }
+#kawaii-themes li::before { content: none; }
+#kawaii-themes button {
+  min-height: 0; height: auto; margin: 0; border: 0; background-color: transparent; color: var(--text);
+  font: inherit; text-transform: none; letter-spacing: normal; text-shadow: none; cursor: pointer;
+}
+#kawaii-themes button.pick {
+  display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; width: auto; padding: 5px 6px;
+  border-radius: var(--radius-sm); font-weight: 600; text-align: start;
+}
+#kawaii-themes .pick .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#kawaii-themes button.pick:hover { background-color: var(--row-hover); }   /* survol des lignes de tableau : lisible dans chaque thème */
+#kawaii-themes button.pick[aria-current] {
+  padding-inline-start: 3px; border-inline-start: 3px solid var(--accent);   /* liseré du côté du début de ligne, en rtl aussi */
+  background-color: color-mix(in srgb, var(--accent) 22%, var(--surface)); font-weight: 800;
+}
+/* pastille de variante : une cible de 20 px autour d'un point de 12 px, cerclé quand c'est la variante courante */
+#kawaii-themes button.v { display: grid; flex: none; place-items: center; width: 20px; height: 20px; padding: 0; border-radius: 50%; }
+#kawaii-themes button.v::before {
+  content: ""; width: 12px; height: 12px; border-radius: 50%; background-color: var(--sw);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 35%, transparent);
+}
+#kawaii-themes button.v:hover::before { box-shadow: 0 0 0 2px color-mix(in srgb, var(--text) 60%, transparent); }
+#kawaii-themes button.v[aria-pressed="true"]::before { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text); }
 /* l'écart entre la pastille et son anneau laisse voir le fond, quel qu'il soit (cadre plein ou barre du thème) */
 #kawaii-switcher button.sw {
   width: 18px; height: 18px; min-height: 0; padding: 0; border-radius: 50%; background-color: var(--sw);
@@ -268,9 +330,9 @@ pre.jush { background: var(--lit); }
 #kawaii-switcher button.rz { background-color: transparent; color: var(--muted); padding: 0 4px; border: 0; cursor: pointer; }
 
 /* Panneau gauche à la hauteur de l'écran, une fois connecté : le menu (le volet sur mobile) reste en vue quand la page
-   défile, et sa liste de tables défile seule. switcher.js le place (sur ordinateur, il remonte avec la page jusqu'au
-   haut de la fenêtre, sans passer au-dessus de --menu-stick, et suit le défilement horizontal) et raccourcit la liste de
-   ce qui dépasserait du bas de la fenêtre, marge du bas comprise (:where : les thèmes la règlent sans surenchère).
+   défile, sans bouger, et sa liste de tables défile seule. switcher.js lui fait suivre le défilement horizontal (sur
+   ordinateur) et raccourcit la liste de ce qui dépasserait du bas de la fenêtre, marge du bas comprise (:where : les
+   thèmes la règlent sans surenchère). Un thème qui pose des éléments du menu dans son en-tête fixe donc cet en-tête.
    !important : au survol, Adminer pose overflow: visible puis hidden en style inline sur la liste (menuOver/menuOut). */
 @media not all and (max-width: 800px) {
   :where(.js:not(:has(input[name="auth[password]"]))) #menu { position: fixed; margin-bottom: 8px; }

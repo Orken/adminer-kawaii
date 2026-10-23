@@ -86,7 +86,7 @@
 /* ---------- En-tête (écran large) : fil d'Ariane, onglets, utilisateur ---------- */
 @media not all and (max-width: 800px) {
   :root[data-theme="github"] #menu { top: var(--top); width: var(--side); }
-  :root[data-theme="github"] #content { margin: var(--top) 0 0 var(--side); padding: 24px 32px 32px; }
+  :root[data-theme="github"] #content { margin: var(--top) 0 0 var(--side); padding: 24px 32px 32px; --content-end: 32px; }
   :root[data-theme="github"] #breadcrumb { top: 16px; left: 56px; right: 360px; }
   :root[data-theme="github"] .logout {
     top: 16px; right: 16px; height: 32px; margin: 0; padding: 0;
@@ -100,6 +100,17 @@
   :root[data-theme="github"] #menu p.links a.active::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 2px; border-radius: 6px; background: var(--underline);
   }
+  /* en-tête fixe une fois connecté : le menu ne bouge pas quand la page défile, ses onglets (seconde ligne) non plus ;
+     l'en-tête entier reste donc en place et le contenu passe dessous. Le bandeau (fond, logo, filet) est repeint par
+     body::before, au-dessus de l'en-tête collant des tableaux (z-index 1) ; menu, fil d'Ariane et compte par-dessus. */
+  :root[data-theme="github"]:not(:has(input[name="auth[password]"])) { scroll-padding-top: var(--top); }
+  :root[data-theme="github"]:not(:has(input[name="auth[password]"])) body::before {
+    content: ""; position: fixed; top: 0; left: 0; right: 0; z-index: 2; height: var(--top); pointer-events: none;
+    background: var(--logo) 16px 16px / 32px 32px no-repeat, linear-gradient(var(--border), var(--border)) 0 100% / 100% 1px no-repeat, var(--canvas-inset);
+  }
+  :root[data-theme="github"]:not(:has(input[name="auth[password]"])) :is(#breadcrumb, .logout) { position: fixed; z-index: 2; }
+  :root[data-theme="github"]:not(:has(input[name="auth[password]"])) #menu { z-index: 2; }
+  :root[data-theme="github"]:not(:has(input[name="auth[password]"])) :is(thead, #ajaxstatus.sticky) { top: var(--top); }
 }
 /* fil d'Ariane : « propriétaire / dépôt » ; liens sombres, dernier élément en gras */
 :root[data-theme="github"] #breadcrumb {
@@ -119,7 +130,7 @@
 /* sélecteur de thème : liste comme les autres, sans cadre autour */
 :root[data-theme="github"] #kawaii-switcher { top: 16px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 14px; }
 :root[data-theme="github"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
-:root[data-theme="github"] #kawaii-switcher select.theme { font-weight: 500; }
+:root[data-theme="github"] #kawaii-switcher button.theme { font-weight: 500; }
 
 /* ---------- Onglets (actions du menu) : icône grise, survol gris, trait corail sous l'onglet courant ---------- */
 :root[data-theme="github"] #menu p.links a {
@@ -263,10 +274,11 @@
 :root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--text); }
 :root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
 
-/* pied collant (actions, pagination) : bandeau blanc à filet ; titres à côté des boutons */
-:root[data-theme="github"] .footer { margin-inline-end: 0; box-shadow: none; }
+/* pied collant (actions, pagination) : bandeau blanc à filet ; titres à côté des boutons. D'un bord à l'autre du contenu,
+   boutons alignés sur les tableaux : il suit ainsi un tableau qui déborde dans la marge (voir --content-end, base.css) */
+:root[data-theme="github"] .footer { margin-inline: calc(-1 * var(--content-end)); box-shadow: none; }
 :root[data-theme="github"] .footer > div {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 0; background: var(--surface); border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px var(--content-end); background: var(--surface); border-top: 1px solid var(--border);
 }
 :root[data-theme="github"] .footer fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; border: 0; background: none; }
 :root[data-theme="github"] .footer fieldset > legend { float: left; margin: 0; padding: 0; color: var(--muted); font-weight: 400; }
@@ -426,7 +438,7 @@
 /* ---------- Mobile : en-tête d'une ligne (bouton du menu, logo, fil d'Ariane), menu en volet ---------- */
 @media (max-width: 800px) {
   :root[data-theme="github"] { --top: 65px; --side-line: 0 0; --bg-pos: 56px 16px, 0 0, 0 calc(var(--top) - 1px), 0 0; }
-  :root[data-theme="github"] #content { margin: var(--top) 0 0; margin-inline-start: 0 !important; padding: 16px; }
+  :root[data-theme="github"] #content { margin: var(--top) 0 0; margin-inline-start: 0 !important; padding: 16px; --content-end: 16px; }
   :root[data-theme="github"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case : le crayon s'y repère */
   :root[data-theme="github"] #breadcrumb { top: 16px; left: 100px !important; right: 16px; }
   :root[data-theme="github"].js #menuopen { top: 16px; left: 16px; }

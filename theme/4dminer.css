@@ -1,0 +1,362 @@
+/* ===== Thème 4dminer (2 variantes) =====
+   Actif quand <html data-theme="4dminer">. Variante : data-variant = saumon (défaut) | bleu, les palettes Yotsuba et
+   Yotsuba B. Adminer présenté comme un imageboard des années 2000 (clin d'œil non officiel, sans le trèfle ni aucun logo) :
+   - fond crème dégradé de pêche en haut de page, texte bordeaux, liens bleus qui rougissent au survol, Arial en 10 pt ;
+   - en haut, le fil d'Ariane entre crochets comme la liste des boards ; à droite, l'utilisateur en « Anonymous » vert,
+     son nom en tripcode ;
+   - à gauche, une boîte à bandeau comme celles de la page d'accueil : actions du menu en liste entre crochets, tables en
+     boards « /nom/ » ;
+   - chaque page en board : bannière de 300 × 100 et titre centré « /db/ - … » en Tahoma serré ; les liens de la table
+     entre crochets ([Select data] [Show structure]…) ;
+   - les tableaux comme des messages : en-têtes en étiquettes saumon cerclées de bordeaux (celles du formulaire de
+     publication), cellules couleur de réponse, ligne survolée ou cochée surlignée, et un numéro « No. » sur chaque ligne ;
+   - les messages de succès en réponse d'« Anonymous » en texte vert (« >Query executed OK »), les erreurs en rouge gras ;
+   - contrôles natifs (boutons gris, champs à filet), cartes repliées en « [+] », formulaire de connexion en formulaire de
+     publication. */
+
+/* ---------- Variables : Yotsuba, saumon (variante par défaut) ---------- */
+:root[data-theme="4dminer"] {
+  --fade: #fed6af; --page: #ffffee; --post: #f0e0d6; --post-line: #d9bfb7;
+  --label: #eeaa88; --label-line: #800000; --label-text: #800000;
+  --ink: #800000; --link: #0000ee; --link-hover: #ff0000; --name: #117743; --subject: #cc1105; --quote: #789922; --title: #800000;
+  --highlight: #f0c0b0; --highlight-line: #d99f91; --hovered: #f4d2c4;
+  --box-line: #800000; --boxbar: #ffccaa; --board-link: #800000; --field: #ffffff; --field-line: #aaaaaa;
+
+  --bg: var(--page); --surface: var(--post); --surface-2: var(--post); --text: var(--ink); --muted: #996655; --border: var(--post-line);
+  --accent: var(--ink); --on-accent: var(--page); --accent-text: var(--link);
+  --ok: var(--name); --err: #d00000; --on-err: #ffffff;
+  --jush-str: #117743; --jush-num: #6633aa; --jush-id: #cc1105;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 0px; --radius-sm: 0px; --pill: 0px;
+  --fs: 13.333px; --pad-y: 2px; --pad-x: 5px;
+  --font: arial, helvetica, sans-serif;
+  --font-heading: Tahoma, Verdana, "DejaVu Sans", sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --h2-border: 0;
+  --e-title: ""; --e-after: ""; --e-table: "/"; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  --th-bg: var(--label); --th-text: var(--label-text);
+  --zebra: var(--post); --row-hover: var(--hovered);
+  --lit: var(--post); --dim: var(--post);
+
+  --side: 236px;                                 /* boîte de gauche */
+  --top: 30px;                                   /* ligne des boards, en haut */
+
+  /* bannière de 300 × 100 : pile de base de données, nom du board et une ligne de texte vert */
+  --banner-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'%3E%3Crect width='300' height='100' fill='%23f0e0d6'/%3E%3Cpath d='M0 0h300v100H0z' fill='none' stroke='%23d9bfb7' stroke-width='2'/%3E%3Cg stroke='%23800000' stroke-width='2.5'%3E%3Cpath d='M26 30v40c0 5 11 9 24 9s24-4 24-9V30' fill='%23eeaa88'/%3E%3Cpath d='M26 43.5c0 5 11 9 24 9s24-4 24-9M26 57c0 5 11 9 24 9s24-4 24-9' fill='none'/%3E%3Cellipse cx='50' cy='30' rx='24' ry='9' fill='%23ffffee'/%3E%3C/g%3E%3Ctext x='96' y='53' textLength='176' lengthAdjust='spacingAndGlyphs' font-family='Tahoma,Verdana,sans-serif' font-size='40' font-weight='700' letter-spacing='-2' fill='%23800000'%3E4dminer%3C/text%3E%3Ctext x='98' y='78' textLength='168' lengthAdjust='spacingAndGlyphs' font-family='Arial,Helvetica,sans-serif' font-size='13' fill='%23789922'%3E%3ESELECT * FROM thread%3C/text%3E%3C/svg%3E");
+
+  /* fond : dégradé de pêche en haut de page, qui défile avec elle */
+  --bg-pattern: linear-gradient(var(--fade), var(--page)); --bg-size: 100% 200px; --bg-pos: 0 0;
+  background-repeat: no-repeat; background-attachment: scroll;
+}
+
+/* ---------- Variante bleue : Yotsuba B ---------- */
+:root[data-theme="4dminer"][data-variant="bleu"] {
+  --fade: #d1d5ee; --page: #eef2ff; --post: #d6daf0; --post-line: #b7c5d9;
+  --label: #9988ee; --label-line: #000000; --label-text: #000000;
+  --ink: #000000; --link: #34345c; --link-hover: #dd0000; --subject: #0f0c5d; --title: #af0a0f;
+  --highlight: #d6bad0; --highlight-line: #ba9dbf; --hovered: #d6cae0;
+  --box-line: #34345c; --boxbar: #b7c5d9; --board-link: #34345c;
+  --muted: #5c5c7a;
+  --jush-id: #0f0c5d;
+  --banner-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'%3E%3Crect width='300' height='100' fill='%23d6daf0'/%3E%3Cpath d='M0 0h300v100H0z' fill='none' stroke='%23b7c5d9' stroke-width='2'/%3E%3Cg stroke='%2334345c' stroke-width='2.5'%3E%3Cpath d='M26 30v40c0 5 11 9 24 9s24-4 24-9V30' fill='%239988ee'/%3E%3Cpath d='M26 43.5c0 5 11 9 24 9s24-4 24-9M26 57c0 5 11 9 24 9s24-4 24-9' fill='none'/%3E%3Cellipse cx='50' cy='30' rx='24' ry='9' fill='%23eef2ff'/%3E%3C/g%3E%3Ctext x='96' y='53' textLength='176' lengthAdjust='spacingAndGlyphs' font-family='Tahoma,Verdana,sans-serif' font-size='40' font-weight='700' letter-spacing='-2' fill='%23af0a0f'%3E4dminer%3C/text%3E%3Ctext x='98' y='78' textLength='168' lengthAdjust='spacingAndGlyphs' font-family='Arial,Helvetica,sans-serif' font-size='13' fill='%23789922'%3E%3ESELECT * FROM thread%3C/text%3E%3C/svg%3E");
+}
+
+:root[data-theme="4dminer"] * { scrollbar-color: auto; scrollbar-width: auto; }
+:root[data-theme="4dminer"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+
+/* ---------- Page : Arial 10 pt, liens sans soulignement qui rougissent au survol ---------- */
+:root[data-theme="4dminer"] body { font: 400 var(--fs)/1.3 var(--font); }
+:root[data-theme="4dminer"] a:is(:link, :visited) { color: var(--link); font-weight: 400; }
+:root[data-theme="4dminer"] a:is(:link, :visited):hover, :root[data-theme="4dminer"] a:focus { color: var(--link-hover); text-decoration: none; }
+:root[data-theme="4dminer"] h3 { margin: 16px 0 6px; color: var(--subject); font: 700 var(--fs)/1.3 var(--font); }
+:root[data-theme="4dminer"] code { padding: 0 2px; background: none; color: var(--text); font-size: 13px; }
+:root[data-theme="4dminer"] pre.jush { padding: 6px 8px; border: 1px solid var(--post-line); background: var(--field); }
+:root[data-theme="4dminer"] hr { border: 0; border-top: 1px solid var(--post-line); }
+:root[data-theme="4dminer"] mark { background: var(--highlight); color: var(--text); }
+:root[data-theme="4dminer"] .time { color: var(--muted); font-size: 11px; }
+/* commentaires SQL : en texte vert */
+:root[data-theme="4dminer"] :is(.jush-com, .jush-one, .jush-com_code) { color: var(--quote); }
+
+/* ---------- Ligne des boards : fil d'Ariane entre crochets à gauche, compte à droite ---------- */
+:root[data-theme="4dminer"] #breadcrumb {
+  top: 0; left: 8px; height: var(--top); margin: 0; padding: 0; background: none; border-radius: 0;
+  color: var(--text); font: 400 12px/var(--top) var(--font); overflow: hidden; text-overflow: ellipsis;
+}
+:root[data-theme="4dminer"] #breadcrumb::before { content: "["; margin-right: 2px; }
+:root[data-theme="4dminer"] #breadcrumb::after { content: "]"; margin-left: 2px; }
+:root[data-theme="4dminer"] .logout {
+  top: 0; right: 0; height: var(--top); box-sizing: border-box; margin: 0; padding: 0 8px;
+  display: flex; align-items: center; gap: 8px; background: none; box-shadow: none; font-size: 12px;
+}
+/* utilisateur : « Anonymous » en vert gras, son nom en tripcode (!!nom) */
+:root[data-theme="4dminer"] .logout span[title=Username] { display: inline-flex; align-items: baseline; color: var(--name); }
+:root[data-theme="4dminer"] .logout span[title=Username]::before { content: "Anonymous"; order: -2; margin-right: 4px; font-weight: 700; }
+:root[data-theme="4dminer"] .logout span[title=Username]::after { content: "!!"; order: -1; }
+
+/* sélecteur de thème : contrôles natifs, sans cadre */
+:root[data-theme="4dminer"] #kawaii-switcher { top: 3px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 12px; }
+:root[data-theme="4dminer"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
+:root[data-theme="4dminer"] #kawaii-switcher button.theme { font-weight: 400; }
+:root[data-theme="4dminer"] #kawaii-switcher button.sw { box-shadow: 0 0 0 1px var(--label-line); }
+:root[data-theme="4dminer"] #kawaii-switcher button.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--link); }
+:root[data-theme="4dminer"] #kawaii-themes :is(.gt, .count) { color: var(--title); }   /* --muted trop pâle sur --post */
+
+/* ---------- Boîte de gauche (écran large) : bandeau, actions entre crochets, boards ---------- */
+@media not all and (max-width: 800px) {
+  :root[data-theme="4dminer"] #menu { top: var(--top); left: 8px; width: var(--side); }
+  :root[data-theme="4dminer"] #content { margin: var(--top) 0 0 calc(var(--side) + 24px); padding: 4px 16px 16px 0; --content-end: 16px; }
+}
+:root[data-theme="4dminer"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 0 0 6px;
+  background: var(--field); border: 1px solid var(--box-line); border-radius: 0; box-shadow: none;
+}
+/* ordre de la boîte : bandeau, actions, base, tables, puis la langue en pied */
+:root[data-theme="4dminer"] #menu > * { order: 4; }
+:root[data-theme="4dminer"] #menu > h1 { order: 0; }
+:root[data-theme="4dminer"] #menu > p.links { order: 1; }
+:root[data-theme="4dminer"] #menu > form:has(#dbs) { order: 2; }
+:root[data-theme="4dminer"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="4dminer"] #menu a:hover { background: none; }
+:root[data-theme="4dminer"] #menu :is(p, #dbs, #logins, #tables) { border: 0; }
+
+/* bandeau de la boîte : « 4dminer » (le texte « Adminer » reste lu), version à droite */
+:root[data-theme="4dminer"] #menu h1 {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0; padding: 3px 8px;
+  background: var(--boxbar); border: 0; border-bottom: 1px solid var(--box-line);
+}
+:root[data-theme="4dminer"] #h1 { color: var(--title); font: 700 0/1 var(--font-heading); font-style: normal; }
+:root[data-theme="4dminer"] #h1::after { content: "4dminer"; font-size: 18px; letter-spacing: -1px; }
+:root[data-theme="4dminer"] #h1 img { display: none; }
+:root[data-theme="4dminer"] #menu #h1:hover { color: var(--link-hover); }
+:root[data-theme="4dminer"] #menu .version { color: var(--muted); font: 400 11px/1 var(--font); }
+
+/* actions du menu : [SQL command / Import / Export / Create table] */
+:root[data-theme="4dminer"] #menu p.links { display: block; margin: 6px 8px; padding: 0; color: var(--text); font-size: 12px; line-height: 1.5; }
+:root[data-theme="4dminer"] #menu p.links::before { content: "["; }
+:root[data-theme="4dminer"] #menu p.links::after { content: "]"; }
+:root[data-theme="4dminer"] #menu p.links a {
+  display: inline; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; color: var(--link); font: inherit; white-space: nowrap;
+}
+:root[data-theme="4dminer"] #menu p.links a:not(:first-child)::before { content: "/"; margin-right: 4px; color: var(--text); }   /* l'espace qui précède vient du HTML */
+:root[data-theme="4dminer"] #menu p.links a:hover { background: none; color: var(--link-hover); }
+:root[data-theme="4dminer"] #menu p.links a.active { background: none; color: var(--text); font-weight: 700; }
+
+:root[data-theme="4dminer"] #menu :is(#dbs, #lang) { margin: 6px 8px; padding: 0; }
+:root[data-theme="4dminer"] #menu :is(#dbs, #lang) label { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+:root[data-theme="4dminer"] #menu :is(#dbs, #lang) select { flex: 1; min-width: 0; }
+:root[data-theme="4dminer"] #menu #lang { position: static; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--post-line); }
+
+/* tables : boards « /nom/ », intertitre souligné comme les catégories de la page d'accueil */
+:root[data-theme="4dminer"] #tables { margin: 6px 0 0; padding: 0 4px; }
+:root[data-theme="4dminer"] #tables::before {
+  margin: 0 4px 2px; color: var(--text); font: 700 var(--fs)/1.5 var(--font); letter-spacing: 0; text-transform: none; text-decoration: underline;
+}
+:root[data-theme="4dminer"] #tables li { margin: 0; border-radius: 0; }
+:root[data-theme="4dminer"] #tables li:hover { background: var(--post); }
+:root[data-theme="4dminer"] #tables li:has(a.active) { background: var(--highlight); box-shadow: none; }
+:root[data-theme="4dminer"] #tables :is(a.structure, a.view) { padding: 1px 4px; color: var(--board-link); font-weight: 400; }
+:root[data-theme="4dminer"] #menu #tables :is(a.structure, a.view):hover { background: none; color: var(--link-hover); }
+:root[data-theme="4dminer"] #tables a.structure::before { margin: 0; color: inherit; font-size: inherit; }
+:root[data-theme="4dminer"] #tables a.structure::after { content: "/"; }
+:root[data-theme="4dminer"] #tables li:has(a.active) :is(a.structure, a.view) { font-weight: 700; }
+/* bouton « données » : [▸] au survol */
+:root[data-theme="4dminer"] #tables a.select {
+  width: auto; height: auto; margin: 0 4px 0 0; padding: 0; border-radius: 0; background: none; line-height: 1.5;
+}
+:root[data-theme="4dminer"] #tables a.select::before { content: "[▸]"; font-size: 12px; color: var(--link); }
+:root[data-theme="4dminer"] #menu #tables a.select:hover::before { color: var(--link-hover); }
+:root[data-theme="4dminer"] #menu .message { margin: 4px 8px 0; padding: 0; border: 0; background: none; color: var(--muted); }
+:root[data-theme="4dminer"] #menu .message::before, :root[data-theme="4dminer"] #menu .message::after { content: none; }
+
+/* ---------- Haut de page : bannière, titre du board, filet ---------- */
+:root[data-theme="4dminer"] #content::before {
+  content: ""; display: block; width: min(300px, 100%); aspect-ratio: 3; margin: 0 auto 4px; background: var(--banner-img) center / contain no-repeat;
+}
+:root[data-theme="4dminer"] #content > h2 {
+  margin: 0 0 8px; padding: 0; color: var(--title); text-align: center;
+  font: 700 28px/1.2 var(--font-heading); letter-spacing: -2px;
+}
+:root[data-theme="4dminer"] #content > h2::before { content: "/db/ - "; }
+:root[data-theme="4dminer"] #content > h2::after {
+  content: ""; display: block; width: 90%; margin: 8px auto 0; border-top: 1px solid var(--post-line);
+}
+
+/* ---------- Liens de la table : [Select data] [Show structure]… ---------- */
+:root[data-theme="4dminer"] #content .links { color: var(--text); }
+:root[data-theme="4dminer"] #content .links a {
+  margin: 0 6px 0 0; padding: 0; border: 0; border-radius: 0; background: none; color: var(--link);
+}
+:root[data-theme="4dminer"] #content .links a::before { content: "["; color: var(--text); }
+:root[data-theme="4dminer"] #content .links a::after { content: "]"; color: var(--text); }
+:root[data-theme="4dminer"] #content .links a:hover { background: none; color: var(--link-hover); }
+:root[data-theme="4dminer"] #content .links a.active { color: var(--text); font-weight: 700; }
+
+/* ---------- Tableaux : étiquettes saumon en en-tête, cellules couleur de réponse ---------- */
+:root[data-theme="4dminer"] table { border: 0; border-radius: 0; background: none; box-shadow: none; border-collapse: separate; border-spacing: 0; }
+:root[data-theme="4dminer"] :is(th, td) { border: 0; border-right: 1px solid var(--post-line); border-bottom: 1px solid var(--post-line); }
+:root[data-theme="4dminer"] thead :is(th, td, td.hover) {
+  border: 1px solid var(--label-line); border-left-width: 0; color: var(--label-text); font-weight: 700; white-space: nowrap;
+}
+:root[data-theme="4dminer"] thead tr > :first-child { border-left-width: 1px; }
+:root[data-theme="4dminer"] thead th .column { border: 1px solid var(--label-line); border-radius: 0; background: var(--field); box-shadow: none; }
+:root[data-theme="4dminer"] thead th .column a.text:is(:link, :visited) { color: var(--link); font-weight: 400; }
+:root[data-theme="4dminer"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: none; color: var(--link-hover); }
+:root[data-theme="4dminer"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
+/* ligne cochée : surlignée comme un message cité */
+:root[data-theme="4dminer"].js .checkable .checked :is(td, th, td.hover) { background: var(--highlight); border-color: var(--highlight-line); }
+:root[data-theme="4dminer"] input:is([type=checkbox], [type=radio]) { accent-color: auto; width: auto; height: auto; }
+
+/* première colonne des données : [edit], la case, puis le numéro du message (« No. », qui suit les lignes) */
+:root[data-theme="4dminer"] #table tbody { counter-reset: post 48151623; }
+:root[data-theme="4dminer"] #table tbody tr { counter-increment: post; }
+:root[data-theme="4dminer"] #table tbody td.check { white-space: nowrap; }
+:root[data-theme="4dminer"] #table tbody td.check::after { content: "No." counter(post); margin-left: 2px; color: var(--text); font-size: 12px; }
+:root[data-theme="4dminer"] td.check a.edit::before { content: "["; color: var(--text); }
+:root[data-theme="4dminer"] td.check a.edit::after { content: "]"; color: var(--text); }
+
+/* ---------- Filtres de la page « Sélectionner » ---------- */
+:root[data-theme="4dminer"] form#form:not([method]) { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 4px 10px; margin: 8px 0; }
+:root[data-theme="4dminer"] form#form:not([method]) > fieldset { margin: 0; }
+
+/* ---------- Cartes : réponses (fond saumon, filet à droite et en bas) ; repliées, liens « [+] » ---------- */
+:root[data-theme="4dminer"] fieldset {
+  padding: 2px 8px 6px; border: 0; border-right: 1px solid var(--post-line); border-bottom: 1px solid var(--post-line); border-radius: 0;
+  background: var(--post); box-shadow: none;
+}
+:root[data-theme="4dminer"] legend { float: left; width: 100%; margin: 0 0 2px; padding: 0; background: none; border-radius: 0; color: var(--subject); font-weight: 700; }
+:root[data-theme="4dminer"] legend + * { clear: left; }
+:root[data-theme="4dminer"] legend a:is(:link, :visited) { color: var(--subject); }
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) { padding: 0; border: 0; background: none; }
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  float: none; width: auto; margin: 0; padding: 0; border: 0; background: none; box-shadow: none; transition: none;
+}
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0; color: var(--link); font-weight: 400; }
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "[+]"; margin-right: 3px; color: var(--text); font-weight: 400; }
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: none; border: 0; transform: none; }
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
+:root[data-theme="4dminer"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: var(--link-hover); }
+:root[data-theme="4dminer"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0; background: none; }
+:root[data-theme="4dminer"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a,
+:root[data-theme="4dminer"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--subject); }
+:root[data-theme="4dminer"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "[−]"; margin-right: 3px; color: var(--text); font-weight: 400; }
+
+/* pied collant (actions, pagination) : bande crème à filet ; titres à côté des boutons */
+:root[data-theme="4dminer"] .footer { box-shadow: none; }
+:root[data-theme="4dminer"] .footer > div {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 6px 0; background: var(--page); border-top: 1px solid var(--post-line);
+}
+:root[data-theme="4dminer"] .footer fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; padding: 0; border: 0; background: none; }
+:root[data-theme="4dminer"] .footer fieldset > legend { float: none; width: auto; margin: 0; color: var(--text); }
+:root[data-theme="4dminer"] .footer fieldset > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
+/* ---------- Formulaires : contrôles natifs, champs à filet gris ---------- */
+:root[data-theme="4dminer"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="4dminer"] select {
+  min-height: 0; padding: 2px 4px; border: 1px solid var(--field-line); border-radius: 0; background: var(--field);
+  color: #000000; font: 400 var(--fs)/1.2 var(--font); box-shadow: none;
+}
+:root[data-theme="4dminer"] select { padding: 1px 2px; }
+:root[data-theme="4dminer"] textarea { font-family: var(--font-mono); }
+:root[data-theme="4dminer"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus { border-color: #000000; box-shadow: none; }
+:root[data-theme="4dminer"] :is(input, select, textarea):disabled { background: #eeeeee; color: #777777; }
+:root[data-theme="4dminer"] select.jush-autocomplete { border: 1px solid var(--field-line); }
+
+/* boutons gris natifs (Post, Delete…) */
+:root[data-theme="4dminer"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 0; padding: 1px 6px; border: 1px solid #767676; border-radius: 3px; background: #efefef; color: #000000;
+  font: 400 var(--fs)/1.3 var(--font); box-shadow: none; transition: none;
+}
+:root[data-theme="4dminer"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { background: #e5e5e5; border-color: #4f4f4f; transform: none; filter: none; }
+:root[data-theme="4dminer"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: #f5f5f5; border-color: #8d8d8d; transform: none; box-shadow: none; }
+/* (sélecteurs répétés : ils doivent l'emporter sur la règle générale des boutons, plus spécifique) */
+:root[data-theme="4dminer"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { background: #efefef; color: #000000; box-shadow: none; }
+:root[data-theme="4dminer"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="4dminer"] :is(input[type=submit], input[type=button]):disabled:hover { background: #efefef; border-color: #c6c6c6; color: #999999; cursor: default; }
+/* boutons-icônes d'Adminer (ajouter, supprimer une colonne) : pictogramme bordeaux, rouge au survol */
+:root[data-theme="4dminer"] button.icon { background-color: var(--text); border-radius: 0; }
+:root[data-theme="4dminer"] button.icon:hover { background-color: var(--link-hover); }
+
+/* formulaires à étiquettes (connexion, édition d'une ligne) : étiquettes saumon cerclées, comme le formulaire de publication */
+:root[data-theme="4dminer"] table.layout { border-spacing: 1px; }
+:root[data-theme="4dminer"] table.layout > tbody > tr > :is(th, td) { border: 0; background: none; }   /* sans le zèbre des tableaux */
+:root[data-theme="4dminer"] table.layout > tbody > tr > th {
+  padding: 0 5px; border: 1px solid var(--label-line); background: var(--label); color: var(--label-text); font-weight: 700; vertical-align: middle;
+}
+:root[data-theme="4dminer"] table.layout > tbody > tr:hover > :is(td, th) { background: none; }
+:root[data-theme="4dminer"] table.layout > tbody > tr:hover > th { background: var(--label); }
+
+/* ---------- Messages : réponse d'« Anonymous » en texte vert ; erreurs en rouge gras ---------- */
+:root[data-theme="4dminer"] #content .message {
+  display: table; position: relative; margin: 6px 0; padding: 20px 12px 6px 8px;
+  border: 0; border-right: 1px solid var(--post-line); border-bottom: 1px solid var(--post-line); border-radius: 0;
+  background: var(--post); color: var(--quote); box-shadow: none;
+}
+:root[data-theme="4dminer"] #content .message::before { content: ">"; }
+:root[data-theme="4dminer"] #content .message::after { content: "Anonymous"; position: absolute; top: 3px; left: 8px; color: var(--name); font-weight: 700; }
+:root[data-theme="4dminer"] #content .message :is(a, code) { color: inherit; }
+:root[data-theme="4dminer"] #content .message a:is(:link, :visited) { color: var(--link); }
+:root[data-theme="4dminer"] .error { margin: 6px 0; padding: 0; border: 0; border-radius: 0; background: none; color: var(--err); font-weight: 700; box-shadow: none; }
+:root[data-theme="4dminer"] .error :is(code, pre) { font-weight: 400; }
+
+/* bulle d'aide (fonctions SQL) : réponse flottante */
+:root[data-theme="4dminer"] #help { padding: 4px 8px; border: 1px solid var(--post-line); border-radius: 0; background: var(--post); color: var(--text); box-shadow: none; }
+
+/* éditeur SQL : champ blanc à filet */
+:root[data-theme="4dminer"] [contenteditable].jush { border: 1px solid var(--field-line); background: var(--field); }
+:root[data-theme="4dminer"] [contenteditable].jush:focus { border-color: #000000; }
+
+/* ---------- Schéma de la base : tables en réponses ---------- */
+/* interligne de 1,25 : celui sur lequel Adminer place les flèches des clés (en em) */
+:root[data-theme="4dminer"] #schema { margin-bottom: 30px; }
+:root[data-theme="4dminer"] #schema .table { padding: 0 4px 2px; border: 0; border-right: 1px solid var(--post-line); border-bottom: 1px solid var(--post-line); background: var(--post); line-height: 1.25; }
+:root[data-theme="4dminer"] #schema .table a:first-child { color: var(--subject); font-weight: 700; }
+
+/* ---------- Page de connexion : le formulaire de publication, sous la bannière ---------- */
+/* Repérée par le champ mot de passe. Bannière, titre « /db/ - Login » et filet, étiquettes saumon devant les champs, bouton
+   natif ; la boîte (titre et langue) sous le formulaire. */
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(480px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 36px 8px 24px;
+}
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #content { grid-row: 1; margin: 0 !important; padding: 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #content form { display: flex; flex-direction: column; align-items: center; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) table.layout { margin: 8px auto 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) table.layout > tbody > tr > th { width: 80px; padding: 3px 5px; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 260px; max-width: 100%; box-sizing: border-box; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; gap: 12px; margin: 8px 0 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #content form > p label { display: inline-flex; align-items: center; gap: 4px; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #foot { grid-row: 2; position: static; display: block; margin: 24px auto 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #menu { position: static; width: auto; min-width: 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #menu #lang { margin: 6px 8px 0; padding: 0; border: 0; }
+:root[data-theme="4dminer"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : bouton du menu natif en haut, la boîte en volet ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="4dminer"] #content { margin: var(--top) 0 0; margin-inline-start: 0 !important; padding: 4px 8px 12px; --content-end: 8px; }
+  /* bannière et titre à gauche : un tableau large élargit la page, qui défile alors à l'horizontale */
+  :root[data-theme="4dminer"] #content::before { margin-left: 0; }
+  :root[data-theme="4dminer"] #content > h2 { font-size: 24px; text-align: left; }
+  :root[data-theme="4dminer"] #content > h2::after { width: min(100%, 100vw - 16px); margin-left: 0; }
+  :root[data-theme="4dminer"] #breadcrumb { left: 44px !important; right: 8px; }
+  :root[data-theme="4dminer"].js #menuopen { top: 3px; left: 8px; }
+  :root[data-theme="4dminer"] #menuopen button.icon {
+    width: 28px; height: 24px; border: 1px solid #767676; border-radius: 3px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Cpath d='M3 4.5h10M3 8h10M3 11.5h10'/%3E%3C/svg%3E") center / 14px no-repeat #efefef;
+  }
+  :root[data-theme="4dminer"] #menuopen button.icon:hover { background-color: #e5e5e5; }
+  /* volet sous la ligne des boards : fond de page à filet, compte en haut, la boîte dessous */
+  :root[data-theme="4dminer"].js #foot:not(.foot) {
+    top: var(--top); left: 8px; z-index: 5; width: min(300px, calc(100% - 32px)); padding: 0 6px 6px;
+    background: var(--page); border: 1px solid var(--post-line); box-shadow: 2px 2px 0 rgb(0 0 0 / .12);
+  }
+  :root[data-theme="4dminer"] #menu { position: static; min-width: 0; width: auto; }
+  :root[data-theme="4dminer"].js #foot .logout { justify-content: flex-end; height: auto; padding: 4px 0 6px; background: none; box-shadow: none; }
+  :root[data-theme="4dminer"]:has(input[name="auth[password]"]) #foot { position: static; }
+}
+@media (max-width: 600px) {
+  :root[data-theme="4dminer"] #kawaii-switcher { top: 3px; }
+}

@@ -1,0 +1,202 @@
+/* ===== Thème Noël (2 variantes) =====
+   Actif quand <html data-theme="noel">. Variante : data-variant = neige (défaut) | nuit. Un pull de Noël et un soir de
+   neige :
+   - le menu en pull rouge : maille jersey, col et bas en côtes, bande jacquard de sapins et de flocons pixelisés sur fond
+     vert ; actions en écussons cousus au point de bâti, tables marquées d'un flocon ;
+   - la neige tombe doucement derrière la page (immobile si l'on réduit les animations) ;
+   - titres en Georgia, soulignés d'une guirlande lumineuse ; en-têtes de tableaux vert sapin à liseré doré ;
+   - cases à cocher en boules de sapin, rouges une fois cochées ; boutons en écussons de feutre vert surpiqués ;
+   - page de connexion en lettre au Père Noël : une ligne d'écriture par champ, liseré « par avion » rouge et vert, timbre et cachet. */
+
+/* ---------- Variables : neige (variante par défaut) ---------- */
+:root[data-theme="noel"] {
+  /* le pull, identique dans les deux variantes */
+  --wool: #a71e26; --wool-ink: #fbf3e4; --wool-dim: #f3c9c3; --pine: #1e5b38; --gold: #e2ad2e;
+  --garland-day: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='16'%3E%3Cpath d='M0 3Q16 9 32 3T64 3' fill='none' stroke='%231e5b38' stroke-width='1.3'/%3E%3Crect x='8.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%231e5b38'/%3E%3Cellipse cx='10' cy='11.0' rx='2.7' ry='3.7' fill='%23d42f3a'/%3E%3Cellipse cx='9.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='20.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%231e5b38'/%3E%3Cellipse cx='22' cy='11.0' rx='2.7' ry='3.7' fill='%23e8b23a'/%3E%3Cellipse cx='21.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='40.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%231e5b38'/%3E%3Cellipse cx='42' cy='11.0' rx='2.7' ry='3.7' fill='%232f9a58'/%3E%3Cellipse cx='41.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='52.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%231e5b38'/%3E%3Cellipse cx='54' cy='11.0' rx='2.7' ry='3.7' fill='%233b7fd0'/%3E%3Cellipse cx='53.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3C/svg%3E");
+
+  --bg: #eef3f6; --surface: #ffffff; --surface-2: #e5edf1; --text: #1f2a24; --muted: #5b6a65; --border: #c9d7dd;
+  --accent: #1e6b42; --on-accent: #fffaf0; --accent-deep: #124a2c;
+  --accent-text: #a11d26;              /* liens : rouge du pull */
+  --title: var(--pine);
+  --ok: #1e7a45; --err: #c0262f; --on-err: #ffffff;
+  --jush-str: #1e7a45; --jush-num: #a8640a; --jush-id: #2f5f9e;
+  --shadow: 0 2px 8px rgb(31 42 36 / .08);
+  --snow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' fill='%239fb6c8'%3E%3Ccircle cx='91' cy='219' r='1.2' fill-opacity='0.5'/%3E%3Ccircle cx='220' cy='75' r='2.2' fill-opacity='0.5'/%3E%3Ccircle cx='203' cy='180' r='1.2' fill-opacity='0.7'/%3E%3Ccircle cx='135' cy='26' r='1.2' fill-opacity='0.9'/%3E%3Ccircle cx='163' cy='197' r='2.6' fill-opacity='0.9'/%3E%3Ccircle cx='77' cy='217' r='2.6' fill-opacity='0.7'/%3E%3Ccircle cx='123' cy='126' r='1.2' fill-opacity='0.9'/%3E%3Ccircle cx='139' cy='100' r='1.5' fill-opacity='0.9'/%3E%3Ccircle cx='41' cy='111' r='1.2' fill-opacity='0.7'/%3E%3Ccircle cx='135' cy='123' r='1.5' fill-opacity='0.9'/%3E%3Ccircle cx='207' cy='13' r='1.5' fill-opacity='0.5'/%3E%3Ccircle cx='194' cy='55' r='2.2' fill-opacity='0.9'/%3E%3Ccircle cx='108' cy='191' r='2.6' fill-opacity='0.9'/%3E%3Ccircle cx='156' cy='107' r='2.2' fill-opacity='0.7'/%3E%3Ccircle cx='43' cy='233' r='2.2' fill-opacity='0.9'/%3E%3Ccircle cx='228' cy='8' r='1.5' fill-opacity='0.7'/%3E%3Ccircle cx='147' cy='85' r='1.2' fill-opacity='0.5'/%3E%3Ccircle cx='33' cy='58' r='1.5' fill-opacity='0.9'/%3E%3C/svg%3E");
+  --garland: var(--garland-day);
+  color-scheme: light;
+
+  /* formes */
+  --radius: 10px; --radius-sm: 6px;
+  --font: "Segoe UI", system-ui, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  /* décor : flocon devant les tables (texte, pas emoji), paquet cadeau devant les messages */
+  --e-table: "\2744\FE0E"; --e-ok: "🎁 ";
+
+  --th-bg: var(--pine); --th-text: var(--wool-ink);
+  --zebra: #f4f7f9;
+  --lit: #f6f9fa;                      /* éditeur SQL et requêtes : papier neutre, pas teinté de vert */
+  --row-hover: #fbf0d6;
+  --row-checked: #fbe4e5;
+}
+
+/* ---------- Variante nuit : ciel d'hiver, liens dorés ---------- */
+:root[data-theme="noel"][data-variant="nuit"] {
+  --bg: #0e1a2e; --surface: #15253d; --surface-2: #1e3252; --text: #f1ece0; --muted: #a3b2c6; --border: #2b4468;
+  --accent: #2a7d4f; --on-accent: #ffffff; --accent-deep: #17502f;
+  --accent-text: #f2c45a;
+  --title: var(--text);
+  --ok: #5cc48a; --err: #ff6b72; --on-err: #2a0508;
+  --jush-str: #8fd6a6; --jush-num: #f2c45a; --jush-id: #9cc3ff;
+  --shadow: 0 4px 14px rgb(0 0 0 / .4);
+  --snow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' fill='%23ffffff'%3E%3Ccircle cx='91' cy='219' r='1.2' fill-opacity='0.5'/%3E%3Ccircle cx='220' cy='75' r='2.2' fill-opacity='0.5'/%3E%3Ccircle cx='203' cy='180' r='1.2' fill-opacity='0.7'/%3E%3Ccircle cx='135' cy='26' r='1.2' fill-opacity='0.9'/%3E%3Ccircle cx='163' cy='197' r='2.6' fill-opacity='0.9'/%3E%3Ccircle cx='77' cy='217' r='2.6' fill-opacity='0.7'/%3E%3Ccircle cx='123' cy='126' r='1.2' fill-opacity='0.9'/%3E%3Ccircle cx='139' cy='100' r='1.5' fill-opacity='0.9'/%3E%3Ccircle cx='41' cy='111' r='1.2' fill-opacity='0.7'/%3E%3Ccircle cx='135' cy='123' r='1.5' fill-opacity='0.9'/%3E%3Ccircle cx='207' cy='13' r='1.5' fill-opacity='0.5'/%3E%3Ccircle cx='194' cy='55' r='2.2' fill-opacity='0.9'/%3E%3Ccircle cx='108' cy='191' r='2.6' fill-opacity='0.9'/%3E%3Ccircle cx='156' cy='107' r='2.2' fill-opacity='0.7'/%3E%3Ccircle cx='43' cy='233' r='2.2' fill-opacity='0.9'/%3E%3Ccircle cx='228' cy='8' r='1.5' fill-opacity='0.7'/%3E%3Ccircle cx='147' cy='85' r='1.2' fill-opacity='0.5'/%3E%3Ccircle cx='33' cy='58' r='1.5' fill-opacity='0.9'/%3E%3C/svg%3E");
+  --garland: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='16'%3E%3Cpath d='M0 3Q16 9 32 3T64 3' fill='none' stroke='%238fbf9c' stroke-width='1.3'/%3E%3Crect x='8.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%238fbf9c'/%3E%3Cellipse cx='10' cy='11.0' rx='2.7' ry='3.7' fill='%23d42f3a'/%3E%3Cellipse cx='9.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='20.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%238fbf9c'/%3E%3Cellipse cx='22' cy='11.0' rx='2.7' ry='3.7' fill='%23e8b23a'/%3E%3Cellipse cx='21.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='40.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%238fbf9c'/%3E%3Cellipse cx='42' cy='11.0' rx='2.7' ry='3.7' fill='%232f9a58'/%3E%3Cellipse cx='41.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3Crect x='52.7' y='4.6' width='2.6' height='2.8' rx='.6' fill='%238fbf9c'/%3E%3Cellipse cx='54' cy='11.0' rx='2.7' ry='3.7' fill='%233b7fd0'/%3E%3Cellipse cx='53.1' cy='9.8' rx='.8' ry='1.3' fill='%23fff' fill-opacity='.6'/%3E%3C/svg%3E");
+  color-scheme: dark;
+
+  --zebra: #12213a;
+  --lit: #182a44;
+  --row-hover: #3a321f;
+  --row-checked: #4a1f2a;
+}
+/* boutons-icônes : carré d'Adminer inversé, pictogramme de la couleur du texte (fond donné inversé, voir dbhub.css) */
+:root[data-theme="noel"][data-variant="nuit"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+:root[data-theme="noel"][data-variant="nuit"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+
+/* ---------- Neige : un calque fixe derrière la page, qui descend d'un carreau de motif en boucle ---------- */
+/* translateY d'une période exacte du motif (240 px) : la boucle ne se voit pas. Coupée si prefers-reduced-motion (base.css). */
+:root[data-theme="noel"] body::before {
+  content: ""; position: fixed; z-index: -1; left: 0; right: 0; top: -240px; height: calc(100% + 240px);
+  background: var(--snow) 0 0 / 240px 240px; pointer-events: none;
+  animation: noel-snow 30s linear infinite;
+}
+@keyframes noel-snow { to { transform: translateY(240px); } }
+
+/* ---------- Menu : le pull ---------- */
+/* de haut en bas : col en côtes (8 px), bande jacquard sur fond vert (41 px), maille jersey ; bas en côtes (12 px) */
+:root[data-theme="noel"] #menu {
+  color: var(--wool-ink); background-color: var(--wool);
+  background-image:
+    repeating-linear-gradient(90deg, rgb(0 0 0 / .22) 0 2px, transparent 2px 5px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='33' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h3v3h-3zM6 0h3v3h-3zM12 0h3v3h-3zM18 0h3v3h-3zM24 0h3v3h-3zM30 0h3v3h-3zM36 0h3v3h-3zM42 0h3v3h-3zM9 6h3v3h-3zM33 6h3v3h-3zM6 9h9v3h-9zM27 9h3v3h-3zM33 9h3v3h-3zM39 9h3v3h-3zM3 12h15v3h-15zM30 12h9v3h-9zM6 15h9v3h-9zM24 15h9v3h-9zM36 15h9v3h-9zM3 18h15v3h-15zM30 18h9v3h-9zM0 21h21v3h-21zM27 21h3v3h-3zM33 21h3v3h-3zM39 21h3v3h-3zM9 24h3v3h-3zM33 24h3v3h-3zM3 30h3v3h-3zM9 30h3v3h-3zM15 30h3v3h-3zM21 30h3v3h-3zM27 30h3v3h-3zM33 30h3v3h-3zM39 30h3v3h-3zM45 30h3v3h-3z' fill='%23f6ecd6'/%3E%3C/svg%3E"),
+    linear-gradient(var(--pine), var(--pine)),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / .22) 0 2px, transparent 2px 5px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M.8.6 4 6.4 7.2.6' fill='none' stroke='%23000' stroke-opacity='.13' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 100% 8px, 48px 33px, 100% 41px, 100% 12px, 8px 8px;
+  background-position: 0 0, 0 12px, 0 8px, 0 100%, 0 0;
+  background-repeat: no-repeat, repeat-x, no-repeat, no-repeat, repeat;
+  border: 0; padding: 58px 8px 24px;
+  display: flex; flex-direction: column;
+}
+/* langue en pied du pull : Adminer la pose au-dessus du menu, sur la page */
+:root[data-theme="noel"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="noel"] #menu #lang { position: static; margin: 8px 0 0; padding: 8px 6px 0; border-top: 1px solid rgb(251 243 228 / .35); }
+:root[data-theme="noel"] #menu h1 { margin: 0 6px 8px; padding-bottom: 8px; border-bottom: 1px solid rgb(251 243 228 / .35); font-size: 1.35em; }
+:root[data-theme="noel"] #h1 { color: var(--wool-ink); }
+:root[data-theme="noel"] #menu .version { color: var(--wool-dim); }
+:root[data-theme="noel"] #menu :is(p, #dbs, #logins) { border-color: rgb(251 243 228 / .35); }
+:root[data-theme="noel"] #menu a:hover { background-color: rgb(0 0 0 / .2); }
+/* listes du pull (base, langue) : écrues */
+:root[data-theme="noel"] #menu select { background-color: var(--wool-ink); border-color: var(--wool-ink); color: #4a1216; }
+:root[data-theme="noel"] #menu select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb(226 173 46 / .45); }
+
+/* actions : écussons cousus au point de bâti, pleins au survol */
+:root[data-theme="noel"] #menu p.links a {
+  background-color: transparent; color: var(--wool-ink); border: 2px dashed rgb(251 243 228 / .6); border-radius: var(--radius-sm);
+}
+:root[data-theme="noel"] #menu p.links a:is(:hover, .active) { background-color: var(--wool-ink); border-color: var(--wool-ink); color: var(--wool); }
+
+/* tables : flocons écrus, table ouverte en étiquette écrue */
+:root[data-theme="noel"] #tables { scrollbar-color: var(--wool-dim) transparent; }
+:root[data-theme="noel"] #tables::before { color: var(--wool-dim); }
+:root[data-theme="noel"] #tables :is(a.structure, a.view) { color: var(--wool-ink); }
+:root[data-theme="noel"] #tables a.structure::before { color: var(--wool-dim); }
+:root[data-theme="noel"] #tables li:hover { background-color: rgb(0 0 0 / .2); }
+:root[data-theme="noel"] #tables li:has(a.active) { background-color: var(--wool-ink); box-shadow: none; }
+:root[data-theme="noel"] #tables li:has(a.active) a.structure { color: var(--wool); }
+:root[data-theme="noel"] #tables li:has(a.active) a.structure::before { color: var(--pine); }
+:root[data-theme="noel"] #tables a.select { background-color: var(--wool-ink); }
+:root[data-theme="noel"] #tables a.select::before { color: var(--wool); }
+:root[data-theme="noel"] #tables li:has(a.active) a.select { background-color: var(--wool); }
+:root[data-theme="noel"] #tables li:has(a.active) a.select::before { color: var(--wool-ink); }
+
+/* ---------- Titres : Georgia, guirlande lumineuse dessous ---------- */
+:root[data-theme="noel"] h2 {
+  color: var(--title); font-size: 1.6em; border: 0; padding-bottom: 20px;
+  background: var(--garland) 0 100% / 64px 16px repeat-x;
+}
+:root[data-theme="noel"] h3 { color: var(--title); }
+
+/* ---------- Tableaux : en-tête vert sapin à liseré doré, ligne cochée rose de Noël ---------- */
+:root[data-theme="noel"] table { border: 1px solid var(--border); }
+:root[data-theme="noel"] thead :is(th, td, td.hover) { border-bottom: 2px solid var(--gold); }
+:root[data-theme="noel"] .checkable tr.checked :is(td, th, td.hover) { background-color: var(--row-checked); }
+/* tables du schéma : opaques, la neige passe derrière */
+:root[data-theme="noel"] #schema .table { background-color: var(--surface); }
+
+/* ---------- Cases à cocher : boules de sapin ---------- */
+:root[data-theme="noel"] input[type=checkbox] {
+  appearance: none; width: 16px; height: 19px; margin: -3px 3px 0; border: 0; vertical-align: middle; cursor: pointer;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Ccircle cx='10' cy='14.6' r='8.3' fill='%23fff' stroke='%238c9aa3' stroke-width='1.5'/%3E%3Cpath d='M7.6 3.4h4.8v2.8H7.6z' fill='%23d9a632' stroke='%238a6514' stroke-width='.8'/%3E%3Cpath d='M10 3.4c-1.7 0-1.7-2.6 0-2.6s1.7 2.6 0 2.6' fill='none' stroke='%238a6514' stroke-width='.9'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:root[data-theme="noel"] input[type=checkbox]:hover { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Ccircle cx='10' cy='14.6' r='8.3' fill='%23fde7e8' stroke='%23c62832' stroke-width='1.5'/%3E%3Cpath d='M7.6 3.4h4.8v2.8H7.6z' fill='%23d9a632' stroke='%238a6514' stroke-width='.8'/%3E%3Cpath d='M10 3.4c-1.7 0-1.7-2.6 0-2.6s1.7 2.6 0 2.6' fill='none' stroke='%238a6514' stroke-width='.9'/%3E%3C/svg%3E"); }
+:root[data-theme="noel"] input[type=checkbox]:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 24'%3E%3Ccircle cx='10' cy='14.6' r='8.3' fill='%23c62832' stroke='%237d1219' stroke-width='1.5'/%3E%3Cpath d='M3.4 13.4h13.2M4 17.4h12' stroke='%23f6ecd6' stroke-width='1.4' stroke-dasharray='1.7 1.5'/%3E%3Cellipse cx='6.9' cy='11' rx='2.2' ry='1.4' fill='%23fff' fill-opacity='.6' transform='rotate(-35 6.9 11)'/%3E%3Cpath d='M7.6 3.4h4.8v2.8H7.6z' fill='%23d9a632' stroke='%238a6514' stroke-width='.8'/%3E%3Cpath d='M10 3.4c-1.7 0-1.7-2.6 0-2.6s1.7 2.6 0 2.6' fill='none' stroke='%238a6514' stroke-width='.9'/%3E%3C/svg%3E"); }
+:root[data-theme="noel"] input[type=checkbox]:disabled { opacity: .45; cursor: default; }
+
+/* ---------- Boutons : écussons de feutre vert, surpiqûre écrue ---------- */
+/* la surpiqûre est la bordure ; l'anneau de box-shadow (de la couleur du bouton) la place en retrait du bord */
+:root[data-theme="noel"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  margin: 2px; border: 1.5px dashed rgb(255 250 240 / .7); border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 2px var(--accent), 0 3px 0 2px var(--accent-deep);
+}
+:root[data-theme="noel"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { box-shadow: 0 0 0 2px var(--accent); }
+:root[data-theme="noel"] :is(input[name*=delete], input[name=drop], input[name=truncate]) {
+  box-shadow: 0 0 0 2px var(--err), 0 3px 0 2px color-mix(in srgb, var(--err) 60%, #000);
+}
+:root[data-theme="noel"][data-variant="nuit"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { border-color: rgb(42 5 8 / .5); }
+
+/* ---------- Page de connexion : la lettre au Père Noël ---------- */
+/* Repérée par le champ mot de passe. Papier bordé d'un liseré « par avion », timbre et cachet en haut à droite ;
+   la lettre reste claire dans la variante nuit. Le pull (titre et langue) en étiquette sous la lettre. */
+:root[data-theme="noel"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(500px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 48px 12px 24px;
+}
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content {
+  --text: #1f2a24; --muted: #5b6a65; --surface: #ffffff; --surface-2: #e5edf1; --border: #c9d7dd;
+  --accent-text: #a11d26; --title: var(--pine); --garland: var(--garland-day);
+  grid-row: 1; position: relative; margin: 0 !important; padding: 24px 28px 20px; color: var(--text); color-scheme: light;
+  background: #fffdf7;
+  border: 10px solid; border-image: repeating-linear-gradient(-45deg, #c62832 0 12px, #fffdf7 12px 20px, #1e6b42 20px 32px, #fffdf7 32px 40px) 10;
+  box-shadow: 0 12px 32px rgb(15 26 46 / .25);
+}
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content > h2 { margin-right: 120px; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content::after {
+  content: ""; position: absolute; top: 12px; right: 14px; width: 56px; height: 67px; rotate: 4deg;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 72'%3E%3Crect width='60' height='72' fill='%23fffdf7'/%3E%3Crect x='5' y='5' width='50' height='62' fill='%23a71e26'/%3E%3Cg fill='%232f8a4e' shape-rendering='crispEdges'%3E%3Cpath d='M28 20h4v4h-4zM24 24h12v4h-12zM20 28h20v4h-20zM24 32h12v4h-12zM20 36h20v4h-20zM16 40h28v4h-28zM28 44h4v4h-4z'/%3E%3C/g%3E%3Cpath d='M30 9.5l1.6 3.4 3.7.5-2.7 2.6.7 3.6-3.3-1.8-3.3 1.8.7-3.6-2.7-2.6 3.7-.5z' fill='%23f0c040'/%3E%3Cpath d='M12 57h36' stroke='%23f6ecd6' stroke-width='2' stroke-dasharray='3 2'/%3E%3Cg fill='%23fffdf7'%3E%3Ccircle cx='3' cy='0' r='2.2'/%3E%3Ccircle cx='3' cy='72' r='2.2'/%3E%3Ccircle cx='9' cy='0' r='2.2'/%3E%3Ccircle cx='9' cy='72' r='2.2'/%3E%3Ccircle cx='15' cy='0' r='2.2'/%3E%3Ccircle cx='15' cy='72' r='2.2'/%3E%3Ccircle cx='21' cy='0' r='2.2'/%3E%3Ccircle cx='21' cy='72' r='2.2'/%3E%3Ccircle cx='27' cy='0' r='2.2'/%3E%3Ccircle cx='27' cy='72' r='2.2'/%3E%3Ccircle cx='33' cy='0' r='2.2'/%3E%3Ccircle cx='33' cy='72' r='2.2'/%3E%3Ccircle cx='39' cy='0' r='2.2'/%3E%3Ccircle cx='39' cy='72' r='2.2'/%3E%3Ccircle cx='45' cy='0' r='2.2'/%3E%3Ccircle cx='45' cy='72' r='2.2'/%3E%3Ccircle cx='51' cy='0' r='2.2'/%3E%3Ccircle cx='51' cy='72' r='2.2'/%3E%3Ccircle cx='57' cy='0' r='2.2'/%3E%3Ccircle cx='57' cy='72' r='2.2'/%3E%3Ccircle cx='0' cy='3' r='2.2'/%3E%3Ccircle cx='60' cy='3' r='2.2'/%3E%3Ccircle cx='0' cy='9' r='2.2'/%3E%3Ccircle cx='60' cy='9' r='2.2'/%3E%3Ccircle cx='0' cy='15' r='2.2'/%3E%3Ccircle cx='60' cy='15' r='2.2'/%3E%3Ccircle cx='0' cy='21' r='2.2'/%3E%3Ccircle cx='60' cy='21' r='2.2'/%3E%3Ccircle cx='0' cy='27' r='2.2'/%3E%3Ccircle cx='60' cy='27' r='2.2'/%3E%3Ccircle cx='0' cy='33' r='2.2'/%3E%3Ccircle cx='60' cy='33' r='2.2'/%3E%3Ccircle cx='0' cy='39' r='2.2'/%3E%3Ccircle cx='60' cy='39' r='2.2'/%3E%3Ccircle cx='0' cy='45' r='2.2'/%3E%3Ccircle cx='60' cy='45' r='2.2'/%3E%3Ccircle cx='0' cy='51' r='2.2'/%3E%3Ccircle cx='60' cy='51' r='2.2'/%3E%3Ccircle cx='0' cy='57' r='2.2'/%3E%3Ccircle cx='60' cy='57' r='2.2'/%3E%3Ccircle cx='0' cy='63' r='2.2'/%3E%3Ccircle cx='60' cy='63' r='2.2'/%3E%3Ccircle cx='0' cy='69' r='2.2'/%3E%3Ccircle cx='60' cy='69' r='2.2'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; filter: drop-shadow(0 1px 2px rgb(0 0 0 / .25));
+}
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content::before {
+  content: ""; position: absolute; z-index: 1; top: 40px; right: 34px; width: 92px; height: 46px; rotate: -8deg;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' fill='none' stroke='%232b3a4a' stroke-opacity='.45' stroke-width='1.6'%3E%3Ccircle cx='30' cy='30' r='24'/%3E%3Ccircle cx='30' cy='30' r='17'/%3E%3Cpath d='M58 18q8-6 16 0t16 0 16 0 14 0M58 30q8-6 16 0t16 0 16 0 14 0M58 42q8-6 16 0t16 0 16 0 14 0'/%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none;
+}
+:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin-top: 4px; background: none; border: 0; border-radius: 0; box-shadow: none; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout > tbody > tr > :is(th, td) { padding: 6px 6px 5px 0; background: none; border-bottom: 1px solid #d5e0e6; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout > tbody > tr > th { color: var(--muted); font-weight: 600; width: 90px; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 100%; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; gap: 16px; margin: 14px 0 0; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { padding: 4px 18px; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #content form > p label { display: inline-flex; align-items: center; gap: 2px; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #foot { grid-row: 2; position: static; display: block; margin: 24px auto 0; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #menu { position: static; width: auto; min-width: 0; margin: 0; border-radius: var(--radius); }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #menu h1 { margin-bottom: 0; padding-bottom: 0; border: 0; text-align: center; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : le volet sur fond de neige, compte en haut, le pull dessous ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="noel"].js #foot:not(.foot) {
+    left: 0; z-index: 5; box-sizing: border-box; width: min(312px, calc(100% - 24px)); padding: 0;
+    background: var(--bg); border-radius: 0 0 var(--radius) 0; box-shadow: 0 8px 28px rgb(15 26 46 / .3);
+  }
+  :root[data-theme="noel"] #menu { margin: 0; }
+  :root[data-theme="noel"].js #foot .logout { padding: 6px 8px; }
+  :root[data-theme="noel"]:has(input[name="auth[password]"]) #foot { position: static; }
+}

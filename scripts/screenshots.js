@@ -83,7 +83,7 @@ async function capture(browser, theme, labels) {
   await page.goto(URL).catch(() => fail(`Adminer ne répond pas sur ${URL} : lancez d'abord docker compose up -d`));
   await ready();
   if (!labels.size) {   // libellés du menu des thèmes, emoji compris
-    for (const [v, t] of await page.$$eval('#kawaii-switcher select.theme option', os => os.map(o => [o.value, o.textContent]))) labels.set(v, t);
+    for (const [v, t] of await page.$$eval('#kawaii-themes .pick', bs => bs.map(b => [b.dataset.t, b.dataset.label]))) labels.set(v, t);
   }
   const login = path.join(OUT, theme + '-login.webp');
   if (staged(theme)) {

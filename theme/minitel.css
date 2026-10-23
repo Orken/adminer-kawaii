@@ -239,6 +239,10 @@
 /* sélecteur de thème */
 :root[data-theme="minitel"] #kawaii-switcher { padding: 2px 4px; border: 2px solid var(--mt-blue); background: #000; }
 :root[data-theme="minitel"] #kawaii-switcher button.sw { border-radius: 0; }
+:root[data-theme="minitel"] #kawaii-themes { --col: 244px; }   /* police large : « Adminer classic » en entier */
+:root[data-theme="minitel"] #kawaii-themes button.v::before { border-radius: 0; }
+/* survol en vidéo inverse, comme les lignes des tableaux (fond cyan) */
+:root[data-theme="minitel"] #kawaii-switcher :is(button.theme:hover, button.theme[aria-expanded="true"], #kawaii-themes button.pick:hover) { color: #000; }
 
 /* ---------- Page de connexion : le Minitel ---------- */
 /* Repérée par le champ mot de passe. Une colonne de 40 caractères : la rangée 0 et le logo (#foot), puis le formulaire

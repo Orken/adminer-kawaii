@@ -230,6 +230,7 @@
 
 /* sélecteur de thème */
 :root[data-theme="bbs"] #kawaii-switcher { padding: 1px 4px; border: 3px double var(--border); background: #000; }
+:root[data-theme="bbs"] #kawaii-themes { --col: 214px; }   /* police large : « Adminer classic » en entier */
 
 /* ---------- Page de connexion : l'appel du BBS ---------- */
 /* Repérée par le champ mot de passe. Une colonne de la largeur du logo : la composition du numéro (body::before),

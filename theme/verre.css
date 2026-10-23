@@ -96,7 +96,7 @@
 }
 /* margin-inline-start (21em) reste celui d'Adminer : seules les autres marges changent */
 :root[data-theme="verre"] #content {
-  position: relative; border-radius: 30px; margin-top: 48px; margin-right: 14px; margin-bottom: 14px; padding: 18px 24px 20px;
+  position: relative; border-radius: 30px; margin-top: 48px; margin-right: 14px; margin-bottom: 14px; padding: 18px 24px 20px; --content-end: 24px;
 }
 :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 54px; }
 :root[data-theme="verre"] #menu { border-radius: 28px; margin: 22px 0 14px 14px; padding: 12px 10px 16px; }   /* bas : écart au bord de la fenêtre, menu fixe */
@@ -215,6 +215,11 @@
   border: 0; border-radius: var(--pill); box-shadow: var(--edge), 0 10px 30px -12px rgb(0 0 0 / .7);
 }
 :root[data-theme="verre"] #kawaii-switcher.in-bar { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; }
+/* panneau des thèmes : verre plus dense, sinon la page transparaîtrait sous les noms */
+:root[data-theme="verre"] #kawaii-themes {
+  background: rgb(12 14 40 / .84); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+  border: 0; border-radius: 20px; box-shadow: var(--edge), 0 18px 40px -12px rgb(0 0 0 / .8);
+}
 
 /* ---------- Page de connexion : une seule fenêtre de verre au milieu de l'aurore ---------- */
 /* Repérée par le champ mot de passe. La grille centre le logo (#foot) puis le formulaire (#content) ; body::before,
@@ -263,7 +268,7 @@
 
 /* ---------- Mobile ---------- */
 @media (max-width: 800px) {
-  :root[data-theme="verre"] #content { margin-top: 52px; margin-right: 10px; padding: 14px 14px 16px; border-radius: 24px; }
+  :root[data-theme="verre"] #content { margin-top: 52px; margin-right: 10px; padding: 14px 14px 16px; border-radius: 24px; --content-end: 14px; }
   :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 48px; }
   :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; max-width: calc(100% - 28px); overflow: hidden; text-overflow: ellipsis; }
   /* menu ouvert : fenêtre de verre posée sur la page (Adminer lui donne un fond, un cadre et une ombre opaques) */

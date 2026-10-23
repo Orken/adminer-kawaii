@@ -89,6 +89,6 @@
 /* grand écran seulement : sur mobile, le menu est un volet et le logo y couvrirait le bouton ☰ qui le referme */
 @media not all and (max-width: 800px) {
   :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu h1 { position: fixed; top: 8px; left: 12px; margin: 0; padding: 0; border: 0; z-index: 3; }
-  /* #lang est positionné par rapport au menu : les deux descendent sous le logo, fixe, et n'en remontent pas */
-  :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu { top: 76px; --menu-stick: 76px; }
+  /* #lang est positionné par rapport au menu : les deux descendent sous le logo, fixe */
+  :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu { top: 76px; }
 }

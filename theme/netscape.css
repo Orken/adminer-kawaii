@@ -43,13 +43,12 @@
   --title-h: 20px; --bar-h: 34px; --top: calc(var(--title-h) + var(--bar-h));
 
   /* fond : la fenêtre (boutons, barre de titre, barre d'adresse), puis la colonne de rubriques sous le menu (19em) ;
-     il défile avec la page, comme les barres qu'il dessine */
+     il défile avec la page (une fois connecté, sur grand écran, body::before repeint les barres, fixes) */
   --side-col: linear-gradient(90deg, var(--side) calc(100% - 1px), #c8c8c0 0);
-  --bg-pattern:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='14'%3E%3Cdefs%3E%3Cg id='b'%3E%3Crect width='16' height='14' fill='%230a0a0a'/%3E%3Crect width='15' height='13' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='12' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='11' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='10' fill='%23c0c0c0'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23b'/%3E%3Cuse href='%23b' x='16'/%3E%3Cuse href='%23b' x='34'/%3E%3Cpath d='M4 9h6v2H4z'/%3E%3Cpath d='M19 2h9v8h-9zM20 4v5h7V4z' fill-rule='evenodd'/%3E%3Cpath d='M38.5 3.5l7 6M45.5 3.5l-7 6' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E"),
-    var(--title-bar),
-    linear-gradient(#ffffff 0 1px, var(--chrome) 1px calc(100% - 2px), #808080 calc(100% - 2px) calc(100% - 1px), #0a0a0a calc(100% - 1px)),
-    var(--side-col);
+  --title-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%230a2a6e'/%3E%3Crect x='.5' y='.5' width='15' height='15' fill='none' stroke='%236f8fd8'/%3E%3Cpath d='M3.5 12.5v-9h2l5 6.2V3.5h2v9h-2l-5-6.2v6.2z' fill='%23fff'/%3E%3C/svg%3E");
+  --win-buttons: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='14'%3E%3Cdefs%3E%3Cg id='b'%3E%3Crect width='16' height='14' fill='%230a0a0a'/%3E%3Crect width='15' height='13' fill='%23fff'/%3E%3Crect x='1' y='1' width='14' height='12' fill='%23808080'/%3E%3Crect x='1' y='1' width='13' height='11' fill='%23dfdfdf'/%3E%3Crect x='2' y='2' width='12' height='10' fill='%23c0c0c0'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23b'/%3E%3Cuse href='%23b' x='16'/%3E%3Cuse href='%23b' x='34'/%3E%3Cpath d='M4 9h6v2H4z'/%3E%3Cpath d='M19 2h9v8h-9zM20 4v5h7V4z' fill-rule='evenodd'/%3E%3Cpath d='M38.5 3.5l7 6M45.5 3.5l-7 6' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E");
+  --address-bar: linear-gradient(#ffffff 0 1px, var(--chrome) 1px calc(100% - 2px), #808080 calc(100% - 2px) calc(100% - 1px), #0a0a0a calc(100% - 1px));
+  --bg-pattern: var(--win-buttons), var(--title-bar), var(--address-bar), var(--side-col);
   --bg-size: 50px 14px, 100% var(--title-h), 100% var(--bar-h), calc(19 * var(--fs)) 100%;
   --bg-pos: right 3px top 3px, 0 0, 0 var(--title-h), 0 0;
   background-attachment: scroll; background-repeat: no-repeat, no-repeat, no-repeat, repeat-y;
@@ -66,7 +65,7 @@
 /* ---------- Fenêtre : barre de titre et barre d'état ---------- */
 :root[data-theme="netscape"] body::before {
   content: "Adminer - Netscape"; position: absolute; top: 0; left: 0; z-index: 3; height: var(--title-h); padding: 0 6px 0 24px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='16' height='16' fill='%230a2a6e'/%3E%3Crect x='.5' y='.5' width='15' height='15' fill='none' stroke='%236f8fd8'/%3E%3Cpath d='M3.5 12.5v-9h2l5 6.2V3.5h2v9h-2l-5-6.2v6.2z' fill='%23fff'/%3E%3C/svg%3E") 3px 2px / 16px 16px no-repeat; color: #fff; font: bold 11px/20px var(--font-ui);
+  background: var(--title-icon) 3px 2px / 16px 16px no-repeat; color: #fff; font: bold 11px/20px var(--font-ui);
   white-space: nowrap; pointer-events: none;
 }
 /* barre d'état : cadenas, puis le message dans un champ en creux */
@@ -122,6 +121,19 @@
     top: var(--title-h); height: var(--bar-h); box-sizing: border-box; margin: 0; padding: 0 3px 0 8px;
     display: flex; align-items: center; gap: 6px; background: none; box-shadow: none;
   }
+  /* fenêtre fixe une fois connecté : le menu ne bouge pas quand la page défile, ni le choix de langue qu'il pose dans la
+     barre d'adresse ; barre de titre et barre d'adresse restent donc en place, comme dans le navigateur, et le document
+     défile dessous. body::before les repeint toutes deux, au-dessus de l'en-tête collant des tableaux (z-index 1) ;
+     menu, adresse et compte par-dessus. */
+  :root[data-theme="netscape"]:not(:has(input[name="auth[password]"])) { scroll-padding-top: var(--top); }
+  :root[data-theme="netscape"]:not(:has(input[name="auth[password]"])) body::before {
+    position: fixed; right: 0; height: var(--top);
+    background: var(--title-icon) 3px 2px / 16px 16px no-repeat, var(--win-buttons) right 3px top 3px / 50px 14px no-repeat,
+      var(--title-bar) 0 0 / 100% var(--title-h) no-repeat, var(--address-bar) 0 var(--title-h) / 100% var(--bar-h) no-repeat;
+  }
+  :root[data-theme="netscape"]:not(:has(input[name="auth[password]"])) :is(#breadcrumb, .logout) { position: fixed; z-index: 3; }
+  :root[data-theme="netscape"]:not(:has(input[name="auth[password]"])) #menu { z-index: 3; }
+  :root[data-theme="netscape"]:not(:has(input[name="auth[password]"])) :is(thead, #ajaxstatus.sticky) { top: var(--top); }
 }
 
 /* sélecteur de thème : simple liste déroulante dans la barre */
