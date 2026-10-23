@@ -21,6 +21,7 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 | 🎧 Spotify | `spotify.css` | Adminer présenté comme un lecteur de musique : panneaux sombres sur fond noir, recherche en pilule, bibliothèque où chaque table a sa pochette et où la table ouverte s'anime d'un égaliseur vert, pages en playlists (grand titre gras sur un en-tête coloré), lignes en liste de morceaux numérotés, boutons en pilules ; 3 variantes de couleur (violet, rose, sarcelle) ; connexion en playlist, avec le bouton vert de lecture |
 | **Rétro** | | |
 | 🗄️ Adminer classic | `classic.css` | L'allure d'origine d'Adminer, reprise au propre : Verdana, bandeau gris du titre en italique, bandeau lavande des pages, tableaux à grille fine, liens bleus qui rougissent au survol ; variantes clair (d'après default.css) et nuit (le marine de dark.css) ; connexion en boîte de dialogue |
+| 🪟 AdminerXP | `adminerxp.css` | Adminer en bureau de Windows XP : fond d'écran de collines vertes sous un ciel bleu, barre des tâches et bouton « démarrer », menu d'Adminer en menu Démarrer ouvert (tables à gauche, actions dans la colonne bleue), pages dans des fenêtres Luna (barre de titre, barre d'adresse, barre d'outils, barre d'état), boutons arrondis, coches vertes, messages en bulles jaunes ; 3 variantes (bleu, olive, argent) ; connexion dans une boîte de dialogue posée sur le bureau |
 | 📞 BBS | `bbs.css` | BBS des années 1990 en mode texte : palette CGA, police VGA, cadres doubles, ligne d'état du terminal ; connexion par modem et écran d'accueil ANSI |
 | 📠 Minitel | `minitel.css` | 3615 des années 1980 : couleurs du Vidéotex, double hauteur, mosaïques, compteur en francs ; 2 variantes (couleur, monochrome) ; connexion sur le Minitel entier |
 | 🌐 Netscape | `netscape.css` | fenêtre Windows 98 et portail web des années 1990 |
@@ -28,7 +29,7 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 | 📐 Blueprint | `blueprint.css` | plan technique au trait sur papier millimétré ; 2 variantes (calque, cyanotype) ; connexion sur une feuille avec cartouche |
 | 🎀 Kawaii | `kawaii.css` | pastel ; 4 variantes (lavande, bonbon, menthe, nuit) et couleur d'accent au choix |
 | 📒 Skeuomorphic | `skeuomorphic.css` | cuir, papier et boutons de verre |
-| 🌌 Verre | `verre.css` | verre dépoli façon visionOS : fenêtres translucides et floues aux arêtes lumineuses, sur une aurore boréale violet-turquoise qui ondule lentement ; connexion dans une fenêtre de verre |
+| 🌌 Verre | `verre.css` | verre dépoli façon visionOS : fenêtres translucides et floues aux arêtes lumineuses, sur une aurore boréale violet-turquoise qui ondule lentement ; 2 variantes (nuit, jour) ; connexion dans une fenêtre de verre |
 | **Fêtes** | | |
 | 🎃 Halloween | `halloween.css` | violet nuit et orange |
 | 🎄 Noël | `noel.css` | menu en pull de Noël tricoté (côtes, bande jacquard de sapins et de flocons), neige qui tombe doucement, titres soulignés d'une guirlande lumineuse, cases à cocher en boules de sapin, boutons en écussons de feutre surpiqués ; 2 variantes (neige, nuit) ; connexion en lettre au Père Noël, avec timbre et liseré « par avion » |
@@ -64,25 +65,26 @@ Les données d'une table avec chaque thème (cliquez sur une image pour l'agrand
 </tr>
 <tr>
 <td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Thème Adminer classic : données d'une table"></a></td>
+<td><b>🪟 AdminerXP</b><br><a href="docs/screenshots/adminerxp-select.webp"><img src="docs/screenshots/adminerxp-select.webp" width="380" alt="Thème AdminerXP : données d'une table"></a></td>
+</tr>
+<tr>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="Thème BBS : données d'une table"></a></td>
-</tr>
-<tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Thème Minitel : données d'une table"></a></td>
+</tr>
+<tr>
 <td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Thème Netscape : données d'une table"></a></td>
-</tr>
-<tr>
 <td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Thème Blueprint : données d'une table"></a></td>
+</tr>
+<tr>
 <td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Thème Kawaii : données d'une table"></a></td>
-</tr>
-<tr>
 <td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Thème Skeuomorphic : données d'une table"></a></td>
+</tr>
+<tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Thème Verre : données d'une table"></a></td>
-</tr>
-<tr>
 <td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Thème Halloween : données d'une table"></a></td>
-<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Thème Noël : données d'une table"></a></td>
 </tr>
 <tr>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Thème Noël : données d'une table"></a></td>
 <td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Thème Oktoberfest : données d'une table"></a></td>
 </tr>
 </table>
@@ -103,14 +105,15 @@ Et les pages de connexion mises en scène :
 <tr>
 <td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Thème Spotify : page de connexion"></a></td>
 <td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Thème Adminer classic : page de connexion"></a></td>
-<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="Thème BBS : page de connexion"></a></td>
+<td><b>🪟 AdminerXP</b><br><a href="docs/screenshots/adminerxp-login.webp"><img src="docs/screenshots/adminerxp-login.webp" width="245" alt="Thème AdminerXP : page de connexion"></a></td>
 </tr>
 <tr>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="Thème BBS : page de connexion"></a></td>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Thème Minitel : page de connexion"></a></td>
 <td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Thème Netscape : page de connexion"></a></td>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Thème Blueprint : page de connexion"></a></td>
 </tr>
 <tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Thème Blueprint : page de connexion"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Thème Verre : page de connexion"></a></td>
 <td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-login.webp"><img src="docs/screenshots/noel-login.webp" width="245" alt="Thème Noël : page de connexion"></a></td>
 </tr>
@@ -244,14 +247,14 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
   (noms des fichiers sans `.css` ; un nom inconnu fait échouer la construction).
 - **Image officielle** : montez à la place de `theme/` un dossier qui ne contient que ces fichiers.
 - **Un seul thème** : le bouton et le panneau des thèmes disparaissent. S'il a des options (variantes de Kawaii, Blueprint, Minitel, Adminer classic,
-  Spotify, Adminit, 4dminer et Noël, accent de Kawaii), elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
+  AdminerXP, Spotify, Adminit, 4dminer, Verre et Noël, accent de Kawaii), elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
 - **Thème par défaut** : DBHub s'il est installé, sinon le premier du panneau.
 
 ### Utilisation
 
 - Le bouton en haut à droite, au nom du thème courant, ouvre le panneau des thèmes : un clic sur un nom choisit le
   thème, un clic sur une de ses pastilles le choisit dans cette variante (Kawaii, Blueprint, le Minitel, Adminer classic,
-  Spotify, Adminit, 4dminer et Noël en ont). Au clavier : flèches haut et bas d'un thème à l'autre, gauche et droite vers
+  AdminerXP, Spotify, Adminit, 4dminer, Verre et Noël en ont). Au clavier : flèches haut et bas d'un thème à l'autre, gauche et droite vers
   ses variantes, Échap pour fermer.
 - Les pastilles placées à côté du bouton changent de variante sans ouvrir le panneau ; pour Kawaii, le nuancier règle
   aussi la couleur d'accent.
@@ -308,7 +311,7 @@ reproductible : relancer le script ne modifie que les images des thèmes qui ont
 
 ### Marques et licence
 
-- Netscape, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel et les autres noms cités sont des marques de leurs propriétaires
+- Netscape, Windows, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel et les autres noms cités sont des marques de leurs propriétaires
   respectifs. Ces thèmes sont des clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part, et
   n'en reprennent pas les logos.
 - Polices incorporées : `bbs.css` contient un sous-ensemble de WebPlus IBM VGA 9x16, de VileR
@@ -339,6 +342,7 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 | 🎧 Spotify | `spotify.css` | Adminer dressed as a music player: dark panels on black, pill-shaped search, a library where each table gets its cover art and the open one shows a green equaliser, pages as playlists (big bold title over a coloured header), rows as numbered track lists, pill buttons; 3 colour variants (violet, pink, teal); login as a playlist with the green play button |
 | **Retro** | | |
 | 🗄️ Adminer classic | `classic.css` | Adminer's original look, tidied up: Verdana, grey italic title bar, lavender page headings, fine-grid tables, blue links that turn red on hover; light (after default.css) and night (dark.css navy) variants; login as a dialog box |
+| 🪟 AdminerXP | `adminerxp.css` | Adminer as a Windows XP desktop: a green hills wallpaper under a blue sky, a taskbar with a “start” button, Adminer's menu as an open Start menu (tables on the left, actions in the blue column), pages in Luna windows (title bar, address bar, toolbar, status bar), rounded buttons, green checkmarks, yellow balloon messages; 3 variants (blue, olive, silver); login in a dialog box on the desktop |
 | 📞 BBS | `bbs.css` | 1990s text-mode BBS: CGA palette, VGA font, double-line frames, terminal status line; login through a modem dial-up and an ANSI welcome screen |
 | 📠 Minitel | `minitel.css` | the 1980s French videotex terminal: Videotex colors, double-height text, mosaic graphics, a cost meter in francs; 2 variants (color, monochrome); login on the whole Minitel |
 | 🌐 Netscape | `netscape.css` | Windows 98 window and 1990s web portal |
@@ -346,7 +350,7 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 | 📐 Blueprint | `blueprint.css` | line drawing on graph paper; 2 variants (tracing paper, cyanotype); login on a drawing sheet with a title block |
 | 🎀 Kawaii | `kawaii.css` | pastel; 4 variants (lavender, candy, mint, night) and a custom accent color |
 | 📒 Skeuomorphic | `skeuomorphic.css` | leather, paper and glass buttons |
-| 🌌 Verre | `verre.css` | French for “glass”: visionOS-style frosted glass, translucent blurred windows with glowing edges over a slowly drifting purple and teal aurora; login in a single glass window |
+| 🌌 Verre | `verre.css` | French for “glass”: visionOS-style frosted glass, translucent blurred windows with glowing edges over a slowly drifting purple and teal aurora; 2 variants (night, day); login in a single glass window |
 | **Holidays** | | |
 | 🎃 Halloween | `halloween.css` | night purple and orange |
 | 🎄 Noël | `noel.css` | Christmas: the menu as a knitted Christmas jumper (ribbing, a jacquard band of trees and snowflakes), gently falling snow, headings underlined with fairy lights, checkboxes as baubles, buttons as stitched felt patches; 2 variants (snow, night); login as a letter to Santa, with a stamp and an airmail border |
@@ -383,25 +387,26 @@ A table's data with each theme (click an image to enlarge it):
 </tr>
 <tr>
 <td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Adminer classic theme: table data"></a></td>
+<td><b>🪟 AdminerXP</b><br><a href="docs/screenshots/adminerxp-select.webp"><img src="docs/screenshots/adminerxp-select.webp" width="380" alt="AdminerXP theme: table data"></a></td>
+</tr>
+<tr>
 <td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-select.webp"><img src="docs/screenshots/bbs-select.webp" width="380" alt="BBS theme: table data"></a></td>
-</tr>
-<tr>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Minitel theme: table data"></a></td>
+</tr>
+<tr>
 <td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-select.webp"><img src="docs/screenshots/netscape-select.webp" width="380" alt="Netscape theme: table data"></a></td>
-</tr>
-<tr>
 <td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-select.webp"><img src="docs/screenshots/blueprint-select.webp" width="380" alt="Blueprint theme: table data"></a></td>
+</tr>
+<tr>
 <td><b>🎀 Kawaii</b><br><a href="docs/screenshots/kawaii-select.webp"><img src="docs/screenshots/kawaii-select.webp" width="380" alt="Kawaii theme: table data"></a></td>
-</tr>
-<tr>
 <td><b>📒 Skeuomorphic</b><br><a href="docs/screenshots/skeuomorphic-select.webp"><img src="docs/screenshots/skeuomorphic-select.webp" width="380" alt="Skeuomorphic theme: table data"></a></td>
+</tr>
+<tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Verre theme: table data"></a></td>
-</tr>
-<tr>
 <td><b>🎃 Halloween</b><br><a href="docs/screenshots/halloween-select.webp"><img src="docs/screenshots/halloween-select.webp" width="380" alt="Halloween theme: table data"></a></td>
-<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Noël theme: table data"></a></td>
 </tr>
 <tr>
+<td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-select.webp"><img src="docs/screenshots/noel-select.webp" width="380" alt="Noël theme: table data"></a></td>
 <td><b>🍺 Oktoberfest</b><br><a href="docs/screenshots/oktoberfest-select.webp"><img src="docs/screenshots/oktoberfest-select.webp" width="380" alt="Oktoberfest theme: table data"></a></td>
 </tr>
 </table>
@@ -422,14 +427,15 @@ And the themes with a staged login page:
 <tr>
 <td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Spotify theme: login page"></a></td>
 <td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Adminer classic theme: login page"></a></td>
-<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="BBS theme: login page"></a></td>
+<td><b>🪟 AdminerXP</b><br><a href="docs/screenshots/adminerxp-login.webp"><img src="docs/screenshots/adminerxp-login.webp" width="245" alt="AdminerXP theme: login page"></a></td>
 </tr>
 <tr>
+<td><b>📞 BBS</b><br><a href="docs/screenshots/bbs-login.webp"><img src="docs/screenshots/bbs-login.webp" width="245" alt="BBS theme: login page"></a></td>
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-login.webp"><img src="docs/screenshots/minitel-login.webp" width="245" alt="Minitel theme: login page"></a></td>
 <td><b>🌐 Netscape</b><br><a href="docs/screenshots/netscape-login.webp"><img src="docs/screenshots/netscape-login.webp" width="245" alt="Netscape theme: login page"></a></td>
-<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Blueprint theme: login page"></a></td>
 </tr>
 <tr>
+<td><b>📐 Blueprint</b><br><a href="docs/screenshots/blueprint-login.webp"><img src="docs/screenshots/blueprint-login.webp" width="245" alt="Blueprint theme: login page"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Verre theme: login page"></a></td>
 <td><b>🎄 Noël</b><br><a href="docs/screenshots/noel-login.webp"><img src="docs/screenshots/noel-login.webp" width="245" alt="Noël theme: login page"></a></td>
 </tr>
@@ -563,14 +569,14 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
   (file names without `.css`; an unknown name makes the build fail).
 - **Official image**: mount, in place of `theme/`, a folder that only contains those files.
 - **A single theme**: the theme button and panel go away. If the theme has options (variants of Kawaii, Blueprint, Minitel, Adminer
-  classic, Spotify, Adminit, 4dminer and Noël, Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
+  classic, AdminerXP, Spotify, Adminit, 4dminer, Verre and Noël, Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
 - **Default theme**: DBHub if installed, otherwise the first one in the panel.
 
 ### Usage
 
 - The button in the top right corner, showing the current theme, opens the theme panel: click a name to pick that
-  theme, or one of its swatches to pick it in that variant (Kawaii, Blueprint, Minitel, Adminer classic, Spotify,
-  Adminit, 4dminer and Noël have some). With the keyboard: up and down arrows move between themes, left and right to
+  theme, or one of its swatches to pick it in that variant (Kawaii, Blueprint, Minitel, Adminer classic, AdminerXP,
+  Spotify, Adminit, 4dminer, Verre and Noël have some). With the keyboard: up and down arrows move between themes, left and right to
   their variants, Escape closes.
 - The swatches next to the button switch variants without opening the panel; for Kawaii, the color picker also sets
   the accent color.
@@ -627,7 +633,7 @@ script again only changes the images of the themes that changed.
 
 ### Trademarks and license
 
-- Netscape, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel and the other names mentioned are trademarks of their respective
+- Netscape, Windows, GitLab, GitHub, Gmail, Spotify, Reddit, 4chan, Minitel and the other names mentioned are trademarks of their respective
   owners. These themes are unofficial nods, not affiliated with or endorsed by them, and do not use their logos.
 - Embedded fonts: `bbs.css` contains a subset of WebPlus IBM VGA 9x16 by VileR
   ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), licensed under

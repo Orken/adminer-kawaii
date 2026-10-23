@@ -115,7 +115,7 @@
 /* fil d'Ariane : « propriétaire / dépôt » ; liens sombres, dernier élément en gras */
 :root[data-theme="github"] #breadcrumb {
   height: 32px; margin: 0; padding: 0; background: none; border-radius: 0; color: var(--text);
-  font: 600 14px/32px var(--font); overflow: hidden; text-overflow: ellipsis;
+  font: 600 14px/32px var(--font); overflow: clip; text-overflow: ellipsis;
 }
 :root[data-theme="github"] #breadcrumb a:is(:link, :visited) { padding: 4px 6px; border-radius: 6px; color: var(--text); font-weight: 400; }
 :root[data-theme="github"] #breadcrumb a:is(:link, :visited):hover { background: var(--nav-hover); color: var(--text); text-decoration: none; }
@@ -214,10 +214,11 @@
   color: var(--text); font-weight: 500; line-height: 30px;
 }
 :root[data-theme="github"] #content .links:has(a.active) a:hover { background: var(--btn-active); color: var(--text); text-decoration: none; }
+:root[data-theme="github"] #content .links:has(a.active) a:focus-visible { outline-offset: -2px; }   /* la barre défile et rognerait l'anneau */
 :root[data-theme="github"] #content .links:has(a.active) a.active { border-color: #818b98; background: #fff; font-weight: 600; }
 
 /* ---------- Tableaux : boîte à filet arrondi, en-tête gris, survol gris ---------- */
-:root[data-theme="github"] table { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); box-shadow: none; }
+:root[data-theme="github"] table { --table-r: 6px; --table-bw: 1px; background: var(--surface); box-shadow: none; }
 :root[data-theme="github"] :is(th, td) { border-bottom: 1px solid var(--border); line-height: 20px; }
 :root[data-theme="github"] thead :is(th, td, td.hover) { color: var(--muted); font-weight: 600; white-space: nowrap; }
 :root[data-theme="github"] thead th .column { border-color: var(--border); border-radius: 6px; box-shadow: var(--overlay); }
@@ -399,7 +400,7 @@
 }
 :root[data-theme="github"]:has(input[name="auth[password]"]) #content .error { margin: 16px; }
 :root[data-theme="github"]:has(input[name="auth[password]"]) table.layout {
-  width: 100%; margin: 8px 0; border: 0; border-radius: 0; border-collapse: collapse; counter-reset: ligne;
+  --table-r: 0px; --table-bw: 0px; width: 100%; margin: 8px 0; border-collapse: collapse; counter-reset: ligne;
   font: 12px/20px var(--font-mono);
 }
 :root[data-theme="github"]:has(input[name="auth[password]"]) table.layout tr { counter-increment: ligne; }

@@ -112,7 +112,7 @@
 :root[data-theme="blueprint"] #content .links a.active { border: 2px solid var(--ink); padding: 0 7px; color: var(--ink); }
 
 /* ---------- Tableaux : contour fort, quadrillage fin, en-tête séparé par un trait fort ---------- */
-:root[data-theme="blueprint"] table { border: 2px solid var(--ink); }
+:root[data-theme="blueprint"] table { border-color: var(--ink); }
 :root[data-theme="blueprint"] :is(th, td) { border-bottom-color: var(--hair); border-right: 1px solid var(--hair); }
 :root[data-theme="blueprint"] :is(th, td):last-child { border-right: 0; }
 :root[data-theme="blueprint"] thead :is(th, td, td.hover) { border-bottom: 2px solid var(--ink); font-weight: 600; letter-spacing: .03em; }

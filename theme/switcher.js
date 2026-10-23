@@ -196,14 +196,39 @@
           '<path d="M3 27h26l2 3H1z" fill="#a8956f"/>';
       }
     },
+    adminerxp: {
+      label: '🪟 AdminerXP',
+      group: 'Rétro',
+      variants: { bleu: '#245edb', olive: '#8ba169', argent: '#c4c4d4' },
+      defaultVariant: 'bleu',
+      // fenêtre beige sur le fond « Collines » (ciel, nuage, colline verte), barre de titre aux couleurs de la variante
+      icon: function (c) {
+        return '<defs><linearGradient id="s" y2="1"><stop offset="0" stop-color="#1d63d8"/>' +
+          '<stop offset="1" stop-color="#9ccaf6"/></linearGradient></defs>' +
+          '<rect width="32" height="32" rx="4" fill="url(#s)"/>' +
+          '<ellipse cx="9" cy="8" rx="6" ry="2.4" fill="#fff" fill-opacity=".75"/>' +
+          '<path d="M0 23c9-7 21-7 32-2v7a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z" fill="#3f9a2c"/>' +
+          '<rect x="7.5" y="10.5" width="19" height="15" rx="1" fill="#ece9d8" stroke="' + c + '"/>' +
+          '<path d="M7 12a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3H7z" fill="' + c + '"/>' +
+          '<rect x="22" y="11" width="3.5" height="3" rx=".6" fill="#e0572b"/>';
+      }
+    },
     verre: {
       label: '🌌 Verre',
       group: 'Styles',
-      // vitre dépolie, arête claire, devant une vague d'aurore turquoise-violet dans un ciel de nuit
-      icon: '<defs><linearGradient id="a" x2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>' +
-        '<rect width="32" height="32" rx="8" fill="#0b1030"/>' +
-        '<path d="M0 21c6-9 10-12 15-7s11 4 17-8v15c-9 6-21 6-32 0z" fill="url(#a)"/>' +
-        '<rect x="6.5" y="8.5" width="19" height="15" rx="4.5" fill="#fff" fill-opacity=".24" stroke="#fff" stroke-opacity=".8" stroke-width="1.2"/>'
+      variants: { nuit: '#0b1030', jour: '#efe9ff' },
+      defaultVariant: 'nuit',
+      // vitre dépolie devant une vague d'aurore turquoise-violet dans un ciel de nuit ; de jour, vitre laiteuse cerclée
+      // de violet devant une vague rose-bleu ciel, sur un fond pastel
+      icon: function (c) {
+        var jour = c === '#efe9ff';
+        return '<defs><linearGradient id="a" x2="1"><stop offset="0" stop-color="' + (jour ? '#f472b6' : '#2dd4bf') + '"/>' +
+          '<stop offset="1" stop-color="' + (jour ? '#7dd3fc' : '#a855f7') + '"/></linearGradient></defs>' +
+          '<rect width="32" height="32" rx="8" fill="' + (jour ? '#f3edff' : '#0b1030') + '"/>' +
+          '<path d="M0 21c6-9 10-12 15-7s11 4 17-8v15c-9 6-21 6-32 0z" fill="url(#a)"/>' +
+          '<rect x="6.5" y="8.5" width="19" height="15" rx="4.5" fill="#fff" fill-opacity="' + (jour ? '.6' : '.24') + '" stroke="' +
+          (jour ? '#6425d0' : '#fff') + '" stroke-opacity="' + (jour ? '.45' : '.8') + '" stroke-width="1.2"/>';
+      }
     },
     kawaii: {
       label: '🎀 Kawaii',
@@ -326,6 +351,13 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     setIcon();
+    // Tableaux : base.css arrondit la dernière cellule de la dernière ligne dans le coin du tableau. Une ligne plus courte
+    // que les autres (total de la page de la base, vues de l'export) s'arrête avant ce coin : marquée, elle reste carrée.
+    function width(row) { var n = 0; for (var i = 0; i < row.cells.length; i++) n += row.cells[i].colSpan; return n; }
+    Array.prototype.forEach.call(document.querySelectorAll('table'), function (t) {
+      var rows = t.rows, last = rows[rows.length - 1];
+      if (last && width(last) < width(rows[0])) last.classList.add('short-row');
+    });
     // Panneau gauche (base.css le fixe à l'écran) : la liste des tables est raccourcie de ce qui dépasserait du bas de
     // la fenêtre, et défile seule ; la table ouverte y est recentrée. Le panneau ne bouge pas quand la page défile
     // (ni ce qu'il porte au-dessus de lui : choix de langue, onglets de GitHub, barre d'adresse de Netscape) ; sur
@@ -336,6 +368,7 @@
     function measure() {
       left = null;
       if (!tables) return;
+      var top = tables.scrollTop;   // sans max-height, la liste ne défile plus et perdrait sa position (recentrage compris)
       menu.style.left = tables.style.maxHeight = '';
       var desk = getComputedStyle(menu).position === 'fixed', panel = desk ? menu : foot, cs = getComputedStyle(panel);
       if (!desk && (cs.position !== 'fixed' || foot.classList.contains('foot'))) return;
@@ -343,7 +376,7 @@
         parseFloat(ts.paddingTop) + parseFloat(ts.paddingBottom) + parseFloat(ts.borderTopWidth) + parseFloat(ts.borderBottomWidth);
       // clientHeight, pas innerHeight : sans la barre de défilement horizontale, sous laquelle le bas du panneau passerait
       var over = Math.ceil(panel.getBoundingClientRect().bottom + parseFloat(cs.marginBottom) - document.documentElement.clientHeight);
-      if (over > 0) tables.style.maxHeight = Math.max(120, tables.getBoundingClientRect().height - box - over) + 'px';
+      if (over > 0) { tables.style.maxHeight = Math.max(120, tables.getBoundingClientRect().height - box - over) + 'px'; tables.scrollTop = top; }
       if (desk) left = parseFloat(cs.left);
       place();
     }
@@ -633,7 +666,7 @@
       if (cs.overflowX !== 'visible') end = Math.min(end, c.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight));
       if (end <= limit) return;
       st.maxWidth = Math.max(0, parseFloat(cs.width) - (c.right - limit)) + 'px';   // la boîte entière avant la barre ; même boîte que max-width
-      st.overflow = 'hidden'; st.textOverflow = 'ellipsis';
+      st.overflow = 'clip'; st.textOverflow = 'ellipsis';   // clip plutôt que hidden : voir #breadcrumb dans base.css
     }
     fitCrumb();
     addEventListener('resize', fitCrumb);

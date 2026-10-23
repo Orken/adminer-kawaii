@@ -204,8 +204,8 @@
 
 /* ---------- Tableaux : grille fine, en-tête lavande centré, cases hors de la grille ---------- */
 :root[data-theme="classic"] table {
-  margin: 16px 0 0; margin-inline-end: 20px; border: 0; border-radius: 0; border-spacing: 0;
-  background: var(--page); box-shadow: none; overflow: visible; font-size: 12px;
+  --table-r: 0px; --table-bw: 0px; margin: 16px 0 0; margin-inline-end: 20px; border-spacing: 0;
+  background: var(--page); box-shadow: none; font-size: 12px;
 }
 /* filets d'Adminer : bas et fin de chaque cellule, début de la première colonne, haut de la première ligne */
 :root[data-theme="classic"] :is(th, td) { padding: 4px 8px; border: 0 solid var(--grille); border-block-end-width: 1px; border-inline-end-width: 1px; line-height: 1.35; }

@@ -247,7 +247,7 @@
 :root[data-theme="spotify"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
 
 /* ---------- Tableaux : liste de morceaux ---------- */
-:root[data-theme="spotify"] table { border: 0; border-radius: 0; background: transparent; box-shadow: none; overflow: visible; }
+:root[data-theme="spotify"] table { --table-r: 0px; --table-bw: 0px; background: transparent; box-shadow: none; }
 :root[data-theme="spotify"] :is(th, td) { padding: 0 12px; border: 0; height: 40px; line-height: 20px; }
 :root[data-theme="spotify"] thead :is(th, td, td.hover) {
   height: 36px; background: var(--panel); color: var(--sub); font-weight: 400; white-space: nowrap; box-shadow: inset 0 -1px var(--line);

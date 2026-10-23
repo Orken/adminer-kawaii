@@ -257,7 +257,7 @@
 :root[data-theme="adminit"] #content .links:has(a.active) a.active { background: var(--tone-hover); color: var(--strong); }
 
 /* ---------- Tableaux : cadre arrondi à filet, lignes qui grisent au survol ---------- */
-:root[data-theme="adminit"] table { border: 1px solid var(--line); border-radius: 12px; background: var(--page); box-shadow: none; }
+:root[data-theme="adminit"] table { --table-r: 12px; --table-bw: 1px; border-color: var(--line); background: var(--page); box-shadow: none; }
 :root[data-theme="adminit"] :is(th, td) { border-bottom: 1px solid var(--line); line-height: 20px; }
 :root[data-theme="adminit"] thead :is(th, td, td.hover) { color: var(--weak); font: 600 12px/20px var(--font); white-space: nowrap; }
 :root[data-theme="adminit"] thead th .column { border-color: var(--line); border-radius: 8px; box-shadow: var(--card-shadow); }
@@ -437,7 +437,7 @@
   background: var(--logo) 6px center / 32px no-repeat, var(--tone); color: var(--strong); font: 600 14px/40px var(--font);
 }
 :root[data-theme="adminit"]:has(input[name="auth[password]"]) #content .error { margin: 0 0 16px; }
-:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout { display: block; margin: 0; border: 0; border-radius: 0; background: none; }
+:root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout { --table-r: 0px; --table-bw: 0px; display: block; margin: 0; background: none; }
 :root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(tbody, tr, td) { display: block; }
 :root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout tr { position: relative; margin: 0 0 16px; }
 :root[data-theme="adminit"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 0; border: 0; background: none; }

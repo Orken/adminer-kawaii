@@ -64,7 +64,7 @@
 :root:is(:not([data-theme]), [data-theme="dbhub"]) #menu p.links a:is(:hover, .active) { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 
 /* ---------- Tableaux : à plat, en-tête sobre souligné d'orange, pas de cadre ---------- */
-:root:is(:not([data-theme]), [data-theme="dbhub"]) table { box-shadow: none; border: 1px solid var(--border); }
+:root:is(:not([data-theme]), [data-theme="dbhub"]) table { --table-bw: 1px; box-shadow: none; }
 :root:is(:not([data-theme]), [data-theme="dbhub"]) thead :is(th, td, td.hover) { border-bottom: 2px solid var(--accent); font-weight: 700; }
 
 /* ---------- Cartes / légendes : cadre gris, titre à plat ---------- */

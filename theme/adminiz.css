@@ -113,7 +113,8 @@
 :root[data-theme="adminiz"] #content .links a.active::before { content: "✓"; margin-right: 6px; }
 
 /* ---------- Tableaux : sans cadre, en-tête gris bleuté arrondi, lignes séparées par un filet ---------- */
-:root[data-theme="adminiz"] table { border: 0; border-radius: var(--radius) var(--radius) 0 0; }
+:root[data-theme="adminiz"] table { --table-bw: 0px; border-radius: var(--table-r) var(--table-r) 0 0; }
+:root[data-theme="adminiz"] table > :last-child > tr:last-child > * { border-end-start-radius: 0; border-end-end-radius: 0; }   /* arrondi en haut seulement */
 :root[data-theme="adminiz"] thead :is(th, td, td.hover) { padding-top: 9px; padding-bottom: 9px; font-weight: 600; border-bottom: 0; }
 :root[data-theme="adminiz"] :is(tbody, tfoot) th a { color: var(--text); }
 :root[data-theme="adminiz"] :is(tbody, tfoot) th a:hover { color: var(--accent-text); }
@@ -215,7 +216,7 @@
 /* champs empilés : libellé en petites capitales au-dessus. th et td passent en bloc dans la cellule anonyme de
    chaque ligne ; les tr gardent leur affichage, pour que .hidden (lignes masquées selon le système) s'applique. */
 :root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout {
-  width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; background: none; overflow: visible;
+  --table-r: 0px; --table-bw: 0px; width: 100%; margin: 0; box-shadow: none; background: none;
 }
 :root[data-theme="adminiz"]:has(input[name="auth[password]"]) table.layout :is(th, td) {
   display: block; padding: 0; border: 0; background: none;

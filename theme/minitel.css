@@ -162,7 +162,7 @@
 :root[data-theme="minitel"] .error { width: fit-content; padding: 0 12px; background: var(--err); color: #000; }
 
 /* ---------- Tableaux : en-tête bleu, survol en vidéo inverse ---------- */
-:root[data-theme="minitel"] table { border: 0; }
+:root[data-theme="minitel"] table { --table-bw: 0px; }
 :root[data-theme="minitel"] :is(th, td) { padding: 0 12px 0 0; border: 0; line-height: 15px; }
 :root[data-theme="minitel"] :is(th, td):first-child { padding-left: 12px; }
 :root[data-theme="minitel"] :is(th, td):has(> :is(input, select, textarea)) { padding-block: 2px; }

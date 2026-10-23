@@ -208,7 +208,7 @@
 
 /* ---------- Tableaux : bordure 3D d'un <table border=1>, en-tête kaki, survol jaune ---------- */
 :root[data-theme="netscape"] table {
-  border: 1px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; border-spacing: 2px; border-radius: 0; box-shadow: none;
+  --table-bw: 1px; border-color: #dfdfdf #808080 #808080 #dfdfdf; border-spacing: 2px; box-shadow: none;
 }
 :root[data-theme="netscape"] :is(th, td, td.hover) { border: 1px solid; border-color: #808080 #dfdfdf #dfdfdf #808080; }
 :root[data-theme="netscape"] tbody tr:last-child td.hover { border-bottom-width: 1px; }

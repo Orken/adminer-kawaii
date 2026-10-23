@@ -196,7 +196,7 @@
 :root[data-theme="4dminer"] #content .links a.active { color: var(--text); font-weight: 700; }
 
 /* ---------- Tableaux : étiquettes saumon en en-tête, cellules couleur de réponse ---------- */
-:root[data-theme="4dminer"] table { border: 0; border-radius: 0; background: none; box-shadow: none; border-collapse: separate; border-spacing: 0; }
+:root[data-theme="4dminer"] table { --table-r: 0px; --table-bw: 0px; background: none; box-shadow: none; border-collapse: separate; border-spacing: 0; }
 :root[data-theme="4dminer"] :is(th, td) { border: 0; border-right: 1px solid var(--post-line); border-bottom: 1px solid var(--post-line); }
 :root[data-theme="4dminer"] thead :is(th, td, td.hover) {
   border: 1px solid var(--label-line); border-left-width: 0; color: var(--label-text); font-weight: 700; white-space: nowrap;

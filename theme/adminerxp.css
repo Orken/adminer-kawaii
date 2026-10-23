@@ -1,0 +1,503 @@
+/* ===== Thème AdminerXP =====
+   Actif quand <html data-theme="adminerxp">. Adminer en bureau de 2001 (Luna) :
+   - fond « Collines » : ciel bleu, nuages flous, colline verte (un paysage dessiné pour le thème) ;
+   - en bas, la barre des tâches : bouton « démarrer » vert, bouton de la fenêtre, zone de notification où se rangent le
+     sélecteur de thème, l'utilisateur et la déconnexion ;
+   - le menu d'Adminer en menu Démarrer ouvert : en-tête bleu à l'image d'utilisateur, tables dans la colonne blanche,
+     actions dans la colonne bleu pâle, langue dans le pied ;
+   - la page dans une fenêtre : barre de titre et ses trois boutons, fil d'Ariane en barre d'adresse, liens d'action en
+     barre d'outils, barre d'état ; contrôles Luna (boutons arrondis, champs à liseré bleu, coches vertes, bulles jaunes) ;
+   - la connexion dans une simple boîte de dialogue sur le bureau, l'icône d'Adminer et la barre de langue à côté.
+   Trois variantes, comme les jeux de couleurs de l'époque : bleu, olive et argent. Aucun logo reproduit : le bouton
+   « démarrer » porte un petit paysage, pas de drapeau. Polices de Windows si elles sont là (Tahoma, Trebuchet MS). */
+
+:root[data-theme="adminerxp"] {
+  --bg: #ece9d8; --surface: #ffffff; --surface-2: #f1efe2; --text: #000000; --muted: #595959; --border: #aca899;
+  --accent: var(--hl); --on-accent: var(--on-hl); --accent-text: #0046d5;
+  --ok: #2a7d2a; --err: #cc0000; --on-err: #ffffff;
+  --jush-str: #00701a; --jush-num: #8b4500; --jush-id: #6a1b9a;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 3px; --radius-sm: 3px; --pill: 3px;
+  --fs: 12px; --pad-y: 2px; --pad-x: 6px;
+  --font: Tahoma, Verdana, "DejaVu Sans", sans-serif;
+  --font-heading: "Trebuchet MS", Tahoma, sans-serif;
+  --font-mono: "Lucida Console", Consolas, "DejaVu Sans Mono", monospace;
+  --h2-border: 0;
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+  --bg-pattern: none;                       /* le fond d'écran est peint par :root::before, fixe et composité */
+
+  --th-bg: #ebeadb; --th-text: #000000;
+  --zebra: #f8f8f4;
+  --row-hover: #eef3fb;
+  --checked: #c9d9f3;                       /* ligne cochée : la sélection inactive des listes */
+  --lit: #ffffff;
+  --dim: #ece9d8;
+
+  /* mesures du bureau */
+  --task-h: 30px;                           /* barre des tâches */
+  --menu-w: 340px; --menu-r: 136px;         /* menu Démarrer et sa colonne de droite */
+  --title-h: 30px;                          /* barre de titre de la fenêtre */
+  --start-w: 100px; --start-label: "start"; --address: "Address";
+
+  /* contrôles Luna (communs aux trois variantes) */
+  --field: #7f9db9;                         /* liseré des champs */
+  --btn-edge: #003c74;
+  --btn: linear-gradient(#ffffff, #f7f7f4 45%, #ecebe6 86%, #d6d0c5);
+  --btn-down: linear-gradient(#cdcac3, #e3e3db 8%, #e5e5de 94%, #f2f2f1);
+  --btn-hot: inset 0 -2px #e5a01a, inset 0 2px #fde4a7, inset 2px 0 #fbc761, inset -2px 0 #fbc761;
+  --btn-def: inset 0 -2px #89ade4, inset 0 2px #cee7ff, inset 2px 0 #98b8ea, inset -2px 0 #98b8ea;
+  --line: #cbc7b8;                          /* filets gravés des barres */
+  --start: linear-gradient(#4a9a4a 0, #66b45c 2px, #2f8a2f 6px, #2c842c 50%, #287c28 88%, #1f631f);
+  --start-down: linear-gradient(#1f631f, #246d24 12%, #2a7a2a 70%, #2f852f);
+
+  /* variante bleue (par défaut) */
+  --title-grad: linear-gradient(#3a8ef8, #0b5ce8 7%, #0453e4 35%, #0b62f0 74%, #1b72f8 88%, #0c5ae8 94%, #023fc4);
+  --title-ink: #ffffff; --title-shadow: #0a2a8a;
+  --frame: #0a54e3; --frame-lo: #00249c;
+  --task: linear-gradient(#3168d5 0, #4c94f2 2px, #3a7ee8 5px, #245edb 10px, #245edb 70%, #1f54cf 90%, #1941a5);
+  --tray: linear-gradient(#1570c8 0, #2c95e2 2px, #0d72cd 5px, #0b6ec8 50%, #0a66bd 88%, #0857a8);   /* texte blanc à 4,9:1 */
+  --tray-edge: #0b3f8a; --tray-hi: #3c9ee6; --tray-ink: #ffffff; --tray-hover: rgb(255 255 255 / .2);
+  --winbtn: linear-gradient(#1747b2, #1e55c4 12%, #1d53c0 85%, #1a4bb4); --winbtn-ink: #ffffff;
+  --menu-head: linear-gradient(#3b8ef8, #1866df 9%, #1059d9 48%, #1764df 84%, #0d4dc6);
+  --menu-ink: #ffffff; --menu-shadow: rgb(0 0 40 / .55);
+  --right-bg: #d3e5fa; --right-edge: #95bdee; --right-ink: #00136b;
+  --hl: #316ac5; --on-hl: #ffffff;
+  --bar-focus: #ffffff;                     /* anneau de focus sur les barres foncées */
+  --sb-thumb: #b9cdf5;
+  --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%230054e9'/%3E%3Cstop offset='0.55' stop-color='%232263d5'/%3E%3Cstop offset='0.7' stop-color='%234479e4'/%3E%3Cstop offset='0.9' stop-color='%23a3bbec'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M5 14h7v3H5z' fill='%23fff'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%23fff' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+  --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%230054e9'/%3E%3Cstop offset='0.55' stop-color='%232263d5'/%3E%3Cstop offset='0.7' stop-color='%234479e4'/%3E%3Cstop offset='0.9' stop-color='%23a3bbec'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+}
+:root[data-theme="adminerxp"][data-variant="olive"] {
+  --title-grad: linear-gradient(#a3b97e, #6f8a46 7%, #5f7a37 35%, #66813e 74%, #718c49 88%, #627c3a 94%, #4a6127);
+  --title-shadow: #2c3c14;
+  --frame: #6c8742; --frame-lo: #3b4e1e;
+  --task: linear-gradient(#91a56b 0, #c9d7a6 2px, #a6b985 5px, #8ba169 10px, #8ba169 70%, #7d9459 90%, #64783f);
+  --tray: linear-gradient(#93a76c 0, #e2e9cd 2px, #d0dbb2 5px, #c3d0a1 50%, #b6c592 88%, #9cae76);
+  --tray-edge: #6a7e44; --tray-hi: #eef3dd; --tray-ink: #1e2a0e; --tray-hover: rgb(0 0 0 / .08);
+  --winbtn: linear-gradient(#566f30, #5f7a37 12%, #5d7835 85%, #526a2d);
+  --menu-head: linear-gradient(#a3b97e, #6f8a46 9%, #5f7a37 48%, #67823f 84%, #4f6729);
+  --menu-shadow: rgb(20 30 0 / .55);
+  --right-bg: #e6ebd2; --right-edge: #b9c79a; --right-ink: #2b3a12;
+  --hl: #5f7a37;
+  --sb-thumb: #cbd5b0;
+  --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%234f6624'/%3E%3Cstop offset='0.55' stop-color='%23647f34'/%3E%3Cstop offset='0.7' stop-color='%237f9a4f'/%3E%3Cstop offset='0.9' stop-color='%23c3d2a0'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M5 14h7v3H5z' fill='%23fff'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%23fff' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+  --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%234f6624'/%3E%3Cstop offset='0.55' stop-color='%23647f34'/%3E%3Cstop offset='0.7' stop-color='%237f9a4f'/%3E%3Cstop offset='0.9' stop-color='%23c3d2a0'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+}
+:root[data-theme="adminerxp"][data-variant="argent"] {
+  --bg: #e3e2e6; --dim: #e3e2e6;
+  --title-grad: linear-gradient(#ffffff, #ececf3 7%, #d4d4e0 35%, #c8c8d6 74%, #d0d0dd 88%, #bdbdcd 94%, #9c9cb3);
+  --title-ink: #000000; --title-shadow: rgb(255 255 255 / .7);
+  --frame: #b5b5c8; --frame-lo: #6e6e88;
+  --task: linear-gradient(#9d9db4 0, #ffffff 2px, #e4e4ec 5px, #d2d2de 10px, #cdcdda 70%, #bebece 90%, #9e9eb5);
+  --tray: linear-gradient(#a1a1b8 0, #ffffff 2px, #f1f1f5 5px, #e6e6ee 50%, #dadae4 88%, #c3c3d2);
+  --tray-edge: #8e8ea6; --tray-hi: #ffffff; --tray-ink: #000000; --tray-hover: rgb(0 0 0 / .07);
+  --winbtn: linear-gradient(#a9a9bd, #b9b9cb 12%, #b8b8ca 85%, #aaaabd); --winbtn-ink: #000000;
+  --menu-head: linear-gradient(#ffffff, #e6e6ee 9%, #cfcfdc 48%, #d7d7e2 84%, #ababbf);
+  --menu-ink: #000000; --menu-shadow: rgb(255 255 255 / .75);
+  --right-bg: #ebebf1; --right-edge: #c6c6d5; --right-ink: #1d1d2b;
+  --hl: #b2b4bf; --on-hl: #000000;
+  --bar-focus: #000000;
+  --sb-thumb: #d0d0dc;
+  --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%239898ae'/%3E%3Cstop offset='0.55' stop-color='%23bcbccd'/%3E%3Cstop offset='0.7' stop-color='%23d3d3e0'/%3E%3Cstop offset='0.9' stop-color='%23f1f1f6'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%238e8ea6'/%3E%3Cpath d='M5 14h7v3H5z' fill='%233c3c52'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%238e8ea6'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%233c3c52' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%238e8ea6'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+  --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%239898ae'/%3E%3Cstop offset='0.55' stop-color='%23bcbccd'/%3E%3Cstop offset='0.7' stop-color='%23d3d3e0'/%3E%3Cstop offset='0.9' stop-color='%23f1f1f6'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%238e8ea6'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
+}
+:root[data-theme="adminerxp"]:lang(fr) { --start-w: 126px; --start-label: "démarrer"; --address: "Adresse"; }
+:root[data-theme="adminerxp"] * { scrollbar-color: var(--sb-thumb) #f3f1ea; scrollbar-width: auto; }
+/* focus clavier : rectangle pointillé de Windows, blanc sur les barres foncées */
+:root[data-theme="adminerxp"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
+:root[data-theme="adminerxp"] :is(#menu h1, #menu #lang, .logout, #kawaii-switcher:not(.in-bar), #menuopen) :focus-visible { outline-color: var(--bar-focus); }
+
+/* ---------- Bureau : fond « Collines », barre des tâches, bouton « démarrer », bouton de la fenêtre ---------- */
+:root[data-theme="adminerxp"]::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231a56c2'/%3E%3Cstop offset='0.33' stop-color='%233b80dc'/%3E%3Cstop offset='0.58' stop-color='%2379b5ef'/%3E%3Cstop offset='0.74' stop-color='%23b8dbf8'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23a8dd5e'/%3E%3Cstop offset='0.16' stop-color='%237cc23e'/%3E%3Cstop offset='0.55' stop-color='%234f9e2c'/%3E%3Cstop offset='1' stop-color='%232d781c'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%235c9a47'/%3E%3Cstop offset='1' stop-color='%232d6a29'/%3E%3C/linearGradient%3E%3CradialGradient id='l' cx='.33' cy='.1' r='.55'%3E%3Cstop offset='0' stop-color='%23e3f78a' stop-opacity='.7'/%3E%3Cstop offset='1' stop-color='%23e3f78a' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cfilter id='f' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeGaussianBlur stdDeviation='14'/%3E%3C/filter%3E%3Cfilter id='g' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeGaussianBlur stdDeviation='6'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='url(%23s)'/%3E%3Cg fill='%23fff' filter='url(%23f)'%3E%3Cellipse cx='380' cy='300' rx='190' ry='46' opacity='.9'/%3E%3Cellipse cx='470' cy='262' rx='120' ry='58' opacity='.95'/%3E%3Cellipse cx='300' cy='282' rx='90' ry='38' opacity='.8'/%3E%3Cellipse cx='565' cy='302' rx='110' ry='32' opacity='.7'/%3E%3Cellipse cx='1180' cy='190' rx='160' ry='38' opacity='.85'/%3E%3Cellipse cx='1250' cy='160' rx='90' ry='44' opacity='.9'/%3E%3Cellipse cx='1095' cy='205' rx='80' ry='24' opacity='.7'/%3E%3Cellipse cx='820' cy='420' rx='260' ry='20' opacity='.45'/%3E%3Cellipse cx='1420' cy='380' rx='200' ry='18' opacity='.4'/%3E%3Cellipse cx='150' cy='140' rx='160' ry='16' opacity='.35'/%3E%3C/g%3E%3Cellipse cx='800' cy='600' rx='900' ry='60' fill='%23eef7ff' opacity='.4' filter='url(%23f)'/%3E%3Cpath d='M640 652C900 560 1220 546 1600 610V1000H640z' fill='url(%23b)'/%3E%3Cpath d='M0 640C250 525 620 472 960 560C1180 620 1400 720 1600 790V1000H0z' fill='url(%23h)'/%3E%3Cpath d='M0 640C250 525 620 472 960 560C1180 620 1400 720 1600 790V1000H0z' fill='url(%23l)'/%3E%3Cg fill='%232c741b' opacity='.35' filter='url(%23g)'%3E%3Cpath d='M120 760c180-40 380-30 560 10-200 0-380 10-560-10z'/%3E%3Cpath d='M760 830c200-30 420-10 600 40-220-20-420-30-600-40z'/%3E%3Cpath d='M300 905c260-40 560-30 860 20-300-10-580-10-860-20z'/%3E%3C/g%3E%3C/svg%3E") center bottom / cover no-repeat, #3b80dc;
+}
+:root[data-theme="adminerxp"] body::before {
+  content: ""; position: fixed; inset: auto 0 0; z-index: 4; height: var(--task-h); background: var(--task); pointer-events: none;
+}
+/* le bouton « démarrer » (décor : le menu est déjà ouvert ; sur mobile, c'est le vrai bouton du menu, voir #menuopen) */
+:root[data-theme="adminerxp"] body::after,
+:root[data-theme="adminerxp"] #menuopen button.icon::after {
+  content: var(--start-label); box-sizing: border-box; width: var(--start-w); height: var(--task-h); padding-inline-start: 34px;
+  color: #fff; font: italic bold 17px/var(--task-h) var(--font-heading); letter-spacing: .02em; text-align: start;
+  text-shadow: 1px 1px 2px #164416; white-space: nowrap;
+}
+:root[data-theme="adminerxp"] body::after {
+  position: fixed; inset-inline-start: 0; bottom: 0; z-index: 5; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E") 9px center / 19px no-repeat, var(--start);
+  border-start-end-radius: 12px; border-end-end-radius: 12px; box-shadow: 2px 0 3px rgb(0 0 0 / .3);
+}
+/* bouton de la fenêtre, enfoncé (fenêtre active) */
+:root[data-theme="adminerxp"]::after {
+  content: "Adminer"; position: fixed; inset-inline-start: calc(var(--start-w) + 10px); bottom: 3px; z-index: 5;
+  width: 160px; height: 24px; box-sizing: border-box; padding-inline: 26px 8px; border-radius: 3px; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E") 6px center / 16px no-repeat, var(--winbtn); color: var(--winbtn-ink);
+  box-shadow: inset 1px 1px 2px rgb(0 0 0 / .35), inset -1px -1px rgb(255 255 255 / .12);
+  font: 11px/24px var(--font); white-space: nowrap;
+}
+:root[data-theme="adminerxp"][dir="rtl"] body::after { background-position: right 9px center, 0 0; }
+:root[data-theme="adminerxp"][dir="rtl"]::after { background-position: right 6px center, 0 0; }
+@media print {
+  :root[data-theme="adminerxp"]::before, :root[data-theme="adminerxp"]::after,
+  :root[data-theme="adminerxp"] body::before, :root[data-theme="adminerxp"] body::after { display: none; }
+}
+
+/* ---------- Zone de notification : sélecteur de thème, utilisateur, déconnexion ---------- */
+:root[data-theme="adminerxp"] .logout,
+:root[data-theme="adminerxp"] #kawaii-switcher:not(.in-bar) {
+  position: fixed; top: auto; bottom: 0; inset-inline: auto 0; z-index: 6; height: var(--task-h); box-sizing: border-box; margin: 0;
+  display: flex; align-items: center; gap: 6px; padding-block: 0; padding-inline: 12px 8px;
+  border: 0; border-radius: 0; background: var(--tray); color: var(--tray-ink); font: 11px var(--font);
+  box-shadow: inset 1px 0 var(--tray-edge), inset 2px 0 var(--tray-hi);
+}
+:root[data-theme="adminerxp"][dir="rtl"] :is(.logout, #kawaii-switcher:not(.in-bar)) { box-shadow: inset -1px 0 var(--tray-edge), inset -2px 0 var(--tray-hi); }
+:root[data-theme="adminerxp"] .logout span[title=Username] { padding: 0 4px; white-space: nowrap; }
+/* fermer la session : l'icône orange du menu Démarrer */
+:root[data-theme="adminerxp"] .logout #logout {
+  min-height: 22px; margin: 0; padding-block: 0; padding-inline: 25px 6px; border: 1px solid transparent; border-radius: 3px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='.5' y='.5' width='15' height='15' rx='3' fill='%23f0912b' stroke='%23a8520a'/%3E%3Cpath d='M6.5 3.5h-3v9h3' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3Cpath d='M6 8h6.5M10 5.5L12.5 8 10 10.5' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E") 4px center / 16px no-repeat; color: var(--tray-ink); font: 11px var(--font); box-shadow: none; cursor: pointer;
+}
+:root[data-theme="adminerxp"][dir="rtl"] .logout #logout { background-position: right 4px center; }
+:root[data-theme="adminerxp"] .logout #logout:hover { background-color: var(--tray-hover); border-color: var(--tray-hover); box-shadow: none; }
+:root[data-theme="adminerxp"] .logout #logout:active { background-color: rgb(0 0 0 / .12); }
+/* sélecteur : icônes de la zone, sans cadre */
+:root[data-theme="adminerxp"] #kawaii-switcher { color: var(--tray-ink); font: 11px var(--font); }
+:root[data-theme="adminerxp"] #kawaii-switcher.in-bar { margin: 0; padding: 0; border: 0; background: none; box-shadow: none; }
+:root[data-theme="adminerxp"] #kawaii-switcher button.theme { padding: 2px 5px; border-radius: 3px; color: var(--tray-ink); font-weight: normal; }
+:root[data-theme="adminerxp"] #kawaii-switcher button.theme:is(:hover, [aria-expanded="true"]) { background-color: var(--tray-hover); }
+:root[data-theme="adminerxp"] #kawaii-switcher button.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--tray-ink); }
+/* panneau des thèmes : un menu Windows (cadre gris, ombre portée, survol bleu) */
+:root[data-theme="adminerxp"] #kawaii-themes {
+  border: 1px solid #aca899; border-radius: 0; background-color: #fff; box-shadow: 3px 3px 4px rgb(0 0 0 / .35); font: 11px/1.3 var(--font);
+}
+:root[data-theme="adminerxp"] #kawaii-themes button.pick { border-radius: 0; font-weight: normal; }
+:root[data-theme="adminerxp"] #kawaii-themes button.pick:hover { background-color: var(--hl); color: var(--on-hl); }
+:root[data-theme="adminerxp"] #kawaii-themes button.pick[aria-current] { font-weight: bold; }
+
+/* ---------- Menu Démarrer : en-tête, colonne blanche (base, tables), colonne bleue (actions), pied (langue) ---------- */
+:root[data-theme="adminerxp"] #menu {
+  display: grid; grid-template: "head head" auto "db links" auto "list links" minmax(0, 1fr) "foot foot" auto / minmax(0, 1fr) var(--menu-r);
+  box-sizing: border-box; width: var(--menu-w); min-width: 0; margin: 0; padding: 0;
+  background: #fff; border: 1px solid var(--frame); border-bottom: 0; border-radius: 7px 7px 0 0; box-shadow: 3px 0 6px rgb(0 0 0 / .35);
+  font: 11px var(--font);
+}
+:root[data-theme="adminerxp"] #menu > :not(h1, form, p.links, #tables) { grid-column: 1; }
+:root[data-theme="adminerxp"] #menu :is(p, #dbs, #logins, #tables) { border: 0; }
+:root[data-theme="adminerxp"] #menu a:hover { background: none; }
+@media not all and (max-width: 800px) {
+  /* ouvert au-dessus du bouton « démarrer », aussi haut que son contenu, dans la limite de l'écran (la liste défile) */
+  :root[data-theme="adminerxp"].js:not(:has(input[name="auth[password]"])) #menu {
+    top: auto; bottom: var(--task-h); inset-inline-start: 0; z-index: 4; max-height: calc(100vh - var(--task-h) - 10px);
+  }
+}
+
+/* en-tête : image d'utilisateur (le paysage du bureau) et nom en blanc, filet orange dessous */
+:root[data-theme="adminerxp"] #menu h1 {
+  grid-area: head; position: static; display: flex; align-items: center; gap: 6px; min-height: 56px; box-sizing: border-box; margin: 0; padding: 7px 8px 9px;
+  border: 0; border-radius: 6px 6px 0 0; font-size: 1em; white-space: nowrap;
+  background: linear-gradient(90deg, transparent, #e2a03f 25%, #f9cd85 50%, #e2a03f 75%, transparent) bottom / 100% 2px no-repeat, var(--menu-head);
+}
+:root[data-theme="adminerxp"] #h1 {
+  display: inline-flex; align-items: center; gap: 8px; min-width: 0; color: var(--menu-ink);
+  font: bold 15px/1 var(--font-heading); font-style: normal; text-decoration: none; text-shadow: 1px 1px 2px var(--menu-shadow);
+}
+:root[data-theme="adminerxp"] #h1 img { display: none; }
+:root[data-theme="adminerxp"] #h1::before {
+  content: ""; flex: none; width: 40px; height: 40px; box-sizing: border-box; border: 2px solid #fff; border-radius: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E") center / cover; box-shadow: 1px 1px 3px rgb(0 0 0 / .5);
+}
+:root[data-theme="adminerxp"] #menu #h1:hover { background: none; color: var(--menu-ink); text-decoration: underline; }
+:root[data-theme="adminerxp"] #menu .version { align-self: flex-end; color: var(--menu-ink); font: 10px var(--font); text-shadow: 1px 1px 1px var(--menu-shadow); }
+
+/* base de données : en tête de la colonne blanche, comme les programmes épinglés, filet dégradé dessous */
+:root[data-theme="adminerxp"] #menu > form:has(#dbs) { grid-area: db; }
+:root[data-theme="adminerxp"] #menu #dbs {
+  margin: 0; padding: 8px 8px 9px;
+  background: linear-gradient(90deg, transparent, #d5d2c5 15% 85%, transparent) bottom / 100% 1px no-repeat;
+}
+:root[data-theme="adminerxp"] #menu #dbs label { display: flex; align-items: center; gap: 6px; color: #000; font-weight: bold; }
+:root[data-theme="adminerxp"] #menu #dbs label::before { content: ""; flex: none; width: 24px; height: 24px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5v9c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2v-9' fill='%23c9d8f2' stroke='%233c5d9c'/%3E%3Cpath d='M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2' fill='none' stroke='%233c5d9c'/%3E%3Cellipse cx='8' cy='3.5' rx='5.5' ry='2' fill='%23eef3fc' stroke='%233c5d9c'/%3E%3C/svg%3E") center / 24px no-repeat; }
+:root[data-theme="adminerxp"] #menu #dbs select { flex: 1; min-width: 0; font-weight: normal; }
+
+/* tables : les programmes de la colonne blanche ; survol bleu plein, table ouverte en sélection pâle */
+:root[data-theme="adminerxp"] #menu #tables { grid-area: list; margin: 0; padding: 4px 0 0; }
+:root[data-theme="adminerxp"] #tables::before { margin: 2px 9px 4px; color: var(--muted); font: bold 11px var(--font); letter-spacing: 0; text-transform: none; }
+:root[data-theme="adminerxp"] #tables li { margin: 0 3px; border-radius: 0; }
+:root[data-theme="adminerxp"] #tables :is(a.structure, a.view) { padding: 3px 4px 3px 6px; color: #000; font: 11px/16px var(--font); }
+:root[data-theme="adminerxp"] #tables :is(a.structure, a.view)::before {
+  content: ""; display: inline-block; width: 16px; height: 16px; margin: 0; margin-inline-end: 6px; vertical-align: -4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.5' y='2.5' width='13' height='11' fill='%23fff' stroke='%233c5d9c'/%3E%3Cpath d='M2 3h12v3H2z' fill='%236b94d6'/%3E%3Cpath d='M2 9.5h12M6 6v7M10 6v7' stroke='%239db3d8'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+:root[data-theme="adminerxp"] #tables a.view::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.5' y='2.5' width='13' height='11' fill='%23fff' stroke='%233c5d9c'/%3E%3Cpath d='M2 3h12v3H2z' fill='%236b94d6'/%3E%3Cpath d='M3.5 10s1.8-2.5 4.5-2.5 4.5 2.5 4.5 2.5-1.8 2.5-4.5 2.5-4.5-2.5-4.5-2.5z' fill='%23dfe8f7' stroke='%233c5d9c'/%3E%3Ccircle cx='8' cy='10' r='1.3' fill='%233c5d9c'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] #tables li:has(a.active) { background: color-mix(in srgb, var(--hl) 28%, #fff); box-shadow: inset 0 0 0 1px var(--hl); }
+:root[data-theme="adminerxp"] #tables li:has(a.active) :is(a.structure, a.view) { font-weight: bold; }
+:root[data-theme="adminerxp"] #tables li:is(:hover, :has(a.active):hover) { background: var(--hl); box-shadow: none; }
+:root[data-theme="adminerxp"] #menu #tables li:hover :is(a.structure, a.view) { background: none; color: var(--on-hl); }
+/* bouton « données » : une page de document */
+:root[data-theme="adminerxp"] #tables a.select {
+  width: 18px; height: 18px; margin-inline-end: 3px; border-radius: 2px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 1.5h6l3 3v10h-9z' fill='%23fff' stroke='%236b7b99'/%3E%3Cpath d='M9.5 1.5v3h3' fill='%23e3e9f5' stroke='%236b7b99'/%3E%3Cpath d='M5.5 7.5h5M5.5 9.5h5M5.5 11.5h3.5' stroke='%239aa8c2'/%3E%3C/svg%3E") center / 16px no-repeat;
+}
+:root[data-theme="adminerxp"] #tables a.select::before { content: none; }
+:root[data-theme="adminerxp"] #menu #tables a.select:hover { background-color: rgb(255 255 255 / .35); }
+
+/* actions : la colonne bleu pâle (Mes documents, Poste de travail…), grandes icônes et texte gras */
+:root[data-theme="adminerxp"] #menu p.links {
+  grid-area: links; display: flex; flex-direction: column; gap: 1px; margin: 0; padding: 6px 4px;
+  border-inline-start: 1px solid var(--right-edge); background: var(--right-bg);
+}
+:root[data-theme="adminerxp"] #menu p.links a {
+  display: flex; align-items: center; gap: 6px; padding: 3px 4px; border: 0; border-radius: 0; background: none;
+  color: var(--right-ink); font: bold 11px/1.25 var(--font); text-align: start;
+}
+:root[data-theme="adminerxp"] #menu p.links a::before { content: ""; flex: none; width: 22px; height: 22px; background: var(--icon, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 1.5h6l3 3v10h-9z' fill='%23fff' stroke='%236b7b99'/%3E%3Cpath d='M9.5 1.5v3h3' fill='%23e3e9f5' stroke='%236b7b99'/%3E%3Cpath d='M5.5 7.5h5M5.5 9.5h5M5.5 11.5h3.5' stroke='%239aa8c2'/%3E%3C/svg%3E")) center / 22px no-repeat; }
+:root[data-theme="adminerxp"] #menu p.links a[href*="sql="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='1.5' y='2.5' width='13' height='11' fill='%23000' stroke='%232c4c8c'/%3E%3Cpath d='M2 3h12v2H2z' fill='%232f6fd6'/%3E%3Cpath d='M4 7.5l2 1.5-2 1.5M7.5 11h3.5' stroke='%23fff' fill='none'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] #menu p.links a[href*="import="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 4.5h4.5l1.5 1.5h7v7.5h-13z' fill='%23f5d36b' stroke='%23b08a2a'/%3E%3Cpath d='M8 6v5.5M5.6 9.2L8 11.6l2.4-2.4' stroke='%231f8a1f' stroke-width='1.7' fill='none'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] #menu p.links a[href*="dump="] { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2.5h9l2 2v9h-11z' fill='%233a5fb8' stroke='%231d3570'/%3E%3Cpath d='M5 3h5v3.5H5z' fill='%23dfe6f2'/%3E%3Cpath d='M4.5 9h7v4.5h-7z' fill='%23fff'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] #menu p.links a:is([href*="create="], [href*="database="]) { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='.5' y='1.5' width='12' height='10' fill='%23fff' stroke='%233c5d9c'/%3E%3Cpath d='M1 2h11v2.5H1z' fill='%236b94d6'/%3E%3Cpath d='M1 7.5h11M4.5 4.5v6.5M8.5 4.5v6.5' stroke='%239db3d8'/%3E%3Ccircle cx='12' cy='12' r='3.6' fill='%232f9a2f' stroke='%23fff'/%3E%3Cpath d='M12 10v4M10 12h4' stroke='%23fff' stroke-width='1.4'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] #menu p.links a.active { background: color-mix(in srgb, var(--hl) 28%, #fff); box-shadow: inset 0 0 0 1px var(--hl); color: #000; }
+:root[data-theme="adminerxp"] #menu p.links a:hover { background: var(--hl); box-shadow: none; color: var(--on-hl); }
+
+/* pied : la barre du bas du menu, où se trouvaient « Fermer la session » et « Arrêter » ; ici, la langue */
+:root[data-theme="adminerxp"] #menu > form:has(#lang) { grid-area: foot; }
+:root[data-theme="adminerxp"] #menu #lang {
+  position: static; display: flex; justify-content: flex-end; align-items: center; margin: 0; padding: 6px 8px;
+  background: var(--menu-head); color: var(--menu-ink); text-shadow: 1px 1px 1px var(--menu-shadow);
+}
+:root[data-theme="adminerxp"] #menu #lang label { display: flex; align-items: center; gap: 6px; }
+:root[data-theme="adminerxp"] #menu #lang select { font-size: 11px; text-shadow: none; }
+:root[data-theme="adminerxp"] #menu .message { margin: 0; padding: 6px 9px; border: 0; background: none; box-shadow: none; color: var(--muted); }
+
+/* ---------- Fenêtre : cadre bleu, barre de titre, barre d'adresse, barre d'outils, barre d'état ---------- */
+:root[data-theme="adminerxp"] #content {
+  position: relative; box-sizing: border-box; padding: 0 10px 0; --content-end: 10px;
+  background: var(--bg); border: 3px solid var(--frame); border-top: 0; border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 0 1px var(--frame-lo), 3px 4px 12px rgb(0 0 0 / .4);
+}
+@media not all and (max-width: 800px) {
+  :root[data-theme="adminerxp"] #content { margin-block: 12px calc(var(--task-h) + 14px); margin-inline: calc(var(--menu-w) + 14px) 14px; }
+}
+/* barre d'adresse : bande gravée sous la barre de titre */
+:root[data-theme="adminerxp"] #content:has(> #breadcrumb) {
+  background:
+    linear-gradient(#fff, #fff) 0 var(--title-h) / 100% 1px no-repeat,
+    linear-gradient(var(--line), var(--line)) 0 calc(var(--title-h) + 29px) / 100% 1px no-repeat, var(--bg);
+}
+/* barre de titre : icône, titre de la page, boutons réduire / agrandir / fermer (décor) */
+:root[data-theme="adminerxp"] #content > h2 {
+  position: relative; min-height: var(--title-h); box-sizing: border-box; margin: 0 -13px 10px; padding-block: 0; padding-inline: 28px 82px;
+  border: 0; border-radius: 7px 7px 0 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E") 7px center / 16px no-repeat, var(--btns) right 5px center / 67px 21px no-repeat, var(--title-grad);
+  color: var(--title-ink); font: bold 13px/var(--title-h) var(--font-heading); text-shadow: 1px 1px var(--title-shadow);
+  white-space: nowrap; overflow: clip; overflow-clip-margin: 4px; text-overflow: ellipsis;
+}
+:root[data-theme="adminerxp"][dir="rtl"] #content > h2 { background-position: right 7px center, left 5px center, 0 0; }
+:root[data-theme="adminerxp"] #content:has(> #breadcrumb) > h2 { margin-bottom: 30px; }
+:root[data-theme="adminerxp"] #content:has(> #breadcrumb):not(:has(> p.links)) > h2 { margin-bottom: 40px; }   /* sans barre d'outils : un peu d'air sous l'adresse */
+:root[data-theme="adminerxp"] #content > h2 a:is(:link, :visited) { color: var(--title-ink); }
+/* adresse : champ blanc à liseré bleu, icône de base de données, libellé « Adresse » devant */
+:root[data-theme="adminerxp"] #breadcrumb {
+  top: calc(var(--title-h) + 4px); inset-inline: 66px 8px !important;   /* !important : Adminer le décale de 48px sur mobile */
+  height: 22px; box-sizing: border-box; margin: 0; padding-block: 0; padding-inline: 24px 6px; border: 1px solid var(--field); border-radius: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 3.5v9c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2v-9' fill='%23c9d8f2' stroke='%233c5d9c'/%3E%3Cpath d='M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2' fill='none' stroke='%233c5d9c'/%3E%3Cellipse cx='8' cy='3.5' rx='5.5' ry='2' fill='%23eef3fc' stroke='%233c5d9c'/%3E%3C/svg%3E") 4px center / 16px no-repeat, #fff; color: #000; font: 11px/20px var(--font);
+  overflow: clip; text-overflow: ellipsis;
+}
+:root[data-theme="adminerxp"][dir="rtl"] #breadcrumb { background-position: right 4px center, 0 0; }
+/* libellé devant le champ (sur #content : le champ rogne ce qui déborde) */
+:root[data-theme="adminerxp"] #content:has(> #breadcrumb)::before {
+  content: var(--address); position: absolute; top: calc(var(--title-h) + 4px); inset-inline-start: 10px; color: var(--muted); font: 11px/22px var(--font);
+}
+:root[data-theme="adminerxp"] #breadcrumb a:is(:link, :visited) { color: var(--accent-text); }
+/* barre d'état, poignée de redimensionnement dans le coin */
+:root[data-theme="adminerxp"] #content::after {
+  content: ""; display: block; height: 22px; margin: 14px -10px 0; border-top: 1px solid var(--line);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cg fill='%23fff'%3E%3Cpath d='M10 2h2v2h-2zM10 6h2v2h-2zM6 6h2v2H6zM10 10h2v2h-2zM6 10h2v2H6zM2 10h2v2H2z'/%3E%3C/g%3E%3Cg fill='%23a7a491'%3E%3Cpath d='M9 1h2v2H9zM9 5h2v2H9zM5 5h2v2H5zM9 9h2v2H9zM5 9h2v2H5zM1 9h2v2H1z'/%3E%3C/g%3E%3C/svg%3E") right 2px bottom 2px / 12px no-repeat; box-shadow: inset 0 1px #fff;
+}
+:root[data-theme="adminerxp"][dir="rtl"] #content::after { background-position: left 2px bottom 2px; transform: scaleX(-1); }
+
+/* liens d'action dans la page (« Modifier les index »…) : liens bleus des volets de tâches */
+:root[data-theme="adminerxp"] .links a { margin: 0; margin-inline-end: 14px; padding: 0; border: 0; border-radius: 0; background: none; color: var(--accent-text); }
+:root[data-theme="adminerxp"] .links a:hover { background: none; color: var(--accent-text); text-decoration: underline; }
+/* liens d'action de la page : barre d'outils (boutons plats qui se soulèvent au survol, page courante enfoncée) */
+:root[data-theme="adminerxp"] #content > p.links {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1px 2px; margin: 0 -10px 10px; padding: 3px 8px;
+  border-bottom: 1px solid var(--line); box-shadow: inset 0 1px #fff, 0 1px #fff;
+}
+:root[data-theme="adminerxp"] #content > p.links a {
+  display: inline-flex; align-items: center; margin: 0; padding: 2px 7px; border: 1px solid transparent; border-radius: 3px;
+  background: none; color: #000; font: 11px/16px var(--font); white-space: nowrap;
+}
+:root[data-theme="adminerxp"] #content > p.links a:hover { border-color: #c3c1b5; background: linear-gradient(#fff, #f4f3ee 70%, #e6e4da); color: #000; text-decoration: none; }
+:root[data-theme="adminerxp"] #content > p.links a.active { border-color: #9d9d92; background: #e3e2da; box-shadow: inset 1px 1px 1px rgb(0 0 0 / .15); }
+
+/* ---------- Texte ---------- */
+:root[data-theme="adminerxp"] h3 { font: bold 13px var(--font-heading); }
+:root[data-theme="adminerxp"] a:is(:link, :visited) { font-weight: normal; }
+:root[data-theme="adminerxp"] a:is(:link, :visited):hover { color: var(--accent-text); text-decoration: underline; }
+:root[data-theme="adminerxp"] :is(thead, .jush, [class^="jush-"]) a:is(:link, :visited):hover { text-decoration: none; }
+:root[data-theme="adminerxp"] code { background: none; }
+:root[data-theme="adminerxp"] pre.jush { padding: 4px 6px; border: 1px solid var(--field); background: #fff; }
+:root[data-theme="adminerxp"] .jush { --border-color: var(--field); }
+
+/* ---------- Tableaux : vue « Détails » de l'Explorateur, en-têtes Luna (filet orange au survol) ---------- */
+:root[data-theme="adminerxp"] table { --table-r: 0px; --table-bw: 1px; border-color: var(--field); background: #fff; }
+:root[data-theme="adminerxp"] thead :is(th, td, td.hover) {
+  border-bottom: 0; border-inline-end: 1px solid #e2dece; font-weight: normal;
+  background: linear-gradient(#fff, #f8f7f2 55%, #ebeadb); box-shadow: inset 0 -1px #cbc7b8, inset 0 -2px #d6d2c2, inset 0 -3px #e2dece;
+}
+:root[data-theme="adminerxp"] thead th:hover { box-shadow: inset 0 -1px #e5a01a, inset 0 -2px #f9b334, inset 0 -3px #fcc75e; }
+:root[data-theme="adminerxp"] :is(th, td) { border-bottom-color: #ecebe4; }
+:root[data-theme="adminerxp"] tbody th { font-weight: bold; }
+:root[data-theme="adminerxp"].js .checkable .checked :is(td, th, td.hover) { background: var(--checked); }
+/* menu de colonne (tri, recherche) : menu contextuel */
+:root[data-theme="adminerxp"] thead th .column { border: 1px solid #aca899; border-radius: 0; box-shadow: 2px 2px 3px rgb(0 0 0 / .3); }
+:root[data-theme="adminerxp"] thead th .column a.text:is(:link, :visited) { border-radius: 0; font-weight: normal; }
+
+/* ---------- Groupes (fieldsets) : cadre gris arrondi, titre bleu ; repliés, un bouton à double chevron ---------- */
+:root[data-theme="adminerxp"] fieldset { padding: 4px 8px 8px; border: 1px solid #d0d0bf; border-radius: 4px; background: none; box-shadow: none; }
+:root[data-theme="adminerxp"] legend { padding: 0 3px; border-radius: 0; background: none; color: #0046d5; font: 11px var(--font); }
+:root[data-theme="adminerxp"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  padding: 0; border: 1px solid var(--btn-edge); border-radius: 3px; background: var(--btn); box-shadow: none; transition: none;
+}
+:root[data-theme="adminerxp"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a {
+  display: flex; align-items: center; gap: 4px; padding-block: 2px; padding-inline: 4px 9px; color: #000; font: 11px/16px var(--font);
+}
+:root[data-theme="adminerxp"] fieldset:has(> legend a) > legend a::before {
+  content: ""; flex: none; width: 15px; height: 15px; margin: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.3' fill='%23fff' stroke='%23a7b5cf'/%3E%3Cpath d='M5 7.4l3-2.6 3 2.6M5 11.2l3-2.6 3 2.6' stroke='%233d4f78' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") center / 15px no-repeat;
+}
+:root[data-theme="adminerxp"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.3' fill='%23fff' stroke='%23a7b5cf'/%3E%3Cpath d='M5 4.8l3 2.6 3-2.6M5 8.6l3 2.6 3-2.6' stroke='%233d4f78' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--btn); box-shadow: var(--btn-hot); transform: none; }
+:root[data-theme="adminerxp"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: #000; }
+:root[data-theme="adminerxp"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 3px; background: none; }
+:root[data-theme="adminerxp"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { display: inline-flex; align-items: center; gap: 4px; }
+:root[data-theme="adminerxp"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited, :hover) { color: #0046d5; }
+
+/* ---------- Formulaires : champs à liseré bleu, listes à bouton fléché, coches vertes ---------- */
+:root[data-theme="adminerxp"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="adminerxp"] select {
+  min-height: 21px; padding: 1px 4px; border: 1px solid var(--field); border-radius: 0; background-color: #fff; color: #000; box-shadow: none; transition: none;
+}
+:root[data-theme="adminerxp"] :is(input, select, textarea):is(:focus, :focus-visible) { border-color: var(--field); box-shadow: none; }
+:root[data-theme="adminerxp"] :is(input, select, textarea):disabled { background-color: #f4f3ee; color: #aca899; }
+:root[data-theme="adminerxp"] select:not([multiple]) {
+  appearance: none; padding-inline-end: 21px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='20' viewBox='0 0 17 20' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23dbe6fe'/%3E%3Cstop offset='0.5' stop-color='%23bccff9'/%3E%3Cstop offset='1' stop-color='%23a9c0f6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='.5' y='.5' width='16' height='19' rx='2' fill='url(%23g)' stroke='%23c3d3fd'/%3E%3Cpath d='M5 8.5l3.5 3.5 3.5-3.5' fill='none' stroke='%234d6185' stroke-width='2'/%3E%3C/svg%3E") right 1px center / 17px calc(100% - 2px) no-repeat, #fff;
+}
+:root[data-theme="adminerxp"] select:not([multiple]):dir(rtl) { background-position: left 1px center, 0 0; }
+:root[data-theme="adminerxp"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 13px; height: 13px; margin-block: 0; margin-inline: 3px 4px; vertical-align: -2px;
+  border: 1px solid #1c5180; background: linear-gradient(135deg, #dcdcd7, #fff); cursor: pointer;
+}
+:root[data-theme="adminerxp"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="adminerxp"] input:is([type=checkbox], [type=radio]):hover { box-shadow: inset 0 0 0 2px #fbc761; }
+:root[data-theme="adminerxp"] input[type=checkbox]:checked { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 11'%3E%3Cpath d='M2 5.6l2.3 2.4L9 3' fill='none' stroke='%2321a121' stroke-width='2'/%3E%3C/svg%3E") center / 11px no-repeat, linear-gradient(135deg, #dcdcd7, #fff); }
+:root[data-theme="adminerxp"] input[type=checkbox]:indeterminate { background: linear-gradient(#21a121, #21a121) center / 7px 7px no-repeat, linear-gradient(135deg, #dcdcd7, #fff); }
+:root[data-theme="adminerxp"] input[type=radio]:checked { background: radial-gradient(circle, #7be07b 0 1.5px, #21a121 2.5px 3.2px, transparent 3.7px), linear-gradient(135deg, #dcdcd7, #fff); }
+:root[data-theme="adminerxp"] input:is([type=checkbox], [type=radio]):disabled { border-color: #cac8bb; background: #fff; cursor: default; }
+
+/* boutons : arrondis, liseré bleu nuit, lueur orange au survol, bleue pour le bouton par défaut */
+:root[data-theme="adminerxp"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 23px; padding: 2px 12px; border: 1px solid var(--btn-edge); border-radius: 3px; background: var(--btn); color: #000;
+  font: 11px/1.3 var(--font); text-shadow: none; box-shadow: none; transition: none;
+}
+:root[data-theme="adminerxp"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover { box-shadow: var(--btn-hot); transform: none; filter: none; }
+:root[data-theme="adminerxp"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: var(--btn-down); box-shadow: none; transform: none; }
+:root[data-theme="adminerxp"] input.default:not(:hover) { box-shadow: var(--btn-def); }
+:root[data-theme="adminerxp"] :is(input[type=submit], input[type=button]):disabled { border-color: #c9c7ba; background: #f4f3ee; color: #aca899; box-shadow: none; }
+:root[data-theme="adminerxp"] :is(input[name*=delete], input[name=drop], input[name=truncate]) { color: #a00000; }
+:root[data-theme="adminerxp"] button.icon { border-radius: 3px; }
+
+/* ---------- Messages : bulles jaunes de la zone de notification ---------- */
+:root[data-theme="adminerxp"] :is(.message, .error) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding-block: 5px; padding-inline: 30px 12px;
+  border: 1px solid #000; border-radius: 7px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.3' fill='%232f6fd6' stroke='%231d4d9e'/%3E%3Ccircle cx='8' cy='4.6' r='1.2' fill='%23fff'/%3E%3Cpath d='M6.6 7h2.2v4.6h1v1.2H6.4v-1.2h1V8.2h-.8z' fill='%23fff'/%3E%3C/svg%3E") 8px 6px / 16px no-repeat, #ffffe1; color: #000;
+  box-shadow: 2px 2px 4px rgb(0 0 0 / .3); font: 11px/1.45 var(--font);
+}
+:root[data-theme="adminerxp"] .error { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.3' fill='%23e0301e' stroke='%239c1a0e'/%3E%3Cpath d='M5.2 5.2l5.6 5.6M10.8 5.2l-5.6 5.6' stroke='%23fff' stroke-width='1.9'/%3E%3C/svg%3E"); }
+:root[data-theme="adminerxp"][dir="rtl"] :is(.message, .error) { background-position: right 8px top 6px, 0 0; }
+/* bulle d'aide (fonctions SQL) */
+:root[data-theme="adminerxp"] #help { border: 1px solid #000; background: #ffffe1; color: #000; box-shadow: 2px 2px 3px rgb(0 0 0 / .3); }
+
+/* barre d'actions collante : au-dessus de la barre des tâches ; en-tête collant sous rien (la page défile sous le bureau) */
+:root[data-theme="adminerxp"] .footer { bottom: var(--task-h); }
+:root[data-theme="adminerxp"] { scroll-padding-bottom: var(--task-h); }
+
+/* schéma : chaque table en petite fenêtre (interligne de 1,25 : celui sur lequel Adminer place les flèches des clés) */
+:root[data-theme="adminerxp"] #schema .table { padding: 0 2px 2px; border: 1px solid var(--frame); border-radius: 4px 4px 0 0; background: #fff; line-height: 1.25; }
+:root[data-theme="adminerxp"] #schema .table > a:first-child {
+  display: block; margin: 0 -2px 1px; padding: 0 4px; border-radius: 3px 3px 0 0; background: var(--title-grad);
+  color: var(--title-ink); font-weight: bold; text-shadow: 1px 1px var(--title-shadow);
+}
+
+/* ---------- Page de connexion : boîte de dialogue sur le bureau, icône d'Adminer et barre de langue ---------- */
+/* Repérée par le champ mot de passe. Pas d'écran d'accueil : une fenêtre ordinaire, sans menu ni barre d'adresse. */
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content {
+  width: fit-content; max-width: calc(100% - 16px); margin: max(56px, 16vh) auto calc(var(--task-h) + 24px) !important; padding: 0 12px 12px;
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content::after { content: none; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content > h2 { margin-bottom: 12px; padding-inline-end: 34px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E"), var(--close), var(--title-grad); background-size: 16px, 21px 21px, auto; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) table.layout { --table-bw: 0px; border-spacing: 0 4px; background: none; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) table.layout :is(th, td) { padding: 0; border: 0; background: none; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) table.layout th { padding-inline-end: 12px; font: 11px var(--font); vertical-align: middle; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 220px; box-sizing: border-box; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content form > p {
+  display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; gap: 16px; margin: 12px 0 0;
+  padding-top: 10px; border-top: 1px solid var(--line); box-shadow: inset 0 1px #fff; font: 11px var(--font);
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { min-width: 75px; }
+/* bureau : l'icône d'Adminer (raccourci, texte blanc ombré) et la barre de langue flottante */
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menu {
+  position: absolute; top: 14px; inset-inline-start: 14px; display: block; width: auto; min-width: 0; max-height: none;
+  margin: 0; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menu h1 {
+  display: block; width: 84px; min-height: 0; margin: 0; padding: 0; border-radius: 0; background: none; text-align: center; white-space: normal;
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #h1 {
+  flex-direction: column; gap: 3px; color: #fff; font: 11px/1.2 var(--font); text-shadow: 1px 1px 1px #000, 0 0 2px #000;
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #h1::before { width: 32px; height: 32px; border-width: 1px; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menu .version { display: block; margin-top: 1px; color: #fff; text-shadow: 1px 1px 1px #000, 0 0 2px #000; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menu #lang {
+  display: inline-flex; margin: 16px 0 0; padding: 3px 6px; border: 1px solid #fff; border-radius: 3px;
+  background: var(--bg); color: #000; text-shadow: none; box-shadow: 1px 1px 3px rgb(0 0 0 / .45);
+}
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menu #lang :focus-visible { outline-color: #000; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #logins { margin: 12px 0 0; padding: 0; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #logins a:is(:link, :visited) { background: none; color: #fff; text-shadow: 1px 1px 1px #000, 0 0 2px #000; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #foot { position: static; display: block; }
+:root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : le vrai bouton « démarrer » ouvre le menu, la zone de notification passe dans son pied ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="adminerxp"] #content { margin: 8px 6px calc(var(--task-h) + 10px) !important; }
+  :root[data-theme="adminerxp"]:not(:has(input[name="auth[password]"])) body::after { display: none; }
+  :root[data-theme="adminerxp"].js #menuopen { position: fixed; top: auto; bottom: 0; inset-inline-start: 0; z-index: 7; }
+  :root[data-theme="adminerxp"] #menuopen button.icon {
+    display: block; width: var(--start-w); height: var(--task-h); border-radius: 0; border-start-end-radius: 12px; border-end-end-radius: 12px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E") 9px center / 19px no-repeat, var(--start); box-shadow: 2px 0 3px rgb(0 0 0 / .3);
+  }
+  :root[data-theme="adminerxp"] #menuopen button.icon[aria-expanded="true"] { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='s' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%232f6fd6'/%3E%3Cstop offset='1' stop-color='%23a3d0f7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%239fdb5a'/%3E%3Cstop offset='1' stop-color='%233a8a22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='4' fill='url(%23s)'/%3E%3Cellipse cx='11' cy='10' rx='6' ry='2.4' fill='%23fff' opacity='.9'/%3E%3Cellipse cx='22.5' cy='6.5' rx='4' ry='1.6' fill='%23fff' opacity='.7'/%3E%3Cpath d='M0 22c8-7 18-8 32-2v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z' fill='url(%23h)'/%3E%3C/svg%3E"), var(--start-down); }
+  :root[data-theme="adminerxp"][dir="rtl"] #menuopen button.icon { background-position: right 9px center, 0 0; }
+  :root[data-theme="adminerxp"] #menuopen button.icon::after { display: block; }
+  /* menu ouvert : de haut en bas de l'écran, au-dessus du bouton ; la liste des tables défile */
+  :root[data-theme="adminerxp"].js:not(:has(input[name="auth[password]"])) #foot:not(.foot) {
+    top: 8px; bottom: var(--task-h); inset-inline-start: 0; z-index: 6; flex-direction: column;
+    width: min(var(--menu-w), calc(100vw - 8px)); margin: 0;
+  }
+  :root[data-theme="adminerxp"]:not(:has(input[name="auth[password]"])) #menu { position: static; flex: 1 1 auto; min-height: 0; width: auto; box-shadow: 3px 0 6px rgb(0 0 0 / .35); }
+  :root[data-theme="adminerxp"] #foot .logout {
+    position: static; flex-wrap: wrap; justify-content: flex-end; height: auto; min-height: 34px; padding: 4px 8px;
+    border-inline-start: 1px solid var(--frame); border-inline-end: 1px solid var(--frame);
+    background: var(--menu-head); color: var(--menu-ink); box-shadow: 3px 0 6px rgb(0 0 0 / .35);
+  }
+  :root[data-theme="adminerxp"] #foot .logout :is(#logout, #kawaii-switcher, #kawaii-switcher button.theme) { color: var(--menu-ink); }
+  :root[data-theme="adminerxp"] #menu #lang { border-top: 1px solid rgb(255 255 255 / .25); }
+  /* connexion : la boîte sous l'icône et la barre de langue */
+  :root[data-theme="adminerxp"]:has(input[name="auth[password]"]) #content { margin-top: 136px !important; }
+}
+/* écran étroit, connexion : la zone de notification (le sélecteur) prend la place du bouton de la fenêtre */
+@media (max-width: 520px) {
+  :root[data-theme="adminerxp"]:has(input[name="auth[password]"])::after { display: none; }
+}

@@ -4,7 +4,10 @@
    tableaux, cartes et boutons sont des plateaux à peine éclairés, sans second flou. Tout en CSS, sans image ni police.
    Lisibilité : le verre assombrit ce qu'il floute (brightness dans backdrop-filter), pour que le texte reste contrasté
    même quand le voile le plus lumineux de l'aurore passe derrière. Sans flou possible, ou si le système demande moins de
-   transparence, le verre devient presque opaque. */
+   transparence, le verre devient presque opaque.
+   Variantes : nuit (par défaut) et jour, le glassmorphisme clair : verre blanc laiteux et texte encre, sur un ciel d'aube
+   où dérivent des taches pastel (rose, pêche, lilas, ciel, menthe) ; là, le verre éclaircit ce qu'il floute. Les règles
+   ne prennent leurs couleurs que dans les variables, que la variante jour redéfinit. */
 
 :root[data-theme="verre"] {
   --bg: #070a20; --surface: rgb(255 255 255 / .06); --surface-2: rgb(255 255 255 / .11);
@@ -43,7 +46,33 @@
   --chip-edge: inset 0 1px 0 rgb(255 255 255 / .20);
   --well: rgb(0 0 0 / .26);
   --sel: rgb(139 92 246 / .30);
-  --ink: #0b1030;   /* texte sur pastille blanche (survol, sélection) */
+  --ink: #0b1030;
+  /* survol et sélection : pastille blanche, texte encre */
+  --hi: #fff; --on-hi: var(--ink); --hi-active: rgb(255 255 255 / .75);
+  --hair: rgb(255 255 255 / .08);        /* filets (menu, lignes des tableaux) */
+  --row-on: rgb(255 255 255 / .17);      /* table ouverte dans le menu */
+  --thead: rgb(8 10 30 / .30);           /* en-tête des tableaux */
+  --thead-stuck: rgb(60 58 98 / .95);    /* le même, collé en haut pendant le défilement : presque opaque */
+  --pop: rgb(22 24 56 / .96); --pop-border: rgb(255 255 255 / .16);   /* menus de colonne, aide, tables du schéma */
+  --well-border: rgb(255 255 255 / .08); --well-inset: inset 0 1px 3px rgb(0 0 0 / .35); --well-focus: rgb(94 234 212 / .6);
+  --option: #161a3a; --thumb: rgb(255 255 255 / .35);
+  --schema: rgb(18 20 50 / .6); --ref: rgb(255 255 255 / .45);   /* tables du schéma et leurs liens */
+  --danger: rgb(251 113 133 / .30);      /* boutons destructifs */
+  --bar: rgb(10 12 34 / .45);            /* pied collant */
+  --float-shadow: 0 10px 30px -12px rgb(0 0 0 / .7);
+  --panel: rgb(12 14 40 / .84); --panel-shadow: 0 18px 40px -12px rgb(0 0 0 / .8);   /* panneau des thèmes */
+  --sheet: rgb(14 16 42 / .55);          /* menu ouvert sur mobile */
+  --opaque: rgb(16 18 46 / .94);         /* verre sans flou */
+  /* aurore : deux voiles (voir plus bas), éclaircis par mélange « screen », découpés en rideaux */
+  --aurora-a:
+    radial-gradient(42% 16% at 28% 40%, rgb(45 212 191 / .80), transparent 70%),
+    radial-gradient(30% 12% at 50% 33%, rgb(34 211 238 / .55), transparent 70%),
+    radial-gradient(40% 18% at 70% 44%, rgb(168 85 247 / .75), transparent 70%);
+  --aurora-b:
+    radial-gradient(34% 14% at 62% 26%, rgb(217 70 239 / .45), transparent 70%),
+    radial-gradient(38% 15% at 36% 58%, rgb(94 234 212 / .40), transparent 70%);
+  --aurora-blend: screen;
+  --curtains: repeating-linear-gradient(98deg, #000 0 2%, rgb(0 0 0 / .45) 3.5%, #000 5.5%);
 
   /* ciel de nuit étoilé ; l'aurore est sur ::before et ::after de la racine */
   --bg-pattern:
@@ -55,26 +84,79 @@
   --bg-size: 240px 240px, 240px 240px, 240px 240px, 240px 240px, 100% 100%;
 }
 
+/* ---------- Variante jour : verre laiteux sur un ciel d'aube pastel ---------- */
+/* Le verre éclaircit ce qu'il floute (brightness > 1) et un voile blanc s'y ajoute : le texte encre reste contrasté
+   quand la tache la plus vive passe derrière. Survol et sélection : pastille violette, texte blanc. */
+:root[data-theme="verre"][data-variant="jour"] {
+  --bg: #f6f2fd; --surface: rgb(255 255 255 / .45); --surface-2: rgb(255 255 255 / .62);
+  --text: #1b1d3a; --muted: #4a4e70; --border: rgb(40 36 90 / .14);
+  --accent: #7c3aed; --on-accent: #fff; --accent-text: #6425d0;
+  --ok: #047857; --err: #be123c; --on-err: #fff;
+  --jush-str: #047857; --jush-num: #a21caf; --jush-id: #1d4ed8;
+  color-scheme: light;
+  --row-hover: rgb(124 58 237 / .08);
+  --lit: rgb(255 255 255 / .55);
+  --dim: rgb(255 255 255 / .62);
+
+  --frost: blur(26px) saturate(140%) brightness(1.04);
+  --sheen: linear-gradient(155deg, rgb(255 255 255 / .66), rgb(255 255 255 / .44) 42%, rgb(255 255 255 / .54));
+  --edge: inset 0 1px 0 rgb(255 255 255 / .95);
+  --lift: 0 30px 70px -26px rgb(76 52 140 / .38);
+  --rim: linear-gradient(160deg, #fff, rgb(255 255 255 / .55) 28%, rgb(255 255 255 / .3) 60%, rgb(255 255 255 / .85));
+  --float: rgb(255 255 255 / .58);
+  --platter: rgb(255 255 255 / .42);
+  --platter-edge: inset 0 1px 0 rgb(255 255 255 / .9), 0 1px 3px rgb(76 52 140 / .08);
+  --chip: rgb(255 255 255 / .72);
+  --chip-edge: inset 0 1px 0 #fff, 0 1px 2px rgb(76 52 140 / .16);
+  --well: rgb(255 255 255 / .62);
+  --sel: rgb(167 139 250 / .26);
+  --hi: #6425d0; --on-hi: #fff; --hi-active: #5b21b6;
+  --hair: rgb(40 36 90 / .09);
+  --row-on: rgb(255 255 255 / .8);
+  --thead: rgb(255 255 255 / .55);
+  --thead-stuck: rgb(253 253 255 / .95);
+  --pop: rgb(252 250 255 / .97); --pop-border: rgb(40 36 90 / .14);
+  --well-border: rgb(40 36 90 / .12); --well-inset: inset 0 1px 2px rgb(40 36 90 / .10); --well-focus: rgb(124 58 237 / .55);
+  --option: #fbf9ff; --thumb: rgb(40 36 90 / .28);
+  --schema: rgb(255 255 255 / .66); --ref: rgb(76 52 140 / .5);
+  --danger: rgb(244 63 94 / .16);
+  --bar: rgb(255 255 255 / .55);
+  --float-shadow: 0 10px 30px -14px rgb(76 52 140 / .45);
+  --panel: rgb(253 251 255 / .86); --panel-shadow: 0 18px 44px -14px rgb(76 52 140 / .45);
+  --sheet: rgb(255 255 255 / .62);
+  --opaque: rgb(250 248 255 / .95);
+  /* taches pastel qui dérivent : ni mélange « screen » ni rideaux */
+  --aurora-a:
+    radial-gradient(30% 28% at 24% 32%, rgb(244 114 182 / .80), transparent 70%),
+    radial-gradient(28% 26% at 68% 26%, rgb(56 189 248 / .70), transparent 70%),
+    radial-gradient(34% 30% at 58% 70%, rgb(139 92 246 / .60), transparent 70%);
+  --aurora-b:
+    radial-gradient(26% 24% at 30% 72%, rgb(251 146 60 / .60), transparent 70%),
+    radial-gradient(24% 22% at 84% 54%, rgb(52 211 153 / .55), transparent 70%);
+  --aurora-blend: normal;
+  --curtains: none;
+  --bg-pattern: linear-gradient(160deg, #fdf2f8, #f1edff 45%, #e9f6ff);
+  --bg-size: 100% 100%;
+}
+/* boutons-icônes : pictogramme encre sur verre clair, sans l'inversion de la nuit */
+:root[data-theme="verre"][data-variant="jour"] button.icon { filter: none; background-color: var(--text); }
+:root[data-theme="verre"][data-variant="jour"] button.icon:hover { background-color: var(--accent-text); }
+
 /* ---------- Aurore : deux voiles flous, découpés en rideaux, qui dérivent lentement en sens contraire ---------- */
 /* seule la transformation est animée : le flou de chaque voile est calculé une fois, le compositeur le déplace */
 :root[data-theme="verre"]::before, :root[data-theme="verre"]::after {
-  content: ""; position: fixed; inset: -20vmax; z-index: -1; pointer-events: none; mix-blend-mode: screen; will-change: transform;
+  content: ""; position: fixed; inset: -20vmax; z-index: -1; pointer-events: none; mix-blend-mode: var(--aurora-blend); will-change: transform;
 }
 :root[data-theme="verre"]::before {
-  background:
-    radial-gradient(42% 16% at 28% 40%, rgb(45 212 191 / .80), transparent 70%),
-    radial-gradient(30% 12% at 50% 33%, rgb(34 211 238 / .55), transparent 70%),
-    radial-gradient(40% 18% at 70% 44%, rgb(168 85 247 / .75), transparent 70%);
+  background: var(--aurora-a);
   filter: blur(36px);
-  -webkit-mask-image: repeating-linear-gradient(98deg, #000 0 2%, rgb(0 0 0 / .45) 3.5%, #000 5.5%);
-  mask-image: repeating-linear-gradient(98deg, #000 0 2%, rgb(0 0 0 / .45) 3.5%, #000 5.5%);
+  -webkit-mask-image: var(--curtains);
+  mask-image: var(--curtains);
   transform: rotate(-10deg);
   animation: verre-aurore-a 46s ease-in-out infinite alternate;
 }
 :root[data-theme="verre"]::after {
-  background:
-    radial-gradient(34% 14% at 62% 26%, rgb(217 70 239 / .45), transparent 70%),
-    radial-gradient(38% 15% at 36% 58%, rgb(94 234 212 / .40), transparent 70%);
+  background: var(--aurora-b);
   filter: blur(48px);
   transform: rotate(8deg);
   animation: verre-aurore-b 63s ease-in-out infinite alternate;
@@ -104,7 +186,7 @@
 /* ---------- Barre du haut : langue et utilisateur en pastilles de verre sur l'aurore ---------- */
 :root[data-theme="verre"] :is(#lang, .logout) {
   background: var(--float); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
-  border-radius: var(--pill); box-shadow: var(--edge), 0 10px 30px -12px rgb(0 0 0 / .7); color: var(--muted);
+  border-radius: var(--pill); box-shadow: var(--edge), var(--float-shadow); color: var(--muted);
 }
 :root[data-theme="verre"] #lang { padding: 3px 4px 3px 12px; }
 :root[data-theme="verre"] .logout { top: 8px; right: 14px; margin: 0; padding: 3px 4px 3px 14px; }
@@ -126,56 +208,64 @@
 :root[data-theme="verre"] #menu h1 { border: 0; margin: 2px 8px 8px; }
 :root[data-theme="verre"] #h1 { font: 700 19px/1.2 var(--font-heading); font-style: normal; letter-spacing: -.01em; color: var(--text); }
 :root[data-theme="verre"] #h1 img { display: none; }
-:root[data-theme="verre"] :is(#menu p, #menu #dbs, #logins, #tables) { border-color: rgb(255 255 255 / .08); }
+:root[data-theme="verre"] :is(#menu p, #menu #dbs, #logins, #tables) { border-color: var(--hair); }
 :root[data-theme="verre"] #menu p.links a { border: 0; border-radius: var(--pill); background: var(--chip); box-shadow: var(--chip-edge); font-weight: 600; }
-:root[data-theme="verre"] #menu p.links a:is(:hover, .active) { background: #fff; color: var(--ink); }
+:root[data-theme="verre"] #menu p.links a:is(:hover, .active) { background: var(--hi); color: var(--on-hi); }
 :root[data-theme="verre"] #tables::before { color: var(--muted); font-weight: 700; }
 :root[data-theme="verre"] #tables li { border-radius: var(--pill); }
-:root[data-theme="verre"] #tables li:hover { background: rgb(255 255 255 / .08); }
-:root[data-theme="verre"] #tables li:has(a.active) { background: rgb(255 255 255 / .17); box-shadow: var(--chip-edge); }
+:root[data-theme="verre"] #tables li:hover { background: var(--row-hover); }
+:root[data-theme="verre"] #tables li:has(a.active) { background: var(--row-on); box-shadow: var(--chip-edge); }
 :root[data-theme="verre"] #tables a.structure::before { margin-right: 0; }
-:root[data-theme="verre"] #tables a.select { background-color: rgb(255 255 255 / .92); }
-:root[data-theme="verre"] #tables a.select::before { color: var(--ink); }
+:root[data-theme="verre"] #tables a.select { background-color: var(--hi); }
+:root[data-theme="verre"] #tables a.select::before { color: var(--on-hi); }
 
 /* ---------- Pastilles d'action (Select data, Show structure…) ---------- */
 :root[data-theme="verre"] .links a { border: 0; background: var(--chip); padding: 2px 12px; box-shadow: var(--chip-edge); }
-:root[data-theme="verre"] .links a:hover { background: #fff; color: var(--ink); }
+:root[data-theme="verre"] .links a:hover { background: var(--hi); color: var(--on-hi); }
 
 /* ---------- Tableaux : plateau dans la fenêtre, filets fins ---------- */
-:root[data-theme="verre"] table { background: var(--platter); border: 0; border-radius: 16px; box-shadow: var(--platter-edge); }
-:root[data-theme="verre"] :is(th, td) { border-bottom-color: rgb(255 255 255 / .07); }
+:root[data-theme="verre"] table { --table-r: 16px; --table-bw: 0px; background: var(--platter); box-shadow: var(--platter-edge); }
+:root[data-theme="verre"] :is(th, td) { border-bottom-color: var(--hair); }
 :root[data-theme="verre"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
 :root[data-theme="verre"] :is(tbody, tfoot) :is(td, th, td.hover) { background: transparent; }
 :root[data-theme="verre"] thead :is(th, td, td.hover) { font-weight: 600; }
-/* en-tête collant : flou des lignes qui passent dessous */
-:root[data-theme="verre"] thead { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-:root[data-theme="verre"] thead :is(th, td, td.hover) { background-color: rgb(8 10 30 / .30); }
+/* en-tête collant : flou des lignes qui passent dessous ; il suit l'arrondi du tableau (sinon son rectangle dépasse du coin) */
+:root[data-theme="verre"] thead {
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-start-start-radius: max(0px, var(--table-r) - var(--table-bw)); border-start-end-radius: max(0px, var(--table-r) - var(--table-bw));
+}
+:root[data-theme="verre"] thead :is(th, td, td.hover) { background-color: var(--thead); }
+/* Chromium ignore ce flou dans #content, lui-même en verre (backdrop-filter imbriqué) : collé, l'en-tête laisserait voir
+   en net les lignes qui passent dessous. Il devient presque opaque (requête scroll-state : voir base.css) */
+@container scroll-state(stuck: top) {
+  :root[data-theme="verre"] thead :is(th, td, td.hover) { background-color: var(--thead-stuck); }
+}
 :root[data-theme="verre"].js .checkable .checked :is(td, th, td.hover) { background: var(--sel); }
 /* menu de colonne (tri, recherche) : posé sur l'en-tête, il doit le masquer */
-:root[data-theme="verre"] thead th .column { background: rgb(22 24 56 / .96); border-color: rgb(255 255 255 / .16); }
+:root[data-theme="verre"] thead th .column { background: var(--pop); border-color: var(--pop-border); }
 
 /* ---------- Champs : creusés dans le verre ---------- */
 :root[data-theme="verre"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea) {
-  background: var(--well); border: 1px solid rgb(255 255 255 / .08); box-shadow: inset 0 1px 3px rgb(0 0 0 / .35); color: var(--text);
+  background: var(--well); border: 1px solid var(--well-border); box-shadow: var(--well-inset); color: var(--text);
 }
 :root[data-theme="verre"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select, textarea):focus {
-  border-color: rgb(94 234 212 / .6);
+  border-color: var(--well-focus);
 }
 /* focus clavier : anneau turquoise plutôt que le blanc de base.css, qui doublait le bord du champ */
 :root[data-theme="verre"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-:root[data-theme="verre"] option { background: #161a3a; color: var(--text); }
-:root[data-theme="verre"] * { scrollbar-color: rgb(255 255 255 / .35) transparent; }
+:root[data-theme="verre"] option { background: var(--option); color: var(--text); }
+:root[data-theme="verre"] * { scrollbar-color: var(--thumb) transparent; }
 
 /* ---------- Boutons : verre clair, blanc au survol comme la sélection de visionOS ---------- */
 :root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
   background: var(--chip); color: var(--text); border: 0; font-weight: 600; padding: 3px 14px; box-shadow: var(--chip-edge);
 }
 :root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
-  background: #fff; color: var(--ink); transform: none; filter: none;
+  background: var(--hi); color: var(--on-hi); transform: none; filter: none;
 }
-:root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: rgb(255 255 255 / .75); transform: none; }
+:root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: var(--hi-active); transform: none; }
 /* destructifs : teinte rose, rose plein au survol */
-:root[data-theme="verre"] :is(input[type=submit], input[type=button]):is([name*=delete], [name=drop], [name=truncate]) { background: rgb(251 113 133 / .30); }
+:root[data-theme="verre"] :is(input[type=submit], input[type=button]):is([name*=delete], [name=drop], [name=truncate]) { background: var(--danger); }
 :root[data-theme="verre"] :is(input[type=submit], input[type=button]):is([name*=delete], [name=drop], [name=truncate]):hover { background: var(--err); color: var(--on-err); }
 /* boutons-icônes : carré clair d'Adminer inversé (voir dbhub.css), pictogramme dans la couleur du texte */
 :root[data-theme="verre"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
@@ -185,15 +275,15 @@
 :root[data-theme="verre"] fieldset { border: 0; background: var(--platter); border-radius: 16px; box-shadow: var(--platter-edge); }
 :root[data-theme="verre"] legend { background: none; color: var(--muted); font-weight: 600; }
 :root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 0; background: var(--chip); box-shadow: var(--chip-edge); }
-:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: #fff; }
-:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover :is(a, a::before) { color: var(--ink); }
+:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--hi); }
+:root[data-theme="verre"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover :is(a, a::before) { color: var(--on-hi); }
 :root[data-theme="verre"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { background: none; padding: 0 8px; }
 :root[data-theme="verre"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--accent-text); }
 
 /* pied collant (actions, pagination) : barre de verre au-dessus des lignes qui défilent */
 :root[data-theme="verre"] .footer { background: none; box-shadow: none; margin-inline-end: 0; }   /* Adminer l'étire de 20px vers la droite */
 :root[data-theme="verre"] .footer > div {
-  background: rgb(10 12 34 / .45); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  background: var(--bar); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
   border-radius: 20px; box-shadow: var(--edge); padding: 0 6px 6px;
 }
 
@@ -201,24 +291,24 @@
 :root[data-theme="verre"] :is(.message, .error) { border-width: 1px; border-radius: 16px; }
 :root[data-theme="verre"] .message { background: rgb(110 231 183 / .14); border-color: rgb(110 231 183 / .45); }
 :root[data-theme="verre"] .error { background: rgb(251 113 133 / .16); border-color: rgb(251 113 133 / .5); }
-:root[data-theme="verre"] #help { background: rgb(16 18 44 / .95); border: 1px solid rgb(255 255 255 / .16); border-radius: 12px; color: var(--text); }
+:root[data-theme="verre"] #help { background: var(--pop); border: 1px solid var(--pop-border); border-radius: 12px; color: var(--text); }
 :root[data-theme="verre"] code { background: var(--well); border-radius: 6px; }
 :root[data-theme="verre"] :is(pre.jush, textarea.sqlarea, .sqlarea) { border-radius: 14px; }
 
 /* ---------- Schéma de la base : tables en plateaux ---------- */
-:root[data-theme="verre"] #schema .table { background: rgb(18 20 50 / .6); border: 1px solid rgb(255 255 255 / .16); border-radius: 10px; box-shadow: var(--platter-edge); }
-:root[data-theme="verre"] #schema .references div { border-color: rgb(255 255 255 / .45) !important; }
+:root[data-theme="verre"] #schema .table { background: var(--schema); border: 1px solid var(--pop-border); border-radius: 10px; box-shadow: var(--platter-edge); }
+:root[data-theme="verre"] #schema .references div { border-color: var(--ref) !important; }
 
 /* ---------- Sélecteur de thème : pastille de verre (page de connexion), fondu dans la barre une fois connecté ---------- */
 :root[data-theme="verre"] #kawaii-switcher {
   background: var(--float); -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
-  border: 0; border-radius: var(--pill); box-shadow: var(--edge), 0 10px 30px -12px rgb(0 0 0 / .7);
+  border: 0; border-radius: var(--pill); box-shadow: var(--edge), var(--float-shadow);
 }
 :root[data-theme="verre"] #kawaii-switcher.in-bar { background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; }
 /* panneau des thèmes : verre plus dense, sinon la page transparaîtrait sous les noms */
 :root[data-theme="verre"] #kawaii-themes {
-  background: rgb(12 14 40 / .84); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
-  border: 0; border-radius: 20px; box-shadow: var(--edge), 0 18px 40px -12px rgb(0 0 0 / .8);
+  background: var(--panel); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+  border: 0; border-radius: 20px; box-shadow: var(--edge), var(--panel-shadow);
 }
 
 /* ---------- Page de connexion : une seule fenêtre de verre au milieu de l'aurore ---------- */
@@ -270,9 +360,9 @@
 @media (max-width: 800px) {
   :root[data-theme="verre"] #content { margin-top: 52px; margin-right: 10px; padding: 14px 14px 16px; border-radius: 24px; --content-end: 14px; }
   :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 48px; }
-  :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; max-width: calc(100% - 28px); overflow: hidden; text-overflow: ellipsis; }
+  :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; max-width: calc(100% - 28px); overflow: clip; text-overflow: ellipsis; }
   /* menu ouvert : fenêtre de verre posée sur la page (Adminer lui donne un fond, un cadre et une ombre opaques) */
-  :root[data-theme="verre"] #menu { position: relative; margin: 9px 10px 0; background: rgb(14 16 42 / .55); border: 0; box-shadow: var(--edge), var(--lift); border-radius: 24px; }
+  :root[data-theme="verre"] #menu { position: relative; margin: 9px 10px 0; background: var(--sheet); border: 0; box-shadow: var(--edge), var(--lift); border-radius: 24px; }
   :root[data-theme="verre"] .js #foot .logout { background: var(--float); box-shadow: var(--edge); margin: 0 10px; border-radius: var(--pill); }
 }
 @media (max-width: 600px) {
@@ -281,9 +371,10 @@
 }
 
 /* ---------- Sans flou possible, ou transparence réduite à la demande du système : verre presque opaque ---------- */
+/* [data-variant] : passe devant les variables de la variante jour, déclarées plus haut avec la même spécificité */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  :root[data-theme="verre"] { --sheen: linear-gradient(rgb(16 18 46 / .92), rgb(16 18 46 / .92)); --float: rgb(16 18 46 / .92); }
+  :root[data-theme="verre"][data-variant] { --sheen: linear-gradient(var(--opaque), var(--opaque)); --float: var(--opaque); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  :root[data-theme="verre"] { --sheen: linear-gradient(rgb(16 18 46 / .94), rgb(16 18 46 / .94)); --float: rgb(16 18 46 / .94); }
+  :root[data-theme="verre"][data-variant] { --sheen: linear-gradient(var(--opaque), var(--opaque)); --float: var(--opaque); }
 }

@@ -67,6 +67,7 @@ input, textarea { caret-color: var(--accent-text); }
 /* ---------- Barre du haut ---------- */
 #lang { padding: 8px 12px; }
 #breadcrumb { background: var(--surface-2); border-radius: 0 0 var(--radius) 0; color: var(--muted); padding: 3px 10px; }
+#breadcrumb { overflow-clip-margin: 6px; }   /* rogné (overflow: clip, voir fitCrumb) : laisse passer l'anneau de focus des liens */
 #breadcrumb a { color: var(--accent-text); }
 /* bloc « utilisateur / déconnexion » : Adminer le colle au bord droit de la fenêtre */
 .logout { padding-inline-end: 12px; }
@@ -87,6 +88,11 @@ input, textarea { caret-color: var(--accent-text); }
 }
 #menu .version, #version { color: var(--muted); }
 #menu p, #menu #dbs, #logins { padding: 2px 6px; margin: 4px 0; border-color: var(--border); }
+/* Adminer rogne #dbs (overflow: hidden), anneau de focus du sélecteur compris : on rogne au-delà de l'anneau (clip et sa
+   marge ; flow-root garde le contexte de formatage de hidden) ; un nom de base trop long rétrécit le sélecteur, qui
+   garde sa bordure et sa flèche */
+#menu #dbs { display: flow-root; overflow: clip; overflow-clip-margin: 6px; }
+#menu #dbs select { max-width: 100%; }
 #menu a:hover { background: var(--surface-2); }
 
 /* actions du haut : grille de tuiles */
@@ -118,6 +124,13 @@ input, textarea { caret-color: var(--accent-text); }
 }
 #tables a.select::before { content: "☰"; font-size: 11px; color: var(--on-accent); }
 #tables li:hover a.select, #tables li:focus-within a.select, #tables li:has(a.active) a.select { opacity: 1; }
+/* la liste défile (overflow) et rogne ce qui dépasse : l'anneau des lignes passe à l'intérieur (des thèmes collent les
+   lignes aux bords), celui du bouton « données » se resserre ; une cale sous la dernière ligne lui laisse la place, et
+   le défilement au clavier garde une marge (scroll-padding) pour celui d'une ligne au bord de la zone visible */
+#tables { scroll-padding-block: 6px; }
+#tables :is(a.structure, a.view):focus-visible { outline-offset: -3px; }
+#tables a.select:focus-visible { outline-offset: 0; }
+#tables::after { content: ""; display: block; height: 6px; }
 
 /* ---------- Contenu ---------- */
 #content { padding-top: 8px; }
@@ -141,9 +154,21 @@ input, textarea { caret-color: var(--accent-text); }
 
 /* ---------- Tableaux ---------- */
 table {
-  border-collapse: separate; border-spacing: 0; background: var(--surface); border-radius: var(--radius);
-  box-shadow: var(--shadow); overflow: clip; /* clip, pas hidden : garde thead sticky fonctionnel */
-  border: 2px solid var(--border);
+  --table-r: var(--radius); --table-bw: 2px;   /* arrondi et bordure : un thème qui les change passe par ces variables */
+  border-collapse: separate; border-spacing: 0; background: var(--surface); border-radius: var(--table-r);
+  box-shadow: var(--shadow); border: var(--table-bw) solid var(--border);
+}
+/* coins : pas d'overflow: clip sur le tableau, qui rognerait l'anneau de focus des champs posés contre son bord
+   (connexion, édition). Ce sont les cellules d'angle qui suivent son arrondi intérieur (arrondi moins bordure) */
+table > :first-child > tr:first-child > :first-child { border-start-start-radius: max(0px, var(--table-r) - var(--table-bw)); }
+table > :first-child > tr:first-child > :last-child { border-start-end-radius: max(0px, var(--table-r) - var(--table-bw)); }
+table > :last-child > tr:last-child > :first-child { border-end-start-radius: max(0px, var(--table-r) - var(--table-bw)); }
+table > :last-child > tr:last-child:where(:not(.short-row)) > :last-child { border-end-end-radius: max(0px, var(--table-r) - var(--table-bw)); }   /* .short-row : voir switcher.js */
+/* en-tête collé pendant le défilement (Adminer : thead { position: sticky }) : il a quitté le coin du tableau, ses angles
+   redeviennent droits pour ne pas laisser voir les lignes qui passent dessous */
+thead { container-type: scroll-state; }
+@container scroll-state(stuck: top) {
+  table > thead:first-child > tr:first-child > :is(:first-child, :last-child) { border-start-start-radius: 0; border-start-end-radius: 0; }
 }
 th, td { border: 0; border-bottom: 1px solid var(--border); padding: var(--pad-y) var(--pad-x); }
 th, :root thead :is(th, td, td.hover) { background-color: var(--th-bg); color: var(--th-text); text-align: left; font-weight: 800; }

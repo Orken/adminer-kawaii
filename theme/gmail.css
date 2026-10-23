@@ -94,7 +94,7 @@
 :root[data-theme="gmail"] #breadcrumb {
   height: 48px; box-sizing: border-box; margin: 0; padding: 0 20px 0 56px; border-radius: 24px;
   background: var(--search); color: var(--muted); font: 400 16px/48px var(--font);
-  overflow: hidden; text-overflow: ellipsis;
+  overflow: clip; text-overflow: ellipsis;
 }
 /* loupe : un pseudo-élément peint au masque, dans la couleur du texte */
 :root[data-theme="gmail"] #breadcrumb::before {
@@ -229,13 +229,14 @@
 :root[data-theme="gmail"] #content .links a[href*="create="] { --icon: var(--i-pencil); }
 :root[data-theme="gmail"] #content .links a[href*="edit="] { --icon: var(--i-plus); }
 :root[data-theme="gmail"] #content .links:has(a.active) a:hover { background: rgb(31 31 31 / .05); color: var(--text); }
+:root[data-theme="gmail"] #content .links:has(a.active) a:focus-visible { outline-offset: -2px; }   /* la barre défile et rognerait l'anneau */
 :root[data-theme="gmail"] #content .links:has(a.active) a.active { color: var(--accent); }
 :root[data-theme="gmail"] #content .links a.active::after {
   content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent);
 }
 
 /* ---------- Tableaux : lignes serrées, filet bleu-gris, sans cadre ---------- */
-:root[data-theme="gmail"] table { border: 0; border-radius: 0; background: var(--surface); box-shadow: none; }
+:root[data-theme="gmail"] table { --table-r: 0px; --table-bw: 0px; background: var(--surface); box-shadow: none; }
 :root[data-theme="gmail"] :is(th, td) { border-bottom: 1px solid var(--line); line-height: 20px; }
 :root[data-theme="gmail"] thead { z-index: 3; }   /* au-dessus de la ligne survolée, qui passe au premier plan */
 :root[data-theme="gmail"] thead :is(th, td, td.hover) { height: 36px; color: var(--muted); font: 500 13px/20px var(--font); white-space: nowrap; }

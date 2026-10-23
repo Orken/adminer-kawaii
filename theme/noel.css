@@ -127,7 +127,7 @@
 :root[data-theme="noel"] h3 { color: var(--title); }
 
 /* ---------- Tableaux : en-tête vert sapin à liseré doré, ligne cochée rose de Noël ---------- */
-:root[data-theme="noel"] table { border: 1px solid var(--border); }
+:root[data-theme="noel"] table { --table-bw: 1px; }
 :root[data-theme="noel"] thead :is(th, td, td.hover) { border-bottom: 2px solid var(--gold); }
 :root[data-theme="noel"] .checkable tr.checked :is(td, th, td.hover) { background-color: var(--row-checked); }
 /* tables du schéma : opaques, la neige passe derrière */
@@ -178,7 +178,7 @@
   content: ""; position: absolute; z-index: 1; top: 40px; right: 34px; width: 92px; height: 46px; rotate: -8deg;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' fill='none' stroke='%232b3a4a' stroke-opacity='.45' stroke-width='1.6'%3E%3Ccircle cx='30' cy='30' r='24'/%3E%3Ccircle cx='30' cy='30' r='17'/%3E%3Cpath d='M58 18q8-6 16 0t16 0 16 0 14 0M58 30q8-6 16 0t16 0 16 0 14 0M58 42q8-6 16 0t16 0 16 0 14 0'/%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none;
 }
-:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin-top: 4px; background: none; border: 0; border-radius: 0; box-shadow: none; }
+:root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout { --table-r: 0px; --table-bw: 0px; width: 100%; margin-top: 4px; background: none; box-shadow: none; }
 :root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout > tbody > tr > :is(th, td) { padding: 6px 6px 5px 0; background: none; border-bottom: 1px solid #d5e0e6; }
 :root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout > tbody > tr > th { color: var(--muted); font-weight: 600; width: 90px; }
 :root[data-theme="noel"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 100%; }

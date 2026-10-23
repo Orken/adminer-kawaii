@@ -140,7 +140,7 @@
 :root[data-theme="bbs"] .error { color: var(--err); }
 
 /* ---------- Tableaux : cadre double, colonnes au trait simple, en-tête en vidéo inverse ---------- */
-:root[data-theme="bbs"] table { border: 3px double var(--border); }
+:root[data-theme="bbs"] table { --table-bw: 3px; border-style: double; }
 :root[data-theme="bbs"] :is(th, td) { padding: 0 9px; border-bottom: 0; border-right: 1px solid var(--cga-blue); line-height: 16px; }
 :root[data-theme="bbs"] :is(th, td):last-child { border-right: 0; }
 :root[data-theme="bbs"] :is(th, td):has(> :is(input, select, textarea)) { padding-block: 1px; }
