@@ -8,6 +8,8 @@
 
 Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en changer à la volée.
 
+☕ Ces thèmes vous plaisent ? [Laissez un pourboire sur Tipeee](https://fr.tipeee.com/classement-relief-top14-et-cie/).
+
 | Thème | Fichier | Style |
 |---|---|---|
 | **Sites et applis** | | |
@@ -328,6 +330,8 @@ reproductible : relancer le script ne modifie que les images des thèmes qui ont
 ## English
 
 Themes for [Adminer](https://www.adminer.org/), with a switcher to change them on the fly.
+
+☕ Enjoying these themes? [Leave a tip on Tipeee](https://en.tipeee.com/classement-relief-top14-et-cie/).
 
 | Theme | File | Style |
 |---|---|---|
