@@ -303,7 +303,7 @@
 @media (max-width: 800px) {
   :root[data-theme="netscape"] { --side-col: none; }
   :root[data-theme="netscape"] #menuopen { top: calc(var(--title-h) + 8px); }
-  :root[data-theme="netscape"] #foot { top: var(--top); }
+  :root[data-theme="netscape"] #foot { top: var(--top); margin-bottom: 28px; }   /* volet fixe : au-dessus de « Document: Done » */
   :root[data-theme="netscape"] #menu { border: 1px solid #808080; box-shadow: 2px 2px 0 rgba(0, 0, 0, .35); }
   :root[data-theme="netscape"] #menu #lang { padding: 7px 8px 0; background: var(--tan); font: bold 12px var(--font); }
   :root[data-theme="netscape"] #foot .logout {

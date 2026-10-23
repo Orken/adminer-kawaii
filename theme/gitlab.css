@@ -263,7 +263,8 @@
 /* Repérée par le champ mot de passe ; ni barre latérale ni barre du haut. */
 :root[data-theme="gitlab"]:has(input[name="auth[password]"]) { --bg-pattern: none; }
 :root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content {
-  width: 400px; max-width: calc(100% - 20px); box-sizing: border-box; margin-top: 72px; padding: 0;
+  /* en vw, pas en % : body (min-width: fit-content chez Adminer) se mesurerait sur 400px et déborderait sur mobile */
+  width: min(400px, calc(100vw - 20px)); box-sizing: border-box; margin-top: 72px; padding: 0;
   margin-inline-start: max(21em, calc(50% - 200px));
 }
 :root[data-theme="gitlab"]:has(input[name="auth[password]"]) #content > h2 { text-align: center; }

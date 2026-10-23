@@ -158,8 +158,6 @@
 
 /* sélecteur de thème */
 :root[data-theme="blueprint"] #kawaii-switcher { border: 1px solid var(--ink); background: var(--paper); }
-/* épaisseur et couleur seulement : le volet perd son cadre quand il est intégré au sélecteur (thème seul, mobile) */
-:root[data-theme="blueprint"] #kawaii-switcher .opts { border-width: 1px; border-color: var(--ink); }
 :root[data-theme="blueprint"] #kawaii-switcher button.sw { border-radius: 0; }
 
 /* ---------- Schéma de la base : le plan ---------- */
@@ -260,4 +258,8 @@
   :root[data-theme="blueprint"]:has(input[name="auth[password]"])::after { content: none; }
   :root[data-theme="blueprint"]:has(input[name="auth[password]"]) #lang { top: 20px; left: 20px; }
   :root[data-theme="blueprint"]:has(input[name="auth[password]"]) #kawaii-switcher { top: 18px; right: 20px; }
+}
+@media (max-width: 480px) {
+  /* sous la langue : avec ses variantes, il ne tient plus à côté */
+  :root[data-theme="blueprint"]:has(input[name="auth[password]"]) #kawaii-switcher { top: 54px; }
 }

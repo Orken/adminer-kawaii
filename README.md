@@ -223,14 +223,15 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image construite depuis ce dépôt** : `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (noms des fichiers sans `.css` ; un nom inconnu fait échouer la construction).
 - **Image officielle** : montez à la place de `theme/` un dossier qui ne contient que ces fichiers.
-- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii, de Blueprint et du Minitel, accent de Kawaii),
-  elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
+- **Un seul thème** : la liste disparaît. S'il a des options (variantes de Kawaii, Blueprint, Minitel, Adminer classic et
+  Spotify, accent de Kawaii), elles restent affichées ; sinon, le sélecteur n'apparaît pas du tout.
 - **Thème par défaut** : DBHub s'il est installé, sinon le premier de la liste.
 
 ### Utilisation
 
-- Choisissez le thème dans la liste en haut à droite. Pour Kawaii, Blueprint et le Minitel, les pastilles changent de variante ;
-  pour Kawaii, le nuancier règle aussi la couleur d'accent.
+- Choisissez le thème dans la liste en haut à droite. Pour Kawaii, Blueprint, le Minitel, Adminer classic et Spotify, les
+  pastilles placées à côté changent de variante ; pour Kawaii, le nuancier règle aussi la couleur d'accent.
+- Une fois connecté, le panneau de gauche reste à l'écran quand la page défile, et sa liste de tables défile seule.
 - Le choix est propre à chaque navigateur. Le thème par défaut se règle avec `DEFAULT_THEME` dans `theme/switcher.js`.
 
 ### Ajouter son propre thème
@@ -264,8 +265,8 @@ docker compose up --build
 ```
 
 Ouvrez http://127.0.0.1:8080 et connectez-vous avec le serveur `db`, l'utilisateur `root`, le mot de passe `kawaii`
-et la base `boutique_kawaii` (données de démonstration). `theme/` et `plugins-enabled/` sont montés dans le
-conteneur : il suffit de recharger la page après une modification.
+et la base `boutique_kawaii` (une boutique de démonstration d'une quarantaine de tables, de quoi faire défiler le menu).
+`theme/` et `plugins-enabled/` sont montés dans le conteneur : il suffit de recharger la page après une modification.
 
 Les captures du README se refont avec `scripts/screenshots.js`, l'environnement de développement lancé. Il faut
 Node 18 ou plus, Playwright et ffmpeg (avec libwebp) :
@@ -515,14 +516,15 @@ for f in base.css switcher.js kawaii.css; do cp "adminer-kawaii-main/theme/$f" t
 - **Image built from this repository**: `docker build --build-arg THEMES="kawaii netscape" -t adminer-kawaii .`
   (file names without `.css`; an unknown name makes the build fail).
 - **Official image**: mount, in place of `theme/`, a folder that only contains those files.
-- **A single theme**: the list goes away. If the theme has options (Kawaii's, Blueprint's and Minitel's variants,
-  Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
+- **A single theme**: the list goes away. If the theme has options (variants of Kawaii, Blueprint, Minitel, Adminer
+  classic and Spotify, Kawaii's accent), they stay visible; otherwise, no switcher is shown at all.
 - **Default theme**: DBHub if installed, otherwise the first one in the list.
 
 ### Usage
 
-- Pick a theme from the list in the top right corner. For Kawaii, Blueprint and Minitel, the swatches switch variants; for
-  Kawaii, the color picker also sets the accent color.
+- Pick a theme from the list in the top right corner. For Kawaii, Blueprint, Minitel, Adminer classic and Spotify, the
+  swatches next to it switch variants; for Kawaii, the color picker also sets the accent color.
+- Once logged in, the left panel stays on screen as the page scrolls, and its list of tables scrolls on its own.
 - The choice is per browser. The default theme is set with `DEFAULT_THEME` in `theme/switcher.js`.
 
 ### Adding your own theme
@@ -556,7 +558,8 @@ docker compose up --build
 ```
 
 Open http://127.0.0.1:8080 and log in with server `db`, user `root`, password `kawaii` and database `boutique_kawaii`
-(demo data). `theme/` and `plugins-enabled/` are mounted into the container: just reload the page after a change.
+(a demo shop with some forty tables, enough to make the menu scroll). `theme/` and `plugins-enabled/` are mounted into
+the container: just reload the page after a change.
 
 The README screenshots are rebuilt with `scripts/screenshots.js`, with the development environment running. It needs
 Node 18 or later, Playwright and ffmpeg (with libwebp):

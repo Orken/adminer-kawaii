@@ -56,8 +56,6 @@
   /* le logo, en haut à gauche, défile avec la page */
   --bg-pattern: var(--logo); --bg-size: 32px 32px; --bg-pos: 24px 16px;
   background-repeat: no-repeat; background-attachment: scroll;
-  /* le menu s'étend sur toute la hauteur du document (bottom: 8px), pas seulement sur celle de la fenêtre */
-  position: relative;
 }
 :root[data-theme="spotify"][data-variant="rose"] { --hero: #c2185b; --hero-pale: #ff9ec2; }
 :root[data-theme="spotify"][data-variant="sarcelle"] { --hero: #1f7a62; --hero-pale: #9fe3cb; }
@@ -80,13 +78,30 @@
 
 /* ---------- Barre du haut (écran large) : recherche, thème, bouton blanc, avatar ---------- */
 @media not all and (max-width: 800px) {
-  :root[data-theme="spotify"] #menu { top: var(--bar); bottom: 8px; left: 8px; width: calc(var(--side) - 16px); }
-  :root[data-theme="spotify"] #content { margin: var(--bar) 8px 8px var(--side); }
+  /* comme dans l'application : la barre du haut reste en place (la page défile dessous), la bibliothèque aussi, à la
+     hauteur de l'écran, et seule sa liste de tables défile ; les deux panneaux côte à côte, en grille */
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) { scroll-padding-top: var(--bar); }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) body { display: grid; grid-template-columns: var(--side) 1fr; }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) body::before {
+    content: ""; position: fixed; inset: 0 0 auto; z-index: 3; height: var(--bar);
+    background: var(--logo) 24px 16px / 32px 32px no-repeat, var(--black);
+  }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) #foot {
+    grid-area: 1 / 1; align-self: start; position: sticky; top: var(--bar); height: calc(100vh - var(--bar) - 8px);
+    display: flex; flex-direction: column; margin: var(--bar) 8px 8px;
+    z-index: 4;   /* collant, il forme son propre empilement : le bloc du compte (.logout, fixe) qu'il contient doit passer sur la barre */
+  }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) #menu { position: static; flex: 1; min-height: 0; width: auto; }
+  /* la liste prend la hauteur restante ; elle défile par la base commune */
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) #tables { flex: 1 1 auto; min-height: 0; }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) #content { grid-area: 1 / 2; margin: var(--bar) 8px 8px 0; }
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) thead { top: var(--bar); }   /* en-têtes collants : juste sous la barre */
+  :root[data-theme="spotify"]:not(:has(input[name="auth[password]"])) #ajaxstatus.sticky { top: var(--bar); }
   :root[data-theme="spotify"] #breadcrumb {
-    left: max(var(--side), calc(50% - 240px)); width: min(480px, calc(100% - var(--side) - 380px));
+    position: fixed; z-index: 4; left: max(var(--side), calc(50% - 240px)); width: min(480px, calc(100% - var(--side) - 412px));
   }
   :root[data-theme="spotify"] .logout {
-    top: 8px; right: 8px; height: 48px; margin: 0; padding: 0;
+    position: fixed; z-index: 4; top: 8px; right: 8px; height: 48px; margin: 0; padding: 0;
     display: flex; align-items: center; gap: 8px; background: none; box-shadow: none;
   }
 }
@@ -112,20 +127,22 @@
   background: #f573a0; color: #000; font: 700 0/32px var(--font); text-align: center; box-shadow: 0 0 0 8px var(--raised);
 }
 :root[data-theme="spotify"] .logout span[title=Username]::first-letter { font-size: 15px; text-transform: uppercase; }
-/* sélecteur de thème : une pilule sombre */
-:root[data-theme="spotify"] #kawaii-switcher { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+/* sélecteur de thème : une pilule sombre, à la largeur du thème choisi (non du plus long), suivie de ses variantes ;
+   l'anneau marque la variante active seule */
+:root[data-theme="spotify"] #kawaii-switcher { gap: 12px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
 :root[data-theme="spotify"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
-:root[data-theme="spotify"] #kawaii-switcher select.theme { height: 32px; min-height: 0; border: 0; border-radius: 500px; background-color: var(--raised); font-weight: 700; }
+:root[data-theme="spotify"] #kawaii-switcher select.theme {
+  height: 32px; min-height: 0; border: 0; border-radius: 500px; background-color: var(--raised); font-weight: 700; field-sizing: content;
+}
 :root[data-theme="spotify"] #kawaii-switcher select.theme:hover { background-color: var(--hover); }
-:root[data-theme="spotify"] #kawaii-switcher .opts { border: 0; border-radius: 8px; background: #282828; box-shadow: 0 16px 24px rgb(0 0 0 / .3), 0 6px 8px rgb(0 0 0 / .2); }
-:root[data-theme="spotify"] #kawaii-switcher button.sw { min-height: 0; padding: 0; border-color: #282828; transform: none; }
+:root[data-theme="spotify"] #kawaii-switcher button.sw:not([aria-pressed="true"]) { box-shadow: none; }
 
 /* ---------- Bibliothèque (menu) : panneau, puces, pochettes ---------- */
 :root[data-theme="spotify"] #menu {
   display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 8px 8px 16px;
   background: var(--panel); border: 0; border-radius: 8px; box-shadow: none;
 }
-:root[data-theme="spotify"] #menu > * { order: 4; }
+:root[data-theme="spotify"] #menu > * { order: 4; flex-shrink: 0; }   /* (la liste des tables, en overflow: hidden, se laisserait écraser) */
 :root[data-theme="spotify"] #menu > h1 { order: 0; }
 :root[data-theme="spotify"] #menu > p.links { order: 1; }
 :root[data-theme="spotify"] #menu > form:has(#dbs) { order: 2; }
@@ -433,7 +450,6 @@
   :root[data-theme="spotify"] #content > h2 { flex-direction: column; align-items: flex-start; min-height: 0; margin: 0 -16px 16px; padding: 24px 16px 16px; gap: 16px; }
   :root[data-theme="spotify"] #content > h2::before { width: 128px; height: 128px; }
   :root[data-theme="spotify"] #content > h2::after { top: 24px; left: 16px; bottom: auto; width: 128px; height: 128px; mask-size: 60px; }
-  :root[data-theme="spotify"] #kawaii-switcher.in-bar .opts { border: 0; background: none; box-shadow: none; }   /* variantes en seconde ligne */
   :root[data-theme="spotify"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case : le ▶ s'y repère */
   :root[data-theme="spotify"] #breadcrumb { left: 64px !important; right: 8px; }
   :root[data-theme="spotify"].js #menuopen { top: 8px; left: 8px; }
@@ -446,11 +462,17 @@
   /* volet : la bibliothèque, sous la barre */
   :root[data-theme="spotify"].js #foot:not(.foot) {
     top: var(--bar); left: 8px; z-index: 5; width: min(320px, calc(100% - 40px));
+    /* à la hauteur de l'écran : la liste des tables y défile seule (et le volet entier, s'il ne tient pas) */
+    flex-direction: column; max-height: calc(100vh - var(--bar) - 16px); overflow-y: auto; overscroll-behavior: contain;
     background: var(--panel); border-radius: 8px; box-shadow: 0 16px 24px rgb(0 0 0 / .5), 0 6px 8px rgb(0 0 0 / .3);
   }
   :root[data-theme="spotify"] #menu { position: static; min-width: 0; width: auto; margin: 0; border: 0; box-shadow: none; }
+  /* le compte en haut du volet par l'ordre, pas par column-reverse : un volet inversé s'ouvrirait défilé jusqu'en bas */
+  :root[data-theme="spotify"].js #foot:not(.foot) > form { order: -1; }
+  :root[data-theme="spotify"].js #foot:not(.foot) #menu { flex: 1 1 auto; min-height: 0; }
+  :root[data-theme="spotify"].js #foot:not(.foot) #tables { flex: 1 1 auto; min-height: 0; }
   :root[data-theme="spotify"].js #foot .logout {
-    display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 12px 8px 4px; background: none; box-shadow: none;
+    display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 12px 8px; padding: 12px 8px 4px; background: none; box-shadow: none;
   }
   :root[data-theme="spotify"]:has(input[name="auth[password]"]) body { padding: var(--bar) 8px 24px; }
   :root[data-theme="spotify"]:has(input[name="auth[password]"]) #foot { position: static; }

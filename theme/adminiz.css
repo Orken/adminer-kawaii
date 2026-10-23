@@ -79,7 +79,7 @@
 }
 :root[data-theme="adminiz"] #menu :is(p, #dbs, #logins, #tables) { border-bottom: 0; }
 @media not all and (max-width: 800px) {
-  :root[data-theme="adminiz"] #menu { top: 0; }
+  :root[data-theme="adminiz"] #menu { top: 0; margin-bottom: 38px; }   /* menu fixe : #lang, posé dessous, reste à l'écran */
   :root[data-theme="adminiz"] #lang { top: 100%; left: 10px; padding: 0; white-space: nowrap; }
 }
 

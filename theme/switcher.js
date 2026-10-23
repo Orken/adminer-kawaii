@@ -233,7 +233,9 @@
       root.style.removeProperty('--on-accent');
     }
     setIcon();
+    refit();
   }
+  var refit = function () {};   // panneau gauche : remplacé une fois la page lue
 
   // Icône d'onglet du thème : remplace celle d'Adminer. Le script tourne avant que le <head> ne la déclare :
   // on crée la nôtre d'ici là, puis on reprend aussi celle d'Adminer une fois la page lue (DOMContentLoaded).
@@ -255,6 +257,56 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     setIcon();
+    // Panneau gauche (base.css le fixe à l'écran) : la liste des tables est raccourcie de ce qui dépasserait du bas de
+    // la fenêtre, et défile seule ; la table ouverte y est recentrée. Sur ordinateur, le menu remonte avec la page
+    // jusqu'au haut de la fenêtre (ou jusqu'à --menu-stick), comme un élément collant, et suit le défilement
+    // horizontal : sinon le contenu des tables larges passerait dessous.
+    var menu = document.getElementById('menu'), foot = document.getElementById('foot'), tables = document.getElementById('tables');
+    var current = tables && tables.querySelector('a.active'), ltr = !document.body.classList.contains('rtl');
+    var spot = null;   // relevé sans nos retouches : panneau, position du menu selon le thème, bas naturel, liste entière
+    function measure() {
+      spot = null;
+      if (!tables) return;
+      menu.style.top = menu.style.left = tables.style.maxHeight = '';
+      var desk = getComputedStyle(menu).position === 'fixed', panel = desk ? menu : foot, cs = getComputedStyle(panel);
+      if (!desk && (cs.position !== 'fixed' || foot.classList.contains('foot'))) return;
+      var ts = getComputedStyle(tables), box = ts.boxSizing === 'border-box' ? 0 :   // max-height : boîte de contenu
+        parseFloat(ts.paddingTop) + parseFloat(ts.paddingBottom) + parseFloat(ts.borderTopWidth) + parseFloat(ts.borderBottomWidth);
+      spot = {
+        desk: desk, top: parseFloat(cs.top), left: parseFloat(cs.left),
+        stick: parseFloat(cs.getPropertyValue('--menu-stick')) || 0,
+        bottom: panel.getBoundingClientRect().bottom + parseFloat(cs.marginBottom), list: tables.getBoundingClientRect().height - box
+      };
+      place();
+    }
+    function place() {
+      if (!spot) return;
+      var lift = 0;
+      if (spot.desk) {
+        lift = Math.max(0, Math.min(scrollY, spot.top - spot.stick));
+        menu.style.top = spot.top - lift + 'px';
+        if (ltr) menu.style.left = spot.left - scrollX + 'px';
+      }
+      var over = Math.ceil(spot.bottom - lift - innerHeight);
+      tables.style.maxHeight = over > 0 ? Math.max(120, spot.list - over) + 'px' : '';
+    }
+    function center() {
+      if (!current || !/auto|scroll/.test(getComputedStyle(tables).overflowY)) return;
+      var row = current.closest('li').getBoundingClientRect(), list = tables.getBoundingClientRect();
+      tables.scrollTop += row.top - list.top - (list.height - row.height) / 2;
+    }
+    if (tables) {
+      measure();
+      center();
+      refit = measure;   // changement de thème ou de variante
+      addEventListener('scroll', place, { passive: true });
+      addEventListener('resize', measure);
+      // polices : celles d'un thème choisi en cours de route n'arrivent qu'à leur premier usage (loadingdone)
+      if (document.fonts) { document.fonts.ready.then(measure); document.fonts.addEventListener('loadingdone', measure); }
+      // volet mobile : après coup, Adminer branche son data-onclick (qui l'ouvre) après nous
+      var open = document.getElementById('menuopen');
+      if (open) open.addEventListener('click', function () { setTimeout(function () { measure(); center(); }); });
+    }
     var box = document.createElement('div');
     box.id = 'kawaii-switcher';
     box.setAttribute('role', 'group');
@@ -322,7 +374,7 @@
       if (focused) { var f = opts.querySelector('[data-k="' + focused + '"]'); if (f) f.focus(); }
     }
 
-    function sync() { select.value = theme(); renderOptions(); }
+    function sync() { select.value = theme(); renderOptions(); fitCrumb(); }
     sync();
     // un seul thème installé : pas de liste ; ses options (variantes, accent) restent, sinon pas de sélecteur du tout
     if (select.options.length < 2) {
@@ -333,5 +385,27 @@
     // dans la barre du haut, à côté de « utilisateur / déconnexion » ; sinon (page de connexion) en haut à droite
     var bar = document.querySelector('p.logout');
     if (bar) { box.classList.add('in-bar'); bar.insertBefore(box, bar.firstChild); } else document.body.appendChild(box);
+
+    // Fil d'Ariane (en absolu chez Adminer, sans limite de largeur) : il s'arrête avant la barre du compte, que le
+    // sélecteur et ses options élargissent, et finit alors par des points de suspension. Relevé à chaque sync().
+    var crumb = document.getElementById('breadcrumb');
+    function fitCrumb() {
+      if (!crumb || !bar || !ltr) return;
+      var st = crumb.style;
+      st.maxWidth = st.overflow = st.textOverflow = '';
+      var c = crumb.getBoundingClientRect(), r = bar.getBoundingClientRect(), cs = getComputedStyle(crumb), limit = r.left - 12;
+      if (!r.width || r.left <= c.left || r.top >= c.bottom || r.bottom <= c.top) return;   // barre cachée, ailleurs ou sur une autre ligne
+      // fin du texte visible : un bandeau qui passe sous la barre en lui gardant la place (padding) est laissé tel quel
+      var text = document.createRange();
+      text.selectNodeContents(crumb);
+      var end = text.getBoundingClientRect().right;
+      if (cs.overflowX !== 'visible') end = Math.min(end, c.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight));
+      if (end <= limit) return;
+      st.maxWidth = Math.max(0, parseFloat(cs.width) - (c.right - limit)) + 'px';   // la boîte entière avant la barre ; même boîte que max-width
+      st.overflow = 'hidden'; st.textOverflow = 'ellipsis';
+    }
+    fitCrumb();
+    addEventListener('resize', fitCrumb);
+    if (document.fonts) { document.fonts.ready.then(fitCrumb); document.fonts.addEventListener('loadingdone', fitCrumb); }   // voir measure
   });
 })();

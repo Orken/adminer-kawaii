@@ -137,8 +137,6 @@
 :root[data-theme="classic"] #kawaii-switcher { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 12px; }
 :root[data-theme="classic"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
 :root[data-theme="classic"] #kawaii-switcher select.theme { font-weight: 400; }
-:root[data-theme="classic"] #kawaii-switcher button.sw { min-height: 0; }   /* pastilles des variantes : pas la hauteur des boutons */
-:root[data-theme="classic"] #kawaii-switcher .opts { border: 1px solid var(--grille); border-radius: 5px; background: var(--page); box-shadow: 2px 2px 8px rgb(0 0 0 / .18); }
 
 /* ---------- Titre de page : le bandeau lavande et son filet ---------- */
 :root[data-theme="classic"] h2 {
@@ -374,7 +372,6 @@
     background: var(--page); border: 1px solid var(--grille); border-width: 0 1px 1px 0; border-radius: 0 0 6px 0; box-shadow: 4px 8px 24px rgb(0 0 0 / .2);
   }
   :root[data-theme="classic"] #menu { position: static; min-width: 0; width: auto; margin: 0; background: none; border: 0; box-shadow: none; }
-  :root[data-theme="classic"] #kawaii-switcher.in-bar .opts { border: 0; background: none; box-shadow: none; }   /* variantes en seconde ligne du cadre */
   :root[data-theme="classic"].js #foot .logout {
     display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 8px 12px;
     background: var(--bandeau); border-bottom: 1px solid var(--filet); box-shadow: none;

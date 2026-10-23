@@ -91,6 +91,9 @@
 
 /* ---------- Menu : le menu principal du BBS ---------- */
 :root[data-theme="bbs"] #menu { margin-top: 0; padding: 12px 9px 16px; background: #000; }
+@media not all and (max-width: 800px) {
+  :root[data-theme="bbs"] #menu { margin-bottom: 24px; }   /* menu fixe : au-dessus de la barre d'état (16 px) */
+}
 :root[data-theme="bbs"] #menu h1 { margin: 0 0 8px; padding: 0; border: 0; }
 :root[data-theme="bbs"] #logo { display: none; }
 /* logo en demi-blocs, dégradé du cyan clair au bleu ; « Adminer » reste le texte du lien pour les lecteurs d'écran */
@@ -227,7 +230,6 @@
 
 /* sélecteur de thème */
 :root[data-theme="bbs"] #kawaii-switcher { padding: 1px 4px; border: 3px double var(--border); background: #000; }
-:root[data-theme="bbs"] #kawaii-switcher .opts { border: 3px double var(--border); }
 
 /* ---------- Page de connexion : l'appel du BBS ---------- */
 /* Repérée par le champ mot de passe. Une colonne de la largeur du logo : la composition du numéro (body::before),
@@ -278,6 +280,7 @@
 
 /* ---------- Mobile ---------- */
 @media (max-width: 800px) {
+  :root[data-theme="bbs"] #foot { margin-bottom: 24px; }   /* le volet fixe s'arrête au-dessus de la barre d'état */
   :root[data-theme="bbs"] body::after {
     content: "2400 N81 │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero);
     content: "2400 N81 │ ON-LINE " counter(bbs-m, decimal-leading-zero) ":" counter(bbs-s, decimal-leading-zero) / "";

@@ -238,7 +238,6 @@
 
 /* sélecteur de thème */
 :root[data-theme="minitel"] #kawaii-switcher { padding: 2px 4px; border: 2px solid var(--mt-blue); background: #000; }
-:root[data-theme="minitel"] #kawaii-switcher .opts { border-width: 2px; border-color: var(--mt-blue); }
 :root[data-theme="minitel"] #kawaii-switcher button.sw { border-radius: 0; }
 
 /* ---------- Page de connexion : le Minitel ---------- */

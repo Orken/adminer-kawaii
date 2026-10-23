@@ -99,7 +99,7 @@
   position: relative; border-radius: 30px; margin-top: 48px; margin-right: 14px; margin-bottom: 14px; padding: 18px 24px 20px;
 }
 :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 54px; }
-:root[data-theme="verre"] #menu { border-radius: 28px; margin: 22px 0 0 14px; padding: 12px 10px 16px; }
+:root[data-theme="verre"] #menu { border-radius: 28px; margin: 22px 0 14px 14px; padding: 12px 10px 16px; }   /* bas : écart au bord de la fenêtre, menu fixe */
 
 /* ---------- Barre du haut : langue et utilisateur en pastilles de verre sur l'aurore ---------- */
 :root[data-theme="verre"] :is(#lang, .logout) {
