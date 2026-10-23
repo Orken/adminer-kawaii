@@ -22,6 +22,10 @@ Des thèmes pour [Adminer](https://www.adminer.org/), avec un sélecteur pour en
 | 📞 BBS | `bbs.css` | BBS des années 1990 en mode texte : palette CGA, police VGA, cadres doubles, ligne d'état du terminal ; connexion par modem et écran d'accueil ANSI |
 | 📠 Minitel | `minitel.css` | 3615 des années 1980 : couleurs du Vidéotex, double hauteur, mosaïques, compteur en francs ; 2 variantes (couleur, monochrome) ; connexion sur le Minitel entier |
 | 🌌 Verre | `verre.css` | verre dépoli façon visionOS : fenêtres translucides et floues aux arêtes lumineuses, sur une aurore boréale violet-turquoise qui ondule lentement ; connexion dans une fenêtre de verre |
+| ✉️ Gmail | `gmail.css` | « GAdminer » : chaque table rangée comme une boîte de réception Gmail, en densité condensée (lignes qui se soulèvent au survol et bleuissent une fois cochées, onglets, puces de filtre) ; connexion dans une fenêtre « Nouveau message » |
+| 🐙 GitHub | `github.css` | Adminer présenté comme un dépôt : en-tête gris aux onglets soulignés de corail, tables en arborescence de fichiers, boîtes à filet, bouton principal vert ; connexion en fichier YAML dans la vue de code (numéros de ligne, ligne active surlignée) |
+| 🗄️ Adminer classic | `classic.css` | L'allure d'origine d'Adminer, reprise au propre : Verdana, bandeau gris du titre en italique, bandeau lavande des pages, tableaux à grille fine, liens bleus qui rougissent au survol ; variantes clair (d'après default.css) et nuit (le marine de dark.css) ; connexion en boîte de dialogue |
+| 🎧 Spotify | `spotify.css` | Adminer présenté comme un lecteur de musique : panneaux sombres sur fond noir, recherche en pilule, bibliothèque où chaque table a sa pochette et où la table ouverte s'anime d'un égaliseur vert, pages en playlists (grand titre gras sur un en-tête coloré), lignes en liste de morceaux numérotés, boutons en pilules ; 3 variantes de couleur (violet, rose, sarcelle) ; connexion en playlist, avec le bouton vert de lecture |
 
 - Le sélecteur s'affiche en haut à droite, à côté de la déconnexion. Le choix est mémorisé dans le navigateur (`localStorage`).
 - Chaque thème a sa propre icône d'onglet.
@@ -58,6 +62,14 @@ Les données d'une table avec chaque thème (cliquez sur une image pour l'agrand
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Thème Minitel : données d'une table"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Thème Verre : données d'une table"></a></td>
 </tr>
+<tr>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Thème Gmail : données d'une table"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="Thème GitHub : données d'une table"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Thème Adminer classic : données d'une table"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Thème Spotify : données d'une table"></a></td>
+</tr>
 </table>
 
 Et les pages de connexion mises en scène :
@@ -75,6 +87,12 @@ Et les pages de connexion mises en scène :
 </tr>
 <tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Thème Verre : page de connexion"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Thème Gmail : page de connexion"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="Thème GitHub : page de connexion"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Thème Adminer classic : page de connexion"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Thème Spotify : page de connexion"></a></td>
 </tr>
 </table>
 
@@ -263,8 +281,9 @@ reproductible : relancer le script ne modifie que les images des thèmes qui ont
 
 ### Marques et licence
 
-- Netscape, GitLab, Minitel et les autres noms cités sont des marques de leurs propriétaires respectifs. Ces thèmes
-  sont des clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part.
+- Netscape, GitLab, GitHub, Gmail, Spotify, Minitel et les autres noms cités sont des marques de leurs propriétaires
+  respectifs. Ces thèmes sont des clins d'œil non officiels, sans lien avec ces marques ni approbation de leur part, et
+  n'en reprennent pas les logos.
 - Polices incorporées : `bbs.css` contient un sous-ensemble de WebPlus IBM VGA 9x16, de VileR
   ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), sous licence
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), qui reste la sienne ; `minitel.css` contient la police
@@ -294,6 +313,10 @@ Themes for [Adminer](https://www.adminer.org/), with a switcher to change them o
 | 📞 BBS | `bbs.css` | 1990s text-mode BBS: CGA palette, VGA font, double-line frames, terminal status line; login through a modem dial-up and an ANSI welcome screen |
 | 📠 Minitel | `minitel.css` | the 1980s French videotex terminal: Videotex colors, double-height text, mosaic graphics, a cost meter in francs; 2 variants (color, monochrome); login on the whole Minitel |
 | 🌌 Verre | `verre.css` | French for “glass”: visionOS-style frosted glass, translucent blurred windows with glowing edges over a slowly drifting purple and teal aurora; login in a single glass window |
+| ✉️ Gmail | `gmail.css` | “GAdminer”: every table laid out like a Gmail inbox in compact density (rows that lift on hover and turn blue when checked, category tabs, filter chips); login in a “New message” window |
+| 🐙 GitHub | `github.css` | Adminer dressed as a repository: grey header with coral-underlined tabs, tables as a file tree, bordered boxes, green primary button; login as a YAML file in the code view (line numbers, highlighted active line) |
+| 🗄️ Adminer classic | `classic.css` | Adminer's original look, tidied up: Verdana, grey italic title bar, lavender page headings, fine-grid tables, blue links that turn red on hover; light (after default.css) and night (dark.css navy) variants; login as a dialog box |
+| 🎧 Spotify | `spotify.css` | Adminer dressed as a music player: dark panels on black, pill-shaped search, a library where each table gets its cover art and the open one shows a green equaliser, pages as playlists (big bold title over a coloured header), rows as numbered track lists, pill buttons; 3 colour variants (violet, pink, teal); login as a playlist with the green play button |
 
 - The switcher sits in the top right corner, next to the logout button. The choice is remembered in the browser
   (`localStorage`).
@@ -331,6 +354,14 @@ A table's data with each theme (click an image to enlarge it):
 <td><b>📠 Minitel</b><br><a href="docs/screenshots/minitel-select.webp"><img src="docs/screenshots/minitel-select.webp" width="380" alt="Minitel theme: table data"></a></td>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-select.webp"><img src="docs/screenshots/verre-select.webp" width="380" alt="Verre theme: table data"></a></td>
 </tr>
+<tr>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-select.webp"><img src="docs/screenshots/gmail-select.webp" width="380" alt="Gmail theme: table data"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-select.webp"><img src="docs/screenshots/github-select.webp" width="380" alt="GitHub theme: table data"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-select.webp"><img src="docs/screenshots/classic-select.webp" width="380" alt="Adminer classic theme: table data"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-select.webp"><img src="docs/screenshots/spotify-select.webp" width="380" alt="Spotify theme: table data"></a></td>
+</tr>
 </table>
 
 And the themes with a staged login page:
@@ -348,6 +379,12 @@ And the themes with a staged login page:
 </tr>
 <tr>
 <td><b>🌌 Verre</b><br><a href="docs/screenshots/verre-login.webp"><img src="docs/screenshots/verre-login.webp" width="245" alt="Verre theme: login page"></a></td>
+<td><b>✉️ Gmail</b><br><a href="docs/screenshots/gmail-login.webp"><img src="docs/screenshots/gmail-login.webp" width="245" alt="Gmail theme: login page"></a></td>
+<td><b>🐙 GitHub</b><br><a href="docs/screenshots/github-login.webp"><img src="docs/screenshots/github-login.webp" width="245" alt="GitHub theme: login page"></a></td>
+</tr>
+<tr>
+<td><b>🗄️ Adminer classic</b><br><a href="docs/screenshots/classic-login.webp"><img src="docs/screenshots/classic-login.webp" width="245" alt="Adminer classic theme: login page"></a></td>
+<td><b>🎧 Spotify</b><br><a href="docs/screenshots/spotify-login.webp"><img src="docs/screenshots/spotify-login.webp" width="245" alt="Spotify theme: login page"></a></td>
 </tr>
 </table>
 
@@ -535,8 +572,8 @@ script again only changes the images of the themes that changed.
 
 ### Trademarks and license
 
-- Netscape, GitLab, Minitel and the other names mentioned are trademarks of their respective owners. These themes
-  are unofficial nods, not affiliated with or endorsed by them.
+- Netscape, GitLab, GitHub, Gmail, Spotify, Minitel and the other names mentioned are trademarks of their respective
+  owners. These themes are unofficial nods, not affiliated with or endorsed by them, and do not use their logos.
 - Embedded fonts: `bbs.css` contains a subset of WebPlus IBM VGA 9x16 by VileR
   ([The Ultimate Oldschool PC Font Pack](https://int10h.org/oldschool-pc-fonts/)), licensed under
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), which still applies to it; `minitel.css` contains the

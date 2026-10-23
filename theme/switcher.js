@@ -69,6 +69,48 @@
         '<rect width="32" height="32" rx="7" fill="url(#g)"/>' +
         '<path d="M13.6 6.5h4.8l7 19h-4.6l-1.4-4h-6.8l-1.4 4H6.6zM14.8 17.8h2.4L16 13.9z" fill="#fff" fill-rule="evenodd"/>'
     },
+    gmail: {
+      label: '✉️ Gmail',
+      // pile de base de données aux quatre couleurs, comme le logo « GAdminer » du menu
+      icon: '<path d="M5 9v5c0 2.2 4.9 4 11 4s11-1.8 11-4V9" fill="#ea4335"/>' +
+        '<path d="M5 14v5c0 2.2 4.9 4 11 4s11-1.8 11-4v-5c0 2.2-4.9 4-11 4S5 16.2 5 14z" fill="#fbbc04"/>' +
+        '<path d="M5 19v4c0 2.2 4.9 4 11 4s11-1.8 11-4v-4c0 2.2-4.9 4-11 4S5 21.2 5 19z" fill="#34a853"/>' +
+        '<ellipse cx="16" cy="9" rx="11" ry="4" fill="#4285f4"/>'
+    },
+    classic: {
+      label: '🗄️ Adminer classic',
+      variants: { clair: '#ddddff', nuit: '#002240' },
+      defaultVariant: 'clair',
+      // fenêtre d'Adminer en miniature : bandeau gris du titre, bandeau du h2 et grille, aux couleurs de la variante
+      icon: function (c) {
+        var nuit = onAccent(c) === '#ffffff';
+        var page = nuit ? '#002240' : '#ffffff', band = nuit ? '#0f3457' : '#eeeeee', h2 = nuit ? '#3c678d' : c;
+        var line = nuit ? '#3a76ab' : '#9999a6', rule = nuit ? '#a3bdd3' : '#16161d';
+        return '<rect x=".5" y=".5" width="31" height="31" rx="4" fill="' + page + '" stroke="' + line + '"/>' +
+          '<path d="M1 4.5a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4V9H1z" fill="' + band + '"/><path d="M1 9h30" stroke="' + line + '"/>' +
+          '<path d="M1 9.5h30v5H1z" fill="' + h2 + '"/><path d="M1 15h30" stroke="' + rule + '"/>' +
+          '<path d="M5.5 18.5h21v9h-21zM5.5 21.5h21M5.5 24.5h21M12.5 18.5v9M19.5 18.5v9" fill="none" stroke="' + line + '"/>';
+      }
+    },
+    github: {
+      label: '🐙 GitHub',
+      // disque sombre marqué d'une pile de base de données, comme le logo de l'en-tête
+      icon: '<circle cx="16" cy="16" r="16" fill="#1f2328"/>' +
+        '<g fill="none" stroke="#fff" stroke-width="2"><ellipse cx="16" cy="10" rx="7" ry="2.75"/>' +
+        '<path d="M9 10v12c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75V10M9 16c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75"/></g>'
+    },
+    spotify: {
+      label: '🎧 Spotify',
+      variants: { violet: '#6d4bc4', rose: '#c2185b', sarcelle: '#1f7a62' },
+      defaultVariant: 'violet',
+      // pochette de la couleur de la variante, pile de base de données, et le bouton vert de lecture
+      icon: function (c) {
+        return '<rect width="32" height="32" rx="3" fill="' + c + '"/>' +
+          '<g fill="none" stroke="#fff" stroke-width="2"><ellipse cx="13" cy="8" rx="6.5" ry="2.5"/>' +
+          '<path d="M6.5 8v11c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5V8M6.5 13.5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5"/></g>' +
+          '<circle cx="24" cy="24" r="7" fill="#1ed760" stroke="#000" stroke-opacity=".35"/><path d="M21.8 20.6v6.8l5.6-3.4z" fill="#000"/>';
+      }
+    },
     blueprint: {
       label: '📐 Blueprint',
       variants: { calque: '#edf1f3', cyanotype: '#17497f' },

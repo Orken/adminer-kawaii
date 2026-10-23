@@ -1,0 +1,471 @@
+/* ===== Thème Gmail =====
+   Actif quand <html data-theme="gmail">. Adminer rangé comme une boîte de réception Gmail (Material 3), en densité
+   condensée :
+   - barre du haut sur fond bleu-gris : logo « GAdminer », fil d'Ariane en barre de recherche, sélecteur de thème,
+     déconnexion et utilisateur en pastille ronde à son initiale ;
+   - à gauche, « SQL command » en bouton « Nouveau message », les autres actions en dossiers et les tables en libellés,
+     l'élément courant en pilule bleue ;
+   - au centre, un panneau blanc arrondi : onglets soulignés de bleu, filtres en puces, lignes serrées qui se soulèvent
+     au survol et bleuissent une fois cochées, dernière colonne de date calée à droite comme la date d'un message ;
+   - messages de succès en bandeau sombre (« Message envoyé »), connexion dans une fenêtre « Nouveau message ».
+   Aucune marque reproduite : le logo est une pile de base de données aux quatre couleurs, la page de connexion n'imite
+   pas celle des comptes Google. Pas de police embarquée : Google Sans ou Roboto si elles sont installées, sinon Arial. */
+
+:root[data-theme="gmail"] {
+  --bg: #f6f8fc; --surface: #ffffff; --surface-2: #f1f3f4; --text: #1f1f1f; --muted: #444746; --border: #e0e0e0;
+  --accent: #0b57d0; --on-accent: #ffffff; --accent-text: #0b57d0;
+  --ok: #146c2e; --err: #b3261e; --on-err: #ffffff;
+  --jush-str: #188038; --jush-num: #8430ce; --jush-id: #9c4500;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 16px; --radius-sm: 8px; --pill: 999px;
+  --fs: 14px; --pad-y: 6px; --pad-x: 8px;
+  --font: "Google Sans Text", "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  --font-heading: "Google Sans", "Product Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  --font-mono: "Roboto Mono", "Google Sans Mono", Consolas, monospace;
+  --h2-border: 0;
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  --th-bg: #ffffff; --th-text: var(--muted);
+  --zebra: #ffffff;
+  --row-hover: #f2f6fc;
+  --lit: #f8fafd;
+  --dim: #eaf1fb;
+
+  /* palette Gmail (Material 3) */
+  --ink: #001d35;                                /* texte sur bleu pâle */
+  --compose: #c2e7ff;                            /* « Nouveau message », boutons tonals */
+  --nav-on: #d3e3fd;                             /* dossier ou libellé courant */
+  --nav-hover: rgb(31 31 31 / .07);
+  --search: #eaf1fb;                             /* barre de recherche */
+  --checked: #c2dbff;                            /* ligne cochée */
+  --line: rgb(100 121 143 / .16);                /* filet entre deux lignes */
+  --outline: #747775; --outline-v: #c4c7c5;
+  --err-box: #f9dedc; --on-err-box: #410e0b;
+  --snack: #303030; --on-snack: #f2f2f2; --snack-link: #a8c7fa;
+  --lift: 0 1px 2px 0 rgb(60 64 67 / .3), 0 1px 3px 1px rgb(60 64 67 / .15);
+  --lift-2: 0 1px 3px 0 rgb(60 64 67 / .3), 0 4px 8px 3px rgb(60 64 67 / .15);
+  --dialog: 0 8px 10px 1px rgb(0 0 0 / .14), 0 3px 14px 2px rgb(0 0 0 / .12), 0 5px 5px -3px rgb(0 0 0 / .2);
+  --bar-h: 64px;                                 /* barre du haut */
+  --side: 256px;                                 /* colonne de gauche */
+
+  /* pictogrammes (masques, peints dans la couleur du texte) */
+  --i-pencil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4'/%3E%3C/svg%3E");
+  --i-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Cpath d='m15 15 5 5'/%3E%3C/svg%3E");
+  --i-import: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 14v6h16v-6M12 4v11M7.5 10.5 12 15l4.5-4.5'/%3E%3C/svg%3E");
+  --i-send: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M3.5 20 21 12 3.5 4l2.2 8zM5.7 12H12'/%3E%3C/svg%3E");
+  --i-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+  --i-label: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M4 6.5h11.5l5 5.5-5 5.5H4z'/%3E%3C/svg%3E");
+  --i-inbox: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='16' height='16' rx='2'/%3E%3Cpath d='M4 14h4.5l1.5 2.5h4l1.5-2.5H20'/%3E%3C/svg%3E");
+  --i-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 11v5.5M12 7.6v.1'/%3E%3C/svg%3E");
+  --i-list: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.1M4.5 12h.1M4.5 17.5h.1'/%3E%3C/svg%3E");
+  --i-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E");
+  --i-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 14 5-5 5 5'/%3E%3C/svg%3E");
+  /* logo : pile de base de données aux quatre couleurs */
+  --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 9v5c0 2.2 4.9 4 11 4s11-1.8 11-4V9' fill='%23ea4335'/%3E%3Cpath d='M5 14v5c0 2.2 4.9 4 11 4s11-1.8 11-4v-5c0 2.2-4.9 4-11 4S5 16.2 5 14z' fill='%23fbbc04'/%3E%3Cpath d='M5 19v4c0 2.2 4.9 4 11 4s11-1.8 11-4v-4c0 2.2-4.9 4-11 4S5 21.2 5 19z' fill='%2334a853'/%3E%3Cellipse cx='16' cy='9' rx='11' ry='4' fill='%234285f4'/%3E%3C/svg%3E");
+}
+:root[data-theme="gmail"] * { scrollbar-color: #c4c7c5 transparent; }
+:root[data-theme="gmail"] body { line-height: 20px; }
+/* focus clavier : anneau bleu */
+:root[data-theme="gmail"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Page : titres sobres, liens bleus ---------- */
+:root[data-theme="gmail"] h2 { margin: 6px 0 10px; padding: 0; color: var(--text); font: 400 22px/28px var(--font-heading); }
+:root[data-theme="gmail"] h3 { font: 500 16px/24px var(--font-heading); }
+:root[data-theme="gmail"] a:is(:link, :visited) { color: var(--accent-text); font-weight: 400; }
+:root[data-theme="gmail"] a:is(:link, :visited):hover { color: #0842a0; text-decoration: underline; }
+:root[data-theme="gmail"] code { padding: 1px 5px; border-radius: 4px; font-size: 12.5px; }
+:root[data-theme="gmail"] .time { color: var(--muted); font-size: 12px; }
+
+/* ---------- Barre du haut (écran large) : logo, recherche, puis thème, déconnexion et utilisateur ---------- */
+@media not all and (max-width: 800px) {
+  :root[data-theme="gmail"] #menu { top: 0; width: var(--side); }
+  /* (margin, pas margin-inline-start : les deux règlent la même marge, la plus spécifique l'emporte) */
+  :root[data-theme="gmail"] #content { margin: var(--bar-h) 16px 16px var(--side); min-height: calc(100vh - var(--bar-h) - 16px); }
+  /* fil d'Ariane en barre de recherche : jusqu'à 720px, sans déborder sur le bloc utilisateur à droite */
+  :root[data-theme="gmail"] #breadcrumb { top: 8px; left: var(--side); right: 380px; max-width: 720px; }
+  :root[data-theme="gmail"] .logout {
+    top: 0; height: var(--bar-h); box-sizing: border-box; margin: 0; padding: 0 16px 0 8px;
+    display: flex; align-items: center; gap: 10px; background: none; box-shadow: none;
+  }
+}
+:root[data-theme="gmail"] #breadcrumb {
+  height: 48px; box-sizing: border-box; margin: 0; padding: 0 20px 0 56px; border-radius: 24px;
+  background: var(--search); color: var(--muted); font: 400 16px/48px var(--font);
+  overflow: hidden; text-overflow: ellipsis;
+}
+/* loupe : un pseudo-élément peint au masque, dans la couleur du texte */
+:root[data-theme="gmail"] #breadcrumb::before {
+  content: ""; position: absolute; left: 16px; top: 12px; width: 24px; height: 24px;
+  background-color: var(--muted); mask: var(--i-search) center / 24px no-repeat;
+}
+:root[data-theme="gmail"] #breadcrumb a:is(:link, :visited) { color: var(--text); }
+:root[data-theme="gmail"] #breadcrumb a:is(:link, :visited):hover { color: var(--text); }
+
+/* utilisateur : pastille ronde à l'initiale (le nom complet reste dans le texte, lu par les lecteurs d'écran) */
+:root[data-theme="gmail"] .logout span[title=Username] {
+  order: 3; display: inline-block; flex: none; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; white-space: nowrap;
+  background: #7b1fa2; color: #fff; font: 500 0/32px var(--font-heading); text-align: center; cursor: default;
+}
+:root[data-theme="gmail"] .logout span[title=Username]::first-letter { font-size: 15px; text-transform: uppercase; }
+:root[data-theme="gmail"] .logout #logout {
+  order: 2; min-height: 32px; padding: 0 15px; border: 1px solid var(--outline); border-radius: 16px; background: none;
+  color: var(--accent); font: 500 14px/30px var(--font-heading); box-shadow: none;
+}
+:root[data-theme="gmail"] .logout #logout:hover { background: rgb(11 87 208 / .08); box-shadow: none; }
+
+/* sélecteur de thème : liste à contour, sans cadre autour */
+:root[data-theme="gmail"] #kawaii-switcher { top: 14px; padding: 0; font-size: 14px; border: 0; border-radius: 0; background: none; box-shadow: none; }
+:root[data-theme="gmail"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
+:root[data-theme="gmail"] #kawaii-switcher select.theme { font-weight: 500; }
+
+/* ---------- Colonne de gauche : logo, « Nouveau message », dossiers, base, libellés, langue ---------- */
+/* p.links s'efface (display: contents) : ses liens se rangent un à un, la base de données s'intercale après le premier */
+:root[data-theme="gmail"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 0 0 16px;
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="gmail"] #menu > * { order: 4; }
+:root[data-theme="gmail"] #menu > h1 { order: 0; }
+:root[data-theme="gmail"] #menu p.links { display: contents; }
+:root[data-theme="gmail"] #menu p.links a[href*="sql="] { order: 1; }
+:root[data-theme="gmail"] #menu > form:has(#dbs) { order: 2; }
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="]) { order: 3; }
+:root[data-theme="gmail"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="gmail"] #menu :is(p, #dbs, #logins, #tables) { border: 0; }
+:root[data-theme="gmail"] #menu a:hover { background: none; text-decoration: none; }
+
+/* logo : pile de base aux quatre couleurs, « GAdminer » gris, version discrète */
+:root[data-theme="gmail"] #menu h1 { display: flex; align-items: center; gap: 8px; height: var(--bar-h); box-sizing: border-box; margin: 0; padding: 0 0 0 20px; border: 0; }
+:root[data-theme="gmail"] #h1 { display: inline-flex; align-items: center; color: var(--muted); font: 400 22px/1 var(--font-heading); font-style: normal; letter-spacing: -.01em; }
+:root[data-theme="gmail"] #h1 img { display: none; }
+:root[data-theme="gmail"] #h1::before { content: "G"; padding-left: 40px; background: var(--logo) left center / 32px no-repeat; line-height: 32px; }
+:root[data-theme="gmail"] #menu #h1:hover { color: var(--text); text-decoration: none; }
+:root[data-theme="gmail"] #menu .version { margin-top: 4px; color: var(--muted); font: 400 11px/1 var(--font); }
+
+/* « SQL command » : le bouton « Nouveau message » */
+:root[data-theme="gmail"] #menu p.links a[href*="sql="] {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; height: 56px; box-sizing: border-box;
+  margin: 4px 0 16px 8px; padding: 0 24px 0 16px; border: 0; border-radius: 16px;
+  background: var(--compose); color: var(--ink); font: 500 14px/20px var(--font-heading); text-align: left; transition: box-shadow .15s;
+}
+:root[data-theme="gmail"] #menu p.links a[href*="sql="]::before {
+  content: ""; flex: none; width: 24px; height: 24px; background-color: currentColor; mask: var(--i-pencil) center / 24px no-repeat;
+}
+:root[data-theme="gmail"] #menu p.links a[href*="sql="]:is(:hover, .active) { background: var(--compose); color: var(--ink); box-shadow: var(--lift-2); }
+
+/* dossiers (import, export, création) et libellés (tables) : pilule arrondie à droite, bleue pour l'élément courant */
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="]),
+:root[data-theme="gmail"] #tables li {
+  display: flex; align-items: center; height: 32px; box-sizing: border-box; margin: 0 16px 0 0; border: 0;
+  border-radius: 0 16px 16px 0; background: none; color: #202124; font: 400 14px/20px var(--font); text-align: left;
+}
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="]) { gap: 18px; padding: 0 12px 0 26px; }
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="])::before {
+  content: ""; flex: none; width: 20px; height: 20px; background-color: var(--muted); mask: var(--icon, var(--i-plus)) center / 20px no-repeat;
+}
+:root[data-theme="gmail"] #menu p.links a[href*="import="] { --icon: var(--i-import); }
+:root[data-theme="gmail"] #menu p.links a[href*="dump="] { --icon: var(--i-send); }
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="]):hover,
+:root[data-theme="gmail"] #tables li:hover { background: var(--nav-hover); color: #202124; }
+:root[data-theme="gmail"] #menu p.links a:not([href*="sql="]).active,
+:root[data-theme="gmail"] #tables li:has(a.active) { background: var(--nav-on); color: var(--ink); font-weight: 700; box-shadow: none; }
+:root[data-theme="gmail"] #menu p.links a.active::before { background-color: var(--ink); }
+
+/* base de données : libellé discret, liste pleine largeur */
+:root[data-theme="gmail"] #menu :is(#dbs, #lang) { margin: 0 16px 8px 26px; padding: 0; }
+:root[data-theme="gmail"] #menu :is(#dbs, #lang) label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+:root[data-theme="gmail"] #menu :is(#dbs, #lang) select { flex: 1; min-width: 0; font-size: 14px; }
+:root[data-theme="gmail"] #menu #lang { position: static; margin: 16px 16px 0 26px; }
+
+/* libellés : en-tête « Tables », icône d'étiquette, bouton « données » au survol */
+:root[data-theme="gmail"] #tables { margin: 8px 0 0; padding: 0; }
+:root[data-theme="gmail"] #tables::before {
+  margin: 0 16px 4px 26px; color: var(--text); font: 500 16px/40px var(--font-heading); letter-spacing: 0; text-transform: none;
+}
+:root[data-theme="gmail"] #tables li { padding: 0 6px 0 26px; }
+:root[data-theme="gmail"] #tables :is(a.structure, a.view) { padding: 0; color: inherit; font-weight: inherit; }
+:root[data-theme="gmail"] #menu #tables :is(a.structure, a.view):hover { background: none; color: inherit; }
+:root[data-theme="gmail"] #tables :is(a.structure, a.view)::before {
+  content: ""; display: inline-block; width: 20px; height: 20px; margin-right: 18px; vertical-align: -5px;
+  background-color: var(--muted); mask: var(--i-label) center / 20px no-repeat;
+}
+:root[data-theme="gmail"] #tables li:has(a.active) :is(a.structure, a.view) { font-weight: 700; }
+:root[data-theme="gmail"] #tables li:has(a.active) :is(a.structure, a.view)::before { background-color: var(--ink); }
+:root[data-theme="gmail"] #tables a.select { width: 24px; height: 24px; margin: 0; line-height: 24px; border-radius: 50%; background-color: transparent; }
+:root[data-theme="gmail"] #tables a.select::before {
+  content: ""; display: inline-block; width: 18px; height: 18px; vertical-align: middle;
+  background-color: var(--muted); mask: var(--i-list) center / 18px no-repeat;
+}
+:root[data-theme="gmail"] #menu #tables a.select:hover { background-color: rgb(31 31 31 / .1); }
+:root[data-theme="gmail"] #menu .message { margin: 4px 16px 0 26px; padding: 0; border: 0; background: none; box-shadow: none; color: var(--muted); }
+
+/* ---------- Panneau central ---------- */
+:root[data-theme="gmail"] #content { box-sizing: border-box; padding: 4px 16px 16px; background: var(--surface); border-radius: 16px; }
+
+/* liens d'action : onglets façon catégories (Principale, Promotions…) quand l'un est la page courante, sinon boutons */
+:root[data-theme="gmail"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; }
+:root[data-theme="gmail"] #content .links a {
+  margin: 0; padding: 0 15px; border: 1px solid var(--outline); border-radius: 16px; background: none;
+  color: var(--accent); font: 500 14px/30px var(--font-heading);
+}
+:root[data-theme="gmail"] #content .links a:hover { background: rgb(11 87 208 / .08); color: var(--accent); text-decoration: none; }
+:root[data-theme="gmail"] #content .links:has(a.active) {
+  flex-wrap: nowrap; gap: 0; margin: 0 -16px 4px; padding: 0 8px; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none;
+}
+:root[data-theme="gmail"] #content .links:has(a.active) a {
+  position: relative; display: flex; align-items: center; gap: 14px; flex: 0 1 220px; min-width: max-content; height: 48px; box-sizing: border-box;
+  padding: 0 16px; border: 0; border-radius: 0; color: var(--muted); line-height: 20px;
+}
+:root[data-theme="gmail"] #content .links:has(a.active) a::before {
+  content: ""; flex: none; width: 20px; height: 20px; background-color: currentColor; mask: var(--icon, none) center / 20px no-repeat;
+}
+:root[data-theme="gmail"] #content .links:has(a.active) a:not([href*="select="], [href*="table="], [href*="create="], [href*="edit="])::before { content: none; }
+:root[data-theme="gmail"] #content .links a[href*="select="] { --icon: var(--i-inbox); }
+:root[data-theme="gmail"] #content .links a[href*="table="] { --icon: var(--i-info); }
+:root[data-theme="gmail"] #content .links a[href*="create="] { --icon: var(--i-pencil); }
+:root[data-theme="gmail"] #content .links a[href*="edit="] { --icon: var(--i-plus); }
+:root[data-theme="gmail"] #content .links:has(a.active) a:hover { background: rgb(31 31 31 / .05); color: var(--text); }
+:root[data-theme="gmail"] #content .links:has(a.active) a.active { color: var(--accent); }
+:root[data-theme="gmail"] #content .links a.active::after {
+  content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--accent);
+}
+
+/* ---------- Tableaux : lignes serrées, filet bleu-gris, sans cadre ---------- */
+:root[data-theme="gmail"] table { border: 0; border-radius: 0; background: var(--surface); box-shadow: none; }
+:root[data-theme="gmail"] :is(th, td) { border-bottom: 1px solid var(--line); line-height: 20px; }
+:root[data-theme="gmail"] thead { z-index: 3; }   /* au-dessus de la ligne survolée, qui passe au premier plan */
+:root[data-theme="gmail"] thead :is(th, td, td.hover) { height: 36px; color: var(--muted); font: 500 13px/20px var(--font); white-space: nowrap; }
+:root[data-theme="gmail"] thead th .column { border-color: var(--outline-v); border-radius: 8px; box-shadow: var(--lift); }
+:root[data-theme="gmail"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: var(--nav-on); color: var(--ink); }
+:root[data-theme="gmail"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
+
+/* listes à cocher (données d'une table, tables d'une base) : la ligne se soulève au survol, bleuit une fois cochée */
+:root[data-theme="gmail"] .checkable tbody td { height: 32px; padding-block: 0; }
+:root[data-theme="gmail"] .checkable tbody tr:hover { position: relative; z-index: 2; box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, var(--lift); }
+:root[data-theme="gmail"] .checkable tbody tr:hover :is(td, th, td.hover) { background: var(--surface); }
+:root[data-theme="gmail"].js .checkable .checked :is(td, th, td.hover),
+:root[data-theme="gmail"].js .checkable .checked:hover :is(td, th, td.hover) { background: var(--checked); }
+/* listes pleine largeur, d'un bord à l'autre du panneau, comme la boîte de réception */
+:root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -16px; }
+:root[data-theme="gmail"] #content .scrollable > .checkable { width: 100%; }
+/* case à cocher en tête de ligne, crayon « edit » à sa droite (à la place de l'étoile) */
+:root[data-theme="gmail"] :is(td, th).check { width: 1%; padding-inline: 12px 8px; text-align: start; }
+:root[data-theme="gmail"] td.check:has(a.edit) { padding-inline-end: 36px; }
+:root[data-theme="gmail"] td.check a.edit {
+  position: absolute; top: 50%; right: 6px; width: 24px; height: 24px; margin-top: -12px; border-radius: 50%; font-size: 0;
+}
+:root[data-theme="gmail"] td.check a.edit::before {
+  content: ""; position: absolute; inset: 3px; background-color: var(--outline); mask: var(--i-pencil) center / 18px no-repeat;
+}
+:root[data-theme="gmail"] .checkable tr:hover td.check a.edit::before { background-color: var(--text); }
+:root[data-theme="gmail"] td.check a.edit:hover { background: rgb(31 31 31 / .08); }
+/* dernière colonne de date (datetime, timestamp…) : calée à droite, en petit gras, comme la date d'un message */
+:root[data-theme="gmail"] #table:has(thead th:last-child span:is([title^="date"], [title^="timestamp"])) :is(thead th, tbody td):last-child { padding-inline-end: 16px; text-align: right; }
+:root[data-theme="gmail"] #table:has(thead th:last-child span:is([title^="date"], [title^="timestamp"])) tbody td:last-child { font-size: 12px; font-weight: 700; }
+
+/* ---------- Filtres de la page « Sélectionner » : puces à contour ---------- */
+/* (seul #form est envoyé en GET, d'où :not([method])) */
+:root[data-theme="gmail"] form#form:not([method]) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 6px; }
+:root[data-theme="gmail"] form#form:not([method]) > fieldset { margin: 0; }
+/* puce avec un champ : « Limit [50] » ; le titre flotte pour passer dans la puce, à côté du champ */
+:root[data-theme="gmail"] form#form:not([method]) > fieldset:not(:has(> legend a)) {
+  display: flex; align-items: center; gap: 8px; height: 32px; box-sizing: border-box; padding: 0 4px 0 12px;
+  border: 1px solid var(--outline); border-radius: 8px; background: none;
+}
+:root[data-theme="gmail"] form#form:not([method]) > fieldset:not(:has(> legend a)) > legend { float: left; margin: 0; padding: 0; background: none; color: var(--muted); font: 500 14px/20px var(--font-heading); }
+:root[data-theme="gmail"] form#form:not([method]) > fieldset:not(:has(> legend a)) input.size { width: 5em; min-width: 0; min-height: 24px; padding: 0 6px; border: 0; background: var(--surface-2); }
+/* fieldset « Action » : le bouton seul (titre lu par les lecteurs d'écran) */
+:root[data-theme="gmail"] form#form:not([method]) > fieldset:has(input[type=submit]) { padding: 0; border: 0; }
+:root[data-theme="gmail"] form#form:not([method]) > fieldset:has(input[type=submit]) > legend {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Cartes : cadre gris clair ; repliées, puces à contour et chevron ; ouvertes, titre bleu ---------- */
+:root[data-theme="gmail"] fieldset { padding: 4px 12px 8px; border: 1px solid var(--outline-v); border-radius: 8px; background: var(--surface); box-shadow: none; }
+:root[data-theme="gmail"] legend { padding: 0 4px; background: none; border-radius: 0; color: var(--muted); font: 500 14px/20px var(--font-heading); }
+:root[data-theme="gmail"] fieldset > legend a.toggle::after {
+  content: ""; display: inline-block; width: 18px; height: 18px; margin-left: 4px; vertical-align: -4px;
+  background-color: currentColor; mask: var(--i-up) center / 18px no-repeat;
+}
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  border: 1px solid var(--outline); border-radius: 8px; background: none; box-shadow: none; transition: none;
+}
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a {
+  padding: 0 8px 0 12px; color: var(--muted); font-weight: 500; line-height: 30px;
+}
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: none; }
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a.toggle::after { mask-image: var(--i-down); }
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: rgb(68 71 70 / .08); border-color: var(--outline); transform: none; }
+:root[data-theme="gmail"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--text); text-decoration: none; }
+:root[data-theme="gmail"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 4px; background: none; }
+:root[data-theme="gmail"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a,
+:root[data-theme="gmail"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--accent); }
+:root[data-theme="gmail"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
+
+/* pied collant (actions, pagination) : barre blanche à filet, groupes séparés par un trait ; titres à côté des boutons */
+:root[data-theme="gmail"] .footer { margin: 12px -16px 0; box-shadow: none; }
+:root[data-theme="gmail"] .footer > div {
+  display: flex; flex-wrap: wrap; align-items: center; row-gap: 6px; padding: 8px 4px; background: var(--surface); border-top: 1px solid var(--border);
+}
+:root[data-theme="gmail"] .footer fieldset {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0 12px;
+  border: 0; border-inline-start: 1px solid var(--border); border-radius: 0; background: none;
+}
+:root[data-theme="gmail"] .footer fieldset:first-child { border-inline-start: 0; }
+:root[data-theme="gmail"] .footer fieldset > legend { float: left; margin: 0; padding: 0; color: var(--muted); font-weight: 400; }
+:root[data-theme="gmail"] .footer fieldset > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+:root[data-theme="gmail"] .footer fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) { border-inline-start: 1px solid var(--border); }
+:root[data-theme="gmail"] .footer fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend { border: 0; }
+:root[data-theme="gmail"] .footer fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0 8px; border-radius: 16px; color: var(--accent); }
+:root[data-theme="gmail"] .footer fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { line-height: 30px; }
+
+/* ---------- Formulaires : champs à contour (Material), cases bleues ---------- */
+:root[data-theme="gmail"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="gmail"] select {   /* hors du :is(), sinon sa spécificité écraserait la marge du chevron ci-dessous */
+  min-height: 28px; padding: 3px 8px; border: 1px solid var(--outline); border-radius: 4px; background-color: var(--surface);
+  color: var(--text); line-height: 20px; box-shadow: none;
+}
+:root[data-theme="gmail"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):hover { border-color: var(--text); }
+:root[data-theme="gmail"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+}
+:root[data-theme="gmail"] :is(input, select, textarea):disabled { border-color: rgb(31 31 31 / .12); color: #5f5f5f; background-color: #f3f3f3; }
+:root[data-theme="gmail"] select:not([multiple]) {
+  appearance: none; padding-right: 28px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23444746'/%3E%3C/svg%3E") right 4px center / 20px no-repeat, var(--surface);
+}
+/* autocomplétion de l'éditeur SQL (liste ouverte) : menu flottant, sans chevron */
+:root[data-theme="gmail"] select.jush-autocomplete { padding: 8px 0; border: 0; border-radius: 4px; background: var(--surface); box-shadow: var(--lift-2); }
+:root[data-theme="gmail"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 18px; height: 18px; box-sizing: border-box; margin: 0 8px 0 0; vertical-align: -4px;
+  border: 2px solid var(--muted); border-radius: 2px; background: var(--surface); cursor: pointer; transition: box-shadow .12s;
+}
+:root[data-theme="gmail"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="gmail"] input:is([type=checkbox], [type=radio]):hover { box-shadow: 0 0 0 7px rgb(31 31 31 / .08); }
+:root[data-theme="gmail"] input[type=checkbox]:checked {
+  border-color: var(--accent); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='m2.5 7.2 3 3 6-6.4' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") center / 14px no-repeat, var(--accent);
+}
+:root[data-theme="gmail"] input[type=checkbox]:indeterminate { border-color: var(--accent); background: linear-gradient(#fff, #fff) center / 8px 2px no-repeat, var(--accent); }
+:root[data-theme="gmail"] input[type=radio]:checked { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 0 4px, var(--surface) 4.5px); }
+:root[data-theme="gmail"] input:is([type=checkbox], [type=radio]):disabled { border-color: rgb(31 31 31 / .3); background-color: transparent; box-shadow: none; cursor: default; }
+
+/* boutons : pilules bleu pâle ; action principale en bleu plein, suppressions en rouge pâle */
+:root[data-theme="gmail"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 32px; padding: 0 16px; border: 0; border-radius: 16px; background: var(--compose); color: var(--ink);
+  font: 500 14px/32px var(--font-heading); box-shadow: none; transition: box-shadow .15s, background-color .15s;
+}
+:root[data-theme="gmail"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
+  background: #b3dbf5; box-shadow: var(--lift); transform: none; filter: none;
+}
+:root[data-theme="gmail"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: #a6d0ec; box-shadow: none; transform: none; }
+:root[data-theme="gmail"] input.default[type=submit] { background: var(--accent); color: #fff; }
+:root[data-theme="gmail"] input.default[type=submit]:hover { background: #1f66d6; }
+/* (sélecteurs répétés : ils doivent l'emporter sur la règle générale des boutons, plus spécifique) */
+:root[data-theme="gmail"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { background: var(--err-box); color: var(--on-err-box); }
+:root[data-theme="gmail"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]):hover { background: #f4c7c3; }
+:root[data-theme="gmail"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="gmail"] :is(input[type=submit], input[type=button]):disabled:hover {
+  background: rgb(31 31 31 / .1); color: #5f5f5f; box-shadow: none; cursor: default;
+}
+
+/* ---------- Messages : succès en bandeau sombre (« Message envoyé »), erreurs en rouge pâle ---------- */
+:root[data-theme="gmail"] #content .message {
+  width: fit-content; max-width: 100%; box-sizing: border-box; padding: 14px 16px; border: 0; border-radius: 4px;
+  background: var(--snack); color: var(--on-snack); box-shadow: 0 3px 5px -1px rgb(0 0 0 / .2), 0 6px 10px 0 rgb(0 0 0 / .14), 0 1px 18px 0 rgb(0 0 0 / .12);
+}
+:root[data-theme="gmail"] #content .message a:is(:link, :visited) { color: var(--snack-link); font-weight: 500; }
+:root[data-theme="gmail"] #content .message a:is(:link, :visited):hover { color: #d3e3fd; }
+:root[data-theme="gmail"] #content .message :is(code, .time) { background: rgb(255 255 255 / .1); color: inherit; }
+:root[data-theme="gmail"] .error { padding: 12px 16px; border: 0; border-radius: 8px; background: var(--err-box); color: var(--on-err-box); }
+
+/* bulle d'aide (fonctions SQL) : carte blanche ombrée */
+:root[data-theme="gmail"] #help { padding: 8px 12px; border: 0; border-radius: 8px; background: var(--surface); color: var(--text); box-shadow: var(--lift-2); }
+
+/* éditeur SQL : zone à contour, comme le corps d'un message */
+:root[data-theme="gmail"] pre.jush { padding: 8px 12px; border-radius: 8px; }
+:root[data-theme="gmail"] [contenteditable].jush { background: var(--surface); box-shadow: inset 0 0 0 1px var(--outline); }
+:root[data-theme="gmail"] [contenteditable].jush:focus { box-shadow: inset 0 0 0 2px var(--accent); outline: none; }   /* le contour bleu fait office d'anneau */
+
+/* ---------- Schéma de la base : tables en cartes ombrées ---------- */
+/* interligne de 1,25 : celui sur lequel Adminer place les flèches des clés (en em) */
+:root[data-theme="gmail"] #schema { margin-bottom: 24px; }
+:root[data-theme="gmail"] #schema .table { padding: 0 6px 4px; border: 0; border-radius: 8px; background: var(--surface); box-shadow: var(--lift); line-height: 1.25; }
+:root[data-theme="gmail"] #schema .table a:first-child { font-weight: 500; }
+
+/* ---------- Page de connexion : une fenêtre « Nouveau message » ---------- */
+/* Repérée par le champ mot de passe. Le titre devient la barre de la fenêtre, chaque champ une ligne « À : », « Objet »,
+   le bouton celui d'envoi. Logo en haut à gauche comme dans la barre de Gmail ; la langue sous la fenêtre. */
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(540px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 104px 16px 32px;
+}
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content {
+  grid-row: 1; min-height: 0; margin: 0 !important; padding: 0; overflow: hidden; border-radius: 8px; box-shadow: var(--dialog);
+}
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content > h2 {
+  display: flex; align-items: center; justify-content: space-between; margin: 0; padding: 10px 12px 10px 16px;
+  background: #f2f6fc; color: #041e49; font: 500 14px/20px var(--font-heading);
+}
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content > h2::before { content: none; }
+/* réduire, agrandir, fermer : simple décor de barre de fenêtre */
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content > h2::after {
+  content: ""; width: 64px; height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16' fill='none' stroke='%23444746' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M2 12.5h11M25 2.5h5.5V8M30.5 2.5l-5 5M24 13.5h-5.5V8M18.5 13.5l5-5M51 3l10 10M61 3 51 13'/%3E%3C/svg%3E") center / 64px 16px no-repeat;
+}
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content .error { margin: 12px 16px 0; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; border-collapse: collapse; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout :is(th, td) { height: 40px; padding: 0; border-bottom: 1px solid var(--line); background: none; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout th { width: 1%; padding: 0 4px 0 16px; color: var(--muted); font: 400 14px/20px var(--font); white-space: nowrap; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout td { padding-right: 16px; }
+/* champs sans cadre : la ligne qui a le focus se souligne de bleu (même :is() que la règle générale, pour passer devant) */
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; min-height: 39px; padding: 0 4px; border: 0; border-radius: 0; background-color: transparent; box-shadow: none; font-size: 14px;
+}
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout select:not([multiple]) { width: auto; padding-right: 28px; background-color: transparent; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout :is(input, select):focus-visible { outline: none; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) table.layout tr:focus-within > :is(th, td) { box-shadow: inset 0 -2px 0 var(--accent); }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; gap: 16px; margin: 0; padding: 14px 16px 16px; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content form > p input[type=submit] { min-height: 36px; padding: 0 24px; border-radius: 18px; line-height: 36px; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #content form > p label { color: var(--muted); cursor: pointer; }
+/* logo en haut à gauche, langue sous la fenêtre */
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #foot { grid-row: 2; position: static; display: block; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menu { position: static; width: auto; min-width: 0; margin: 0; padding: 0; background: none; border: 0; box-shadow: none; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menu h1 { position: absolute; top: 0; left: 0; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menu #lang { margin: 20px 0 0; justify-content: center; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menu #lang label { justify-content: center; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menu #lang select { flex: none; }
+:root[data-theme="gmail"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : barre de recherche en haut, menu en tiroir, comme l'application ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="gmail"] #content { margin: var(--bar-h) 8px 8px; margin-inline-start: 8px !important; padding: 4px 12px 12px; }
+  :root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -12px; }
+  :root[data-theme="gmail"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case : le crayon s'y repère */
+  :root[data-theme="gmail"] #breadcrumb { top: 8px; left: 8px !important; right: 8px; padding-left: 56px; }
+  :root[data-theme="gmail"] #breadcrumb::before { content: none; }   /* le bouton du menu prend la place de la loupe */
+  :root[data-theme="gmail"].js #menuopen { top: 12px; left: 12px; z-index: 3; }
+  :root[data-theme="gmail"] #menuopen button.icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23444746' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 7h16M4 12h16M4 17h16'/%3E%3C/svg%3E") center / 24px no-repeat transparent;
+  }
+  :root[data-theme="gmail"] #menuopen button.icon:hover { background-color: rgb(31 31 31 / .08); }
+  :root[data-theme="gmail"] .footer { margin-inline: -12px; }
+  /* tiroir blanc arrondi à droite, sous la barre (le bouton du menu reste à portée pour le refermer) */
+  :root[data-theme="gmail"].js #foot:not(.foot) {
+    top: var(--bar-h); z-index: 5; width: min(320px, calc(100% - 40px)); padding-bottom: 8px;   /* devant l'en-tête collant des tableaux */
+    background: var(--surface); border-radius: 0 16px 16px 0; box-shadow: var(--dialog);
+  }
+  :root[data-theme="gmail"] #menu { position: static; min-width: 0; width: auto; margin: 0; background: none; border: 0; box-shadow: none; }
+  :root[data-theme="gmail"].js #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border);
+    background: none; box-shadow: none;
+  }
+  :root[data-theme="gmail"]:has(input[name="auth[password]"]) body { padding: 80px 8px 24px; }
+  :root[data-theme="gmail"]:has(input[name="auth[password]"]) #foot { position: static; }
+}
+@media (max-width: 600px) {
+  :root[data-theme="gmail"] #kawaii-switcher { top: 14px; }
+}

@@ -1,0 +1,461 @@
+/* ===== Thème GitHub =====
+   Actif quand <html data-theme="github">. Adminer présenté comme un dépôt GitHub (design system Primer, en clair) :
+   - en-tête gris à filet : logo, fil d'Ariane comme « propriétaire / dépôt », sélecteur de thème, déconnexion et
+     identicon de l'utilisateur ; dessous, les actions du menu (SQL command, Import…) en onglets soulignés de corail,
+     comme Code, Issues et Pull requests ;
+   - à gauche, l'arborescence des fichiers : base de données en sélecteur de branche, tables en fichiers, la courante
+     marquée d'un trait bleu ;
+   - au centre, des boîtes à filet arrondi (en-tête gris) comme la liste des fichiers d'un dépôt, des boutons gris,
+     l'action principale en vert, les liens de la table en contrôle segmenté, des bandeaux « flash » pour les messages ;
+   - la connexion s'affiche comme un fichier YAML dans la vue de code : numéros de ligne, ligne active surlignée.
+   Aucune marque reproduite : le logo est un disque sombre marqué d'une pile de base de données, et la page de
+   connexion ne ressemble pas à celle de GitHub. Polices du système, comme GitHub. */
+
+:root[data-theme="github"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #f6f8fa; --text: #1f2328; --muted: #59636e; --border: #d1d9e0;
+  --accent: #0969da; --on-accent: #ffffff; --accent-text: #0969da;
+  --ok: #1a7f37; --err: #d1242f; --on-err: #ffffff;
+  --jush-str: #0a3069; --jush-num: #0550ae; --jush-id: #6f42c1;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 6px; --radius-sm: 6px; --pill: 2em;
+  --fs: 14px; --pad-y: 8px; --pad-x: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-heading: var(--font);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --h2-border: 0;
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  --th-bg: #f6f8fa; --th-text: var(--muted);
+  --zebra: #ffffff;
+  --row-hover: #f6f8fa;
+  --lit: #f6f8fa;
+  --dim: #f6f8fa;
+
+  /* palette Primer */
+  --canvas-inset: #f6f8fa;
+  --neutral-muted: rgb(175 184 193 / .2);
+  --nav-hover: rgb(208 215 222 / .32);
+  --accent-subtle: #ddf4ff;
+  --success-subtle: #dafbe1; --danger-subtle: #ffebe9; --attention-subtle: #fff8c5;
+  --btn: #f6f8fa; --btn-hover: #eff2f5; --btn-active: #e6eaef; --btn-border: #d1d9e0;
+  --primary: #1f883d; --primary-hover: #1c8139; --primary-active: #197935;
+  --underline: #fd8c73;                          /* onglet courant */
+  --overlay: 0 1px 3px rgb(31 35 40 / .12), 0 8px 24px rgb(66 74 83 / .12);
+  --hdr: 64px;                                   /* première ligne de l'en-tête */
+  --top: 113px;                                  /* en-tête entier : deux lignes et son filet */
+  --side: 300px;                                 /* arborescence */
+
+  /* pictogrammes (masques, peints dans la couleur du texte) */
+  --i-code: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.25 4.25 1.75 8l3.5 3.75M10.75 4.25 14.25 8l-3.5 3.75'/%3E%3C/svg%3E");
+  --i-import: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2.5v8M4.75 7.25 8 10.5l3.25-3.25M2.75 13.25h10.5'/%3E%3C/svg%3E");
+  --i-export: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 10.5V2.75M4.75 6 8 2.75 11.25 6M2.75 13.25h10.5'/%3E%3C/svg%3E");
+  --i-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M8 3v10M3 8h10'/%3E%3C/svg%3E");
+  --i-table: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1.75' y='2.75' width='12.5' height='10.5' rx='1.5'/%3E%3Cpath d='M1.75 6.25h12.5M1.75 9.75h12.5M6.25 6.25v7'/%3E%3C/svg%3E");
+  --i-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M3.75 1.75h5.5l3 3v9.5h-8.5zM9.25 1.75v3h3'/%3E%3C/svg%3E");
+  --i-branch: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='4.5' cy='3.5' r='1.75'/%3E%3Ccircle cx='4.5' cy='12.5' r='1.75'/%3E%3Ccircle cx='11.5' cy='4.5' r='1.75'/%3E%3Cpath d='M4.5 5.25v5.5M11.5 6.25c0 2.75-7 2.25-7 4.5'/%3E%3C/svg%3E");
+  --i-pencil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'%3E%3Cpath d='M10.75 2.25l3 3L6 13H3v-3zM9.25 3.75l3 3'/%3E%3C/svg%3E");
+  --i-list: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M5.5 4h8M5.5 8h8M5.5 12h8M2.5 4h.01M2.5 8h.01M2.5 12h.01'/%3E%3C/svg%3E");
+  --i-caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6.5h7L8 10.25z'/%3E%3C/svg%3E");
+  --i-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='8' r='6.25'/%3E%3Cpath d='m5.5 8.25 1.75 1.75 3.25-3.5'/%3E%3C/svg%3E");
+  --i-alert: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 1.75 15 14H1z'/%3E%3Cpath d='M8 6v3.5M8 11.75v.01'/%3E%3C/svg%3E");
+  /* logo : disque sombre marqué d'une pile de base de données */
+  --logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231f2328'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2'%3E%3Cellipse cx='16' cy='10' rx='7' ry='2.75'/%3E%3Cpath d='M9 10v12c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75V10M9 16c0 1.5 3.1 2.75 7 2.75s7-1.25 7-2.75'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* fond : en-tête gris et son filet, logo, filet de l'arborescence ; défile avec la page */
+  --bg-pattern: var(--logo), linear-gradient(var(--border), var(--border)), linear-gradient(var(--border), var(--border)), linear-gradient(var(--canvas-inset), var(--canvas-inset));
+  --bg-size: 32px 32px, var(--side-line, 1px 100%), 100% 1px, 100% calc(var(--top) - 1px);
+  --bg-pos: 16px 16px, var(--side) var(--top), 0 calc(var(--top) - 1px), 0 0;
+  background-attachment: scroll; background-repeat: no-repeat;
+}
+:root[data-theme="github"] * { scrollbar-color: #c4ccd5 transparent; }
+/* focus clavier : anneau bleu de Primer */
+:root[data-theme="github"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- Page : titres sombres, liens bleus ---------- */
+:root[data-theme="github"] h2 { margin: 0 0 16px; padding: 0; color: var(--text); font: 600 20px/1.5 var(--font-heading); }
+:root[data-theme="github"] h3 { margin: 24px 0 8px; font-size: 16px; font-weight: 600; }
+:root[data-theme="github"] a:is(:link, :visited) { color: var(--accent-text); font-weight: 400; }
+:root[data-theme="github"] a:is(:link, :visited):hover { color: var(--accent-text); text-decoration: underline; }
+:root[data-theme="github"] code { padding: .2em .4em; border-radius: 6px; background: rgb(129 139 152 / .12); font-size: 85%; }
+:root[data-theme="github"] pre.jush { padding: 12px 16px; border-radius: 6px; background: var(--canvas-inset); }
+:root[data-theme="github"] .time { color: var(--muted); font-size: 12px; }
+
+/* ---------- En-tête (écran large) : fil d'Ariane, onglets, utilisateur ---------- */
+@media not all and (max-width: 800px) {
+  :root[data-theme="github"] #menu { top: var(--top); width: var(--side); }
+  :root[data-theme="github"] #content { margin: var(--top) 0 0 var(--side); padding: 24px 32px 32px; }
+  :root[data-theme="github"] #breadcrumb { top: 16px; left: 56px; right: 360px; }
+  :root[data-theme="github"] .logout {
+    top: 16px; right: 16px; height: 32px; margin: 0; padding: 0;
+    display: flex; align-items: center; gap: 8px; background: none; box-shadow: none;
+  }
+  /* actions du menu : onglets de la seconde ligne de l'en-tête (placés par rapport au menu, juste en dessous) */
+  :root[data-theme="github"] #menu p.links {
+    position: absolute; top: calc(var(--hdr) - var(--top) + 8px); left: 8px; display: flex; gap: 8px; margin: 0; padding: 0;
+  }
+  :root[data-theme="github"] #menu p.links a { position: relative; height: 32px; }
+  :root[data-theme="github"] #menu p.links a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 2px; border-radius: 6px; background: var(--underline);
+  }
+}
+/* fil d'Ariane : « propriétaire / dépôt » ; liens sombres, dernier élément en gras */
+:root[data-theme="github"] #breadcrumb {
+  height: 32px; margin: 0; padding: 0; background: none; border-radius: 0; color: var(--text);
+  font: 600 14px/32px var(--font); overflow: hidden; text-overflow: ellipsis;
+}
+:root[data-theme="github"] #breadcrumb a:is(:link, :visited) { padding: 4px 6px; border-radius: 6px; color: var(--text); font-weight: 400; }
+:root[data-theme="github"] #breadcrumb a:is(:link, :visited):hover { background: var(--nav-hover); color: var(--text); text-decoration: none; }
+
+/* utilisateur : identicon dans un disque (le nom reste dans le texte, lu par les lecteurs d'écran) */
+:root[data-theme="github"] .logout span[title=Username] {
+  order: 3; flex: none; width: 32px; height: 32px; overflow: hidden; border-radius: 50%; font-size: 0; box-shadow: 0 0 0 1px rgb(31 35 40 / .15);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Crect width='12' height='12' fill='%23f0f0f0'/%3E%3Cpath d='M1 1h2v2H1zM5 1h2v2H5zM9 1h2v2H9zM3 3h6v2H3zM1 5h4v2H1zM7 5h4v2H7zM3 7h2v2H3zM7 7h2v2H7zM1 9h2v2H1zM5 9h2v2H5zM9 9h2v2H9z' fill='%23bf5af2'/%3E%3C/svg%3E") center / cover;
+}
+:root[data-theme="github"] .logout #logout { order: 2; }
+
+/* sélecteur de thème : liste comme les autres, sans cadre autour */
+:root[data-theme="github"] #kawaii-switcher { top: 16px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 14px; }
+:root[data-theme="github"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
+:root[data-theme="github"] #kawaii-switcher select.theme { font-weight: 500; }
+
+/* ---------- Onglets (actions du menu) : icône grise, survol gris, trait corail sous l'onglet courant ---------- */
+:root[data-theme="github"] #menu p.links a {
+  display: flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 0 8px; border: 0; border-radius: 6px;
+  background: none; color: var(--text); font: 400 14px/32px var(--font); text-align: left; white-space: nowrap;
+}
+:root[data-theme="github"] #menu p.links a::before {
+  content: ""; flex: none; width: 16px; height: 16px; background-color: var(--muted); mask: var(--icon, var(--i-plus)) center / 16px no-repeat;
+}
+:root[data-theme="github"] #menu p.links a[href*="sql="] { --icon: var(--i-code); }
+:root[data-theme="github"] #menu p.links a[href*="import="] { --icon: var(--i-import); }
+:root[data-theme="github"] #menu p.links a[href*="dump="] { --icon: var(--i-export); }
+:root[data-theme="github"] #menu p.links a:hover { background: var(--nav-hover); color: var(--text); text-decoration: none; }
+:root[data-theme="github"] #menu p.links a.active { background: none; color: var(--text); font-weight: 600; box-shadow: none; }
+:root[data-theme="github"] #menu p.links a.active:hover { background: var(--nav-hover); }
+
+/* ---------- Arborescence : branche (base de données), fichiers (tables), langue en pied ---------- */
+:root[data-theme="github"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 16px;
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="github"] #menu > * { order: 4; }
+:root[data-theme="github"] #menu > h1 { order: 0; }
+:root[data-theme="github"] #menu > form:has(#dbs) { order: 1; }
+:root[data-theme="github"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="github"] #menu :is(p, #dbs, #logins, #tables) { border: 0; }
+:root[data-theme="github"] #menu a:hover { background: none; text-decoration: none; }
+
+/* titre de l'arborescence : nom du logiciel et version en étiquette (le logo est dans l'en-tête) */
+:root[data-theme="github"] #menu h1 { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; padding: 0 8px; border: 0; }
+:root[data-theme="github"] #h1 { color: var(--text); font: 600 16px/32px var(--font); font-style: normal; }
+:root[data-theme="github"] #h1 img { display: none; }
+:root[data-theme="github"] #menu #h1:hover { color: var(--accent-text); }
+:root[data-theme="github"] #menu .version {
+  padding: 0 7px; border: 1px solid var(--border); border-radius: 2em; color: var(--muted); font: 500 12px/18px var(--font);
+}
+
+/* base de données : bouton de branche (icône de branche, chevron) */
+:root[data-theme="github"] #menu :is(#dbs, #lang) { margin: 0 0 12px; padding: 0; }
+:root[data-theme="github"] #menu :is(#dbs, #lang) label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+:root[data-theme="github"] #menu :is(#dbs, #lang) select { flex: 1; min-width: 0; }
+:root[data-theme="github"] #menu #dbs label { font-size: 0; }   /* « DB: » : l'icône de branche en tient lieu (le texte reste lu) */
+:root[data-theme="github"] #menu #dbs select {
+  padding-left: 30px; font-size: 14px; font-weight: 600;
+  background: var(--i-branch-bg) 9px center / 16px no-repeat, var(--caret-bg) right 8px center / 16px no-repeat, var(--btn);
+}
+:root[data-theme="github"] #menu #lang { position: static; margin: 16px 0 0; padding: 16px 8px 0; border-top: 1px solid var(--border); }
+
+/* tables : fichiers de l'arborescence ; la courante sur fond gris, trait bleu à gauche */
+:root[data-theme="github"] #tables { margin: 0; padding: 0; }
+:root[data-theme="github"] #tables::before { margin: 0 8px 4px; color: var(--muted); font: 600 12px/24px var(--font); letter-spacing: 0; text-transform: none; }
+:root[data-theme="github"] #tables li { position: relative; min-height: 32px; margin: 0; padding: 0 4px 0 8px; border-radius: 6px; }
+:root[data-theme="github"] #tables li:hover { background: var(--nav-hover); }
+:root[data-theme="github"] #tables li:has(a.active) { background: rgb(208 215 222 / .48); box-shadow: none; }
+:root[data-theme="github"] #tables li:has(a.active)::after {
+  content: ""; position: absolute; left: -8px; top: 6px; bottom: 6px; width: 4px; border-radius: 6px; background: var(--accent);
+}
+:root[data-theme="github"] #tables :is(a.structure, a.view) { padding: 6px 0; color: var(--text); font-weight: 400; }
+:root[data-theme="github"] #menu #tables :is(a.structure, a.view):hover { background: none; color: var(--text); }
+:root[data-theme="github"] #tables :is(a.structure, a.view)::before {
+  content: ""; display: inline-block; width: 16px; height: 16px; margin-right: 8px; vertical-align: -3px;
+  background-color: var(--muted); mask: var(--i-table) center / 16px no-repeat;
+}
+:root[data-theme="github"] #tables li:has(a.active) :is(a.structure, a.view) { font-weight: 600; }
+:root[data-theme="github"] #tables a.select { width: 24px; height: 24px; margin: 0; line-height: 24px; border-radius: 6px; background-color: transparent; }
+:root[data-theme="github"] #tables a.select::before {
+  content: ""; display: inline-block; width: 16px; height: 16px; vertical-align: middle;
+  background-color: var(--muted); mask: var(--i-list) center / 16px no-repeat;
+}
+:root[data-theme="github"] #menu #tables a.select:hover { background-color: var(--nav-hover); }
+:root[data-theme="github"] #menu .message { margin: 4px 8px 0; padding: 0; border: 0; background: none; box-shadow: none; color: var(--muted); }
+
+/* ---------- Liens de la table : contrôle segmenté (avec une page courante), sinon boutons ---------- */
+:root[data-theme="github"] #content .links { display: flex; flex-wrap: wrap; gap: 8px; }
+:root[data-theme="github"] #content .links:has(a.active) {
+  width: fit-content; max-width: 100%; box-sizing: border-box; gap: 0; margin-bottom: 16px; padding: 0;
+  border-radius: 6px; background: var(--btn-hover); box-shadow: inset 0 0 0 1px var(--border); overflow-x: auto;
+}
+:root[data-theme="github"] #content .links:has(a.active) a {
+  margin: 0; padding: 0 12px; border: 1px solid transparent; border-radius: 6px; background: none; box-shadow: none;
+  color: var(--text); font-weight: 500; line-height: 30px;
+}
+:root[data-theme="github"] #content .links:has(a.active) a:hover { background: var(--btn-active); color: var(--text); text-decoration: none; }
+:root[data-theme="github"] #content .links:has(a.active) a.active { border-color: #818b98; background: #fff; font-weight: 600; }
+
+/* ---------- Tableaux : boîte à filet arrondi, en-tête gris, survol gris ---------- */
+:root[data-theme="github"] table { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); box-shadow: none; }
+:root[data-theme="github"] :is(th, td) { border-bottom: 1px solid var(--border); line-height: 20px; }
+:root[data-theme="github"] thead :is(th, td, td.hover) { color: var(--muted); font-weight: 600; white-space: nowrap; }
+:root[data-theme="github"] thead th .column { border-color: var(--border); border-radius: 6px; box-shadow: var(--overlay); }
+:root[data-theme="github"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: var(--nav-hover); color: var(--text); }
+:root[data-theme="github"] table > :last-child > tr:last-child > :is(th, td) { border-bottom: 0; }   /* le cadre ferme la boîte */
+:root[data-theme="github"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
+:root[data-theme="github"].js .checkable .checked :is(td, th, td.hover) { background: var(--accent-subtle); }
+/* listes de lignes (données, tables d'une base) : lignes de 40px, la boîte occupe la largeur */
+:root[data-theme="github"] #content .scrollable > .checkable { width: 100%; }
+:root[data-theme="github"] .checkable tbody td { height: 40px; padding-block: 0; }
+:root[data-theme="github"] :is(td, th).check { width: 1%; padding-inline: 16px 8px; text-align: start; }
+/* lien « edit » : crayon après la case, comme l'icône de fichier d'une liste */
+:root[data-theme="github"] td.check:has(a.edit) { padding-inline-end: 36px; }
+:root[data-theme="github"] td.check a.edit {
+  position: absolute; top: 50%; right: 6px; width: 24px; height: 24px; margin-top: -12px; border-radius: 6px; font-size: 0;
+}
+:root[data-theme="github"] td.check a.edit::before {
+  content: ""; position: absolute; inset: 4px; background-color: var(--muted); mask: var(--i-pencil) center / 16px no-repeat;
+}
+:root[data-theme="github"] td.check a.edit:hover { background: var(--nav-hover); }
+:root[data-theme="github"] td.check a.edit:hover::before { background-color: var(--accent); }
+/* dernière colonne de date (datetime, timestamp…) : à droite, en gris, comme la date du dernier commit */
+:root[data-theme="github"] #table:has(thead th:last-child span:is([title^="date"], [title^="timestamp"])) :is(thead th, tbody td):last-child { padding-inline-end: 16px; text-align: right; }
+:root[data-theme="github"] #table:has(thead th:last-child span:is([title^="date"], [title^="timestamp"])) tbody td:last-child { color: var(--muted); }
+
+/* ---------- Filtres de la page « Sélectionner » : boutons à chevron, champs étiquetés ---------- */
+:root[data-theme="github"] form#form:not([method]) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+:root[data-theme="github"] form#form:not([method]) > fieldset { margin: 0; }
+:root[data-theme="github"] form#form:not([method]) > fieldset:not(:has(> legend a)) { display: flex; align-items: center; gap: 8px; padding: 0; border: 0; background: none; }
+:root[data-theme="github"] form#form:not([method]) > fieldset:not(:has(> legend a)) > legend { float: left; margin: 0; padding: 0; background: none; color: var(--text); font-weight: 600; }
+:root[data-theme="github"] form#form:not([method]) > fieldset:not(:has(> legend a)) input.size { width: 5.5em; min-width: 0; }
+/* fieldset « Action » : le bouton seul (titre lu par les lecteurs d'écran) */
+:root[data-theme="github"] form#form:not([method]) > fieldset:has(input[type=submit]) > legend {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Cartes : boîtes à en-tête gris ; repliées, boutons à chevron ---------- */
+:root[data-theme="github"] fieldset { padding: 4px 12px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); box-shadow: none; }
+:root[data-theme="github"] legend { padding: 0 4px; background: none; border-radius: 0; color: var(--text); font-weight: 600; }
+:root[data-theme="github"] fieldset > legend a.toggle::after {
+  content: ""; display: inline-block; width: 16px; height: 16px; margin-left: 4px; vertical-align: -3px;
+  background-color: var(--muted); mask: var(--i-caret) center / 16px no-repeat; transform: rotate(180deg);
+}
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  border: 1px solid var(--btn-border); border-radius: 6px; background: var(--btn); box-shadow: 0 1px 0 rgb(31 35 40 / .04); transition: none;
+}
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 0 8px 0 12px; color: var(--text); font-weight: 500; line-height: 30px; }
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: none; }
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a.toggle::after { transform: none; }
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--btn-hover); border-color: var(--btn-border); transform: none; }
+:root[data-theme="github"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a { color: var(--text); text-decoration: none; }
+:root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 4px; background: none; }
+:root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a,
+:root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--text); }
+:root[data-theme="github"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: none; }
+
+/* pied collant (actions, pagination) : bandeau blanc à filet ; titres à côté des boutons */
+:root[data-theme="github"] .footer { margin-inline-end: 0; box-shadow: none; }
+:root[data-theme="github"] .footer > div {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 0; background: var(--surface); border-top: 1px solid var(--border);
+}
+:root[data-theme="github"] .footer fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; border: 0; background: none; }
+:root[data-theme="github"] .footer fieldset > legend { float: left; margin: 0; padding: 0; color: var(--muted); font-weight: 400; }
+:root[data-theme="github"] .footer fieldset > div:not(.hidden) { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+/* ---------- Formulaires : champs Primer, cases bleues ---------- */
+:root[data-theme="github"] {
+  --i-branch-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2359636e' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='4.5' cy='3.5' r='1.75'/%3E%3Ccircle cx='4.5' cy='12.5' r='1.75'/%3E%3Ccircle cx='11.5' cy='4.5' r='1.75'/%3E%3Cpath d='M4.5 5.25v5.5M11.5 6.25c0 2.75-7 2.25-7 4.5'/%3E%3C/svg%3E");
+  --caret-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6.5h7L8 10.25z' fill='%2359636e'/%3E%3C/svg%3E");
+}
+:root[data-theme="github"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="github"] select {   /* hors du :is(), sinon sa spécificité écraserait la marge du chevron ci-dessous */
+  min-height: 32px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 6px; background-color: var(--surface);
+  color: var(--text); line-height: 20px; box-shadow: inset 0 1px 0 rgb(208 215 222 / .2);
+}
+:root[data-theme="github"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); outline: none;
+}
+:root[data-theme="github"] :is(input, select, textarea):disabled { background-color: var(--btn-hover); color: #656d76; border-color: var(--border); }
+:root[data-theme="github"] select:not([multiple]) { appearance: none; padding-right: 32px; background: var(--caret-bg) right 8px center / 16px no-repeat, var(--btn); }
+/* autocomplétion de l'éditeur SQL (liste ouverte) : surcouche blanche, sans chevron */
+:root[data-theme="github"] select.jush-autocomplete { padding: 4px; border-radius: 12px; background: #fff; box-shadow: var(--overlay); }
+/* cases à cocher alignées sur une ligne (« Default values », « Comment »…) : espacées */
+:root[data-theme="github"] label:has(> input:is([type=checkbox], [type=radio])) + label { margin-inline-start: 12px; }
+:root[data-theme="github"] input:is([type=checkbox], [type=radio]) {
+  appearance: none; flex: none; width: 16px; height: 16px; box-sizing: border-box; margin: 0 8px 0 0; vertical-align: -3px;
+  border: 1px solid #818b98; border-radius: 4px; background: var(--surface); cursor: pointer;
+}
+:root[data-theme="github"] input[type=radio] { border-radius: 50%; }
+:root[data-theme="github"] input[type=checkbox]:checked {
+  border-color: var(--accent); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 8.25 2.75 2.75L12 5.5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat, var(--accent);
+}
+:root[data-theme="github"] input[type=checkbox]:indeterminate { border-color: var(--accent); background: linear-gradient(#fff, #fff) center / 8px 2px no-repeat, var(--accent); }
+:root[data-theme="github"] input[type=radio]:checked { border: 4px solid var(--accent); }
+:root[data-theme="github"] input:is([type=checkbox], [type=radio]):disabled { border-color: #c4ccd5; background-color: var(--btn-hover); cursor: default; }
+
+/* boutons : gris à filet ; action principale en vert, suppressions en rouge (rouge plein au survol) */
+:root[data-theme="github"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 32px; padding: 0 12px; border: 1px solid var(--btn-border); border-radius: 6px; background: var(--btn); color: #25292e;
+  font: 500 14px/30px var(--font); box-shadow: 0 1px 0 rgb(31 35 40 / .04); transition: background-color .08s, border-color .08s;
+}
+:root[data-theme="github"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
+  background: var(--btn-hover); border-color: var(--btn-border); transform: none; filter: none;
+}
+:root[data-theme="github"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active { background: var(--btn-active); transform: none; box-shadow: none; }
+:root[data-theme="github"] input.default[type=submit] { background: var(--primary); border-color: rgb(31 35 40 / .15); color: #fff; box-shadow: 0 1px 0 rgb(31 35 40 / .1); }
+:root[data-theme="github"] input.default[type=submit]:hover { background: var(--primary-hover); border-color: rgb(31 35 40 / .15); }
+:root[data-theme="github"] input.default[type=submit]:active { background: var(--primary-active); }
+/* (sélecteurs répétés : ils doivent l'emporter sur la règle générale des boutons, plus spécifique) */
+:root[data-theme="github"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { color: var(--err); }
+:root[data-theme="github"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]):hover { background: #cf222e; border-color: rgb(31 35 40 / .15); color: #fff; }
+:root[data-theme="github"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="github"] :is(input[type=submit], input[type=button]):disabled:hover {
+  background: var(--btn-hover); border-color: var(--border); color: #656d76; box-shadow: none; cursor: not-allowed;
+}
+/* boutons-icônes d'Adminer (ajouter, supprimer une colonne) : pictogramme gris, bleu au survol */
+:root[data-theme="github"] button.icon { background-color: var(--muted); border-radius: 4px; }
+:root[data-theme="github"] button.icon:hover { background-color: var(--accent); }
+/* liens d'action sans page courante (base, structure…) : boutons gris */
+:root[data-theme="github"] #content .links:not(:has(a.active)) a {
+  margin: 0; padding: 0 12px; border: 1px solid var(--btn-border); border-radius: 6px; background: var(--btn);
+  color: #25292e; font-weight: 500; line-height: 30px; box-shadow: 0 1px 0 rgb(31 35 40 / .04);
+}
+:root[data-theme="github"] #content .links:not(:has(a.active)) a:hover { background: var(--btn-hover); color: #25292e; text-decoration: none; }
+
+/* ---------- Messages : bandeaux « flash » à icône ---------- */
+:root[data-theme="github"] :is(.message, .error) {
+  padding: 15px 16px 15px 44px; border: 1px solid rgb(26 127 55 / .4); border-radius: 6px; color: var(--text); box-shadow: none;
+  background: linear-gradient(var(--ok), var(--ok)) 16px 17px / 16px 16px no-repeat, var(--success-subtle);
+  -webkit-mask: none; position: relative;
+}
+:root[data-theme="github"] :is(.message, .error)::after {
+  content: ""; position: absolute; left: 16px; top: 17px; width: 16px; height: 16px; background: var(--ok); mask: var(--i-check) center / 16px no-repeat;
+}
+:root[data-theme="github"] :is(.message, .error) { background: var(--success-subtle); }
+:root[data-theme="github"] .error { border-color: rgb(209 36 47 / .4); background: var(--danger-subtle); }
+:root[data-theme="github"] .error::after { background: var(--err); mask-image: var(--i-alert); }
+:root[data-theme="github"] #menu .message::after { content: none; }
+
+/* bulle d'aide (fonctions SQL) : surcouche blanche */
+:root[data-theme="github"] #help { padding: 8px 12px; border: 1px solid var(--border); border-radius: 12px; background: #fff; color: var(--text); box-shadow: var(--overlay); }
+
+/* éditeur SQL : champ comme les autres */
+:root[data-theme="github"] [contenteditable].jush { border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 1px var(--border); }
+:root[data-theme="github"] [contenteditable].jush:focus { box-shadow: inset 0 0 0 2px var(--accent); outline: none; }   /* le contour bleu fait office d'anneau */
+
+/* ---------- Schéma de la base : tables en boîtes à en-tête gris ---------- */
+/* Adminer place les flèches des clés en em, sur un interligne de 1,25 : on le garde, et l'en-tête n'occupe qu'une ligne
+   (filet en ombre, sans hauteur ; le <br> qui suit le titre ferait une ligne vide). Marge et non padding sous le schéma :
+   Adminer déduit l'em de la hauteur du conteneur. */
+:root[data-theme="github"] #schema { margin-bottom: 40px; }
+:root[data-theme="github"] #schema .table { padding: 0 8px 4px; border: 1px solid var(--border); border-radius: 6px; background: #fff; box-shadow: 0 1px 0 rgb(31 35 40 / .04); line-height: 1.25; }
+:root[data-theme="github"] #schema .table > a:first-child {
+  display: block; margin: 0 -8px; padding: 0 8px; border-radius: 6px 6px 0 0; box-shadow: inset 0 -1px var(--border);
+  background: var(--canvas-inset); color: var(--text); font-weight: 600;
+}
+:root[data-theme="github"] #schema .table > a:first-child + br { display: none; }
+
+/* ---------- Page de connexion : un fichier YAML dans la vue de code ---------- */
+/* Repérée par le champ mot de passe. Boîte de fichier : en-tête gris (icône, nom), une ligne numérotée par champ (clé
+   verte, valeur bleu nuit), ligne active surlignée en jaune comme une ligne sélectionnée ; bouton vert en pied. */
+:root[data-theme="github"]:has(input[name="auth[password]"]) {
+  --top: 65px; --side-line: 0 0;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(720px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 105px 16px 32px;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content {
+  grid-row: 1; margin: 0 !important; padding: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 6px; background: #fff;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content > h2 {
+  display: flex; align-items: center; gap: 8px; margin: 0; padding: 8px 16px; border-bottom: 1px solid var(--border);
+  background: var(--canvas-inset); font-size: 14px; line-height: 32px;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content > h2::before {
+  content: ""; width: 16px; height: 16px; background-color: var(--muted); mask: var(--i-file) center / 16px no-repeat;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content .error { margin: 16px; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout {
+  width: 100%; margin: 8px 0; border: 0; border-radius: 0; border-collapse: collapse; counter-reset: ligne;
+  font: 12px/20px var(--font-mono);
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout tr { counter-increment: ligne; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout :is(th, td) { height: 30px; padding: 0; border: 0; background: none; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout th { width: 1%; padding-right: 0; color: #116329; font: 12px/20px var(--font-mono); white-space: nowrap; }
+/* numéro de ligne, puis la clé et ses deux-points */
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout th::before {
+  content: counter(ligne); display: inline-block; width: 40px; margin-right: 16px; padding-right: 10px; box-sizing: border-box;
+  color: var(--muted); text-align: right;
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout th::after { content: ":"; color: var(--text); }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout td { padding: 0 16px 0 8px; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout tr:focus-within > :is(th, td) { background: var(--attention-subtle); }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout tr:focus-within th::before { color: var(--text); font-weight: 600; }
+/* valeurs : champs sans cadre, en bleu nuit ; la ligne surlignée signale le focus (même :is() que la règle générale) */
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), select) {
+  width: 100%; min-height: 28px; padding: 0 4px; border: 0; border-radius: 0; background-color: transparent; box-shadow: none;
+  color: var(--jush-str); font: 12px/20px var(--font-mono);
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout select:not([multiple]) { width: auto; padding-right: 28px; background: var(--caret-bg) right 4px center / 16px no-repeat; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout :is(input, select):focus-visible { outline: none; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) table.layout ::placeholder { color: var(--muted); }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content form > p {
+  display: flex; align-items: center; gap: 16px; margin: 0; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--canvas-inset);
+}
+:root[data-theme="github"]:has(input[name="auth[password]"]) #content form > p label { color: var(--text); cursor: pointer; }
+/* en-tête d'une ligne : logo (fond), nom du logiciel et version ; langue sous la boîte */
+:root[data-theme="github"]:has(input[name="auth[password]"]) #foot { grid-row: 2; position: static; display: block; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menu { position: static; width: auto; min-width: 0; margin: 0; padding: 0; background: none; border: 0; box-shadow: none; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menu h1 { position: absolute; top: 16px; left: 56px; margin: 0; padding: 0; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menu #lang { margin: 24px 0 0; padding: 0; border: 0; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menu #lang label { justify-content: center; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menu #lang select { flex: none; }
+:root[data-theme="github"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : en-tête d'une ligne (bouton du menu, logo, fil d'Ariane), menu en volet ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="github"] { --top: 65px; --side-line: 0 0; --bg-pos: 56px 16px, 0 0, 0 calc(var(--top) - 1px), 0 0; }
+  :root[data-theme="github"] #content { margin: var(--top) 0 0; margin-inline-start: 0 !important; padding: 16px; }
+  :root[data-theme="github"] td.check:has(a.edit) { position: relative; }   /* Adminer n'y colle plus la case : le crayon s'y repère */
+  :root[data-theme="github"] #breadcrumb { top: 16px; left: 100px !important; right: 16px; }
+  :root[data-theme="github"].js #menuopen { top: 16px; left: 16px; }
+  :root[data-theme="github"] #menuopen button.icon {
+    width: 32px; height: 32px; border: 1px solid var(--btn-border); border-radius: 6px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2359636e' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M2.75 4h10.5M2.75 8h10.5M2.75 12h10.5'/%3E%3C/svg%3E") center / 16px no-repeat var(--btn);
+  }
+  :root[data-theme="github"] #menuopen button.icon:hover { background-color: var(--btn-hover); }
+  /* volet blanc sous l'en-tête (le bouton du menu reste à portée pour le refermer) */
+  :root[data-theme="github"].js #foot:not(.foot) {
+    top: var(--top); z-index: 5; width: min(320px, calc(100% - 40px)); padding-bottom: 8px;
+    background: #fff; border: 1px solid var(--border); border-left: 0; border-radius: 0 12px 12px 0; box-shadow: var(--overlay);
+  }
+  :root[data-theme="github"] #menu { position: static; min-width: 0; width: auto; margin: 0; background: none; border: 0; box-shadow: none; }
+  /* actions du menu : liste verticale du volet, l'élément courant marqué du trait bleu */
+  :root[data-theme="github"] #menu p.links { display: flex; flex-direction: column; gap: 2px; margin: 0 0 12px; padding: 0 0 12px; border-bottom: 1px solid var(--border); }
+  :root[data-theme="github"] #menu p.links a.active { position: relative; background: rgb(208 215 222 / .48); }
+  :root[data-theme="github"] #menu p.links a.active::after {
+    content: ""; position: absolute; left: -8px; top: 6px; bottom: 6px; width: 4px; border-radius: 6px; background: var(--accent);
+  }
+  :root[data-theme="github"].js #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border);
+    background: none; box-shadow: none;
+  }
+  :root[data-theme="github"]:has(input[name="auth[password]"]) { --bg-pos: 16px 16px, 0 0, 0 calc(var(--top) - 1px), 0 0; }   /* pas de bouton du menu */
+  :root[data-theme="github"]:has(input[name="auth[password]"]) body { padding: 85px 8px 24px; }
+  :root[data-theme="github"]:has(input[name="auth[password]"]) #foot { position: static; }
+  :root[data-theme="github"]:has(input[name="auth[password]"]) #menu h1 { left: 56px; }
+}
+@media (max-width: 600px) {
+  :root[data-theme="github"] #kawaii-switcher { top: 16px; }
+}

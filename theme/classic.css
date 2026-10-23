@@ -1,0 +1,386 @@
+/* ===== Thème Adminer classic (2 variantes) =====
+   Actif quand <html data-theme="classic">. Variante : data-variant = clair (défaut) | nuit.
+   L'allure d'origine d'Adminer, reprise au propre : clair d'après default.css, nuit d'après dark.css (le marine d'Adminer
+   en mode sombre). On garde ce qui le fait reconnaître au premier coup d'œil :
+   - Verdana, des titres fins, des liens bleus qui virent au rouge et se soulignent au survol ;
+   - le bandeau gris du titre (« Adminer » en italique gris, logo, version), prolongé ici en une barre continue sous le
+     fil d'Ariane ; le bandeau lavande des titres de page, fermé d'un filet sombre ;
+   - les tableaux à grille fine, en-tête lavande aux libellés centrés, lignes zébrées, cases à cocher hors de la grille,
+     ligne cochée en lavande, petit menu de colonne à coins arrondis ;
+   - les cadres à légende, les liens d'action en texte, les boutons-icônes carrés (marine, rouges au survol).
+   Ce qui change : des marges régulières, une seule barre en haut, des champs et des boutons nets (léger dégradé, bouton
+   principal avec l'ombre décalée d'Adminer), un filet entre le menu et la page, et la connexion en boîte de dialogue. */
+
+/* ---------- Variables : clair (default.css) ---------- */
+:root[data-theme="classic"] {
+  --page: #ffffff; --encre: #16161d; --muet: #5c5c68;
+  --bandeau: #eeeeee; --bandeau-encre: #5f5f6b;           /* barre du haut et titre « Adminer » (#777 d'origine, trop pâle) */
+  --titre: #ddddff; --titre-encre: #16161d; --titre-filet: #16161d;   /* bandeau des h2 */
+  --entete: #ddddff; --entete-encre: #16161d;             /* en-têtes de tableaux */
+  --cote: #eeeeee;                                         /* th du corps des tableaux */
+  --zebre: #f5f5f7; --survol: #eeeeee; --coche: #ddddff; --coche-encre: #16161d;
+  --grille: #9999a6; --filet: #cccccc;
+  --lien: #2340c8; --lien-vu: #1a1a80; --lien-survol: #d0101a; --actif: #16161d;
+  --champ: #ffffff; --champ-trait: #8f8f9d; --halo: #ddddff;
+  --bouton-haut: #ffffff; --bouton-bas: #e8e8f0; --bouton-survol: #dcdcf6; --bouton-trait: #8e8ea3;
+  --principal-haut: #f4f4ff; --principal-bas: #d4d8fb;
+  --ok-encre: #1b6b1b; --ok-fond: #eeffee; --ok-trait: #9fd09f;
+  --err-encre: #b3141a; --err-fond: #fff0f0; --err-trait: #eba9ab;
+  --code: #eeeeee; --version: #5f5f6b; --marque: #ffff99; --marque-encre: inherit;
+  --icone: #1a1a80; --icone-survol: #d0101a; --icone-filtre: none;
+  --ombre: 0 1px 2px rgb(0 0 0 / .06), 0 12px 32px -8px rgb(20 20 60 / .2);
+  --caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%231a1a80'/%3E%3C/svg%3E");
+
+  /* variables de base.css */
+  --bg: var(--page); --surface: var(--page); --surface-2: var(--bandeau); --text: var(--encre); --muted: var(--muet); --border: var(--grille);
+  --accent: var(--lien); --on-accent: #ffffff; --accent-text: var(--lien);
+  --ok: var(--ok-encre); --err: var(--err-encre); --on-err: #ffffff;
+  --jush-str: #007000; --jush-num: #006b6b; --jush-id: #7f007f;
+  --shadow: none;
+  color-scheme: light;
+
+  --radius: 5px; --radius-sm: 3px; --pill: 3px;
+  --fs: 13px; --pad-y: 4px; --pad-x: 8px;
+  --font: Verdana, "DejaVu Sans", Geneva, Tahoma, sans-serif;
+  --font-heading: var(--font);
+  --font-mono: ui-monospace, Consolas, "DejaVu Sans Mono", "Liberation Mono", Menlo, monospace;
+  --h2-border: 1px solid var(--titre-filet);
+  --e-title: ""; --e-after: ""; --e-table: ""; --e-logo: ""; --e-ok: ""; --e-err: "";
+  --banner: none;
+
+  --th-bg: var(--cote); --th-text: var(--entete-encre);
+  --zebra: var(--zebre); --row-hover: var(--survol);
+  --dim: var(--bandeau); --lit: var(--titre);
+
+  --bar: 44px;                                   /* barre du haut */
+  --side: 264px;                                 /* menu */
+  /* filet vertical entre le menu et la page (fond fixe : il court sur toute la hauteur de la fenêtre) */
+  --bg-pattern: linear-gradient(var(--filet), var(--filet));
+  --bg-size: 1px 100%; --bg-pos: var(--side) 0;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Variables : nuit (dark.css) ---------- */
+:root[data-theme="classic"][data-variant="nuit"] {
+  --page: #002240; --encre: #a9c0d3; --muet: #8ea6ba;
+  --bandeau: #0f3457; --bandeau-encre: #ffddbf;
+  --titre: #3c678d; --titre-encre: #ffffff; --titre-filet: #a3bdd3;
+  --entete: #011d35; --entete-encre: #c4cb7a;
+  --cote: #11385a;
+  --zebre: #062b4a; --survol: #133553; --coche: #1a5178; --coche-encre: #b8e3e4;
+  --grille: #3a76ab; --filet: #326b9c;
+  --lien: #8db4d9; --lien-vu: #a9a6e0; --lien-survol: #d4e7f7; --actif: #5fc2c3;
+  --champ: #011d35; --champ-trait: #3a76ab; --halo: #1a5178;
+  --bouton-haut: #174a73; --bouton-bas: #0f3457; --bouton-survol: #1d5a89; --bouton-trait: #3a76ab;
+  --principal-haut: #3c678d; --principal-bas: #2b5478;
+  --ok-encre: #7fd97f; --ok-fond: #123512; --ok-trait: #7fbd7f;
+  --err-encre: #ff9a9a; --err-fond: #3b1d1d; --err-trait: #e76f6f;
+  --code: #11385a; --version: #a2b0bd; --marque: #6b5300; --marque-encre: #ffffff;
+  /* pictogrammes d'Adminer inversés, comme dans dark.css */
+  --icone: #062642; --icone-survol: #d1394e; --icone-filtre: invert(1);
+  --ombre: 0 1px 2px rgb(0 0 0 / .3), 0 16px 40px -8px rgb(0 0 0 / .55);
+  --caret: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%238db4d9'/%3E%3C/svg%3E");
+  --on-accent: #002240;
+  --jush-str: #e6e; --jush-num: #2fd12f; --jush-id: #f88;
+  color-scheme: dark;
+}
+
+:root[data-theme="classic"] * { scrollbar-color: var(--grille) transparent; }
+:root[data-theme="classic"] :where(a, button, summary, [contenteditable]):focus-visible,
+:root[data-theme="classic"] :where(input[type=submit], input[type=button], input[type=checkbox], input[type=radio]):focus-visible {
+  outline: 2px solid var(--lien); outline-offset: 2px;
+}
+/* champs : le trait bleu et le halo lavande font office d'anneau */
+:root[data-theme="classic"] :where(input:not([type=submit]):not([type=button]):not([type=checkbox]):not([type=radio]), select, textarea):focus-visible { outline: none; }
+
+/* ---------- Page : Verdana, titres fins, liens bleus qui rougissent ---------- */
+:root[data-theme="classic"] body { font: var(--fs)/1.4 var(--font); }
+:root[data-theme="classic"] a:link { color: var(--lien); font-weight: 400; }
+:root[data-theme="classic"] a:visited { color: var(--lien-vu); font-weight: 400; }
+:root[data-theme="classic"] a:is(:link, :visited):focus { color: var(--lien); }
+:root[data-theme="classic"] a:is(:link, :visited):hover { color: var(--lien-survol); text-decoration: underline; }
+:root[data-theme="classic"] button.link { color: var(--lien); }
+:root[data-theme="classic"] button.link:hover { color: var(--lien-survol); }
+:root[data-theme="classic"] :is(h1, h2, h3) { font-weight: 400; }
+:root[data-theme="classic"] h3 { margin: 24px 0 4px; font-size: 16px; }
+:root[data-theme="classic"] code { padding: 1px 4px; border-radius: 3px; background: var(--code); color: var(--encre); font-size: 12px; }
+:root[data-theme="classic"] pre.jush { padding: 8px 10px; background: var(--page); }
+:root[data-theme="classic"] hr { border: 0; border-top: 1px solid var(--filet); }
+:root[data-theme="classic"] p { margin: 12px 0 0; }   /* l'espacement d'Adminer (.8em), resserré par base.css */
+:root[data-theme="classic"] mark { background: var(--marque); color: var(--marque-encre); }
+:root[data-theme="classic"] .time { color: var(--muet); font-size: 11px; }
+:root[data-theme="classic"] .char { color: var(--jush-str); }
+:root[data-theme="classic"] .date { color: var(--jush-id); }
+:root[data-theme="classic"] .enum { color: var(--jush-num); }
+:root[data-theme="classic"] .binary { color: var(--err-encre); }
+:root[data-theme="classic"] :target { background: var(--titre); color: var(--titre-encre); }
+
+/* ---------- Barre du haut (écran large) : titre gris à gauche, fil d'Ariane, utilisateur à droite ---------- */
+@media not all and (max-width: 800px) {
+  :root[data-theme="classic"] #menu { top: 0; width: var(--side); }
+  :root[data-theme="classic"] #content { margin: var(--bar) 0 0 var(--side); padding: 0 32px 32px; }
+  :root[data-theme="classic"] #content > h2 { margin: 0 -32px 20px; padding: 13px 32px 12px; }
+  :root[data-theme="classic"] #breadcrumb { left: var(--side); right: 0; padding: 0 380px 0 32px; border-left: 1px solid var(--filet); }
+  :root[data-theme="classic"] .logout {
+    top: 0; right: 0; height: var(--bar); margin: 0; padding: 0 16px;
+    display: flex; align-items: center; gap: 10px; background: none; box-shadow: none; z-index: 3;
+  }
+}
+:root[data-theme="classic"] #breadcrumb {
+  top: 0; height: var(--bar); box-sizing: border-box; margin: 0; background: var(--bandeau); border-bottom: 1px solid var(--grille);
+  border-radius: 0; color: var(--encre); font-size: 13px; line-height: calc(var(--bar) - 1px); overflow: hidden; text-overflow: ellipsis;
+}
+:root[data-theme="classic"] .logout span[title=Username] { color: var(--muet); }
+:root[data-theme="classic"] .logout #logout { order: 2; }
+
+/* sélecteur de thème : une liste comme les autres, sans cadre autour */
+:root[data-theme="classic"] #kawaii-switcher { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 12px; }
+:root[data-theme="classic"] #kawaii-switcher.in-bar { top: auto; margin: 0; }
+:root[data-theme="classic"] #kawaii-switcher select.theme { font-weight: 400; }
+:root[data-theme="classic"] #kawaii-switcher button.sw { min-height: 0; }   /* pastilles des variantes : pas la hauteur des boutons */
+:root[data-theme="classic"] #kawaii-switcher .opts { border: 1px solid var(--grille); border-radius: 5px; background: var(--page); box-shadow: 2px 2px 8px rgb(0 0 0 / .18); }
+
+/* ---------- Titre de page : le bandeau lavande et son filet ---------- */
+:root[data-theme="classic"] h2 {
+  background: var(--titre); color: var(--titre-encre); border-bottom: 1px solid var(--titre-filet);
+  font: 400 19px/1.35 var(--font-heading);
+}
+:root[data-theme="classic"] h2 .doc { color: var(--titre-encre); }
+
+/* ---------- Menu : bandeau du titre, sections séparées de filets ---------- */
+:root[data-theme="classic"] #menu {
+  display: flex; flex-direction: column; box-sizing: border-box; margin: 0; padding: 0;
+  background: none; border: 0; border-radius: 0; box-shadow: none;
+}
+:root[data-theme="classic"] #menu > * { order: 4; }
+:root[data-theme="classic"] #menu > h1 { order: 0; }
+:root[data-theme="classic"] #menu > form:has(#dbs) { order: 1; }
+:root[data-theme="classic"] #menu > p.links { order: 2; }
+:root[data-theme="classic"] #menu > form:has(#lang) { order: 9; }
+:root[data-theme="classic"] #menu h1 {
+  display: flex; align-items: center; gap: 8px; height: var(--bar); box-sizing: border-box; margin: 0; padding: 0 16px;
+  background: var(--bandeau); border-bottom: 1px solid var(--grille); font: 400 19px/1 var(--font-heading); white-space: nowrap;
+}
+:root[data-theme="classic"] #h1 { display: inline-flex; align-items: center; gap: 6px; color: var(--bandeau-encre); font-style: italic; }
+:root[data-theme="classic"] #menu #h1:hover { color: var(--lien-survol); text-decoration: none; }
+:root[data-theme="classic"] #logo { width: 24px; height: 24px; margin: 0; }
+:root[data-theme="classic"] #menu .version { color: var(--version); font: 400 11px/1 var(--font); }
+:root[data-theme="classic"] #menu a:hover { background: none; }
+:root[data-theme="classic"] #menu :is(p, #logins, #tables) { margin: 0; padding: 12px 16px; border: 0; border-bottom: 1px solid var(--filet); }
+:root[data-theme="classic"] #menu #dbs label { color: var(--muet); }
+:root[data-theme="classic"] #menu #dbs select { max-width: 100%; }
+:root[data-theme="classic"] #menu #lang { position: static; margin: 0; padding: 12px 16px; color: var(--muet); }
+
+/* actions : liens en texte, la page courante en gras */
+:root[data-theme="classic"] #menu p.links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+:root[data-theme="classic"] #menu p.links a {
+  display: inline; padding: 0; border: 0; border-radius: 0; background: none; color: var(--lien);
+  font-size: inherit; font-weight: 400; text-align: start;
+}
+:root[data-theme="classic"] #menu p.links a:hover { background: none; color: var(--lien-survol); text-decoration: underline; }
+:root[data-theme="classic"] #menu p.links a.active { color: var(--actif); font-weight: 700; }
+
+/* tables : « select » puis le nom, comme à l'origine ; la courante sur fond lavande */
+:root[data-theme="classic"] #tables::before { content: none; }
+:root[data-theme="classic"] #tables li { align-items: baseline; gap: 8px; margin: 0 -6px; padding: 2px 6px; border-radius: 3px; }
+:root[data-theme="classic"] #tables li:hover { background: var(--bandeau); }
+:root[data-theme="classic"] #tables li:has(a.active) { background: var(--coche); box-shadow: none; }
+:root[data-theme="classic"] #tables a.select {
+  order: 0; width: auto; height: auto; margin: 0; padding: 0; border-radius: 0; background: none; opacity: 1;
+  font-size: 11px; line-height: inherit; text-align: start;
+}
+:root[data-theme="classic"] #tables a.select::before { content: none; }
+:root[data-theme="classic"] #tables :is(a.structure, a.view) { padding: 0; background: none; color: var(--lien); font-weight: 400; }
+:root[data-theme="classic"] #tables a.structure::before { content: none; }
+:root[data-theme="classic"] #tables li a.active { color: var(--actif); font-weight: 700; }
+:root[data-theme="classic"] #tables li:has(a.active) a { color: var(--coche-encre); }
+:root[data-theme="classic"] #menu #tables :is(a.structure, a.view, a.select):hover { background: none; color: var(--lien-survol); text-decoration: underline; }
+
+/* ---------- Liens d'action de la page : du texte, la page courante en gras ---------- */
+:root[data-theme="classic"] #content .links { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 4px; color: var(--muet); }
+:root[data-theme="classic"] #content .links a {
+  display: inline; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; color: var(--lien); font-weight: 400;
+}
+:root[data-theme="classic"] #content .links a:hover { background: none; color: var(--lien-survol); text-decoration: underline; }
+:root[data-theme="classic"] #content .links a.active { color: var(--actif); font-weight: 700; }
+
+/* ---------- Tableaux : grille fine, en-tête lavande centré, cases hors de la grille ---------- */
+:root[data-theme="classic"] table {
+  margin: 16px 0 0; margin-inline-end: 20px; border: 0; border-radius: 0; border-spacing: 0;
+  background: var(--page); box-shadow: none; overflow: visible; font-size: 12px;
+}
+/* filets d'Adminer : bas et fin de chaque cellule, début de la première colonne, haut de la première ligne */
+:root[data-theme="classic"] :is(th, td) { padding: 4px 8px; border: 0 solid var(--grille); border-block-end-width: 1px; border-inline-end-width: 1px; line-height: 1.35; }
+:root[data-theme="classic"] :is(th, td):not(.hover):first-child { border-inline-start-width: 1px; }
+:root[data-theme="classic"] table > :first-child > :first-child > :is(th, td):not(.hover) { border-top-width: 1px; }
+:root[data-theme="classic"] :is(tbody, tfoot) tr:last-child :is(th, td):not(.hover) { border-bottom-width: 1px; }
+:root[data-theme="classic"] td.hover { border-top-width: 0; border-bottom-width: 0; }
+:root[data-theme="classic"] thead :is(th, td) { background: var(--entete); color: var(--entete-encre); font-weight: 700; }
+:root[data-theme="classic"] thead th { padding-inline: 10px; text-align: center; }
+:root[data-theme="classic"] thead th .doc { font-weight: 400; }
+:root[data-theme="classic"] :is(tbody, tfoot) :is(td, th) { background: var(--page); color: var(--encre); }
+:root[data-theme="classic"] :is(tbody, tfoot) tr:nth-child(n) th { background: var(--cote); font-weight: 700; }
+:root[data-theme="classic"] tbody tr:nth-child(n):hover :is(td, th) { background: var(--survol); }
+:root[data-theme="classic"].js .checkable tr.checked :is(td, th) { background: var(--coche); color: var(--coche-encre); }
+/* case à cocher et lien « edit » : sur le fond de la page, hors de la grille (règle placée en dernier : elle l'emporte) */
+:root[data-theme="classic"].js .checkable tr:nth-child(n) td.hover.hover,
+:root[data-theme="classic"] tr:nth-child(n) td.hover.hover { background: var(--page); }
+:root[data-theme="classic"] td.check a.edit { margin-inline-start: 4px; font-size: 11px; }
+/* menu de colonne (tri, recherche) : le demi-cadre lavande d'Adminer, aux coins droits arrondis */
+:root[data-theme="classic"] thead th .column {
+  margin: -5px 0 0; padding: 4px 4px 4px 0; border: 1px solid var(--grille); border-inline-start-width: 0; border-radius: 0 8px 8px 0;
+  background: var(--entete); box-shadow: none;
+}
+:root[data-theme="classic"] thead th .column a.text:is(:link, :visited) { padding: 0 4px; border-radius: 0; color: var(--lien); font-weight: 400; }
+:root[data-theme="classic"] thead th .column a.text:is(:link, :visited):is(:hover, :focus-visible) { background: none; color: var(--lien-survol); text-decoration: underline; }
+:root[data-theme="classic"].js .checkable .checked a:link { color: var(--lien); }
+:root[data-theme="classic"][data-variant="nuit"].js .checkable .checked a:link { color: var(--coche-encre); }
+
+/* ---------- Cadres à légende ; repliés, une petite boîte à triangle ---------- */
+:root[data-theme="classic"] fieldset { margin: 12px 8px 0 0; padding: 6px 12px 10px; border: 1px solid var(--grille); border-radius: 5px; background: none; box-shadow: none; }
+:root[data-theme="classic"] legend { padding: 0 4px; background: none; border-radius: 0; color: var(--encre); font-weight: 400; }
+:root[data-theme="classic"] fieldset > legend:not(:has(a)) { padding: 0 4px; }
+:root[data-theme="classic"] legend a:is(:link, :visited) { color: var(--lien); }
+:root[data-theme="classic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend { padding: 0 4px; background: none; }
+:root[data-theme="classic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--lien); }
+:root[data-theme="classic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a:is(:link, :visited):hover { color: var(--lien-survol); }
+:root[data-theme="classic"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "▾"; margin-right: 5px; font-size: 11px; }
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) {
+  margin: 12px 8px 0 0; padding: 0; border: 1px solid var(--grille); border-radius: 5px; background: var(--page);
+}
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend {
+  float: left; margin: 0; padding: 0; border: 0; border-radius: 4px; background: none; box-shadow: none; transition: none;
+}
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a { padding: 3px 10px 3px 8px; color: var(--lien); }
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend a::before { content: "▸"; margin-right: 5px; color: inherit; font-size: 11px; font-weight: 400; }
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover { background: var(--bandeau); transform: none; }
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a,
+:root[data-theme="classic"] fieldset:has(> div.hidden):not(:has(> div:not(.hidden))) > legend:hover a::before { color: var(--lien-survol); }
+:root[data-theme="classic"] .footer fieldset { margin-top: 0; }
+
+/* ---------- Champs : trait fin, halo lavande au focus ---------- */
+:root[data-theme="classic"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]):not([type=file]):not([type=color]), textarea),
+:root[data-theme="classic"] select {   /* hors du :is(), sinon sa spécificité écraserait la marge du chevron ci-dessous */
+  min-height: 26px; padding: 3px 6px; border: 1px solid var(--champ-trait); border-radius: 3px; background-color: var(--champ);
+  color: var(--encre); font: 13px/1.3 var(--font); box-shadow: inset 0 1px 2px rgb(0 0 0 / .07);
+}
+:root[data-theme="classic"] textarea { font-family: var(--font-mono); }
+:root[data-theme="classic"] :is(input:not([type=checkbox]):not([type=radio]):not([type=submit]):not([type=button]), textarea, select):focus {
+  border-color: var(--lien); box-shadow: 0 0 0 3px var(--halo);
+}
+:root[data-theme="classic"] :is(input, select, textarea):disabled { opacity: .6; }
+:root[data-theme="classic"] select:not([multiple]) { appearance: none; padding-right: 24px; background: var(--caret) right 8px center / 9px 6px no-repeat, var(--champ); }
+:root[data-theme="classic"] select.jush-autocomplete { padding: 2px; background: var(--champ); box-shadow: 2px 2px 8px rgb(0 0 0 / .2); }
+/* champs obligatoires ou trop longs : l'ombre rouge d'Adminer */
+:root[data-theme="classic"] :is(input.required, input.maxlength, textarea.maxlength) { box-shadow: 1px 1px 1px var(--err-encre); }
+:root[data-theme="classic"] input:is([type=checkbox], [type=radio]) { accent-color: var(--lien); margin: 0 4px 0 0; }
+:root[data-theme="classic"] label:has(> input:is([type=checkbox], [type=radio])) + label { margin-inline-start: 10px; }
+
+/* ---------- Boutons : léger dégradé ; le principal en lavande, avec l'ombre décalée d'Adminer ---------- */
+:root[data-theme="classic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {
+  min-height: 26px; padding: 3px 12px; border: 1px solid var(--bouton-trait); border-radius: 3px;
+  background: linear-gradient(var(--bouton-haut), var(--bouton-bas)); color: var(--encre);
+  font: 13px/1.2 var(--font); box-shadow: 0 1px 0 rgb(0 0 0 / .05); transition: none;
+}
+:root[data-theme="classic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):hover {
+  border-color: var(--lien); background: linear-gradient(var(--bouton-haut), var(--bouton-survol)); transform: none; filter: none;
+}
+:root[data-theme="classic"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link)):active {
+  background: var(--bouton-bas); box-shadow: inset 0 1px 2px rgb(0 0 0 / .2); transform: none;
+}
+:root[data-theme="classic"] input.default[type=submit] {
+  border-color: var(--lien); background: linear-gradient(var(--principal-haut), var(--principal-bas)); box-shadow: 1px 1px 1px #777;
+}
+:root[data-theme="classic"][data-variant="nuit"] input.default[type=submit] { color: #ffffff; box-shadow: 1px 1px 1px #000; }
+:root[data-theme="classic"] input.default[type=submit]:hover { background: linear-gradient(var(--principal-haut), var(--bouton-survol)); }
+/* suppressions : texte rouge, fond rouge pâle au survol */
+:root[data-theme="classic"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]) { color: var(--err-encre); }
+:root[data-theme="classic"] input[type=submit]:is([name*=delete], [name=drop], [name=truncate]):hover { border-color: var(--err-encre); background: var(--err-fond); }
+:root[data-theme="classic"] :is(input[type=submit], input[type=button]):disabled,
+:root[data-theme="classic"] :is(input[type=submit], input[type=button]):disabled:hover {
+  border-color: var(--bouton-trait); background: var(--bouton-bas); color: var(--muet); box-shadow: none; opacity: .75; cursor: default;
+}
+/* boutons-icônes d'Adminer (ajouter, déplacer, supprimer) : carrés marine, rouges au survol */
+:root[data-theme="classic"] button.icon { background-color: var(--icone); border-radius: 0; filter: var(--icone-filtre); }
+:root[data-theme="classic"] button.icon:hover { background-color: var(--icone-survol); }
+
+/* ---------- Messages : vert ou rouge sur fond pâle, filet de la même couleur ---------- */
+:root[data-theme="classic"] :is(.message, .error) { margin: 16px 0 0; margin-inline-end: 20px; padding: 8px 12px; border: 1px solid; border-radius: 5px; box-shadow: none; }
+:root[data-theme="classic"] .message { color: var(--ok-encre); background: var(--ok-fond); border-color: var(--ok-trait); }
+:root[data-theme="classic"] .error { color: var(--err-encre); background: var(--err-fond); border-color: var(--err-trait); }
+:root[data-theme="classic"] .error b { background: var(--page); color: var(--encre); }
+:root[data-theme="classic"] #menu .message { margin: 0; border: 0; border-bottom: 1px solid var(--filet); border-radius: 0; }
+
+/* coloration SQL : les couleurs d'Adminer (assombries en clair, celles de dark.css en nuit) */
+:root[data-theme="classic"] .jush {
+  --text-color: var(--encre); --bg-color: var(--page); --border-color: var(--champ-trait);
+  --keyword-color: #1a1a80; --identifier-color: #c4161c; --string-color: #007000; --string-plain-color: #007000;
+  --value-color: #7f007f; --number-color: #006b6b; --attribute-color: #006b6b;
+}
+:root[data-theme="classic"][data-variant="nuit"] .jush {
+  --keyword-color: #acf; --identifier-color: #f88; --string-color: #e6e; --string-plain-color: #e6e;
+  --value-color: #e6e; --number-color: #2fd12f; --attribute-color: #3cc;
+}
+:root[data-theme="classic"] [contenteditable].jush { border: 1px solid var(--champ-trait); border-radius: 3px; background: var(--champ); }
+:root[data-theme="classic"] [contenteditable].jush:focus { border-color: var(--lien); box-shadow: 0 0 0 3px var(--halo); outline: none; }
+:root[data-theme="classic"] #help { border: 1px solid var(--grille); background: var(--bandeau); color: var(--encre); box-shadow: 2px 2px 8px rgb(0 0 0 / .15); }
+
+/* ---------- Schéma : tables encadrées, nom sur fond lavande ----------
+   Adminer place les flèches des clés en em, sur un interligne de 1,25 : on le garde, sans rien ajouter en hauteur. */
+:root[data-theme="classic"] #schema { margin-bottom: 32px; }
+:root[data-theme="classic"] #schema .table { border-color: var(--grille); background: var(--page); box-shadow: 2px 2px 0 rgb(0 0 0 / .06); line-height: 1.25; }
+:root[data-theme="classic"] #schema .table > a:first-child { display: block; margin: 0 -2px; padding: 0 2px; background: var(--titre); color: var(--titre-encre); font-weight: 700; }
+:root[data-theme="classic"] #schema .table > a:first-child + br { display: none; }   /* le titre est déjà un bloc : pas de ligne vide */
+
+/* ---------- Connexion : une boîte de dialogue (bandeau gris du titre, bandeau lavande « Login ») ---------- */
+:root[data-theme="classic"]:has(input[name="auth[password]"]) { --bg-pattern: none; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) body {
+  display: grid; grid-template-columns: min(560px, 100%); justify-content: center; align-content: start;
+  min-height: 100vh; box-sizing: border-box; margin: 0; padding: 14vh 16px 32px;
+}
+/* le cadre et l'ombre, derrière le titre et le formulaire */
+:root[data-theme="classic"]:has(input[name="auth[password]"]) body::before {
+  content: ""; grid-area: 1 / 1 / 3 / 2; border: 1px solid var(--grille); border-radius: 6px; background: var(--page); box-shadow: var(--ombre);
+}
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #foot { grid-area: 1 / 1; position: static; display: block; margin: 1px 1px 0; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #menu {
+  position: static; flex-direction: row; align-items: center; width: auto; min-width: 0;
+  background: var(--bandeau); border-bottom: 1px solid var(--grille); border-radius: 5px 5px 0 0;
+}
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #menu h1 { flex: 1; border: 0; background: none; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #menu #lang { padding: 0 16px; font-size: 11px; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #menu #lang select { font-size: 12px; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #content { grid-area: 2 / 1; margin: 0 1px 1px !important; padding: 0 24px 24px; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #content > h2 { margin: 0 -24px 20px; padding: 12px 24px 11px; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout { width: 100%; margin: 0; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout th { width: 1%; padding: 6px 14px 6px 10px; font-weight: 400; white-space: nowrap; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout td { padding: 5px 8px; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout :is(input, select) { width: 100%; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout tr:hover :is(td, th) { background: var(--page); }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) table.layout tr:hover th { background: var(--cote); }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #content form > p { display: flex; align-items: center; gap: 14px; margin: 18px 0 0; }
+:root[data-theme="classic"]:has(input[name="auth[password]"]) #menuopen { display: none; }
+
+/* ---------- Mobile : la barre ne garde que le fil d'Ariane et le bouton du menu ; menu en volet ---------- */
+@media (max-width: 800px) {
+  :root[data-theme="classic"] { --bg-pattern: none; }
+  :root[data-theme="classic"] #content { margin: var(--bar) 0 0; margin-inline-start: 0 !important; padding: 0 12px 24px; }
+  :root[data-theme="classic"] #content > h2 { margin: 0 -12px 16px; padding: 12px; }
+  :root[data-theme="classic"] #breadcrumb { left: 0 !important; right: 0; padding: 0 12px 0 52px; }
+  :root[data-theme="classic"].js #menuopen { top: 13px; left: 14px; z-index: 4; }   /* au-dessus du fil d'Ariane, pleine largeur */
+  /* volet sous la barre (le bouton du menu reste à portée pour le refermer) */
+  :root[data-theme="classic"].js #foot:not(.foot) {
+    top: var(--bar); z-index: 5; width: min(300px, calc(100% - 40px));
+    background: var(--page); border: 1px solid var(--grille); border-width: 0 1px 1px 0; border-radius: 0 0 6px 0; box-shadow: 4px 8px 24px rgb(0 0 0 / .2);
+  }
+  :root[data-theme="classic"] #menu { position: static; min-width: 0; width: auto; margin: 0; background: none; border: 0; box-shadow: none; }
+  :root[data-theme="classic"] #kawaii-switcher.in-bar .opts { border: 0; background: none; box-shadow: none; }   /* variantes en seconde ligne du cadre */
+  :root[data-theme="classic"].js #foot .logout {
+    display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 8px 12px;
+    background: var(--bandeau); border-bottom: 1px solid var(--filet); box-shadow: none;
+  }
+  :root[data-theme="classic"]:has(input[name="auth[password]"]) body { padding: 64px 8px 24px; }
+  :root[data-theme="classic"]:has(input[name="auth[password]"]) #foot { position: static; }
+  :root[data-theme="classic"]:has(input[name="auth[password]"]) #content { padding: 0 12px 16px; }
+  :root[data-theme="classic"]:has(input[name="auth[password]"]) #content > h2 { margin: 0 -12px 16px; padding: 12px; }
+}
