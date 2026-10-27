@@ -225,6 +225,10 @@
 
 /* ---------- Tableaux : plateau dans la fenêtre, filets fins ---------- */
 :root[data-theme="verre"] table { --table-r: 16px; --table-bw: 0px; background: var(--platter); box-shadow: var(--platter-edge); }
+/* tableau plus large que la fenêtre : il défile dedans, barre sous le tableau, au lieu de l'élargir (voir base.css) */
+:root[data-theme="verre"] #content .scrollable { contain: inline-size; }
+:root[data-theme="verre"] #content .scrollable:not(.fits) { overflow: auto hidden; }
+:root[data-theme="verre"] #content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }   /* requête SQL affichée */
 :root[data-theme="verre"] :is(th, td) { border-bottom-color: var(--hair); }
 :root[data-theme="verre"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
 :root[data-theme="verre"] :is(tbody, tfoot) :is(td, th, td.hover) { background: transparent; }

@@ -358,6 +358,31 @@
       var rows = t.rows, last = rows[rows.length - 1];
       if (last && width(last) < width(rows[0])) last.classList.add('short-row');
     });
+    // Tableaux hors de .scrollable (variables du serveur, clés étrangères, privilèges…) : enveloppés comme Adminer le
+    // fait pour les données, ils peuvent défiler pareil. Pas ceux des cartes (fieldset), ni la page de connexion : des
+    // thèmes y ajustent la boîte à son contenu, que contain réduirait à rien.
+    if (!document.querySelector('input[name="auth[password]"]')) {
+      Array.prototype.forEach.call(document.querySelectorAll('#content table'), function (t) {
+        if (t.parentElement.closest('table, fieldset, .scrollable')) return;
+        var s = document.createElement('div');
+        s.className = 'scrollable';
+        t.parentNode.insertBefore(s, t);
+        s.appendChild(t);
+      });
+    }
+    // Tableau qui tient dans le contenu : marqué (fits). Un thème qui encadre le contenu fait défiler les autres dans le
+    // cadre, et laisse ceux-là tels quels : ils gardent leur en-tête collant (voir base.css, « tableau plus large que la
+    // page »). Relevé quand le contenu ou le tableau change de taille : fenêtre, thème, cellule éditée, lignes ajoutées.
+    var scrollables = document.querySelectorAll('#content .scrollable');
+    if (scrollables.length && window.ResizeObserver) {
+      var fits = new ResizeObserver(function () {
+        Array.prototype.forEach.call(scrollables, function (s) { s.classList.toggle('fits', s.scrollWidth <= s.clientWidth); });
+      });
+      Array.prototype.forEach.call(scrollables, function (s) {
+        fits.observe(s);
+        Array.prototype.forEach.call(s.children, function (c) { fits.observe(c); });
+      });
+    }
     // Panneau gauche (base.css le fixe à l'écran) : la liste des tables est raccourcie de ce qui dépasserait du bas de
     // la fenêtre, et défile seule ; la table ouverte y est recentrée. Le panneau ne bouge pas quand la page défile
     // (ni ce qu'il porte au-dessus de lui : choix de langue, onglets de GitHub, barre d'adresse de Netscape) ; sur

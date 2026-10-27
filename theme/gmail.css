@@ -253,6 +253,10 @@
 /* listes pleine largeur, d'un bord à l'autre du panneau, comme la boîte de réception */
 :root[data-theme="gmail"] #content .scrollable:has(> .checkable) { margin-inline: -16px; --content-end: 0px; }   /* déjà au bord : rien à mordre */
 :root[data-theme="gmail"] #content .scrollable > .checkable { width: 100%; }
+/* tableau plus large que le panneau : il défile dedans, barre sous le tableau, au lieu de l'élargir (voir base.css) */
+:root[data-theme="gmail"] #content .scrollable { contain: inline-size; }
+:root[data-theme="gmail"] #content .scrollable:not(.fits) { overflow: auto hidden; }
+:root[data-theme="gmail"] #content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }   /* requête SQL affichée */
 /* case à cocher en tête de ligne, crayon « edit » à sa droite (à la place de l'étoile) */
 :root[data-theme="gmail"] :is(td, th).check { width: 1%; padding-inline: 12px 8px; text-align: start; }
 :root[data-theme="gmail"] td.check:has(a.edit) { padding-inline-end: 36px; }

@@ -180,7 +180,11 @@ th a, thead td { color: var(--th-text); }
 #tables-views ~ form thead :is(th, td) { white-space: normal; vertical-align: bottom; }
 /* tableau plus large que la page : il peut mordre sur la marge droite du contenu (--content-end, qu'un thème qui change
    cette marge redonne), la barre horizontale n'apparaît donc qu'au moment où il touche le bord. Quand il tient, max-width
-   l'arrête au bord du contenu (la marge de 20px d'Adminer en moins). La page de connexion ne déborde jamais : exclue */
+   l'arrête au bord du contenu (la marge de 20px d'Adminer en moins). La page de connexion ne déborde jamais : exclue.
+   Un thème qui encadre le contenu (fenêtre, panneau) ne laisse pas le tableau élargir la page, le cadre sortirait de
+   l'écran : il le fait défiler dans le cadre, barre sous le tableau (contain: inline-size et overflow sur .scrollable,
+   dans lequel switcher.js range aussi les autres tableaux ; sauf .fits : le tableau qui tient, marqué par switcher.js,
+   garde ainsi son en-tête collant). Les requêtes SQL affichées y passent à la ligne, pour la même raison */
 :root:not(:has(input[name="auth[password]"])) #content table:not(table table) { margin-inline-end: calc(-1 * var(--content-end, 20px)); max-width: 100%; }
 /* la cellule de sélection (td.hover) perd son filet bas dans le CSS d'Adminer : on le remet */
 :root :is(thead, tbody) td.hover { border-bottom-width: 1px; }
