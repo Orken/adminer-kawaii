@@ -29,6 +29,8 @@
   --zebra: #eaf5fb;
   --row-hover: #fde9b4;
 }
+/* barres de défilement : l'accent, foncé vers le texte pour rester visible sur le bleu pâle (voir base.css) */
+:root[data-theme="oktoberfest"], :root[data-theme="oktoberfest"] * { scrollbar-color: color-mix(in srgb, var(--accent), var(--text) 35%) var(--surface-2); }
 
 /* ---------- Menu : bande de losanges, bandeau, filet bleu ---------- */
 :root[data-theme="oktoberfest"] #menu {

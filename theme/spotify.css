@@ -60,7 +60,7 @@
 :root[data-theme="spotify"][data-variant="rose"] { --hero: #c2185b; --hero-pale: #ff9ec2; }
 :root[data-theme="spotify"][data-variant="sarcelle"] { --hero: #1f7a62; --hero-pale: #9fe3cb; }
 
-:root[data-theme="spotify"] * { scrollbar-color: rgb(255 255 255 / .3) transparent; }
+:root[data-theme="spotify"], :root[data-theme="spotify"] * { scrollbar-color: color-mix(in srgb, rgb(255 255 255 / .3), var(--text) 10%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 :root[data-theme="spotify"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 /* ---------- Page : texte blanc, gris pour le secondaire, liens gris qui blanchissent ---------- */

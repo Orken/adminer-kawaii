@@ -48,7 +48,7 @@
   --row-hover: #f6f6f8;
   --lit: var(--gray-10);
 }
-:root[data-theme="gitlab"] * { scrollbar-color: var(--gray-200) transparent; }
+:root[data-theme="gitlab"], :root[data-theme="gitlab"] * { scrollbar-color: color-mix(in srgb, var(--gray-200), var(--text) 35%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 /* focus clavier : anneau bleu de GitLab */
 :root[data-theme="gitlab"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
 

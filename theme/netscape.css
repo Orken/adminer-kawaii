@@ -58,7 +58,27 @@
   --row-hover: #ffffcc;                     /* jaune pâle des bulles d'aide */
   --lit: #f4f4f4;
 }
-:root[data-theme="netscape"] * { scrollbar-color: var(--chrome) #e8e8e8; scrollbar-width: auto; }
+/* barres de défilement Windows 98 : boutons et poignée gris en relief, flèches noires, piste tramée gris et blanc.
+   Chrome n'applique ::-webkit-scrollbar qu'aux éléments sans scrollbar-color : on le leur retire (html compris, qui
+   porte la barre de la page) ; Firefox, qui n'a que scrollbar-color, garde une poignée gris foncé, visible sur la piste */
+:root[data-theme="netscape"], :root[data-theme="netscape"] * { scrollbar-color: #808080 #e8e8e8; scrollbar-width: auto; }
+@supports selector(::-webkit-scrollbar) {
+  :root[data-theme="netscape"], :root[data-theme="netscape"] * { scrollbar-color: auto; }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar { width: 16px; height: 16px; }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-track { background: repeating-conic-gradient(var(--chrome) 0 25%, #ffffff 0 50%) 0 0 / 2px 2px; }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-corner { background: var(--chrome); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-thumb,
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button { background: var(--chrome) no-repeat center; box-shadow: var(--raised); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:single-button { display: block; width: 16px; height: 16px; }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:vertical:decrement { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4' shape-rendering='crispEdges'%3E%3Cpath d='M3 0h1l3 3v1H0V3z'/%3E%3C/svg%3E"); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:vertical:increment { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h7v1L4 4H3L0 1z'/%3E%3C/svg%3E"); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:horizontal:decrement { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='7' shape-rendering='crispEdges'%3E%3Cpath d='M0 3l3-3h1v7H3L0 4z'/%3E%3C/svg%3E"); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:horizontal:increment { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='7' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h1l3 3v1L1 7H0z'/%3E%3C/svg%3E"); }
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:start:increment,
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:end:decrement { display: none; }
+  /* bouton enfoncé : le relief s'inverse et la flèche descend d'un pixel, comme sous Windows */
+  :where(:root[data-theme="netscape"], :root[data-theme="netscape"] *)::-webkit-scrollbar-button:active { box-shadow: var(--pressed); background-position: calc(50% + 1px) calc(50% + 1px); }
+}
 /* focus clavier : rectangle pointillé de Windows, plutôt que l'anneau épais de la base */
 :root[data-theme="netscape"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
 

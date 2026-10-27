@@ -92,7 +92,7 @@
 /* (l'orange de la flèche votée reste lisible sous le blanc : #d93900 dans les deux variantes) */
 :root[data-theme="adminit"][data-variant="sombre"] .checkable input[type=checkbox]:checked { background-color: #d93900; }
 
-:root[data-theme="adminit"] * { scrollbar-color: var(--tone-active) transparent; }
+:root[data-theme="adminit"], :root[data-theme="adminit"] * { scrollbar-color: color-mix(in srgb, var(--tone-active), var(--text) 35%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 :root[data-theme="adminit"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 
 /* ---------- Page : titres très gras, liens bleus ---------- */

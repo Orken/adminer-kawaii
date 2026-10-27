@@ -59,7 +59,7 @@
 
 /* ---------- Page ---------- */
 :root[data-theme="bbs"] body { line-height: 16px; padding-bottom: 32px; }
-:root[data-theme="bbs"] * { scrollbar-color: var(--cga-cyan) var(--cga-blue); }
+:root[data-theme="bbs"], :root[data-theme="bbs"] * { scrollbar-color: var(--cga-cyan) var(--cga-blue); }
 :root[data-theme="bbs"] ::selection { background: var(--cga-gray); color: #000; }
 :root[data-theme="bbs"] :is(h1, h2, h3) { color: var(--cga-white); }
 :root[data-theme="bbs"] hr { border-top: 3px double var(--border); }

@@ -258,7 +258,7 @@
 /* focus clavier : anneau turquoise plutôt que le blanc de base.css, qui doublait le bord du champ */
 :root[data-theme="verre"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 :root[data-theme="verre"] option { background: var(--option); color: var(--text); }
-:root[data-theme="verre"] * { scrollbar-color: var(--thumb) transparent; }
+:root[data-theme="verre"], :root[data-theme="verre"] * { scrollbar-color: color-mix(in srgb, var(--thumb), var(--text) 30%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 
 /* ---------- Boutons : verre clair, blanc au survol comme la sélection de visionOS ---------- */
 :root[data-theme="verre"] :is(input[type=submit], input[type=button], button:not(.icon):not(.link), .button) {

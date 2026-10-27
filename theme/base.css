@@ -59,6 +59,8 @@ p { margin: 6px 0; }
 ::selection { background: var(--accent); color: var(--on-accent); }
 input, textarea { caret-color: var(--accent-text); }
 ::placeholder { color: var(--muted); opacity: .8; }
+/* barres de défilement. Un thème qui les change vise aussi :root (html porte la barre de la page, que * n'atteint
+   pas), et garde une poignée à 3:1 au moins sur ses fonds : plus pâle, elle se perd (color-mix vers --text) */
 * { scrollbar-color: var(--accent) var(--surface-2); scrollbar-width: thin; }
 
 /* Focus clavier visible partout (anneau contrasté ; sur les champs il s'ajoute à la bordure et à la lueur d'accent) */

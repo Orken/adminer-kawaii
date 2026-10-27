@@ -57,7 +57,7 @@
 }
 
 /* ---------- Page ---------- */
-:root[data-theme="blueprint"] * { scrollbar-color: var(--hair) transparent; }
+:root[data-theme="blueprint"], :root[data-theme="blueprint"] * { scrollbar-color: color-mix(in srgb, var(--hair), var(--text) 25%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 :root[data-theme="blueprint"] hr { border-top: 1px solid var(--hair); }
 :root[data-theme="blueprint"] mark { background: var(--accent); color: var(--on-accent); }
 :root[data-theme="blueprint"] :is(h2, h3) { font-weight: 600; letter-spacing: .04em; }

@@ -66,7 +66,12 @@
   --right-bg: #d3e5fa; --right-edge: #95bdee; --right-ink: #00136b;
   --hl: #316ac5; --on-hl: #ffffff;
   --bar-focus: #ffffff;                     /* anneau de focus sur les barres foncées */
-  --sb-thumb: #b9cdf5;
+  /* barres de défilement : piste, poignée et boutons (face, survol, ombre, bordure), rainures, flèches */
+  --sb-track: #fdfdfa; --sb-track-lo: #eeede5;
+  --sb-face: #c8d6fb; --sb-face-hover: #dae5fd; --sb-shade: #b2c7f7; --sb-edge: #97b0ec;
+  --sb-grip-hi: #eef4fe; --sb-grip-lo: #8cb0f8;
+  --sb-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 5l3.5-3.5L8 5' fill='none' stroke='%234d6185' stroke-width='2'/%3E%3C/svg%3E"); --sb-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' fill='none' stroke='%234d6185' stroke-width='2'/%3E%3C/svg%3E");
+  --sb-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M5 1L1.5 4.5 5 8' fill='none' stroke='%234d6185' stroke-width='2'/%3E%3C/svg%3E"); --sb-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M1 1l3.5 3.5L1 8' fill='none' stroke='%234d6185' stroke-width='2'/%3E%3C/svg%3E");
   --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%230054e9'/%3E%3Cstop offset='0.55' stop-color='%232263d5'/%3E%3Cstop offset='0.7' stop-color='%234479e4'/%3E%3Cstop offset='0.9' stop-color='%23a3bbec'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M5 14h7v3H5z' fill='%23fff'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%23fff' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
   --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%230054e9'/%3E%3Cstop offset='0.55' stop-color='%232263d5'/%3E%3Cstop offset='0.7' stop-color='%234479e4'/%3E%3Cstop offset='0.9' stop-color='%23a3bbec'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
 }
@@ -82,7 +87,10 @@
   --menu-shadow: rgb(20 30 0 / .55);
   --right-bg: #e6ebd2; --right-edge: #b9c79a; --right-ink: #2b3a12;
   --hl: #5f7a37;
-  --sb-thumb: #cbd5b0;
+  --sb-face: #dde6c3; --sb-face-hover: #e8eed6; --sb-shade: #c9d6a6; --sb-edge: #a9ba82;
+  --sb-grip-hi: #f7faee; --sb-grip-lo: #a3b878;
+  --sb-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 5l3.5-3.5L8 5' fill='none' stroke='%23617334' stroke-width='2'/%3E%3C/svg%3E"); --sb-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' fill='none' stroke='%23617334' stroke-width='2'/%3E%3C/svg%3E");
+  --sb-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M5 1L1.5 4.5 5 8' fill='none' stroke='%23617334' stroke-width='2'/%3E%3C/svg%3E"); --sb-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M1 1l3.5 3.5L1 8' fill='none' stroke='%23617334' stroke-width='2'/%3E%3C/svg%3E");
   --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%234f6624'/%3E%3Cstop offset='0.55' stop-color='%23647f34'/%3E%3Cstop offset='0.7' stop-color='%237f9a4f'/%3E%3Cstop offset='0.9' stop-color='%23c3d2a0'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M5 14h7v3H5z' fill='%23fff'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%23fff'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%23fff' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
   --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%234f6624'/%3E%3Cstop offset='0.55' stop-color='%23647f34'/%3E%3Cstop offset='0.7' stop-color='%237f9a4f'/%3E%3Cstop offset='0.9' stop-color='%23c3d2a0'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%23fff'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
 }
@@ -100,12 +108,44 @@
   --right-bg: #ebebf1; --right-edge: #c6c6d5; --right-ink: #1d1d2b;
   --hl: #b2b4bf; --on-hl: #000000;
   --bar-focus: #000000;
-  --sb-thumb: #d0d0dc;
+  --sb-track: #fbfbfd; --sb-track-lo: #ebebf0;
+  --sb-face: #ececf2; --sb-face-hover: #f6f6fa; --sb-shade: #d6d6e2; --sb-edge: #aeaec3;
+  --sb-grip-hi: #ffffff; --sb-grip-lo: #a9a9bf;
+  --sb-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 5l3.5-3.5L8 5' fill='none' stroke='%234e4e68' stroke-width='2'/%3E%3C/svg%3E"); --sb-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' fill='none' stroke='%234e4e68' stroke-width='2'/%3E%3C/svg%3E");
+  --sb-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M5 1L1.5 4.5 5 8' fill='none' stroke='%234e4e68' stroke-width='2'/%3E%3C/svg%3E"); --sb-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='9'%3E%3Cpath d='M1 1l3.5 3.5L1 8' fill='none' stroke='%234e4e68' stroke-width='2'/%3E%3C/svg%3E");
   --btns: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='67' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%239898ae'/%3E%3Cstop offset='0.55' stop-color='%23bcbccd'/%3E%3Cstop offset='0.7' stop-color='%23d3d3e0'/%3E%3Cstop offset='0.9' stop-color='%23f1f1f6'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%238e8ea6'/%3E%3Cpath d='M5 14h7v3H5z' fill='%233c3c52'/%3E%3Crect x='23.5' y='.5' width='20' height='20' rx='3' fill='url(%23m)' stroke='%238e8ea6'/%3E%3Cpath d='M28 4h11v11H28zM29.5 7.5v6h8v-6z' fill='%233c3c52' fill-rule='evenodd'/%3E%3Crect x='46.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%238e8ea6'/%3E%3Cpath d='M52 6l9 9M61 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
   --close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21'%3E%3Cdefs%3E%3CradialGradient id='m' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%239898ae'/%3E%3Cstop offset='0.55' stop-color='%23bcbccd'/%3E%3Cstop offset='0.7' stop-color='%23d3d3e0'/%3E%3Cstop offset='0.9' stop-color='%23f1f1f6'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.9' cy='.9' r='1'%3E%3Cstop offset='0' stop-color='%23cc4600'/%3E%3Cstop offset='0.55' stop-color='%23dc6527'/%3E%3Cstop offset='0.7' stop-color='%23cd7546'/%3E%3Cstop offset='0.9' stop-color='%23ffccb2'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='0.5' y='.5' width='20' height='20' rx='3' fill='url(%23c)' stroke='%238e8ea6'/%3E%3Cpath d='M6 6l9 9M15 6l-9 9' stroke='%23fff' stroke-width='2.2'/%3E%3C/svg%3E");
 }
 :root[data-theme="adminerxp"]:lang(fr) { --start-w: 126px; --start-label: "démarrer"; --address: "Adresse"; }
-:root[data-theme="adminerxp"] * { scrollbar-color: var(--sb-thumb) #f3f1ea; scrollbar-width: auto; }
+/* barres de défilement de Windows XP : piste claire, poignée et boutons bombés, rainures sur la poignée, flèches foncées.
+   Chrome n'applique ::-webkit-scrollbar qu'aux éléments sans scrollbar-color : on le leur retire (html compris, qui
+   porte la barre de la page) ; Firefox, qui n'a que scrollbar-color, garde une poignée foncée, visible sur la piste */
+:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] * { scrollbar-color: var(--sb-edge) var(--sb-track); scrollbar-width: auto; }
+@supports selector(::-webkit-scrollbar) {
+  :root[data-theme="adminerxp"], :root[data-theme="adminerxp"] * { scrollbar-color: auto; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar { width: 17px; height: 17px; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-track:vertical { background: linear-gradient(to right, var(--sb-track-lo), var(--sb-track) 3px, var(--sb-track) calc(100% - 3px), var(--sb-track-lo)); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-track:horizontal { background: linear-gradient(var(--sb-track-lo), var(--sb-track) 3px, var(--sb-track) calc(100% - 3px), var(--sb-track-lo)); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-corner { background: var(--sb-track); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-thumb,
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button {
+    border: 1px solid var(--sb-edge); border-radius: 3px; background: var(--sb-face) no-repeat center;
+    box-shadow: inset 1px 1px #fff, inset -2px -2px var(--sb-shade);
+  }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-thumb:vertical { background-image: repeating-linear-gradient(var(--sb-grip-hi) 0 1px, var(--sb-grip-lo) 1px 2px); background-size: 8px 8px; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-thumb:horizontal { background-image: repeating-linear-gradient(to right, var(--sb-grip-hi) 0 1px, var(--sb-grip-lo) 1px 2px); background-size: 8px 8px; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:single-button { display: block; width: 17px; height: 17px; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:vertical:decrement { background-image: var(--sb-up); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:vertical:increment { background-image: var(--sb-down); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:horizontal:decrement { background-image: var(--sb-left); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:horizontal:increment { background-image: var(--sb-right); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:start:increment,
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:end:decrement { display: none; }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-thumb:hover,
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:hover { background-color: var(--sb-face-hover); }
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-thumb:active,
+  :where(:root[data-theme="adminerxp"], :root[data-theme="adminerxp"] *)::-webkit-scrollbar-button:active { background-color: var(--sb-shade); }
+}
 /* focus clavier : rectangle pointillé de Windows, blanc sur les barres foncées */
 :root[data-theme="adminerxp"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
 :root[data-theme="adminerxp"] :is(#menu h1, #menu #lang, .logout, #kawaii-switcher:not(.in-bar), #menuopen) :focus-visible { outline-color: var(--bar-focus); }

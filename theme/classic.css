@@ -85,7 +85,7 @@
   color-scheme: dark;
 }
 
-:root[data-theme="classic"] * { scrollbar-color: var(--grille) transparent; }
+:root[data-theme="classic"], :root[data-theme="classic"] * { scrollbar-color: color-mix(in srgb, var(--grille), var(--text) 5%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 :root[data-theme="classic"] :where(a, button, summary, [contenteditable]):focus-visible,
 :root[data-theme="classic"] :where(input[type=submit], input[type=button], input[type=checkbox], input[type=radio]):focus-visible {
   outline: 2px solid var(--lien); outline-offset: 2px;

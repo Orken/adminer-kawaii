@@ -67,7 +67,7 @@
 
 /* ---------- Page ---------- */
 :root[data-theme="minitel"] body { line-height: 15px; }
-:root[data-theme="minitel"] * { scrollbar-color: var(--mt-cyan) #000; }
+:root[data-theme="minitel"], :root[data-theme="minitel"] * { scrollbar-color: var(--mt-cyan) #000; }
 :root[data-theme="minitel"] ::selection { background: var(--mt-white); color: #000; }
 :root[data-theme="minitel"] :is(h1, h2, h3) { color: var(--mt-yellow); }
 :root[data-theme="minitel"] hr { border-top: 2px solid var(--border); }

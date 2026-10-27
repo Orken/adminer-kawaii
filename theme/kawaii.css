@@ -44,6 +44,8 @@
   --shadow: 0 6px 18px rgba(0, 0, 0, .35);
   color-scheme: dark;
 }
+/* barres de défilement : l'accent, foncé vers le texte pour rester visible sur les fonds pastel (voir base.css) */
+:root[data-theme="kawaii"], :root[data-theme="kawaii"] * { scrollbar-color: color-mix(in srgb, var(--accent), var(--text) 40%) var(--surface-2); }
 /* boutons-icônes : carré d'Adminer inversé, pictogramme de la couleur du texte (fond donné inversé, voir dbhub.css) */
 :root[data-theme="kawaii"][data-variant="nuit"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
 :root[data-theme="kawaii"][data-variant="nuit"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }

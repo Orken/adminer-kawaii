@@ -61,6 +61,8 @@
 /* boutons-icônes : carré d'Adminer inversé, pictogramme de la couleur du texte (fond donné inversé, voir dbhub.css) */
 :root[data-theme="noel"][data-variant="nuit"] button.icon { filter: invert(1); background-color: rgb(from var(--text) calc(255 - r) calc(255 - g) calc(255 - b)); }
 :root[data-theme="noel"][data-variant="nuit"] button.icon:hover { background-color: rgb(from var(--accent-text) calc(255 - r) calc(255 - g) calc(255 - b)); }
+/* barres de défilement : l'accent, poussé vers le texte (plus foncé sur la neige, plus clair la nuit) pour rester visible (voir base.css) */
+:root[data-theme="noel"], :root[data-theme="noel"] * { scrollbar-color: color-mix(in srgb, var(--accent), var(--text) 30%) var(--surface-2); }
 
 /* ---------- Neige : un calque fixe derrière la page, qui descend d'un carreau de motif en boucle ---------- */
 /* translateY d'une période exacte du motif (240 px) : la boucle ne se voit pas. Coupée si prefers-reduced-motion (base.css). */

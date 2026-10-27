@@ -70,7 +70,7 @@
   --bg-pos: 16px 16px, var(--side) var(--top), 0 calc(var(--top) - 1px), 0 0;
   background-attachment: scroll; background-repeat: no-repeat;
 }
-:root[data-theme="github"] * { scrollbar-color: #c4ccd5 transparent; }
+:root[data-theme="github"], :root[data-theme="github"] * { scrollbar-color: color-mix(in srgb, #c4ccd5, var(--text) 35%) transparent; }   /* poignée à 3:1 sur les fonds (voir base.css) */
 /* focus clavier : anneau bleu de Primer */
 :root[data-theme="github"] :where(a, button, summary, input, select, textarea, [contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
