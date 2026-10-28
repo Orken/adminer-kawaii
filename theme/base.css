@@ -142,8 +142,9 @@ input, textarea { caret-color: var(--accent-text); }
 /* pied collant (actions, pagination) : garder un fond opaque */
 .footer, .footer > div { background: var(--bg); }
 /* Adminer la tire de 20px dans la marge droite du contenu : de cette marge exacte (--content-end, voir Tableaux), sinon
-   une marge plus petite fait déborder la page */
-.footer { margin-inline-end: calc(-1 * var(--content-end, 20px)); }
+   une marge plus petite fait déborder la page. Il l'entoure aussi d'un halo de la couleur du fond (box-shadow), qui
+   déborde sur ce qui l'entoure (cadre, fenêtre, bureau d'AdminerXP) : retiré */
+.footer { margin-inline-end: calc(-1 * var(--content-end, 20px)); box-shadow: none; }
 
 /* messages */
 .message, .error {
@@ -180,14 +181,26 @@ th a, thead td { color: var(--th-text); }
 /* tableau des tables (page de la base) : les en-têtes des colonnes chiffrées (« Data Length », « Auto Increment »…) sont
    bien plus larges que leurs valeurs ; ils passent sur deux lignes plutôt que d'élargir la page */
 #tables-views ~ form thead :is(th, td) { white-space: normal; vertical-align: bottom; }
-/* tableau plus large que la page : il peut mordre sur la marge droite du contenu (--content-end, qu'un thème qui change
-   cette marge redonne), la barre horizontale n'apparaît donc qu'au moment où il touche le bord. Quand il tient, max-width
-   l'arrête au bord du contenu (la marge de 20px d'Adminer en moins). La page de connexion ne déborde jamais : exclue.
-   Un thème qui encadre le contenu (fenêtre, panneau) ne laisse pas le tableau élargir la page, le cadre sortirait de
-   l'écran : il le fait défiler dans le cadre, barre sous le tableau (contain: inline-size et overflow sur .scrollable,
-   dans lequel switcher.js range aussi les autres tableaux ; sauf .fits : le tableau qui tient, marqué par switcher.js,
-   garde ainsi son en-tête collant). Les requêtes SQL affichées y passent à la ligne, pour la même raison */
+/* tableau plus large que le contenu : il défile sur place, barre sous le tableau, au lieu d'élargir la page. Le CSS
+   d'Adminer donne au body la largeur de son contenu le plus large : toute la page défilerait, barre tout en bas, et le
+   cadre d'un thème qui encadre le contenu (fenêtre, panneau) sortirait de l'écran. contain: inline-size retire
+   .scrollable de ce calcul, overflow le fait défiler ; switcher.js y range aussi les autres tableaux, et marque .fits
+   celui qui tient : il ne défile pas et garde son en-tête collant. Celui qui défile le perd : collé dans .scrollable, un
+   en-tête que le thème décale sous sa barre (top) glisserait sur les premières lignes. Les requêtes SQL affichées
+   passent à la ligne, pour la même raison.
+   Hors .scrollable (cartes, page sans JS), le tableau peut mordre sur la marge droite du contenu (--content-end, qu'un
+   thème qui change cette marge redonne) ; max-width l'arrête au bord du contenu. La page de connexion : exclue. */
 :root:not(:has(input[name="auth[password]"])) #content table:not(table table) { margin-inline-end: calc(-1 * var(--content-end, 20px)); max-width: 100%; }
+#content .scrollable { contain: inline-size; }
+#content .scrollable:not(.fits) { overflow: auto hidden; }
+#content .scrollable:not(.fits) thead { position: static; }
+#content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }
+/* éditeur de la page Requête SQL : jush remplace le textarea (98% de large chez Adminer) par un pre dont il fige la largeur
+   en pixels au chargement ; fenêtre rétrécie ou thème changé, il élargirait la page. Son paragraphe sort du calcul de
+   la largeur de la page (contain, comme .scrollable) et l'éditeur s'y borne (stretch : marges intérieures et bordure
+   comprises) ; il se redimensionne encore en dessous */
+#content p:has(> .sqlarea) { contain: inline-size; }
+#content .sqlarea { max-width: -webkit-fill-available; max-width: -moz-available; max-width: stretch; }
 /* la cellule de sélection (td.hover) perd son filet bas dans le CSS d'Adminer : on le remet */
 :root :is(thead, tbody) td.hover { border-bottom-width: 1px; }
 :root tbody tr:last-child td.hover { border-bottom-width: 0; }
@@ -212,8 +225,9 @@ th a, thead td { color: var(--th-text); }
 .js .checkable .checked a { color: var(--accent-text); }
 /* édition directe (Ctrl+clic sur une cellule de la liste) : Adminer remplace la cellule par un champ à la largeur de la
    cellule (20px au minimum), illisible une fois les marges du thème déduites (et rond si le thème arrondit fort).
-   min-width l'emporte sur cette largeur en ligne ; l'id donne la priorité sur les marges des thèmes. */
-:root #table tbody td > :is(input, textarea):only-child { min-width: 7em; padding-inline: 6px; text-align: inherit; }   /* inherit : nombres à droite comme dans la cellule */
+   min-width l'emporte sur cette largeur en ligne ; l'id donne la priorité sur les marges des thèmes. Pas la case à cocher
+   des lignes sans lien de modification (vues, tables sans clé), seule elle aussi dans sa cellule. */
+:root #table tbody td > :is(input:not([type=checkbox]), textarea):only-child { min-width: 7em; padding-inline: 6px; text-align: inherit; }   /* inherit : nombres à droite comme dans la cellule */
 .nowrap td, td.nowrap { white-space: nowrap; }
 /* familles de types (schéma de la base) : Adminer les colore en vert, violet, sarcelle et rouge, illisibles sur fond sombre */
 .char { color: var(--jush-str); }

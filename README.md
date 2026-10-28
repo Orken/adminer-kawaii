@@ -296,8 +296,11 @@ docker compose up --build
 ```
 
 Ouvrez http://127.0.0.1:8080 et connectez-vous avec le serveur `db`, l'utilisateur `root`, le mot de passe `kawaii`
-et la base `boutique_kawaii` (une boutique de démonstration d'une quarantaine de tables, de quoi faire défiler le menu).
-`theme/` et `plugins-enabled/` sont montés dans le conteneur : il suffit de recharger la page après une modification.
+et la base `boutique_kawaii` (une boutique de démonstration d'une quarantaine de tables, de quoi faire défiler le menu,
+dont `fiches_produits` et ses 38 colonnes, plus large que l'écran). `theme/` et `plugins-enabled/` sont montés dans le
+conteneur : il suffit de recharger la page après une modification. Les scripts de `db-init/` ne tournent qu'à la création
+de la base : pour en charger un nouveau dans une base existante,
+`docker compose exec db sh -c 'mariadb -uroot -p"$MARIADB_ROOT_PASSWORD" boutique_kawaii < /docker-entrypoint-initdb.d/04-fiches-produits.sql'`.
 
 Les captures du README se refont avec `scripts/screenshots.js`, l'environnement de développement lancé. Il faut
 Node 18 ou plus, Playwright et ffmpeg (avec libwebp) :
@@ -620,8 +623,10 @@ docker compose up --build
 ```
 
 Open http://127.0.0.1:8080 and log in with server `db`, user `root`, password `kawaii` and database `boutique_kawaii`
-(a demo shop with some forty tables, enough to make the menu scroll). `theme/` and `plugins-enabled/` are mounted into
-the container: just reload the page after a change.
+(a demo shop with some forty tables, enough to make the menu scroll, including `fiches_produits` and its 38 columns,
+wider than the screen). `theme/` and `plugins-enabled/` are mounted into the container: just reload the page after a
+change. The `db-init/` scripts only run when the database is created: to load a new one into an existing database,
+`docker compose exec db sh -c 'mariadb -uroot -p"$MARIADB_ROOT_PASSWORD" boutique_kawaii < /docker-entrypoint-initdb.d/04-fiches-produits.sql'`.
 
 The README screenshots are rebuilt with `scripts/screenshots.js`, with the development environment running. It needs
 Node 18 or later, Playwright and ffmpeg (with libwebp):

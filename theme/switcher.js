@@ -370,9 +370,9 @@
         s.appendChild(t);
       });
     }
-    // Tableau qui tient dans le contenu : marqué (fits). Un thème qui encadre le contenu fait défiler les autres dans le
-    // cadre, et laisse ceux-là tels quels : ils gardent leur en-tête collant (voir base.css, « tableau plus large que la
-    // page »). Relevé quand le contenu ou le tableau change de taille : fenêtre, thème, cellule éditée, lignes ajoutées.
+    // Tableau qui tient dans le contenu : marqué (fits). base.css fait défiler les autres sur place, et laisse ceux-là
+    // tels quels : ils gardent leur en-tête collant (voir « tableau plus large que le contenu »). Relevé quand le contenu
+    // ou le tableau change de taille : fenêtre, thème, cellule éditée, lignes ajoutées.
     var scrollables = document.querySelectorAll('#content .scrollable');
     if (scrollables.length && window.ResizeObserver) {
       var fits = new ResizeObserver(function () {
@@ -682,14 +682,21 @@
       if (!crumb || !bar || !ltr) return;
       var st = crumb.style;
       st.maxWidth = st.overflow = st.textOverflow = '';
-      var c = crumb.getBoundingClientRect(), r = bar.getBoundingClientRect(), cs = getComputedStyle(crumb), limit = document.documentElement.clientWidth;
+      var c = crumb.getBoundingClientRect(), r = bar.getBoundingClientRect(), cs = getComputedStyle(crumb);
+      // bord de la page, pas de la fenêtre défilée : Adminer donne le focus à un champ avant que les tableaux défilent sur
+      // place (voir .scrollable), la page large défile alors jusqu'à lui ; mesuré là, le fil garderait cette largeur
+      var edge = document.documentElement.clientWidth - scrollX, limit = edge;
       if (r.width && r.left > c.left && r.top < c.bottom && r.bottom > c.top) limit = r.left - 12;   // barre visible, sur la même ligne
-      // fin du texte visible : un bandeau qui passe sous la barre en lui gardant la place (padding) est laissé tel quel
+      // fin du texte visible : un bandeau qui passe sous la barre en lui gardant la place (padding) est laissé tel quel ;
+      // pas une boîte qui passe le bord de la fenêtre, même si son texte tient (padding) : elle élargirait la page
       var text = document.createRange();
       text.selectNodeContents(crumb);
       var end = text.getBoundingClientRect().right;
       if (cs.overflowX !== 'visible') end = Math.min(end, c.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight));
-      if (end <= limit) return;
+      if (end <= limit && c.right <= edge) return;
+      // rogné, il laisse passer l'anneau de focus de overflow-clip-margin (base.css) : contre le bord de la fenêtre, ces
+      // pixels feraient déborder la page, la boîte s'arrête d'autant plus tôt
+      limit = Math.min(limit, edge - (parseFloat(cs.overflowClipMargin) || 0));
       st.maxWidth = Math.max(0, parseFloat(cs.width) - (c.right - limit)) + 'px';   // la boîte entière avant la barre ; même boîte que max-width
       st.overflow = 'clip'; st.textOverflow = 'ellipsis';   // clip plutôt que hidden : voir #breadcrumb dans base.css
     }

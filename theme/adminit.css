@@ -322,7 +322,7 @@
 
 /* pied collant (actions, pagination) : bandeau à filet d'un bord à l'autre du contenu, boutons alignés sur les tableaux
    (il suit ainsi un tableau qui déborde dans la marge, voir --content-end dans base.css) ; titres à côté des boutons */
-:root[data-theme="adminit"] .footer { margin-inline: calc(-1 * var(--content-end)); box-shadow: none; }
+:root[data-theme="adminit"] .footer { margin-inline: calc(-1 * var(--content-end)); }
 :root[data-theme="adminit"] .footer > div {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px var(--content-end); background: var(--page); border-top: 1px solid var(--line);
 }

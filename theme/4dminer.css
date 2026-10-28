@@ -245,7 +245,6 @@
 :root[data-theme="4dminer"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a::before { content: "[−]"; margin-right: 3px; color: var(--text); font-weight: 400; }
 
 /* pied collant (actions, pagination) : bande crème à filet ; titres à côté des boutons */
-:root[data-theme="4dminer"] .footer { box-shadow: none; }
 :root[data-theme="4dminer"] .footer > div {
   display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 6px 0; background: var(--page); border-top: 1px solid var(--post-line);
 }

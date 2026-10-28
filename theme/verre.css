@@ -225,10 +225,6 @@
 
 /* ---------- Tableaux : plateau dans la fenêtre, filets fins ---------- */
 :root[data-theme="verre"] table { --table-r: 16px; --table-bw: 0px; background: var(--platter); box-shadow: var(--platter-edge); }
-/* tableau plus large que la fenêtre : il défile dedans, barre sous le tableau, au lieu de l'élargir (voir base.css) */
-:root[data-theme="verre"] #content .scrollable { contain: inline-size; }
-:root[data-theme="verre"] #content .scrollable:not(.fits) { overflow: auto hidden; }
-:root[data-theme="verre"] #content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }   /* requête SQL affichée */
 :root[data-theme="verre"] :is(th, td) { border-bottom-color: var(--hair); }
 :root[data-theme="verre"] .odds tbody tr { background: transparent; }   /* Adminer zèbre les lignes en #f5f5f5 */
 :root[data-theme="verre"] :is(tbody, tfoot) :is(td, th, td.hover) { background: transparent; }
@@ -285,7 +281,7 @@
 :root[data-theme="verre"] fieldset:has(> legend a):has(> div:not(.hidden)) > legend a { color: var(--accent-text); }
 
 /* pied collant (actions, pagination) : barre de verre au-dessus des lignes qui défilent */
-:root[data-theme="verre"] .footer { background: none; box-shadow: none; margin-inline-end: 0; }   /* Adminer l'étire de 20px vers la droite */
+:root[data-theme="verre"] .footer { background: none; margin-inline-end: 0; }   /* Adminer l'étire de 20px vers la droite */
 :root[data-theme="verre"] .footer > div {
   background: var(--bar); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
   border-radius: 20px; box-shadow: var(--edge); padding: 0 6px 6px;
@@ -364,7 +360,7 @@
 @media (max-width: 800px) {
   :root[data-theme="verre"] #content { margin-top: 52px; margin-right: 10px; padding: 14px 14px 16px; border-radius: 24px; --content-end: 14px; }
   :root[data-theme="verre"] #content:has(> #breadcrumb) { padding-top: 48px; }
-  :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; max-width: calc(100% - 28px); overflow: clip; text-overflow: ellipsis; }
+  :root[data-theme="verre"] #breadcrumb { top: 12px; left: 14px !important; box-sizing: border-box; max-width: calc(100% - 28px); overflow: clip; text-overflow: ellipsis; }   /* border-box : marges intérieures comprises, sinon il sort de la fenêtre */
   /* menu ouvert : fenêtre de verre posée sur la page (Adminer lui donne un fond, un cadre et une ombre opaques) */
   :root[data-theme="verre"] #menu { position: relative; margin: 9px 10px 0; background: var(--sheet); border: 0; box-shadow: var(--edge), var(--lift); border-radius: 24px; }
   :root[data-theme="verre"] .js #foot .logout { background: var(--float); box-shadow: var(--edge); margin: 0 10px; border-radius: var(--pill); }

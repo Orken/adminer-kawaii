@@ -279,11 +279,6 @@
 :root[data-theme="spotify"] tbody tr:hover :is(td, th) a:is(:link, :visited) { color: #fff; }
 /* listes de lignes : toute la largeur */
 :root[data-theme="spotify"] #content .scrollable > .checkable { width: 100%; }
-/* tableau plus large que le panneau : il défile dedans, barre sous le tableau, au lieu de l'élargir (voir base.css) */
-:root[data-theme="spotify"] #content .scrollable { contain: inline-size; }
-:root[data-theme="spotify"] #content .scrollable:not(.fits) { overflow: auto hidden; }
-:root[data-theme="spotify"] #content .scrollable:not(.fits) thead { top: auto; }   /* collé sous la barre : décalé dans le tableau, il cacherait la 1re ligne */
-:root[data-theme="spotify"] #content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }   /* requête SQL affichée */
 /* colonne de la case : numéro de ligne, qui devient ▶ au survol (lien « edit » : ouvre la ligne) ; puis la case */
 :root[data-theme="spotify"] .checkable tbody { counter-reset: piste; }
 :root[data-theme="spotify"] .checkable tbody tr { counter-increment: piste; }
@@ -337,7 +332,7 @@
 
 /* pied collant (actions, pagination) : la barre de lecture, noire, d'un bord à l'autre du panneau, boutons alignés sur les
    tableaux : elle suit ainsi un tableau qui déborde dans la marge (voir --content-end, base.css) */
-:root[data-theme="spotify"] .footer { margin-inline: calc(-1 * var(--content-end)); box-shadow: none; }
+:root[data-theme="spotify"] .footer { margin-inline: calc(-1 * var(--content-end)); }
 :root[data-theme="spotify"] .footer, :root[data-theme="spotify"] .footer > div { background: transparent; }
 :root[data-theme="spotify"] .footer > div {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; padding: 12px var(--content-end); background: var(--black);

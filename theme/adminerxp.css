@@ -383,10 +383,6 @@
 
 /* ---------- Tableaux : vue « Détails » de l'Explorateur, en-têtes Luna (filet orange au survol) ---------- */
 :root[data-theme="adminerxp"] table { --table-r: 0px; --table-bw: 1px; border-color: var(--field); background: #fff; }
-/* tableau plus large que la fenêtre : il défile dedans, barre sous le tableau, au lieu de l'élargir (voir base.css) */
-:root[data-theme="adminerxp"] #content .scrollable { contain: inline-size; }
-:root[data-theme="adminerxp"] #content .scrollable:not(.fits) { overflow: auto hidden; }
-:root[data-theme="adminerxp"] #content :is(code, code *):not(table *) { white-space: pre-wrap; overflow-wrap: anywhere; }   /* requête SQL affichée */
 :root[data-theme="adminerxp"] thead :is(th, td, td.hover) {
   border-bottom: 0; border-inline-end: 1px solid #e2dece; font-weight: normal;
   background: linear-gradient(#fff, #f8f7f2 55%, #ebeadb); box-shadow: inset 0 -1px #cbc7b8, inset 0 -2px #d6d2c2, inset 0 -3px #e2dece;
